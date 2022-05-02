@@ -1,7 +1,11 @@
-package com.thehandsome.controller;
+package com.thehandsome.domain;
 
 import java.sql.Date;
-
+/**
+ * 
+ * @author "Seungyeon"
+ *
+ */
 public class MemberVO {
 	String mid;
 	String mpassword;

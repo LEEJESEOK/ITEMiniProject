@@ -1,5 +1,9 @@
-package com.thehandsome.controller;
-
+package com.thehandsome.domain;
+/**
+ * 
+ * @author "Seungyeon"
+ *
+ */
 public class CategoryVO {
 	String clarge;
 	String cmedium;

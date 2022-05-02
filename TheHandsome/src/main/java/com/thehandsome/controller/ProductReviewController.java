@@ -11,6 +11,11 @@ import lombok.extern.log4j.Log4j;
 @RestController
 @RequestMapping("/productreview")
 @Log4j
+/**
+ * 
+ * @author "Seungyeon"
+ *
+ */
 public class ProductReviewController {
 	@GetMapping(value = "/getText", produces = "text/plain; charset=UTF-8")
 	public String getText() {
