@@ -1,4 +1,8 @@
 package com.thehandsome.domain;
+
+import lombok.Data;
+
+@Data
 /**
  * 
  * @author "Seungyeon"

@@ -9,7 +9,7 @@ import lombok.Data;
  *
  */
 public class BrandVO {
-	Long bno; //ºê·£µå ¹øÈ£
-	String bname; //ºê·£µå ¸í
+	Long bno; //ë¸Œëžœë“œ ë²ˆí˜¸
+	String bname; //ë¸Œëžœë“œ ëª…
 
 }

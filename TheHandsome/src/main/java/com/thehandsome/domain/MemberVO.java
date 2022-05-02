@@ -1,11 +1,15 @@
 package com.thehandsome.domain;
 
 import java.sql.Date;
+
+import lombok.Data;
+@Data
 /**
  * 
  * @author "Seungyeon"
  *
  */
+
 public class MemberVO {
 	String mid;
 	String mpassword;
