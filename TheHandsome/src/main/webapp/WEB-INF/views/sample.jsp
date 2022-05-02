@@ -1,50 +1,68 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" session="false"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page isELIgnored="false"%>
+<c:set var="requestURL" value="${pageContext.request.requestURL }" />
+<c:set var="requestURI" value="${pageContext.request.requestURI }" />
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta name="naver-site-verification" content="2f9358e1e36605519854a595f243f0171519dd1d"/>
-<meta name="google-site-verification" content="0bGV8gPhwO_PzritNvIsz2k74EH5yPsrXXluJ8ZUed8" />
-<meta name="google-site-verification" content="dO99-Ao-ywXeVDEz4jz5nJBXzQXVCgmX4WXzxl_Nf3c" />
-<meta name="facebook-domain-verification" content="jvxpdjfrqqan9oe1qdrjfyxj553an6" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="pragma" content="no-cache"/>
-<meta http-equiv="Cache-Control" content="No-Cache"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi" />
+<meta http-equiv="pragma" content="no-cache" />
+<meta http-equiv="Cache-Control" content="No-Cache" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi" />
 <meta property="og:type" content="article">
-        <meta property="og:title" content="더한섬닷컴 | THE HANDSOME.COM">
-        <meta property="og:description" content="타임, 마인, 시스템, SJSJ 등 프리미엄 브랜드 및 트렌디한 해외·편집숍까지 가득한 스타일 플랫폼!">
-        <meta property="og:image" content="http://s3.ap-northeast-2.amazonaws.com/cdn.thehandsome.com-kr/pc/210510_logo/%E3%84%B9%EB%A1%9C%EA%B3%A0.png">
-        <meta property="og:url" content="http://www.thehandsome.com/ko/">
-        <meta name="keywords" contents="한섬, 더한섬닷컴, 한섬몰, 한섬아울렛, 한섬닷컴, 더한섬, 한섬올라인몰, HANDSOME, thehandsome">
-<title>
-	&#45908;&#54620;&#49452;&#45815;&#52980; | THE HANDSOME.COM</title>
-<link rel="shortcut icon" href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/font_80.css" media="all" />
-    <link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/common.css?20220401" media="all" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/layout.css?20220331" media="all" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/popup.css?20210225" media="all" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/jquery-ui.min.css" media="all" />
+<meta property="og:title" content="더한섬닷컴 | THE HANDSOME.COM">
+<meta property="og:description"
+	content="타임, 마인, 시스템, SJSJ 등 프리미엄 브랜드 및 트렌디한 해외·편집숍까지 가득한 스타일 플랫폼!">
+<meta property="og:image"
+	content="http://s3.ap-northeast-2.amazonaws.com/cdn.thehandsome.com-kr/pc/210510_logo/%E3%84%B9%EB%A1%9C%EA%B3%A0.png">
+<meta property="og:url" content="http://www.thehandsome.com/ko/">
+<meta name="keywords"
+	contents="한섬, 더한섬닷컴, 한섬몰, 한섬아울렛, 한섬닷컴, 더한섬, 한섬올라인몰, HANDSOME, thehandsome">
+<title>&#45908;&#54620;&#49452;&#45815;&#52980; | THE
+	HANDSOME.COM</title>
+<link rel="shortcut icon"
+	href="http://cdn.thehandsome.com/resources/images/common/thehandsome_ic_16x16.ico" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/font_80.css" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/common.css?20220401" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/layout.css?20220331" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/popup.css?20210225" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/jquery-ui.min.css" media="all" />
 
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/brand.css" media="all" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/swiper.css" media="all" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/main_201903.css" media="all" />
-<link rel="stylesheet" type="text/css" href="/_ui/desktop/common/css/footer.css?20220406" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/brand.css" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/swiper.css" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/main_201903.css" media="all" />
+<link rel="stylesheet" type="text/css"
+	href="/resources/css/footer.css?20220406" media="all" />
 <style type="text/css" media="print">
-	@IMPORT url("/_ui/desktop/common/blueprint/print.css");
+@IMPORT url("/resources/blueprint/print.css");
 </style>
 
-<script type="text/javascript" src="/_ui/desktop/common/js/jquery-1.11.2.min.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/jquery.vticker.js"></script><!-- 200318 ì¶ê° -->
+<script type="text/javascript"
+	src="/resources/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript"
+	src="/resources/js/jquery.vticker.js"></script>
+<!-- 200318 ì¶ê° -->
 <script type="text/javascript">
 		//<![CDATA[
 		
 		var ACC = { config: {} };
 			ACC.config.contextPath = "";
 			ACC.config.encodedContextPath = "/ko";
-			ACC.config.commonResourcePath = "/_ui/desktop/common";
+			ACC.config.commonResourcePath = "/resources";
 			ACC.config.themeResourcePath = "/_ui/desktop/theme-blue";
 			ACC.config.siteResourcePath = "/_ui/desktop/site-handsome";
 			ACC.config.rootPath = "/_ui/desktop";	
@@ -65,7 +83,7 @@
 			
 		//]]>
 	</script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	//<![CDATA[
 	ACC.addons = {};	//JS holder for addons properties
 			
@@ -75,36 +93,53 @@
 <script type="text/javascript">
     var handsomeContextPath = "/ko"; 
 </script>
- 
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/common.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/html5shiv-printshiv.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/jquery.flexslider.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/ui.js?20211105"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/jquery.form-3.51.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/common_function.js?20220411"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/videojs-ie8.min.js"></script>
+
+<script type="text/javascript"
+	src="/resources/js/handsome/common.js"></script>
+<script type="text/javascript"
+	src="/resources/js/handsome/html5shiv-printshiv.js"></script>
+<script type="text/javascript"
+	src="/resources/js/handsome/jquery.flexslider.js"></script>
+<script type="text/javascript"
+	src="/resources/js/handsome/ui.js?20211105"></script>
+<script type="text/javascript"
+	src="/resources/js/jquery.form-3.51.js"></script>
+<script type="text/javascript"
+	src="/resources/js/common_function.js?20220411"></script>
+<script type="text/javascript"
+	src="/resources/js/videojs-ie8.min.js"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/html5shiv.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/respond.js"></script>
+<script type="text/javascript" src="/resources/js/handsome/html5shiv.js"></script>
+<script type="text/javascript" src="/resources/js/handsome/respond.js"></script>
 <![endif]-->
- 
-<script type="text/javascript" src="/_ui/desktop/common/js/jquery-ui-1.11.2.min.js"></script>
 
-<script type="text/javascript" src="/_ui/desktop/common/js/instagramAPI.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/instagramAPI.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/handsome/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/makePCookie.js"></script>
+<script type="text/javascript"
+	src="/resources/js/jquery-ui-1.11.2.min.js"></script>
 
-<script type="text/javascript" src="/_ui/shared/js/siteoverlay.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/js/jquery.min.js"></script>
+<script type="text/javascript"
+	src="/resources/js/instagramAPI.js"></script>
+<script type="text/javascript"
+	src="/resources/js/instagramAPI.js"></script>
+<script type="text/javascript"
+	src="/resources/js/handsome/jquery.bxslider.min.js"></script>
+<script type="text/javascript"
+	src="/resources/js/makePCookie.js"></script>
 
-<script type="text/javascript" src="/_ui/desktop/common/js/swiper.min.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/netfunnel.js" charset="UTF-8"></script>
-<script type="text/javascript" src="/_ui/desktop/common/js/netfunnel_skin.js" charset="UTF-8"></script>
+<script type="text/javascript" src="/resources/js/siteoverlay.js"></script>
+<script type="text/javascript"
+	src="/resources/js/jquery.min.js"></script>
 
-<script type="text/javascript" src="/_ui/desktop/common/js/unorm.js"></script>
+<script type="text/javascript"
+	src="/resources/js/swiper.min.js"></script>
+<script type="text/javascript" src="/resources/js/netfunnel.js"
+	charset="UTF-8"></script>
+<script type="text/javascript"
+	src="/resources/js/netfunnel_skin.js" charset="UTF-8"></script>
 
-<script type="text/javascript" src="/_ui/desktop/common/js/appboy.min.js"></script>
+<script type="text/javascript" src="/resources/js/unorm.js"></script>
+
+<script type="text/javascript"
+	src="/resources/js/appboy.min.js"></script>
 <script type="text/javascript">
 var setDimensionData = function(){
     //GA 설정 sessionStorage 페이지 이동시 초기화 
@@ -561,12 +596,97 @@ function GA_Event(Category,Action,Label) {
 }
 </script>
 <style media="screen">
- .blsmflw1 {animation: target_image 1.5s;animation-iteration-count: 2;transform-origin:50% 50%;}
- @keyframes target_image {
-	0% { transform: rotate(-1deg); }
-	50% { transform: rotate(9deg) }
-	100% { transform: rotate(-1deg); }
- }
+.blsmflw1 {
+	animation: target_image 1.5s;
+	animation-iteration-count: 2;
+	transform-origin: 50% 50%;
+}
+
+@
+keyframes target_image { 0% {
+	transform: rotate(-1deg);
+}
+50%
+{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+rotate
+
+
+
+
+
+
+
+
+(9
+deg
+
+
+
+
+
+
+)
+}
+100%
+{
+transform
+
+
+
+
+
+
+
+
+:
+
+
+
+
+ 
+
+
+
+
+rotate
+
+
+
+
+
+
+
+
+(-1
+deg
+
+
+
+
+
+
+);
+}
+}
 </style>
 
 <script>
@@ -619,7 +739,7 @@ function GA_Event(Category,Action,Label) {
                     innerHtml += "      <img src=\"http://cdn.thehandsome.com/Mobile/event/detail/image/m_evt_blsm2_180321.png\" alt=\"꽃잎줍기\">";
                     innerHtml += "  </div>";
                     innerHtml += "  <a href=\"javascript:blossomsEvent(\'"+type+"\');\" alt=\"이벤트GO\" style=\"display:block;position:absolute;top:10px;width:110px;height:85px;\">&nbsp;</a>";
-                    innerHtml += "  <a href=\"javascript:blossomsClose(\'close'\);\" alt=\"꽃잎close\" style=\"background:url('/_ui/desktop/common/images/common/btn_close.png') no-repeat;display:block;position:absolute;top:0;right:-7px;width:18px;height:18px;z-index:2;\">&nbsp;</a>";
+                    innerHtml += "  <a href=\"javascript:blossomsClose(\'close'\);\" alt=\"꽃잎close\" style=\"background:url('/resources/images/common/btn_close.png') no-repeat;display:block;position:absolute;top:0;right:-7px;width:18px;height:18px;z-index:2;\">&nbsp;</a>";
                     innerHtml += "  <div style=\"position:absolute;bottom:-4px;left:17px;width:120px;\">";
                     innerHtml += "      <label for=\"day_close\" style=\"cursor:pointer;text-decoration:underline;color:#6e6e6e;letter-spacing:-.5px;\" onclick=\"blossomsClose(\'day_close\');\">하루 보지 않기</label>";
                     innerHtml += "      <input id=\"day_close\" type=\"checkbox\" name=\"day_close\" value=\"하루 보지 않기\" onclick=\"blossomsClose(\'day_close\');\" style=\"display:none;\">";
@@ -861,12 +981,14 @@ fbq('init', '1947530058811697'); // Insert your pixel ID here.
 fbq('track', 'PageView');
 </script>
 <noscript>
-    <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1947530058811697&ev=PageView&noscript=1"/>
+	<img height="1" width="1" style="display: none"
+		src="https://www.facebook.com/tr?id=1947530058811697&ev=PageView&noscript=1" />
 </noscript>
 <!-- End Facebook Pixel Code -->
 
-        <!-- #2894 - 카카오광고 집행 위한 픽셀&SDK 삽입 -->
-<script type="text/javascript" charset="UTF-8" src="//t1.daumcdn.net/adfit/static/kp.js"></script>
+<!-- #2894 - 카카오광고 집행 위한 픽셀&SDK 삽입 -->
+<script type="text/javascript" charset="UTF-8"
+	src="//t1.daumcdn.net/adfit/static/kp.js"></script>
 <script type="text/javascript">
 if(typeof kakaoPixel !== 'undefined'){
       var kakaoTrackId = '3482319208237780781'; //개발
@@ -911,7 +1033,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body oncontextmenu='return false'>
-<!-- <div id="transparent_mask"></div> -->
+	<p>${contextURL}" ${contextURI}" ${contextPath}"</p>
+	<!-- <div id="transparent_mask"></div> -->
 	<script>
 			//라쿠텐 유입
 			var siteID = "" ? "" : "";
@@ -929,54 +1052,59 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 				document.cookie = cname + '=' + cvalue + '; expires=' + d.toUTCString() + '; path=/';
 			})('sslvisit1', false, -7);
 			</script>
-		<!-- 현대닷컴 유입 시작 -->
-		<script>
+	<!-- 현대닷컴 유입 시작 -->
+	<script>
 			(function(cname, cvalue, day){
 				var d = new Date();
 				d.setTime(d.getTime() + (day*24*60*60*1000));
 				document.cookie = cname + '=' + cvalue + '; expires=' + d.toUTCString() + '; path=/';
 			})('thehyundai', false, -7);
 			</script>
-		<!-- 현대닷컴 유입 끝 -->
-		
-		<!-- hmall 유입 시작 -->
-		<script>
+	<!-- 현대닷컴 유입 끝 -->
+
+	<!-- hmall 유입 시작 -->
+	<script>
 			(function(cname, cvalue, day){
 				var d = new Date();
 				d.setTime(d.getTime() + (day*24*60*60*1000));
 				document.cookie = cname + '=' + cvalue + '; expires=' + d.toUTCString() + '; path=/';
 			})('hyundaihmall', false, -7);
 			</script>
-		<!-- hmall 유입 끝 -->
-		
-		<!-- 광고 유입 시작 -->
-        <script>
+	<!-- hmall 유입 끝 -->
+
+	<!-- 광고 유입 시작 -->
+	<script>
             (function(cname, cvalue, day){
                 var d = new Date();
                 d.setTime(d.getTime() + (day*24*60*60*1000));
                 document.cookie = cname + '=' + cvalue + '; expires=' + d.toUTCString() + '; path=/';
             })('fromSite', '', -7);
             </script>
-        <!-- 광고 유입 끝 -->
+	<!-- 광고 유입 끝 -->
 	<!-- Loading -->
-	<div class="loading_bar" id="loadingBarDiv" style="display:none;">
-		<img src="/_ui/desktop/common/images/common/loading.gif" alt="loading"/>
+	<div class="loading_bar" id="loadingBarDiv" style="display: none;">
+		<img src="/resources/images/common/loading.gif" alt="loading" />
 		<span>�로딩중</span>
 	</div>
 	<!-- //Loading -->
 
-	<form id="CSRFForm" action="/ko/" method="post"><div>
-<input type="hidden" name="CSRFToken" value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
-</div></form><!-- headerWrap -->
-		<div id="headerWrap" >
-			<div class="header header_fixed header_main1903"> 
-				<script type="text/javascript" src="/_ui/desktop/common/js/SsoAjax.js"></script>
+	<form id="CSRFForm" action="/ko/" method="post">
+		<div>
+			<input type="hidden" name="CSRFToken"
+				value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
+		</div>
+	</form>
+	<!-- headerWrap -->
+	<div id="headerWrap">
+		<div class="header header_fixed header_main1903">
+			<script type="text/javascript"
+				src="/resources/js/SsoAjax.js"></script>
 
-<script>
+			<script>
 var arkQuery = $.noConflict(true);
 </script>
 
-<script>
+			<script>
 /*
  * 챗봇 관련 스크립트
  */
@@ -1095,7 +1223,7 @@ function gaBrandType(brandCode){
  
 </script>
 
-<script type="text/javascript">
+			<script type="text/javascript">
     var historyDelete = '검색기록전체삭제';
     var typingWord = '검색어를 입력해주세요.';
     var gotoBrand = '브랜드바로가기'; 
@@ -1108,10 +1236,13 @@ function gaBrandType(brandCode){
     
     var favoriteBrands = new Array();
 </script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/ark/js/beta.fix.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/ark/js/ark.js"></script>
-<script type="text/javascript" src="/_ui/desktop/common/wisenut/js/search.js"></script>
-<script type="text/javascript">
+			<script type="text/javascript"
+				src="/resources/wisenut/ark/js/beta.fix.js"></script>
+			<script type="text/javascript"
+				src="/resources/wisenut/ark/js/ark.js"></script>
+			<script type="text/javascript"
+				src="/resources/wisenut/js/search.js"></script>
+			<script type="text/javascript">
 //<![CDATA[
     // #1067 - 201803 메인 개편
     function applyCategory(){
@@ -1761,122 +1892,185 @@ function GA_search(){
 
 //]]>
 </script>
-<form id="autologinForm" name="autologinForm" action="/ko/hp/autologin"  method="get">
-    <input type="hidden" name="hcid" id="hcid" value="e2gaf@naver.com" />
-</form>
-		<div class="top_nav topnav1903">
-			<div class="top_nav_wrap clearfix">
-            <div class="brand_menu brand_menu1903">
-            <ul class="clearfix">
-                <!-- 선호 브랜드 없음 -->
-                        <li><span class="on"><a href="/ko/main" onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
-                        <!-- 로그인 상태 -->
-								<!-- 비로그인 상태 -->
-                        		<p class="brand_menu_guide_text">로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span style="margin-top:-1px; display:inline-block;">♥</span>해주세요</p>
-								</ul>
-        </div>
-    <div class="gnb_sh_wrap" style="display:none;">
-					<!-- search box -->
-					<div class="gnb_sh_box">
-						<input type="text" class="input" id="gnbsearchwords" title="검색어 입력" value=""  onkeypress="if(event.keyCode==13) {EnterSearchHeader(); return false;}"/>
-						<a href="javascript:void(0);" id="gnbsearch">검색</a>
+			<form id="autologinForm" name="autologinForm"
+				action="/ko/hp/autologin" method="get">
+				<input type="hidden" name="hcid" id="hcid" value="e2gaf@naver.com" />
+			</form>
+			<div class="top_nav topnav1903">
+				<div class="top_nav_wrap clearfix">
+					<div class="brand_menu brand_menu1903">
+						<ul class="clearfix">
+							<!-- 선호 브랜드 없음 -->
+							<li><span class="on"><a href="/ko/main"
+									onclick="GA_Event('공통','탑_네비게이션','HOME')">HOME</a></span></li>
+							<!-- 로그인 상태 -->
+							<!-- 비로그인 상태 -->
+							<p class="brand_menu_guide_text">
+								로그인 후 아래 '브랜드' 메뉴에서 좋아하는 브랜드를 <span
+									style="margin-top: -1px; display: inline-block;">♥</span>해주세요
+							</p>
+						</ul>
 					</div>
-					<!-- //search box -->
-					<!-- search result -->
-					<div class="gnb_sh_result" >
-						<div class="tab">
-							<a href="javascript:void(0);" class="menu on">최근검색어</a>
-							<div class="result_list on">
-								<div class="searchWord1" style="display: none;"><a href="javascript:void(0);" class="ml newlyBtn" id="searchWord1"></a><a href="javascript:void(0);" class="close" onclick="deletecookie('HS_Seachwords1')">닫기</a></div>
-								<div class="searchWord2" style="display: none;"><a href="javascript:void(0);" class="ml newlyBtn" id="searchWord2"></a><a href="javascript:void(0);" class="close" onclick="deletecookie('HS_Seachwords2')">닫기</a></div>
-								<div class="searchWord3" style="display: none;"><a href="javascript:void(0);" class="ml newlyBtn" id="searchWord3"></a><a href="javascript:void(0);" class="close" onclick="deletecookie('HS_Seachwords3')">닫기</a></div>
-								<div class="searchWord4" style="display: none;"><a href="javascript:void(0);" class="ml newlyBtn" id="searchWord4"></a><a href="javascript:void(0);" class="close" onclick="deletecookie('HS_Seachwords4')">닫기</a></div>
-								<div class="searchWord5" style="display: none;"><a href="javascript:void(0);" class="ml newlyBtn" id="searchWord5"></a><a href="javascript:void(0);" class="close" onclick="deletecookie('HS_Seachwords5')">닫기</a></div>
-								<a href="javascript:void(0);" class="btn_svclose">검색어 <span id="searchSaveYN" save="on">끄기</span></a>
-								<a href="javascript:void(0);" class="btn_allclose on" onclick="searchOff()">닫기</a>
-							</div>
-							<a href="javascript:void(0);" class="menu">인기검색어</a>
-							<div class="result_list">
-								<div><a href="javascript:void(0);" class="ml favBtn">jacket</a><!-- <a href="javascript:void(0);" class="close">닫기</a> --></div>
-								<div><a href="javascript:void(0);" class="ml favBtn">blouse</a><!-- <a href="javascript:void(0);" class="close">닫기</a> --></div>
-								<div><a href="javascript:void(0);" class="ml favBtn">stripe</a><!-- <a href="javascript:void(0);" class="close">닫기</a> --></div>
-								<div><a href="javascript:void(0);" class="ml favBtn">ribbon</a><!-- <a href="javascript:void(0);" class="close">닫기</a> --></div>
-								<div><a href="javascript:void(0);" class="ml favBtn">blouson</a><!-- <a href="javascript:void(0);" class="close">닫기</a> --></div>
-								<a href="javascript:void(0);" class="btn_svclose">검색어 <span id="searchSaveYNfame" save="on">끄기</span></a>
-								<a href="javascript:void(0);" class="btn_allclose" onclick="searchOff()">닫기</a>
+					<div class="gnb_sh_wrap" style="display: none;">
+						<!-- search box -->
+						<div class="gnb_sh_box">
+							<input type="text" class="input" id="gnbsearchwords"
+								title="검색어 입력" value=""
+								onkeypress="if(event.keyCode==13) {EnterSearchHeader(); return false;}" />
+							<a href="javascript:void(0);" id="gnbsearch">검색</a>
+						</div>
+						<!-- //search box -->
+						<!-- search result -->
+						<div class="gnb_sh_result">
+							<div class="tab">
+								<a href="javascript:void(0);" class="menu on">최근검색어</a>
+								<div class="result_list on">
+									<div class="searchWord1" style="display: none;">
+										<a href="javascript:void(0);" class="ml newlyBtn"
+											id="searchWord1"></a><a href="javascript:void(0);"
+											class="close" onclick="deletecookie('HS_Seachwords1')">닫기</a>
+									</div>
+									<div class="searchWord2" style="display: none;">
+										<a href="javascript:void(0);" class="ml newlyBtn"
+											id="searchWord2"></a><a href="javascript:void(0);"
+											class="close" onclick="deletecookie('HS_Seachwords2')">닫기</a>
+									</div>
+									<div class="searchWord3" style="display: none;">
+										<a href="javascript:void(0);" class="ml newlyBtn"
+											id="searchWord3"></a><a href="javascript:void(0);"
+											class="close" onclick="deletecookie('HS_Seachwords3')">닫기</a>
+									</div>
+									<div class="searchWord4" style="display: none;">
+										<a href="javascript:void(0);" class="ml newlyBtn"
+											id="searchWord4"></a><a href="javascript:void(0);"
+											class="close" onclick="deletecookie('HS_Seachwords4')">닫기</a>
+									</div>
+									<div class="searchWord5" style="display: none;">
+										<a href="javascript:void(0);" class="ml newlyBtn"
+											id="searchWord5"></a><a href="javascript:void(0);"
+											class="close" onclick="deletecookie('HS_Seachwords5')">닫기</a>
+									</div>
+									<a href="javascript:void(0);" class="btn_svclose">검색어 <span
+										id="searchSaveYN" save="on">끄기</span></a> <a
+										href="javascript:void(0);" class="btn_allclose on"
+										onclick="searchOff()">닫기</a>
+								</div>
+								<a href="javascript:void(0);" class="menu">인기검색어</a>
+								<div class="result_list">
+									<div>
+										<a href="javascript:void(0);" class="ml favBtn">jacket</a>
+										<!-- <a href="javascript:void(0);" class="close">닫기</a> -->
+									</div>
+									<div>
+										<a href="javascript:void(0);" class="ml favBtn">blouse</a>
+										<!-- <a href="javascript:void(0);" class="close">닫기</a> -->
+									</div>
+									<div>
+										<a href="javascript:void(0);" class="ml favBtn">stripe</a>
+										<!-- <a href="javascript:void(0);" class="close">닫기</a> -->
+									</div>
+									<div>
+										<a href="javascript:void(0);" class="ml favBtn">ribbon</a>
+										<!-- <a href="javascript:void(0);" class="close">닫기</a> -->
+									</div>
+									<div>
+										<a href="javascript:void(0);" class="ml favBtn">blouson</a>
+										<!-- <a href="javascript:void(0);" class="close">닫기</a> -->
+									</div>
+									<a href="javascript:void(0);" class="btn_svclose">검색어 <span
+										id="searchSaveYNfame" save="on">끄기</span></a> <a
+										href="javascript:void(0);" class="btn_allclose"
+										onclick="searchOff()">닫기</a>
+								</div>
 							</div>
 						</div>
+						<!-- //search result -->
 					</div>
-					<!-- //search result -->
-				</div>				
-				<!-- 201705 search_box_wrap -->
-				<div class="search_box_wrap sbw1803" id="searchBox" 
-                >
-                    <form name="search" id="search" action="/ko/hssearch/searchCount" method="post" onsubmit="return false;">           
-                        <input type="hidden" name="CSRFToken" value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
-                        <input type="hidden" name="searchwords" value="" />
-                        <input type="hidden" name="startCount" value="">
-                        <input type="hidden" name="mode" value="">
-                        <input type="hidden" name="sort" value="">
-                        <input type="hidden" name="collection" value="">
-                        <input type="hidden" name="range" value="">
-                        <input type="hidden" name="startDate" value="">
-                        <input type="hidden" name="endDate" value="">
-                        <input type="hidden" name="searchField" value="">
-                        <input type="hidden" name="reQuery" />
-                        <input type="hidden" id="prefixQuery" value="" />
-                        <input type="hidden" id ="identity" name="identity" value="">                
-                        <input type="hidden" id="realQuery" name="realQuery" value="" />
-                        <input type="hidden" id="loginState" value="loginOff" />
-                        <input type="hidden" id="athomeInfo" value="" />
-                        <input type="hidden" id="selectedLang" name="selectedLang" value="product_ko" />
-                        <input type="hidden" id="lang" name="lang" value="ko" />  
-                        <input type="hidden" id="brandPageGubun" name="brandPageGubun" value="off"><!-- 브랜드 페이지 여부 -->
-                        <input type="hidden" id="brand_img" name="brand_img" value="">          
-                        <input type="hidden" id="brand_url" name="brand_url" value="">                    
-                        <div class="search_box">
-                            <label for="query" class="hidden">search</label>
-                            <input type="search" id="query" name="query" value="" onKeypress="javascript:pressCheck((event),this);"  style="margin-top: 0.2px;" autocomplete="off">
-                            <span class="placeholder"></span>
-                            <a href="javascript:void(0);"><span class="btn_close">닫기</span></a>
-                            <a href="javascript:GA_search();doSearch();" class="search"><span class="ico">검색</span></a>
-                        </div>
-                    </form>
-                    <!--검색박스 활성화 data_react -->
-                    <div class="data_react">
-                        <!-- tab 검색어 입력 전 -->
-                        <div class="search_tab">
-                            <div class="btn_search_tab" style="display:none;">
-                                <a href="javascript:void(0);" rel="recent_search" class="btn_recent_search on" onclick="GA_Event('검색','최근 검색어','클릭')">최근 검색어</a>
-                                <a href="javascript:void(0);" rel="style_search" class="btn_style_search" id="btn_style_search">Style Search</a>
-                                <a href="javascript:void(0);" rel="popular_search" class="btn_style_search" id="btn_top_search" style="display:none;" onclick="GA_Event('검색','인기검색어','클릭')">인기검색어</a>
-                                </div>
-                            <!-- 최근 검색어 -->
-                            <div class="recent_search s_tab">
-                                <ul id="mykeyword">
-                                </ul>
-                            </div>
-                            <!-- style search -->
-                            <form id="searchStyle" name="searchStyle" action="/ko/hssearch/searchCount" method="post" onsubmit="return false;">
-                                <input type="hidden" name="query" value=""/>
-                                <input type="hidden" name="collection" value=""/>
-                                <input type="hidden" id="CSRFToken" name="CSRFToken" value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
-                                <input type="hidden" id="searchStyleYn" name="searchStyleYn" value="searchStyle"/>
-                            </form>
+					<!-- 201705 search_box_wrap -->
+					<div class="search_box_wrap sbw1803" id="searchBox">
+						<form name="search" id="search" action="/ko/hssearch/searchCount"
+							method="post" onsubmit="return false;">
+							<input type="hidden" name="CSRFToken"
+								value="3de4f578-9983-4f70-8b91-fb368a78b6aa" /> <input
+								type="hidden" name="searchwords" value="" /> <input
+								type="hidden" name="startCount" value=""> <input
+								type="hidden" name="mode" value=""> <input type="hidden"
+								name="sort" value=""> <input type="hidden"
+								name="collection" value=""> <input type="hidden"
+								name="range" value=""> <input type="hidden"
+								name="startDate" value=""> <input type="hidden"
+								name="endDate" value=""> <input type="hidden"
+								name="searchField" value=""> <input type="hidden"
+								name="reQuery" /> <input type="hidden" id="prefixQuery"
+								value="" /> <input type="hidden" id="identity" name="identity"
+								value=""> <input type="hidden" id="realQuery"
+								name="realQuery" value="" /> <input type="hidden"
+								id="loginState" value="loginOff" /> <input type="hidden"
+								id="athomeInfo" value="" /> <input type="hidden"
+								id="selectedLang" name="selectedLang" value="product_ko" /> <input
+								type="hidden" id="lang" name="lang" value="ko" /> <input
+								type="hidden" id="brandPageGubun" name="brandPageGubun"
+								value="off">
+							<!-- 브랜드 페이지 여부 -->
+							<input type="hidden" id="brand_img" name="brand_img" value="">
+							<input type="hidden" id="brand_url" name="brand_url" value="">
+							<div class="search_box">
+								<label for="query" class="hidden">search</label> <input
+									type="search" id="query" name="query" value=""
+									onKeypress="javascript:pressCheck((event),this);"
+									style="margin-top: 0.2px;" autocomplete="off"> <span
+									class="placeholder"></span> <a href="javascript:void(0);"><span
+									class="btn_close">닫기</span></a> <a
+									href="javascript:GA_search();doSearch();" class="search"><span
+									class="ico">검색</span></a>
+							</div>
+						</form>
+						<!--검색박스 활성화 data_react -->
+						<div class="data_react">
+							<!-- tab 검색어 입력 전 -->
+							<div class="search_tab">
+								<div class="btn_search_tab" style="display: none;">
+									<a href="javascript:void(0);" rel="recent_search"
+										class="btn_recent_search on"
+										onclick="GA_Event('검색','최근 검색어','클릭')">최근 검색어</a> <a
+										href="javascript:void(0);" rel="style_search"
+										class="btn_style_search" id="btn_style_search">Style
+										Search</a> <a href="javascript:void(0);" rel="popular_search"
+										class="btn_style_search" id="btn_top_search"
+										style="display: none;" onclick="GA_Event('검색','인기검색어','클릭')">인기검색어</a>
+								</div>
+								<!-- 최근 검색어 -->
+								<div class="recent_search s_tab">
+									<ul id="mykeyword">
+									</ul>
+								</div>
+								<!-- style search -->
+								<form id="searchStyle" name="searchStyle"
+									action="/ko/hssearch/searchCount" method="post"
+									onsubmit="return false;">
+									<input type="hidden" name="query" value="" /> <input
+										type="hidden" name="collection" value="" /> <input
+										type="hidden" id="CSRFToken" name="CSRFToken"
+										value="3de4f578-9983-4f70-8b91-fb368a78b6aa" /> <input
+										type="hidden" id="searchStyleYn" name="searchStyleYn"
+										value="searchStyle" />
+								</form>
 
-                            <div class="style_search s_tab" id="stylesearch_area">
-                            <p class="style_search_tlt">Style Search 2018</p>
-				                <div class="ss_txt_list">				                    
-				                    <ul class="style_search_arr" id="style_search_arr">     
-				                    </ul>
-				                </div>
-				                <div class="ss_img_list" id="styleSearchSlider">
-				                    <ul class="slides"><li></li></ul>
-				                </div>
-				            </div>
-				            
-	                        <!-- style search 컨텐츠 하나일 때-->
-	                        <!-- <div class="style_search s_tab">
+								<div class="style_search s_tab" id="stylesearch_area">
+									<p class="style_search_tlt">Style Search 2018</p>
+									<div class="ss_txt_list">
+										<ul class="style_search_arr" id="style_search_arr">
+										</ul>
+									</div>
+									<div class="ss_img_list" id="styleSearchSlider">
+										<ul class="slides">
+											<li></li>
+										</ul>
+									</div>
+								</div>
+
+								<!-- style search 컨텐츠 하나일 때-->
+								<!-- <div class="style_search s_tab">
 	                            <div class="ss_txt_list">
 	                                <p class="style_search_tlt">Style Search 2017 S/S</p>
 	                                <ul id="style_search_arr">
@@ -1886,857 +2080,1014 @@ function GA_search(){
                                     <ul class="slides"><li></li></ul>
                                 </div>
 	                        </div> -->
-	                        <!-- //style search 컨텐츠 하나일 때-->
-				            <div class="popular_search s_tab" id="topsearch_area" style="display:none;">
-				                <ol class="ol_popular1" id="topsearchLeft">
-	                            </ol>
-<!-- 				                <ol class="ol_popular2" id="topsearchRight"> -->
-<!-- 	                            </ol> -->
-				            </div>
-                            </div>
-                        <!--// tab 검색어 입력 전 -->
-                        <!-- 검색어 입력 후 (검색어 자동완성) -->
-                        <div class="search_autocomplete">
-                            <div class="autocomplete_txt">
-                                <div id="brandView">
-                                    <ul>                            
-                                    </ul>
-                                </div>
-                                <div id="ark" style="height:170px;"></div>
-                            </div>
-                            <div class="autocomplete_right">
-                                <div class="category_brand">
-                                    <p>카테고리/브랜드</p>
-                                    <div class="brand">
-                                        <p id="autocomplete_brand">브랜드</p>
-                                    </div>
-                                    <div class="category">
-                                        <p id="autocomplete_category">카테고리</p>
-                                    </div>
-                                </div>
-                                <div class="autocomplete_img">
-                                    <p><span>"<span id="autocomplete_query">{0}</span>"</span>에 대한 주요 검색 결과</p>
-<!--                                     <p><span>"<span id="autocomplete_query"></span>&#32;"</span>에 대한 주요 검색 결과</p> -->
-                                    <ul id="auto2" >
-                                    </ul>
-                                </div>
-                                </div>
-                        </div>
-                        <!--// 검색어 입력 후 (검색어 자동완성) -->
-                    </div>
-                    <!--//검색박스 활성화 data_react -->
-                </div>
-                <!--// 201705 search_box_wrap -->
-                <div class="util_menu" style="display:block;">
-					<ul class="clearfix">
-						<li><a href="/ko/member/login" onclick="GA_Event('공통','헤더_메뉴','로그인')">로그인<!-- 로그인 --></a></li>
-						<li class="header_dropmemu mypage">
-							
-						<a href="/ko/mypage" class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
-							<div class="list">
-								<ul>
-									<li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','헤더_메뉴','마이페이지_주문조회')">주문조회<!-- 주문조회 --></a></li>
-									<li><a href="/ko/mypage/myGradeInfo" onclick="GA_Event('공통','헤더_메뉴','마이페이지_나의회원등급')">나의회원등급<!-- 온라인등급 --></a></li>
-										<li><a href="/ko/mypage/voucher" onclick="GA_Event('공통','헤더_메뉴','마이페이지_쿠폰조회')">쿠폰조회<!-- 쿠폰조회 --></a></li>
-									<li><a href="/ko/mypage/mypoint" onclick="GA_Event('공통','헤더_메뉴','마이페이지_마일리지조회')">마일리지조회<!-- 포인트조회 --></a></li>
-										   <li><a href="/ko/mypage/myEGiftCard" onclick="GA_Event('공통','헤더_메뉴','마이페이지_e-Gift Card')">e-Gift Card<!-- e-Gfit Card --></a></li>
-									   <li><a href="/ko/mypage/personInfomationChangePWCheck" onclick="GA_Event('공통','헤더_메뉴','마이페이지_회원정보변경')">회원정보변경<!-- 회원정보변경 --></a></li>
-									<li><a href="/ko/svcenter/mantomaninquiry" onclick="GA_Event('공통','헤더_메뉴','마이페이지_온라인상담')">온라인상담<!-- 온라인 상담 --></a></li>
-									</ul>
-							</div>
-						</li>
-						
-						<li>
-							<div class="header_dropmemu lang_switch lang_1911">
-							    <a href="javascript:void(0);" class="btn" onclick="GA_Event('공통','헤더_메뉴','LANGUAGE')">LANGUAGE</a>
-								<div class="list" style="display: none; height: 87px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
-									<ul>
-										<li><a href="javascript:language('ko')" onclick="GA_Event('공통','헤더_메뉴','LANGUAGE_한국어')">한국어</a></li>
-										<li><a href="javascript:language('en')" onclick="GA_Event('공통','헤더_메뉴','LANGUAGE_ENGLISH')">ENGLISH</a></li>
-										<li><a href="javascript:language('zh')" onclick="GA_Event('공통','헤더_메뉴','LANGUAGE_中文')">中文</a></li>
-									</ul>
+								<!-- //style search 컨텐츠 하나일 때-->
+								<div class="popular_search s_tab" id="topsearch_area"
+									style="display: none;">
+									<ol class="ol_popular1" id="topsearchLeft">
+									</ol>
+									<!-- 				                <ol class="ol_popular2" id="topsearchRight"> -->
+									<!-- 	                            </ol> -->
 								</div>
 							</div>
-						</li>
+							<!--// tab 검색어 입력 전 -->
+							<!-- 검색어 입력 후 (검색어 자동완성) -->
+							<div class="search_autocomplete">
+								<div class="autocomplete_txt">
+									<div id="brandView">
+										<ul>
+										</ul>
+									</div>
+									<div id="ark" style="height: 170px;"></div>
+								</div>
+								<div class="autocomplete_right">
+									<div class="category_brand">
+										<p>카테고리/브랜드</p>
+										<div class="brand">
+											<p id="autocomplete_brand">브랜드</p>
+										</div>
+										<div class="category">
+											<p id="autocomplete_category">카테고리</p>
+										</div>
+									</div>
+									<div class="autocomplete_img">
+										<p>
+											<span>"<span id="autocomplete_query">{0}</span>"
+											</span>에 대한 주요 검색 결과
+										</p>
+										<!--                                     <p><span>"<span id="autocomplete_query"></span>&#32;"</span>에 대한 주요 검색 결과</p> -->
+										<ul id="auto2">
+										</ul>
+									</div>
+								</div>
+							</div>
+							<!--// 검색어 입력 후 (검색어 자동완성) -->
+						</div>
+						<!--//검색박스 활성화 data_react -->
+					</div>
+					<!--// 201705 search_box_wrap -->
+					<div class="util_menu" style="display: block;">
+						<ul class="clearfix">
+							<li><a href="/ko/member/login"
+								onclick="GA_Event('공통','헤더_메뉴','로그인')">로그인<!-- 로그인 --></a></li>
+							<li class="header_dropmemu mypage"><a href="/ko/mypage"
+								class="btn" onclick="GA_Event('공통','헤더_메뉴','마이페이지')">마이페이지</a>
+								<div class="list">
+									<ul>
+										<li><a href="/ko/mypage/order/myorders"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_주문조회')">주문조회<!-- 주문조회 --></a></li>
+										<li><a href="/ko/mypage/myGradeInfo"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_나의회원등급')">나의회원등급<!-- 온라인등급 --></a></li>
+										<li><a href="/ko/mypage/voucher"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_쿠폰조회')">쿠폰조회<!-- 쿠폰조회 --></a></li>
+										<li><a href="/ko/mypage/mypoint"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_마일리지조회')">마일리지조회<!-- 포인트조회 --></a></li>
+										<li><a href="/ko/mypage/myEGiftCard"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_e-Gift Card')">e-Gift
+												Card<!-- e-Gfit Card -->
+										</a></li>
+										<li><a href="/ko/mypage/personInfomationChangePWCheck"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_회원정보변경')">회원정보변경<!-- 회원정보변경 --></a></li>
+										<li><a href="/ko/svcenter/mantomaninquiry"
+											onclick="GA_Event('공통','헤더_메뉴','마이페이지_온라인상담')">온라인상담<!-- 온라인 상담 --></a></li>
+									</ul>
+								</div></li>
+
+							<li>
+								<div class="header_dropmemu lang_switch lang_1911">
+									<a href="javascript:void(0);" class="btn"
+										onclick="GA_Event('공통','헤더_메뉴','LANGUAGE')">LANGUAGE</a>
+									<div class="list"
+										style="display: none; height: 87px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
+										<ul>
+											<li><a href="javascript:language('ko')"
+												onclick="GA_Event('공통','헤더_메뉴','LANGUAGE_한국어')">한국어</a></li>
+											<li><a href="javascript:language('en')"
+												onclick="GA_Event('공통','헤더_메뉴','LANGUAGE_ENGLISH')">ENGLISH</a></li>
+											<li><a href="javascript:language('zh')"
+												onclick="GA_Event('공통','헤더_메뉴','LANGUAGE_中文')">中文</a></li>
+										</ul>
+									</div>
+								</div>
+							</li>
 						</ul>
+					</div>
 				</div>
+			</div>
+
+			<!-- validation check message global -->
+			<input type="hidden" id="validationCheckPwd"
+				value="비밀번호를 재입력 하셔야 합니다." /> <input type="hidden"
+				id="validationCheck" value="필수데이터가 입력되지 않았습니다." /> <input
+				type="hidden" id="validationCheckMsg" value="다음 사항을 확인해 주세요." /> <input
+				type="hidden" id="validationCheckMsg1" value="필수데이터가 입력되지 않았습니다." />
+			<input type="hidden" id="validationCheckMsg2"
+				value="동일문자를 3번 이상 사용할 수 없습니다." /> <input type="hidden"
+				id="validationCheckMsg3"
+				value="연속된 문자열(123 또는 321, abc, cba 등) 3자리이상 올 수 없습니다." /> <input
+				type="hidden" id="validationCheckMsg4" value="Caps Lock 이 켜져 있습니다." />
+			<input type="hidden" id="validationCheckMsg5"
+				value="이메일 아이디의 중복 확인이 필요합니다." /> <input type="hidden"
+				id="validationCheckMsg6" value="이메일의 중복확인이 필요합니다." /> <input
+				type="hidden" id="deliveryOkMsg" value="확인" /> <input type="hidden"
+				id="deliveryCancelMsg" value="취소" />
+
+			<form id="chatbotForm"
+				action="https://talk.thehandsome.com/front/v1/jsp/view/chat.jsp"
+				method="post" target="chatwindow">
+				<input type="hidden" name="token" id="chatbot_token"> <input
+					type="hidden" name="talkId" id="chatbot_talkId">
+				<div>
+					<input type="hidden" name="CSRFToken"
+						value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
 				</div>
-		</div>
+			</form>
+			<!-- //headerWrap -->
+			<div class="gnbwarp com clearfix">
+				<h1 class="logo logo1903">
+					<a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
+				</h1>
+				<div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
+					<h2 class="invisible">주메뉴</h2>
+					<ul class="cate_m cate_banner gnbul1" id="cate_m_main">
+						<li><a href="javascript:void(0);" class="gnb_brand"
+							onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix">
+									<p class="gnbbr_txt">브랜드 명을 클릭하시면 해당 브랜드로 이동합니다.</p>
+									<ul class="al_frt1">
+										<!-- #1141 - 카테고리 개편 - 메인 즐겨찾기 브랜드 레이어 -->
+										<li><strong>여성 브랜드</strong>
+											<ul class="clearfix">
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR01"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="TIME" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR01#1"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR01"></label><a
+													href="/ko/b/br01"
+													onclick="GA_Common('WE_commonBrand',$(this));">TIME</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR02"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="MINE" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR02#2"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR02"></label><a
+													href="/ko/b/br02"
+													onclick="GA_Common('WE_commonBrand',$(this));">MINE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR19"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="LANVIN COLLECTION"
+													onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR19#3"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR19"></label><a
+													href="/ko/b/br19"
+													onclick="GA_Common('WE_commonBrand',$(this));">LANVIN
+														COLLECTION</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR03"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="SYSTEM" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR03#4"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR03"></label><a
+													href="/ko/b/br03"
+													onclick="GA_Common('WE_commonBrand',$(this));">SYSTEM</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR04"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="SJSJ" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR04#5"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR04"></label><a
+													href="/ko/b/br04"
+													onclick="GA_Common('WE_commonBrand',$(this));">SJSJ</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR08"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="the CASHMERE"
+													onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR08#6"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR08"></label><a
+													href="/ko/b/br08"
+													onclick="GA_Common('WE_commonBrand',$(this));">the
+														CASHMERE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR44"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="CLUB MONACO"
+													onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR44#7"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR44"></label><a
+													href="/ko/b/br44"
+													onclick="GA_Common('WE_commonBrand',$(this));">CLUB
+														MONACO</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR43"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="OBZEE" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR43#8"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR43"></label><a
+													href="/ko/b/br43"
+													onclick="GA_Common('WE_commonBrand',$(this));">OBZEE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR31"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="LÄTT" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR31#9"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR31"></label><a
+													href="/ko/b/br31"
+													onclick="GA_Common('WE_commonBrand',$(this));">LÄTT</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR45"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="O'2nd" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR45#10"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR45"></label><a
+													href="/ko/b/br45"
+													onclick="GA_Common('WE_commonBrand',$(this));">O'2nd</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR61"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="oera" onclick="GA_Common('WE_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_WE#BR61#11"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_WE_BR61"></label><a
+													href="/ko/b/br61"
+													onclick="GA_Common('WE_commonBrand',$(this));">oera</a></li>
+											</ul></li>
+										<li><strong>남성 브랜드</strong>
+											<ul class="clearfix">
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR06"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="TIME HOMME"
+													onclick="GA_Common('ME_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ME#BR06#1"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ME_BR06"></label><a
+													href="/ko/b/br06"
+													onclick="GA_Common('ME_commonBrand',$(this));">TIME
+														HOMME</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR07"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="SYSTEM HOMME"
+													onclick="GA_Common('ME_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ME#BR07#2"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ME_BR07"></label><a
+													href="/ko/b/br07"
+													onclick="GA_Common('ME_commonBrand',$(this));">SYSTEM
+														HOMME</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR08"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="the CASHMERE"
+													onclick="GA_Common('ME_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ME#BR08#3"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ME_BR08"></label><a
+													href="/ko/b/br08"
+													onclick="GA_Common('ME_commonBrand',$(this));">the
+														CASHMERE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR44"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="CLUB MONACO"
+													onclick="GA_Common('ME_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ME#BR44#4"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ME_BR44"></label><a
+													href="/ko/b/br44"
+													onclick="GA_Common('ME_commonBrand',$(this));">CLUB
+														MONACO</a></li>
+											</ul></li>
+										<li><strong>편집 브랜드</strong>
+											<ul class="clearfix">
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR15"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="TOM GREYHOUND"
+													onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR15#1"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR15"></label><a
+													href="/ko/b/br15"
+													onclick="GA_Common('ED_commonBrand',$(this));">TOM
+														GREYHOUND</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR35"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="FOURM THE STORE"
+													onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR35#2"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR35"></label><a
+													href="/ko/b/br35"
+													onclick="GA_Common('ED_commonBrand',$(this));">FOURM
+														THE STORE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR30"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="FOURM STUDIO"
+													onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR30#3"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR30"></label><a
+													href="/ko/b/br30"
+													onclick="GA_Common('ED_commonBrand',$(this));">FOURM
+														STUDIO</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR32"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="FOURM MEN'S LOUNGE"
+													onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR32#4"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR32"></label><a
+													href="/ko/b/br32"
+													onclick="GA_Common('ED_commonBrand',$(this));">FOURM
+														MEN'S LOUNGE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR16"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="MUE" onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR16#5"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR16"></label><a
+													href="/ko/b/br16"
+													onclick="GA_Common('ED_commonBrand',$(this));">MUE</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR47"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="H : SCENE"
+													onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR47#6"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR47"></label><a
+													href="/ko/b/br47"
+													onclick="GA_Common('ED_commonBrand',$(this));">H :
+														SCENE</a></li>
+												<li class="oera"><input
+													id="gnb_br_NEW_NORMAL_BRANDS_ED_BR62" name="gnb_br_ch"
+													type="checkbox" class="checkboxEvent"
+													title="Liquides Perfume Bar"
+													onclick="GA_Common('ED_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_ED#BR62#7"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_ED_BR62"></label><a
+													href="/ko/b/br62"
+													onclick="GA_Common('ED_commonBrand',$(this));">Liquides
+														Perfume Bar<i class="ico-new">new</i>
+												</a></li>
+											</ul></li>
+										<li><strong>해외 브랜드</strong>
+											<ul class="clearfix">
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR37"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="ROCHAS" onclick="GA_Common('OS_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_OS#BR37#1"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_OS_BR37"></label><a
+													href="/ko/c/br37/br37"
+													onclick="GA_Common('OS_commonBrand',$(this));">ROCHAS</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR41"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="3.1 Phillip Lim"
+													onclick="GA_Common('OS_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_OS#BR41#2"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_OS_BR41"></label><a
+													href="/ko/c/br41/br41"
+													onclick="GA_Common('OS_commonBrand',$(this));">3.1
+														Phillip Lim</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR20"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="LANVIN PARIS"
+													onclick="GA_Common('OS_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_OS#BR20#3"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_OS_BR20"></label><a
+													href="/ko/c/br20/br20"
+													onclick="GA_Common('OS_commonBrand',$(this));">LANVIN
+														PARIS</a></li>
+												<li><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR21"
+													name="gnb_br_ch" type="checkbox" class="checkboxEvent"
+													title="BALLY" onclick="GA_Common('OS_brandLike',$(this));"
+													value="NEW_NORMAL_BRANDS_OS#BR21#4"> <label
+													for="gnb_br_NEW_NORMAL_BRANDS_OS_BR21"></label><a
+													href="/ko/c/br21/br21"
+													onclick="GA_Common('OS_commonBrand',$(this));">BALLY</a></li>
+											</ul></li>
+										<!-- #1141 - 카테고리 개편 - 메인 즐겨찾기 브랜드 레이어 -->
+									</ul>
+									<p class="gnbbr_txt">로그인 후 좋아하는 브랜드를 ♥해주세요. '적용하기' 버튼을 클릭하면
+										웹사이트 상단에 추가됩니다.</p>
+									<br />
+									<div class="br_button_wrap">
+										<button type="button" name="button" class="btn_br_apply"
+											onclick="applyCategory();GA_Event('공통_브랜드','적용','적용하기');">적용하기</button>
+										<button type="button" name="button" class="btn_br_reset"
+											onclick="resetCategory();GA_Event('공통_브랜드','적용','초기화하기');">초기화하기</button>
+									</div>
 
-		<!-- validation check message global -->
-		<input type="hidden" id="validationCheckPwd" value="비밀번호를 재입력 하셔야 합니다." />
-		<input type="hidden" id="validationCheck" value="필수데이터가 입력되지 않았습니다." />
-		<input type="hidden" id="validationCheckMsg" value="다음 사항을 확인해 주세요." />
-		<input type="hidden" id="validationCheckMsg1" value="필수데이터가 입력되지 않았습니다." />
-		<input type="hidden" id="validationCheckMsg2" value="동일문자를 3번 이상 사용할 수 없습니다." />
-		<input type="hidden" id="validationCheckMsg3" value="연속된 문자열(123 또는 321, abc, cba 등) 3자리이상 올 수 없습니다." />
-		<input type="hidden" id="validationCheckMsg4" value="Caps Lock 이 켜져 있습니다." />
-		<input type="hidden" id="validationCheckMsg5" value="이메일 아이디의 중복 확인이 필요합니다." />
-		<input type="hidden" id="validationCheckMsg6" value="이메일의 중복확인이 필요합니다." />
-		<input type="hidden" id="deliveryOkMsg" value="확인" />
-		<input type="hidden" id="deliveryCancelMsg" value="취소" />		
-		
-		<form id="chatbotForm" action="https://talk.thehandsome.com/front/v1/jsp/view/chat.jsp" method="post" target="chatwindow"><input type="hidden" name="token" id="chatbot_token">
-          <input type="hidden" name="talkId" id="chatbot_talkId">
-        <div>
-<input type="hidden" name="CSRFToken" value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
-</div></form><!-- //headerWrap --><div class="gnbwarp com clearfix">
-        <h1 class="logo logo1903">
-            <a href="/ko/main" onclick="GA_Event('공통', '로고', '상단');">thehandsome.com</a>
-        </h1>
-        <div class="gnb_nav gnb_nav1903 hscene1906 hscene1910" 
-        >
-            <h2 class="invisible">주메뉴</h2>
-            <ul class="cate_m cate_banner gnbul1" id="cate_m_main">
-            <li><a href="javascript:void(0);" class="gnb_brand" onclick="GA_Event('공통','GNB','브랜드');">브랜드<span class="arr">arrow</span></a>
-                <div class="sub_back">
-                    <div class="sub_menu clearfix">
-                        <p class="gnbbr_txt">
-                           브랜드 명을 클릭하시면 해당 브랜드로 이동합니다.</p>
-                        <ul class="al_frt1">                        
-                        <!-- #1141 - 카테고리 개편 - 메인 즐겨찾기 브랜드 레이어 -->
-                        <li><strong>여성 브랜드</strong>
-                                <ul class="clearfix">
-                                <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR01" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="TIME"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR01#1" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR01"></label><a href="/ko/b/br01" onclick="GA_Common('WE_commonBrand',$(this));">TIME</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR02" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="MINE"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR02#2" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR02"></label><a href="/ko/b/br02" onclick="GA_Common('WE_commonBrand',$(this));">MINE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR19" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="LANVIN COLLECTION"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR19#3" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR19"></label><a href="/ko/b/br19" onclick="GA_Common('WE_commonBrand',$(this));">LANVIN COLLECTION</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR03" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="SYSTEM"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR03#4" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR03"></label><a href="/ko/b/br03" onclick="GA_Common('WE_commonBrand',$(this));">SYSTEM</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR04" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="SJSJ"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR04#5" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR04"></label><a href="/ko/b/br04" onclick="GA_Common('WE_commonBrand',$(this));">SJSJ</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR08" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="the CASHMERE"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR08#6" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR08"></label><a href="/ko/b/br08" onclick="GA_Common('WE_commonBrand',$(this));">the CASHMERE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR44" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="CLUB MONACO"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR44#7" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR44"></label><a href="/ko/b/br44" onclick="GA_Common('WE_commonBrand',$(this));">CLUB MONACO</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR43" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="OBZEE"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR43#8" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR43"></label><a href="/ko/b/br43" onclick="GA_Common('WE_commonBrand',$(this));">OBZEE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR31" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="LÄTT"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR31#9" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR31"></label><a href="/ko/b/br31" onclick="GA_Common('WE_commonBrand',$(this));">LÄTT</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR45" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="O'2nd"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR45#10" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR45"></label><a href="/ko/b/br45" onclick="GA_Common('WE_commonBrand',$(this));">O'2nd</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR61" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="oera"  onclick="GA_Common('WE_brandLike',$(this));" value="NEW_NORMAL_BRANDS_WE#BR61#11" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR61"></label><a href="/ko/b/br61" onclick="GA_Common('WE_commonBrand',$(this));">oera</a>
-                                    </li>
-                                    </ul>
-                            </li>
-                        <li><strong>남성 브랜드</strong>
-                                <ul class="clearfix">
-                                <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR06" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="TIME HOMME"  onclick="GA_Common('ME_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ME#BR06#1" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR06"></label><a href="/ko/b/br06" onclick="GA_Common('ME_commonBrand',$(this));">TIME HOMME</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR07" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="SYSTEM HOMME"  onclick="GA_Common('ME_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ME#BR07#2" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR07"></label><a href="/ko/b/br07" onclick="GA_Common('ME_commonBrand',$(this));">SYSTEM HOMME</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR08" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="the CASHMERE"  onclick="GA_Common('ME_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ME#BR08#3" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR08"></label><a href="/ko/b/br08" onclick="GA_Common('ME_commonBrand',$(this));">the CASHMERE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR44" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="CLUB MONACO"  onclick="GA_Common('ME_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ME#BR44#4" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR44"></label><a href="/ko/b/br44" onclick="GA_Common('ME_commonBrand',$(this));">CLUB MONACO</a>
-                                    </li>
-                                    </ul>
-                            </li>
-                        <li><strong>편집 브랜드</strong>
-                                <ul class="clearfix">
-                                <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR15" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="TOM GREYHOUND"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR15#1" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR15"></label><a href="/ko/b/br15" onclick="GA_Common('ED_commonBrand',$(this));">TOM GREYHOUND</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR35" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="FOURM THE STORE"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR35#2" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR35"></label><a href="/ko/b/br35" onclick="GA_Common('ED_commonBrand',$(this));">FOURM THE STORE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR30" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="FOURM STUDIO"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR30#3" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR30"></label><a href="/ko/b/br30" onclick="GA_Common('ED_commonBrand',$(this));">FOURM STUDIO</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR32" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="FOURM MEN'S LOUNGE"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR32#4" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR32"></label><a href="/ko/b/br32" onclick="GA_Common('ED_commonBrand',$(this));">FOURM MEN'S LOUNGE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR16" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="MUE"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR16#5" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR16"></label><a href="/ko/b/br16" onclick="GA_Common('ED_commonBrand',$(this));">MUE</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR47" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="H : SCENE"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR47#6" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR47"></label><a href="/ko/b/br47" onclick="GA_Common('ED_commonBrand',$(this));">H : SCENE</a>
-                                    </li>
-                                    <li class="oera"><input id="gnb_br_NEW_NORMAL_BRANDS_ED_BR62" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="Liquides Perfume Bar"  onclick="GA_Common('ED_brandLike',$(this));" value="NEW_NORMAL_BRANDS_ED#BR62#7" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_ED_BR62"></label><a href="/ko/b/br62" onclick="GA_Common('ED_commonBrand',$(this));">Liquides Perfume Bar<i class="ico-new">new</i></a>
-                                    </li>
-                                    </ul>
-                            </li>
-                        <li><strong>해외 브랜드</strong>
-                                <ul class="clearfix">
-                                <li ><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR37" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="ROCHAS"  onclick="GA_Common('OS_brandLike',$(this));" value="NEW_NORMAL_BRANDS_OS#BR37#1" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_OS_BR37"></label><a href="/ko/c/br37/br37" onclick="GA_Common('OS_commonBrand',$(this));">ROCHAS</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR41" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="3.1 Phillip Lim"  onclick="GA_Common('OS_brandLike',$(this));" value="NEW_NORMAL_BRANDS_OS#BR41#2" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_OS_BR41"></label><a href="/ko/c/br41/br41" onclick="GA_Common('OS_commonBrand',$(this));">3.1 Phillip Lim</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR20" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="LANVIN PARIS"  onclick="GA_Common('OS_brandLike',$(this));" value="NEW_NORMAL_BRANDS_OS#BR20#3" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_OS_BR20"></label><a href="/ko/c/br20/br20" onclick="GA_Common('OS_commonBrand',$(this));">LANVIN PARIS</a>
-                                    </li>
-                                    <li ><input id="gnb_br_NEW_NORMAL_BRANDS_OS_BR21" name="gnb_br_ch" type="checkbox" class="checkboxEvent" title="BALLY"  onclick="GA_Common('OS_brandLike',$(this));" value="NEW_NORMAL_BRANDS_OS#BR21#4" >                                    
-                                    <label for="gnb_br_NEW_NORMAL_BRANDS_OS_BR21"></label><a href="/ko/c/br21/br21" onclick="GA_Common('OS_commonBrand',$(this));">BALLY</a>
-                                    </li>
-                                    </ul>
-                            </li>
-                        <!-- #1141 - 카테고리 개편 - 메인 즐겨찾기 브랜드 레이어 -->
-                        </ul>
-                        <p class="gnbbr_txt">
-                        로그인 후 좋아하는 브랜드를 ♥해주세요. '적용하기' 버튼을 클릭하면 웹사이트 상단에 추가됩니다.</p>
-                        <br/>
-                        <div class="br_button_wrap">
-                            <button type="button" name="button" class="btn_br_apply" onclick="applyCategory();GA_Event('공통_브랜드','적용','적용하기');">적용하기</button>
-                            <button type="button" name="button" class="btn_br_reset" onclick="resetCategory();GA_Event('공통_브랜드','적용','초기화하기');">초기화하기</button>
-                        </div>
-                             
-                    </div>
-                </div>
-            </li>            
-            
-            <li><a href="/ko/item/we" onclick="GA_Event('공통','GNB','여성');GA_Event('공통_카테고리','1DEPTH','여성');">여성<span class="arr">arrow</span></a>            
-               <div class="sub_back">
-                           <div class="sub_menu clearfix">
-                               <ul class="al_frt1">
-                                   <li>
-                                       <a href="/ko/c/we" onclick="GA_Event('공통_카테고리','2DEPTH','여성_전체보기');">전체보기<!-- 전체보기 --></a>                                           
-                                           </li>
-                    <li ><a href="/ko/c/we09/" onclick="GA_Event('공통_카테고리','2DEPTH','여성_SPECIAL SHOP*');">SPECIAL SHOP*</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/we09v/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_MINE : CODE MINE E');">MINE : CODE MINE E</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we09k/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_LATT : EXCLUSIVE -THE LINES');">LATT : EXCLUSIVE -THE LINES</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we093/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_SYSTEM : JEANS');">SYSTEM : JEANS</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we094/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_SJSJ : SCENT IN TALES');">SJSJ : SCENT IN TALES</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we098/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_SYSTEM : PARIS PRESENTATION');">SYSTEM : PARIS PRESENTATION</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we091/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_OBZEE : ICONIC OBZEE');">OBZEE : ICONIC OBZEE</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we09b/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_O&amp;#039;2ND : 25TH ANNIV. MARIE ASSENAT ');">O'2ND : 25TH ANNIV. MARIE ASSENAT </a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we09j/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_TOMGREYHOUND: THE GREY');">TOMGREYHOUND: THE GREY</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we095/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_FOURM THE STORE : PALETTE');">FOURM THE STORE : PALETTE</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we096/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_FOURM STUDIO : RE:STUDIO');">FOURM STUDIO : RE:STUDIO</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we097/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_LANVIN COLLECTION : IT. 1');">LANVIN COLLECTION : IT. 1</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we092/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_TIME : SIGNATURE SUIT');">TIME : SIGNATURE SUIT</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we09q/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_LATT : WITH 신민아');">LATT : WITH 신민아</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/we05/" onclick="GA_Event('공통_카테고리','2DEPTH','여성_아우터');">아우터</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/we051/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_재킷');">재킷</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we052/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_점퍼');">점퍼</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we015/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_가디건/베스트');">가디건/베스트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we053/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_트렌치 코트');">트렌치 코트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we054/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_코트');">코트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we055/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_다운/패딩');">다운/패딩</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/we01/" onclick="GA_Event('공통_카테고리','2DEPTH','여성_탑');">탑</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/we011/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_티셔츠');">티셔츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we012/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_블라우스');">블라우스</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we013/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_셔츠');">셔츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we014/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_니트');">니트</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/we04/" onclick="GA_Event('공통_카테고리','2DEPTH','여성_드레스');">드레스</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/we041/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_드레스_미니 드레스');">미니 드레스</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we042/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_드레스_미디 드레스');">미디 드레스</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we043/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_드레스_롱/맥시 드레스');">롱/맥시 드레스</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/we02/" onclick="GA_Event('공통_카테고리','2DEPTH','여성_팬츠');">팬츠</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/we021/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_캐주얼');">캐주얼</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we022/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_포멀');">포멀</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we023/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_데님');">데님</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we024/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_쇼츠');">쇼츠</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li style="margin-right:0px"><a href="/ko/c/we03/" onclick="GA_Event('공통_카테고리','2DEPTH','여성_스커트');">스커트</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/we031/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_미니 스커트');">미니 스커트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we032/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_펜슬 스커트');">펜슬 스커트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we033/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_플레어 스커트');">플레어 스커트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/we034/" onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_롱/맥시 스커트');">롱/맥시 스커트</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                </ul>
-                                <div class="gnb_banner float_right">
-                                </div>
-                            </div>
-                        </div>
-                    <!--  status2.last end -->
-                <!-- categoryItemList end -->
-            </li>
-            <li><a href="/ko/item/me" onclick="GA_Event('공통','GNB','남성');GA_Event('공통_카테고리','1DEPTH','남성');">남성<span class="arr">arrow</span></a>            
-               <div class="sub_back">
-                           <div class="sub_menu clearfix">
-                               <ul class="al_frt1">
-                                   <li>
-                                       <a href="/ko/c/me" onclick="GA_Event('공통_카테고리','2DEPTH','남성_전체보기');">전체보기<!-- 전체보기 --></a>                                           
-                                           </li>
-                    <li ><a href="/ko/c/me09/" onclick="GA_Event('공통_카테고리','2DEPTH','남성_SPECIAL SHOP*');">SPECIAL SHOP*</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/me09c/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_SYSTEM HOMME : PLAYER LINE');">SYSTEM HOMME : PLAYER LINE</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me094/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_SYSTEM HOMME : PARIS PRESENTATION');">SYSTEM HOMME : PARIS PRESENTATION</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me093/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_SYSTEM HOMME : TYPE 2');">SYSTEM HOMME : TYPE 2</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me091/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_CLUB MONACO : PANTS ARCHIVE');">CLUB MONACO : PANTS ARCHIVE</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me095/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_TIME HOMME : ONLINE EXCLUSIVE');">TIME HOMME : ONLINE EXCLUSIVE</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/me03/" onclick="GA_Event('공통_카테고리','2DEPTH','남성_아우터');">아우터</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/me031/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_재킷');">재킷</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me032/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_점퍼');">점퍼</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me015/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_가디건/베스트');">가디건/베스트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me033/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_트렌치코트');">트렌치코트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me034/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_코트');">코트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me035/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_다운/패딩');">다운/패딩</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/me01/" onclick="GA_Event('공통_카테고리','2DEPTH','남성_탑');">탑</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/me011/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_티셔츠');">티셔츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me012/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_셔츠');">셔츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me013/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_니트');">니트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me014/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_스웨터');">스웨터</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/me02/" onclick="GA_Event('공통_카테고리','2DEPTH','남성_팬츠');">팬츠</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/me021/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_루즈/테이퍼드');">루즈/테이퍼드</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me025/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_슬림/스트레이트');">슬림/스트레이트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me028/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_조거/트랙');">조거/트랙</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me022/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_데님');">데님</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me023/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_쇼츠');">쇼츠</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li style="margin-right:0px"><a href="/ko/c/me04/" onclick="GA_Event('공통_카테고리','2DEPTH','남성_수트');">수트</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/me041/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_수트_드레스셔츠');">드레스셔츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me042/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_수트_수트재킷');">수트재킷</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/me044/" onclick="GA_Event('공통_카테고리','3DEPTH','남성_수트_수트팬츠');">수트팬츠</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                </ul>
-                                <div class="gnb_banner float_right">
-                                </div>
-                            </div>
-                        </div>
-                    <!--  status2.last end -->
-                <!-- categoryItemList end -->
-            </li>
-            <li><a href="/ko/c/as" onclick="GA_Event('공통','GNB','잡화');GA_Event('공통_카테고리','1DEPTH','잡화');">잡화<span class="arr">arrow</span></a>            
-               <div class="sub_back">
-                           <div class="sub_menu clearfix">
-                               <ul class="al_frt1">
-                                   <li>
-                                       <a href="/ko/c/as" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_전체보기');">전체보기<!-- 전체보기 --></a>                                           
-                                           </li>
-                    <li ><a href="/ko/c/as01/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_여성슈즈');">여성슈즈</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as011/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_부츠');">부츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as012/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_로퍼/블로퍼');">로퍼/블로퍼</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as013/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_스니커즈');">스니커즈</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as014/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_플랫');">플랫</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as015/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_힐/슬링백');">힐/슬링백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as016/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_샌들/슬라이드');">샌들/슬라이드</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as017/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_기타 슈즈');">기타 슈즈</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/as02/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_남성슈즈');">남성슈즈</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as021/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_부츠');">부츠</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as022/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_포멀슈즈');">포멀슈즈</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as023/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_스니커즈');">스니커즈</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as024/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_샌들/슬라이드');">샌들/슬라이드</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as025/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_기타 슈즈');">기타 슈즈</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/as03/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_여성백');">여성백</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as031/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_토트백');">토트백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as032/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_숄더/크로스바디백');">숄더/크로스바디백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as033/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_클러치 백');">클러치 백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as034/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_기타 백');">기타 백</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/as04/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_남성백');">남성백</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as041/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_토트백');">토트백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as042/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_숄더/크로스바디백');">숄더/크로스바디백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as043/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_클러치 백');">클러치 백</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as044/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_기타 백');">기타 백</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/as05/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_머플러/스카프');">머플러/스카프</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as051/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_머플러/스카프_머플러');">머플러</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as052/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_머플러/스카프_스카프');">스카프</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/as06/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_주얼리');">주얼리</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as061/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_이어링/커프');">이어링/커프</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as062/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_목걸이');">목걸이</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as063/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_팔찌');">팔찌</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as064/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_반지');">반지</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as065/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_기타 주얼리');">기타 주얼리</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li style="margin-right:0px"><a href="/ko/c/as07/" onclick="GA_Event('공통_카테고리','2DEPTH','잡화_기타 ACC');">기타 ACC</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/as071/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_모자');">모자</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as072/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_양말');">양말</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as073/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_장갑');">장갑</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as074/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_벨트');">벨트</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as075/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_지갑');">지갑</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as076/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_헤어ACC');">헤어ACC</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as077/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_테크ACC');">테크ACC</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/as078/" onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_기타소품');">기타소품</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                </ul>
-                                <div class="gnb_banner float_right">
-                                </div>
-                            </div>
-                        </div>
-                    <!--  status2.last end -->
-                <!-- categoryItemList end -->
-            </li>
-            <li><a href="/ko/c/be" onclick="GA_Event('공통','GNB','뷰티');GA_Event('공통_카테고리','1DEPTH','뷰티');">뷰티<i class="ico-new">new</i><span class="arr">arrow</span></a>            
-               <div class="sub_back">
-                           <div class="sub_menu clearfix">
-                               <ul class="al_frt1">
-                                   <li>
-                                       <a href="/ko/c/be" onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_전체보기');">전체보기<!-- 전체보기 --></a>                                           
-                                           </li>
-                    <li ><a href="/ko/c/be01/" onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_스킨케어');">스킨케어</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/be011/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_스킨케어_토너/에멀전/크림');">토너/에멀전/크림</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/be012/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_스킨케어_세럼/앰플/오일/밤');">세럼/앰플/오일/밤</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/be013/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_스킨케어_클렌징/스크럽/마스크');">클렌징/스크럽/마스크</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/be03/" onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_바디/헤어케어');">바디/헤어케어</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/be031/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_핸드·바디로션/크림/오일');">핸드·바디로션/크림/오일</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/be032/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_핸드·바디워시/스크럽');">핸드·바디워시/스크럽</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/be033/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_샴푸/컨디셔너');">샴푸/컨디셔너</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/be034/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_트리트먼트/오일/스프레이');">트리트먼트/오일/스프레이</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/be035/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_기타 바디/헤어케어');">기타 바디/헤어케어</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li style="margin-right:0px"><a href="/ko/c/be04/" onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_향수');">향수</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/be041/" onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_향수_향수');">향수</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                </ul>
-                                <div class="gnb_banner float_right">
-                                </div>
-                            </div>
-                        </div>
-                    <!--  status2.last end -->
-                <!-- categoryItemList end -->
-            </li>
-            <li><a href="/ko/c/ls" onclick="GA_Event('공통','GNB','라이프스타일');GA_Event('공통_카테고리','1DEPTH','라이프스타일');">라이프스타일<span class="arr">arrow</span></a>            
-               <div class="sub_back">
-                           <div class="sub_menu clearfix">
-                               <ul class="al_frt1">
-                                   <li>
-                                       <a href="/ko/c/ls" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_전체보기');">전체보기<!-- 전체보기 --></a>                                           
-                                           </li>
-                    <li ><a href="/ko/c/ls01/" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_홈');">홈</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/ls011/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_패브릭');">패브릭</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls012/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_프래그런스');">프래그런스</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls013/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_데코레이션');">데코레이션</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls014/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_기타소품');">기타소품</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/ls02/" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_배스');">배스</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/ls022/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_배스_욕실용품');">욕실용품</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/ls03/" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_키친');">키친</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/ls031/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_그릇');">그릇</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls032/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_보드/트레이');">보드/트레이</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls033/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_커트러리');">커트러리</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls034/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_커피/티');">커피/티</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls035/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_패브릭/냅킨');">패브릭/냅킨</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls036/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_기타소품');">기타소품</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/ls04/" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_데스크');">데스크</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/ls041/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_데스크_문구');">문구</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls043/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_데스크_기타소품');">기타소품</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li ><a href="/ko/c/ls06/" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_키즈');">키즈</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/ls061/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키즈_의류');">의류</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls062/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키즈_잡화');">잡화</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                <!--  status2.last end -->
-                <li style="margin-right:0px"><a href="/ko/c/ls05/" onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_펫');">펫</a>
-                                    <ul class="clearfix">
-                                        <li>
-                                                <a href="/ko/c/ls051/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_펫_패션');">패션</a>
-                                                    </li>
-                                        <li>
-                                                <a href="/ko/c/ls052/" onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_펫_기타소품');">기타소품</a>
-                                                    </li>
-                                        </ul>
-                                        </li>                                    
-                                </ul>
-                                <div class="gnb_banner float_right">
-                                </div>
-                            </div>
-                        </div>
-                    <!--  status2.last end -->
-                <!-- categoryItemList end -->
-            </li>
-            </ul>
-        
-        <ul class="cate_m cate_banner gnbul2" id="cate_m_main" style="float:right;">
-            <li><a href="/ko/magazine/exhibitions" onclick="GA_Event('공통','GNB','기획전');">기획전<!-- 기획전 --></a></li>
-            <li><a href="/ko/magazine/events" onclick="GA_Event('공통','GNB','이벤트');">이벤트</a></li>
-            <!-- THE 매거진 수정 200330 -->
-            <li>
-                <a href="/ko/magazine/submain" class="magazine1803" onclick="GA_Event('공통','GNB','THE 매거진');">THE 매거진<!-- 매거진 --><span class="arr">arrow</span></a>
-                <div class="sub_back">
-                    <div class="sub_menu clearfix newtmzbox">
-                        <ul class="the_maga_sublist">
-                            <li><a href="/ko/magazine/submain">전체보기</a>
-                                <ul>
-                                    <li><a href="/ko/magazine/coverstory">커버스토리</a></li>
-                                    <li><a href="/ko/magazine/weeklypick">위클리 픽</a></li>
-                                    <li><a href="/ko/magazine/selection">셀렉션</a></li>
-                                    <li><a href="/ko/magazine/styleguide">스타일 가이드</a></li>
-                                    <li><a href="/ko/magazine/some">#SOME</a></li>
-                                    <li><a href="/ko/magazine/news">뉴스 </a></li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <div class="img_themaga_sub">
-                        <a href="/magazine/newsDetailtemplatetype4?newsCode=8803498645276" >
-											<img class="amc_img" src="http://cdn.thehandsome.com/mobile/news/list/banner/20220502_38037817234832454_ko.jpg" alt="" />
-											    <p>
-			                                    <strong>뉴스</strong>
-			                                    <span>세상 유일한 무이 스타일 '유일무이' 4화</span>
-			                                </p>
-			                            </a>
-<a href="/ko/magazine/editorials/8806021781576" >
-											<img class="amc_img" src="http://cdn.thehandsome.com/mobile/editorial/list/banner/20220428_37731240926702146_ko.jpg" alt="" />
-											    <p>
-			                                    <strong>#SOME</strong>
-			                                    <span>일상을 빛내는 작가 켈리박</span>
-			                                </p>
-			                            </a>
-<a href="/ko/magazine/editorials/8805989046344" >
-											<img class="amc_img" src="http://cdn.thehandsome.com/pc/editorial/detail/image/20220429_37795065057341863_ko.jpg" alt="" />
-											    <p>
-			                                    <strong>위클리 픽</strong>
-			                                    <span>WOMEN'S T-SHIRTS</span>
-			                                </p>
-			                            </a>
-</div>
-                    </div>
-                </div>
-            </li>
-            <!-- // THE 매거진 수정 200330 -->
-            <!-- 20210319 편집샵 추가 -->
-            <li ><a href="/ko/ed/edMain" onclick="GA_Event('공통','GNB','편집샵');">편집샵</a></li>
-            <!-- 20200710 룩북 추가 -->
-            <li><a href="/ko/magazine/lookbook">룩북</a></li>
-            <li><a href="/ko/ou/outletMain" onclick="GA_Event('공통','GNB','아울렛');">아울렛*</a></li>
-        </ul>
-        </div>
-<!-- 첫번째 c:if -->
+								</div>
+							</div></li>
 
-    
-    <div id="transparent_mask"></div>
-    <!-- 201803 util menu -->
-    <div class="util_menu util_menu1803">
-        <ul class="clearfix">
-            <li><a href="javascript:void(0);" ><span class="ico_sh">search</span></a></li>
-            <li><a href="/ko/mypage/myWish" onclick="GA_Event('공통','유틸_메뉴','위시리스트');"><span class="ico wishlist">wish list</span> <span class="count">(<span id="wishlistCount">0</span>)</span></a></li>
-            <li><a href="/ko/shoppingbag" onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span class="ico cart">장바구니</span> <span class="count">(<span id="cartCount">0</span>)</span></a></li>
-            </ul>
-    </div>
-  </div>  
-    <!-- //201803 util menu -->
-    </div>
+						<li><a href="/ko/item/we"
+							onclick="GA_Event('공통','GNB','여성');GA_Event('공통_카테고리','1DEPTH','여성');">여성<span
+								class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix">
+									<ul class="al_frt1">
+										<li><a href="/ko/c/we"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_전체보기');">전체보기<!-- 전체보기 --></a>
+										</li>
+										<li><a href="/ko/c/we09/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_SPECIAL SHOP*');">SPECIAL
+												SHOP*</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/we09v/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_MINE : CODE MINE E');">MINE
+														: CODE MINE E</a></li>
+												<li><a href="/ko/c/we09k/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_LATT : EXCLUSIVE -THE LINES');">LATT
+														: EXCLUSIVE -THE LINES</a></li>
+												<li><a href="/ko/c/we093/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_SYSTEM : JEANS');">SYSTEM
+														: JEANS</a></li>
+												<li><a href="/ko/c/we094/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_SJSJ : SCENT IN TALES');">SJSJ
+														: SCENT IN TALES</a></li>
+												<li><a href="/ko/c/we098/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_SYSTEM : PARIS PRESENTATION');">SYSTEM
+														: PARIS PRESENTATION</a></li>
+												<li><a href="/ko/c/we091/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_OBZEE : ICONIC OBZEE');">OBZEE
+														: ICONIC OBZEE</a></li>
+												<li><a href="/ko/c/we09b/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_O&amp;#039;2ND : 25TH ANNIV. MARIE ASSENAT ');">O'2ND
+														: 25TH ANNIV. MARIE ASSENAT </a></li>
+												<li><a href="/ko/c/we09j/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_TOMGREYHOUND: THE GREY');">TOMGREYHOUND:
+														THE GREY</a></li>
+												<li><a href="/ko/c/we095/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_FOURM THE STORE : PALETTE');">FOURM
+														THE STORE : PALETTE</a></li>
+												<li><a href="/ko/c/we096/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_FOURM STUDIO : RE:STUDIO');">FOURM
+														STUDIO : RE:STUDIO</a></li>
+												<li><a href="/ko/c/we097/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_LANVIN COLLECTION : IT. 1');">LANVIN
+														COLLECTION : IT. 1</a></li>
+												<li><a href="/ko/c/we092/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_TIME : SIGNATURE SUIT');">TIME
+														: SIGNATURE SUIT</a></li>
+												<li><a href="/ko/c/we09q/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_SPECIAL SHOP*_LATT : WITH 신민아');">LATT
+														: WITH 신민아</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/we05/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_아우터');">아우터</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/we051/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_재킷');">재킷</a>
+												</li>
+												<li><a href="/ko/c/we052/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_점퍼');">점퍼</a>
+												</li>
+												<li><a href="/ko/c/we015/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_가디건/베스트');">가디건/베스트</a>
+												</li>
+												<li><a href="/ko/c/we053/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_트렌치 코트');">트렌치
+														코트</a></li>
+												<li><a href="/ko/c/we054/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_코트');">코트</a>
+												</li>
+												<li><a href="/ko/c/we055/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_아우터_다운/패딩');">다운/패딩</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/we01/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_탑');">탑</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/we011/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_티셔츠');">티셔츠</a>
+												</li>
+												<li><a href="/ko/c/we012/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_블라우스');">블라우스</a>
+												</li>
+												<li><a href="/ko/c/we013/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_셔츠');">셔츠</a></li>
+												<li><a href="/ko/c/we014/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_탑_니트');">니트</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/we04/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_드레스');">드레스</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/we041/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_드레스_미니 드레스');">미니
+														드레스</a></li>
+												<li><a href="/ko/c/we042/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_드레스_미디 드레스');">미디
+														드레스</a></li>
+												<li><a href="/ko/c/we043/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_드레스_롱/맥시 드레스');">롱/맥시
+														드레스</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/we02/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_팬츠');">팬츠</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/we021/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_캐주얼');">캐주얼</a>
+												</li>
+												<li><a href="/ko/c/we022/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_포멀');">포멀</a></li>
+												<li><a href="/ko/c/we023/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_데님');">데님</a></li>
+												<li><a href="/ko/c/we024/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_팬츠_쇼츠');">쇼츠</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li style="margin-right: 0px"><a href="/ko/c/we03/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','여성_스커트');">스커트</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/we031/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_미니 스커트');">미니
+														스커트</a></li>
+												<li><a href="/ko/c/we032/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_펜슬 스커트');">펜슬
+														스커트</a></li>
+												<li><a href="/ko/c/we033/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_플레어 스커트');">플레어
+														스커트</a></li>
+												<li><a href="/ko/c/we034/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','여성_스커트_롱/맥시 스커트');">롱/맥시
+														스커트</a></li>
+											</ul></li>
+									</ul>
+									<div class="gnb_banner float_right"></div>
+								</div>
+							</div> <!--  status2.last end --> <!-- categoryItemList end --></li>
+						<li><a href="/ko/item/me"
+							onclick="GA_Event('공통','GNB','남성');GA_Event('공통_카테고리','1DEPTH','남성');">남성<span
+								class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix">
+									<ul class="al_frt1">
+										<li><a href="/ko/c/me"
+											onclick="GA_Event('공통_카테고리','2DEPTH','남성_전체보기');">전체보기<!-- 전체보기 --></a>
+										</li>
+										<li><a href="/ko/c/me09/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','남성_SPECIAL SHOP*');">SPECIAL
+												SHOP*</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/me09c/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_SYSTEM HOMME : PLAYER LINE');">SYSTEM
+														HOMME : PLAYER LINE</a></li>
+												<li><a href="/ko/c/me094/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_SYSTEM HOMME : PARIS PRESENTATION');">SYSTEM
+														HOMME : PARIS PRESENTATION</a></li>
+												<li><a href="/ko/c/me093/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_SYSTEM HOMME : TYPE 2');">SYSTEM
+														HOMME : TYPE 2</a></li>
+												<li><a href="/ko/c/me091/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_CLUB MONACO : PANTS ARCHIVE');">CLUB
+														MONACO : PANTS ARCHIVE</a></li>
+												<li><a href="/ko/c/me095/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_SPECIAL SHOP*_TIME HOMME : ONLINE EXCLUSIVE');">TIME
+														HOMME : ONLINE EXCLUSIVE</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/me03/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','남성_아우터');">아우터</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/me031/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_재킷');">재킷</a>
+												</li>
+												<li><a href="/ko/c/me032/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_점퍼');">점퍼</a>
+												</li>
+												<li><a href="/ko/c/me015/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_가디건/베스트');">가디건/베스트</a>
+												</li>
+												<li><a href="/ko/c/me033/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_트렌치코트');">트렌치코트</a>
+												</li>
+												<li><a href="/ko/c/me034/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_코트');">코트</a>
+												</li>
+												<li><a href="/ko/c/me035/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_아우터_다운/패딩');">다운/패딩</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/me01/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','남성_탑');">탑</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/me011/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_티셔츠');">티셔츠</a>
+												</li>
+												<li><a href="/ko/c/me012/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_셔츠');">셔츠</a></li>
+												<li><a href="/ko/c/me013/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_니트');">니트</a></li>
+												<li><a href="/ko/c/me014/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_탑_스웨터');">스웨터</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/me02/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','남성_팬츠');">팬츠</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/me021/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_루즈/테이퍼드');">루즈/테이퍼드</a>
+												</li>
+												<li><a href="/ko/c/me025/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_슬림/스트레이트');">슬림/스트레이트</a>
+												</li>
+												<li><a href="/ko/c/me028/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_조거/트랙');">조거/트랙</a>
+												</li>
+												<li><a href="/ko/c/me022/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_데님');">데님</a></li>
+												<li><a href="/ko/c/me023/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_팬츠_쇼츠');">쇼츠</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li style="margin-right: 0px"><a href="/ko/c/me04/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','남성_수트');">수트</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/me041/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_수트_드레스셔츠');">드레스셔츠</a>
+												</li>
+												<li><a href="/ko/c/me042/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_수트_수트재킷');">수트재킷</a>
+												</li>
+												<li><a href="/ko/c/me044/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','남성_수트_수트팬츠');">수트팬츠</a>
+												</li>
+											</ul></li>
+									</ul>
+									<div class="gnb_banner float_right"></div>
+								</div>
+							</div> <!--  status2.last end --> <!-- categoryItemList end --></li>
+						<li><a href="/ko/c/as"
+							onclick="GA_Event('공통','GNB','잡화');GA_Event('공통_카테고리','1DEPTH','잡화');">잡화<span
+								class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix">
+									<ul class="al_frt1">
+										<li><a href="/ko/c/as"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_전체보기');">전체보기<!-- 전체보기 --></a>
+										</li>
+										<li><a href="/ko/c/as01/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_여성슈즈');">여성슈즈</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as011/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_부츠');">부츠</a>
+												</li>
+												<li><a href="/ko/c/as012/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_로퍼/블로퍼');">로퍼/블로퍼</a>
+												</li>
+												<li><a href="/ko/c/as013/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_스니커즈');">스니커즈</a>
+												</li>
+												<li><a href="/ko/c/as014/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_플랫');">플랫</a>
+												</li>
+												<li><a href="/ko/c/as015/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_힐/슬링백');">힐/슬링백</a>
+												</li>
+												<li><a href="/ko/c/as016/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_샌들/슬라이드');">샌들/슬라이드</a>
+												</li>
+												<li><a href="/ko/c/as017/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성슈즈_기타 슈즈');">기타
+														슈즈</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/as02/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_남성슈즈');">남성슈즈</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as021/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_부츠');">부츠</a>
+												</li>
+												<li><a href="/ko/c/as022/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_포멀슈즈');">포멀슈즈</a>
+												</li>
+												<li><a href="/ko/c/as023/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_스니커즈');">스니커즈</a>
+												</li>
+												<li><a href="/ko/c/as024/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_샌들/슬라이드');">샌들/슬라이드</a>
+												</li>
+												<li><a href="/ko/c/as025/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성슈즈_기타 슈즈');">기타
+														슈즈</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/as03/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_여성백');">여성백</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as031/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_토트백');">토트백</a>
+												</li>
+												<li><a href="/ko/c/as032/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_숄더/크로스바디백');">숄더/크로스바디백</a>
+												</li>
+												<li><a href="/ko/c/as033/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_클러치 백');">클러치
+														백</a></li>
+												<li><a href="/ko/c/as034/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_여성백_기타 백');">기타
+														백</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/as04/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_남성백');">남성백</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as041/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_토트백');">토트백</a>
+												</li>
+												<li><a href="/ko/c/as042/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_숄더/크로스바디백');">숄더/크로스바디백</a>
+												</li>
+												<li><a href="/ko/c/as043/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_클러치 백');">클러치
+														백</a></li>
+												<li><a href="/ko/c/as044/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_남성백_기타 백');">기타
+														백</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/as05/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_머플러/스카프');">머플러/스카프</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as051/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_머플러/스카프_머플러');">머플러</a>
+												</li>
+												<li><a href="/ko/c/as052/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_머플러/스카프_스카프');">스카프</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/as06/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_주얼리');">주얼리</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as061/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_이어링/커프');">이어링/커프</a>
+												</li>
+												<li><a href="/ko/c/as062/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_목걸이');">목걸이</a>
+												</li>
+												<li><a href="/ko/c/as063/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_팔찌');">팔찌</a>
+												</li>
+												<li><a href="/ko/c/as064/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_반지');">반지</a>
+												</li>
+												<li><a href="/ko/c/as065/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_주얼리_기타 주얼리');">기타
+														주얼리</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li style="margin-right: 0px"><a href="/ko/c/as07/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','잡화_기타 ACC');">기타
+												ACC</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/as071/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_모자');">모자</a>
+												</li>
+												<li><a href="/ko/c/as072/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_양말');">양말</a>
+												</li>
+												<li><a href="/ko/c/as073/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_장갑');">장갑</a>
+												</li>
+												<li><a href="/ko/c/as074/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_벨트');">벨트</a>
+												</li>
+												<li><a href="/ko/c/as075/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_지갑');">지갑</a>
+												</li>
+												<li><a href="/ko/c/as076/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_헤어ACC');">헤어ACC</a>
+												</li>
+												<li><a href="/ko/c/as077/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_테크ACC');">테크ACC</a>
+												</li>
+												<li><a href="/ko/c/as078/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','잡화_기타 ACC_기타소품');">기타소품</a>
+												</li>
+											</ul></li>
+									</ul>
+									<div class="gnb_banner float_right"></div>
+								</div>
+							</div> <!--  status2.last end --> <!-- categoryItemList end --></li>
+						<li><a href="/ko/c/be"
+							onclick="GA_Event('공통','GNB','뷰티');GA_Event('공통_카테고리','1DEPTH','뷰티');">뷰티<i
+								class="ico-new">new</i><span class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix">
+									<ul class="al_frt1">
+										<li><a href="/ko/c/be"
+											onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_전체보기');">전체보기<!-- 전체보기 --></a>
+										</li>
+										<li><a href="/ko/c/be01/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_스킨케어');">스킨케어</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/be011/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_스킨케어_토너/에멀전/크림');">토너/에멀전/크림</a>
+												</li>
+												<li><a href="/ko/c/be012/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_스킨케어_세럼/앰플/오일/밤');">세럼/앰플/오일/밤</a>
+												</li>
+												<li><a href="/ko/c/be013/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_스킨케어_클렌징/스크럽/마스크');">클렌징/스크럽/마스크</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/be03/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_바디/헤어케어');">바디/헤어케어</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/be031/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_핸드·바디로션/크림/오일');">핸드·바디로션/크림/오일</a>
+												</li>
+												<li><a href="/ko/c/be032/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_핸드·바디워시/스크럽');">핸드·바디워시/스크럽</a>
+												</li>
+												<li><a href="/ko/c/be033/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_샴푸/컨디셔너');">샴푸/컨디셔너</a>
+												</li>
+												<li><a href="/ko/c/be034/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_트리트먼트/오일/스프레이');">트리트먼트/오일/스프레이</a>
+												</li>
+												<li><a href="/ko/c/be035/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_바디/헤어케어_기타 바디/헤어케어');">기타
+														바디/헤어케어</a></li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li style="margin-right: 0px"><a href="/ko/c/be04/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_향수');">향수</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/be041/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_향수_향수');">향수</a></li>
+											</ul></li>
+									</ul>
+									<div class="gnb_banner float_right"></div>
+								</div>
+							</div> <!--  status2.last end --> <!-- categoryItemList end --></li>
+						<li><a href="/ko/c/ls"
+							onclick="GA_Event('공통','GNB','라이프스타일');GA_Event('공통_카테고리','1DEPTH','라이프스타일');">라이프스타일<span
+								class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix">
+									<ul class="al_frt1">
+										<li><a href="/ko/c/ls"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_전체보기');">전체보기<!-- 전체보기 --></a>
+										</li>
+										<li><a href="/ko/c/ls01/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_홈');">홈</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/ls011/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_패브릭');">패브릭</a>
+												</li>
+												<li><a href="/ko/c/ls012/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_프래그런스');">프래그런스</a>
+												</li>
+												<li><a href="/ko/c/ls013/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_데코레이션');">데코레이션</a>
+												</li>
+												<li><a href="/ko/c/ls014/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_홈_기타소품');">기타소품</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/ls02/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_배스');">배스</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/ls022/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_배스_욕실용품');">욕실용품</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/ls03/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_키친');">키친</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/ls031/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_그릇');">그릇</a>
+												</li>
+												<li><a href="/ko/c/ls032/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_보드/트레이');">보드/트레이</a>
+												</li>
+												<li><a href="/ko/c/ls033/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_커트러리');">커트러리</a>
+												</li>
+												<li><a href="/ko/c/ls034/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_커피/티');">커피/티</a>
+												</li>
+												<li><a href="/ko/c/ls035/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_패브릭/냅킨');">패브릭/냅킨</a>
+												</li>
+												<li><a href="/ko/c/ls036/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키친_기타소품');">기타소품</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/ls04/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_데스크');">데스크</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/ls041/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_데스크_문구');">문구</a>
+												</li>
+												<li><a href="/ko/c/ls043/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_데스크_기타소품');">기타소품</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li><a href="/ko/c/ls06/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_키즈');">키즈</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/ls061/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키즈_의류');">의류</a>
+												</li>
+												<li><a href="/ko/c/ls062/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_키즈_잡화');">잡화</a>
+												</li>
+											</ul></li>
+										<!--  status2.last end -->
+										<li style="margin-right: 0px"><a href="/ko/c/ls05/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','라이프스타일_펫');">펫</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/ls051/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_펫_패션');">패션</a>
+												</li>
+												<li><a href="/ko/c/ls052/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','라이프스타일_펫_기타소품');">기타소품</a>
+												</li>
+											</ul></li>
+									</ul>
+									<div class="gnb_banner float_right"></div>
+								</div>
+							</div> <!--  status2.last end --> <!-- categoryItemList end --></li>
+					</ul>
+
+					<ul class="cate_m cate_banner gnbul2" id="cate_m_main"
+						style="float: right;">
+						<li><a href="/ko/magazine/exhibitions"
+							onclick="GA_Event('공통','GNB','기획전');">기획전<!-- 기획전 --></a></li>
+						<li><a href="/ko/magazine/events"
+							onclick="GA_Event('공통','GNB','이벤트');">이벤트</a></li>
+						<!-- THE 매거진 수정 200330 -->
+						<li><a href="/ko/magazine/submain" class="magazine1803"
+							onclick="GA_Event('공통','GNB','THE 매거진');">THE 매거진<!-- 매거진 -->
+								<span class="arr">arrow</span></a>
+							<div class="sub_back">
+								<div class="sub_menu clearfix newtmzbox">
+									<ul class="the_maga_sublist">
+										<li><a href="/ko/magazine/submain">전체보기</a>
+											<ul>
+												<li><a href="/ko/magazine/coverstory">커버스토리</a></li>
+												<li><a href="/ko/magazine/weeklypick">위클리 픽</a></li>
+												<li><a href="/ko/magazine/selection">셀렉션</a></li>
+												<li><a href="/ko/magazine/styleguide">스타일 가이드</a></li>
+												<li><a href="/ko/magazine/some">#SOME</a></li>
+												<li><a href="/ko/magazine/news">뉴스 </a></li>
+											</ul></li>
+									</ul>
+									<div class="img_themaga_sub">
+										<a
+											href="/magazine/newsDetailtemplatetype4?newsCode=8803498645276">
+											<img class="amc_img"
+											src="http://cdn.thehandsome.com/mobile/news/list/banner/20220502_38037817234832454_ko.jpg"
+											alt="" />
+											<p>
+												<strong>뉴스</strong> <span>세상 유일한 무이 스타일 '유일무이' 4화</span>
+											</p>
+										</a> <a href="/ko/magazine/editorials/8806021781576"> <img
+											class="amc_img"
+											src="http://cdn.thehandsome.com/mobile/editorial/list/banner/20220428_37731240926702146_ko.jpg"
+											alt="" />
+											<p>
+												<strong>#SOME</strong> <span>일상을 빛내는 작가 켈리박</span>
+											</p>
+										</a> <a href="/ko/magazine/editorials/8805989046344"> <img
+											class="amc_img"
+											src="http://cdn.thehandsome.com/pc/editorial/detail/image/20220429_37795065057341863_ko.jpg"
+											alt="" />
+											<p>
+												<strong>위클리 픽</strong> <span>WOMEN'S T-SHIRTS</span>
+											</p>
+										</a>
+									</div>
+								</div>
+							</div></li>
+						<!-- // THE 매거진 수정 200330 -->
+						<!-- 20210319 편집샵 추가 -->
+						<li><a href="/ko/ed/edMain"
+							onclick="GA_Event('공통','GNB','편집샵');">편집샵</a></li>
+						<!-- 20200710 룩북 추가 -->
+						<li><a href="/ko/magazine/lookbook">룩북</a></li>
+						<li><a href="/ko/ou/outletMain"
+							onclick="GA_Event('공통','GNB','아울렛');">아울렛*</a></li>
+					</ul>
+				</div>
+				<!-- 첫번째 c:if -->
+
+
+				<div id="transparent_mask"></div>
+				<!-- 201803 util menu -->
+				<div class="util_menu util_menu1803">
+					<ul class="clearfix">
+						<li><a href="javascript:void(0);"><span class="ico_sh">search</span></a></li>
+						<li><a href="/ko/mypage/myWish"
+							onclick="GA_Event('공통','유틸_메뉴','위시리스트');"><span
+								class="ico wishlist">wish list</span> <span class="count">(<span
+									id="wishlistCount">0</span>)
+							</span></a></li>
+						<li><a href="/ko/shoppingbag"
+							onclick="GA_Event('공통','유틸_메뉴','쇼핑백');"><span
+								class="ico cart">장바구니</span> <span class="count">(<span
+									id="cartCount">0</span>)
+							</span></a></li>
+					</ul>
+				</div>
+			</div>
+			<!-- //201803 util menu -->
 		</div>
-		<!-- //headerWrap -->
-		
-		<script type="text/javascript">
+	</div>
+	<!-- //headerWrap -->
+
+	<script type="text/javascript">
         var newItemsSlider = "";
         var bestItemsSlider = "";
         var newProductCategory = "";
@@ -2951,7 +3302,7 @@ function GA_search(){
                                      documentResult += "        <input type='button' class='btn stoptoday closeLayerPopup' value=\"오늘은 그만보기 \">";
                                      documentResult += "        <input type='button' class='btn close closeLayerPopup' value=\"닫기\">";
                                      documentResult += "    </div>";
-                                     documentResult += "    <a href='#' class='btn_close closeLayerPopup'><img src='/_ui/desktop/common/images/popup/ico_close.png' alt=\"닫기\"></a>";
+                                     documentResult += "    <a href='#' class='btn_close closeLayerPopup'><img src='/resources/images/popup/ico_close.png' alt=\"닫기\"></a>";
                                      documentResult += "</div>";
                                 }
                             }
@@ -3045,7 +3396,7 @@ function GA_search(){
                                     if(v.user.username != "fourm_official" && v.user.username != "youarehandsome"){
                                         html += '<li class="swiper-slide">';
                                         html += '    <a href="' + '/ko/magazine/instagram"' + ' onclick="GA_main(\'moment\',$(this))">';
-   		                                html += '       <img src="' + v.images.low_resolution.url + '" class="respon_image" onerror="this.src=\'http://cdn.thehandsome.com/_ui/desktop/common/images/instagram_video_thumb_283.jpg\'" />';
+   		                                html += '       <img src="' + v.images.low_resolution.url + '" class="respon_image" onerror="this.src=\'http://cdn.thehandsome.com/resources/images/instagram_video_thumb_283.jpg\'" />';
    		                                html += '		<div class="insta_account1903">';
    		                                html += '			<div class="account">';
    		                                html += '				<div class="img_wrap">';
@@ -3685,7 +4036,7 @@ function GA_search(){
                         documentResult += '            <input type="checkbox" id="eventpop_check_sun" onclick="layerPopup8(\'close\', \'sun\');"><label for="eventpop_check">오늘 그만 보기</label>';
                         documentResult += '        </div>';
             		}
-            		documentResult += '                <a href="javascript:void(0);" class="btn_close" onclick="nightEvtPopLayerClose();"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>';
+            		documentResult += '                <a href="javascript:void(0);" class="btn_close" onclick="nightEvtPopLayerClose();"><img src="/resources/images/popup/ico_close.png"></a>';
             		documentResult += '            </div>';
             		documentResult += '        </div>';
             		documentResult += '    </div>';
@@ -3803,7 +4154,7 @@ function GA_search(){
 	                documentResult += '					<div class="grayCloseCheckBox190821 black">';
 	                documentResult += '						<input type="checkbox" id="eventpop_check" name="eventpop_check" onclick="layerPopup10(\'close\')"><label for="eventpop_check">7일 동안 열지 않음</label>';
 	                documentResult += '					</div>';
-	                documentResult += '					<a href="javascript:void(0)" class="btn_close" onclick="layerPopup10(\'close\')"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>';
+	                documentResult += '					<a href="javascript:void(0)" class="btn_close" onclick="layerPopup10(\'close\')"><img src="/resources/images/popup/ico_close.png"></a>';
 	                documentResult += '				</div>';
 	                documentResult += '			</div>';
 	                documentResult += '		</div>';
@@ -4555,1067 +4906,1336 @@ function GA_search(){
         }
 	</script>
 
-    <!-- bodyWrap -->
-<div id="bodyWrap" style="padding-bottom:0;">
-        <!-- layer pop-->
-        <div class="notice_pop" id="mainNoticeWrap"></div>
-        <div id="mainPopwrap1"></div>
-        <div id="mainPopwrap2"></div>
-        <div id="nightEventPopup"></div>
-        <div id="membershipInfoMainWrap"></div>
-        <!-- //layer pop -->
-        <!-- main_container-->
-        <div class="big_banner1903">
-            <div class="swiper-container big_banner_inner" id="mainSlider1903_0">
-                <div class="big_banner_frame"></div>
-                <ul class="slides swiper-wrapper">
-                   <li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
-            <a href="/ko/magazine/exhibitions/8812640949944"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">배우 이제훈이 선택한<br>리퀴드 퍼퓸바의 대표 브랜드를 소개합니다</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
-            <a href="/ko/magazine/events/8803990165376"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">AweSOME GIFT</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원 이상 구매 시 증정</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">이벤트 자세히 보기</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
-            <a href="/ko/magazine/exhibitions/8812575610552"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">The TIMEing</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의 무한한 여정이 펼쳐집니다</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
-            <a href="/ko/magazine/editorials/8805989013576"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">타임옴므가 꿈꾸는 여름</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인 전용 컬렉션</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Check Out Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
-            <a href="/ko/magazine/exhibitions/8812608542392"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">HOLIDAY GIFT</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을 표현하세요</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
-            <a href="/ko/magazine/exhibitions/8812640917176"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">PANTS FIT GUIDE</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X 와이즐리 사은품 EVENT</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0);"></div>
-            <a href="/ko/magazine/events/8803957397376"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">5월의 신규가입 Event</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">첫 구매하신 고객님께 드리는<br>산뜻한 음료 기프티콘 혜택</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">이벤트 자세히 보기</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
-            <a href="/ko/magazine/exhibitions/8812510435000"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">PUMA X GARFIELD</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한 재치있는 스트릿 웨어</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg);"></div>
-            <a href="/ko/magazine/editorials/8805989046344"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">WOMEN'S T-SHIRTS</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">디자인별 여성 티셔츠 스타일<br>더한섬닷컴 PICK 티셔츠 추천</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Check Out Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-</ul>
-            <div class="swiper-pagination"></div>
-            </div>
-            <div class="swiper-container big_banner_inner init" id="mainSlider1903_1" style="margin-top:-480px;left:1035px;">
-                <div class="big_banner_frame"></div>
-                <ul class="slides swiper-wrapper">
-                   <li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
-            <a href="/ko/magazine/exhibitions/8812640949944"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">배우 이제훈이 선택한<br>리퀴드 퍼퓸바의 대표 브랜드를 소개합니다</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
-            <a href="/ko/magazine/events/8803990165376"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">AweSOME GIFT</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원 이상 구매 시 증정</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">이벤트 자세히 보기</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
-            <a href="/ko/magazine/exhibitions/8812575610552"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">The TIMEing</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의 무한한 여정이 펼쳐집니다</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
-            <a href="/ko/magazine/editorials/8805989013576"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">타임옴므가 꿈꾸는 여름</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인 전용 컬렉션</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Check Out Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
-            <a href="/ko/magazine/exhibitions/8812608542392"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">HOLIDAY GIFT</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을 표현하세요</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
-            <a href="/ko/magazine/exhibitions/8812640917176"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">PANTS FIT GUIDE</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X 와이즐리 사은품 EVENT</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0);"></div>
-            <a href="/ko/magazine/events/8803957397376"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">5월의 신규가입 Event</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">첫 구매하신 고객님께 드리는<br>산뜻한 음료 기프티콘 혜택</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">이벤트 자세히 보기</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
-            <a href="/ko/magazine/exhibitions/8812510435000"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">PUMA X GARFIELD</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한 재치있는 스트릿 웨어</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg);"></div>
-            <a href="/ko/magazine/editorials/8805989046344"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">WOMEN'S T-SHIRTS</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">디자인별 여성 티셔츠 스타일<br>더한섬닷컴 PICK 티셔츠 추천</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Check Out Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-</ul>                
-            </div>
-            <div class="swiper-container big_banner_inner init" id="mainSlider1903_2" style="margin-top:-480px;left:-1035px;">
-                <div class="big_banner_frame"></div>
-                <ul class="slides swiper-wrapper">
-                   <li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
-            <a href="/ko/magazine/exhibitions/8812640949944"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">배우 이제훈이 선택한<br>리퀴드 퍼퓸바의 대표 브랜드를 소개합니다</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
-            <a href="/ko/magazine/events/8803990165376"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">AweSOME GIFT</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원 이상 구매 시 증정</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">이벤트 자세히 보기</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
-            <a href="/ko/magazine/exhibitions/8812575610552"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">The TIMEing</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의 무한한 여정이 펼쳐집니다</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
-            <a href="/ko/magazine/editorials/8805989013576"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">타임옴므가 꿈꾸는 여름</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인 전용 컬렉션</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Check Out Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
-            <a href="/ko/magazine/exhibitions/8812608542392"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">HOLIDAY GIFT</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을 표현하세요</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
-            <a href="/ko/magazine/exhibitions/8812640917176"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">PANTS FIT GUIDE</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X 와이즐리 사은품 EVENT</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0);"></div>
-            <a href="/ko/magazine/events/8803957397376"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap left">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">5월의 신규가입 Event</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">첫 구매하신 고객님께 드리는<br>산뜻한 음료 기프티콘 혜택</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">이벤트 자세히 보기</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
-            <a href="/ko/magazine/exhibitions/8812510435000"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#FFFFFF">PUMA X GARFIELD</font>
-                                <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-                                <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한 재치있는 스트릿 웨어</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#FFFFFF;color:#FFFFFF">Shop Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-<li class="swiper-slide">
-            <div class="slide-bgimg" style="background-image:url(http://www.thehandsome.com/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg);"></div>
-            <a href="/ko/magazine/editorials/8805989046344"  onclick="GA_main('banner',$(this));">
-                <div class="a_txt_wrap ">
-                    <p class="title">
-                    	<span class="bar-in">
-                            <font color="#000000">WOMEN'S T-SHIRTS</font>
-                                <span class="ab-bar left" style="background-color:#000000;"></span>
-                                <span class="ab-bar right" style="background-color:#000000;"></span>
-                            </span>
-                    </p>
-                    <p class="s_title">
-                    	<font color="#000000">디자인별 여성 티셔츠 스타일<br>더한섬닷컴 PICK 티셔츠 추천</font>
-                    </p>
-                    <div class="shop_now_btn" style="border-color:#000000;color:#000000">Check Out Now</div>
-                    </div>
-                <div class="v_img">
-                    <img src="/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg" alt="" class="entity-img"/>
-                </div>
-            </a>
-                </li>
-</ul>                
-            </div>
-            <div class="swiper-button-prev bigb"></div>
-            <div class="swiper-button-next bigb"></div>
-        </div>
-        <div class="main_container">
-            <div class="mid_banner" style="display:none;">
-                <div class="banner1 banner1_N" style="display:none;">
-			        <a href="/ko/c/we09v/#1_0_0_0_0_14_0_0_0"  onclick="GA_main('eventBanner',$(this));" >
-			            <img src="/medias/220428-2-1-mine-01.jpg?context=bWFzdGVyfGltYWdlc3wxMjI4MnxpbWFnZS9qcGVnfGltYWdlcy9oZjYvaDRkLzkyOTUyMjEwNjM3MTAuanBnfGE4Yzc1YTZjNjEzYjA5MTIwYjZiZDE2MGE5N2FjN2I4YzY5NDNkNGI4YjFjYjA3MjUyNDU3YWI1NGMzYjVjMTQ" alt="banner image" />
-		                <div class="ban_txt_wrap">
-		                    <p class="title">CODE MINE : E</p>
-		                    <p class="s_title">마인식으로 새롭게 정의한 아웃도어</p>
-		                </div>
-			        </a>
-			    </div>
-			 <div class="banner1 banner1_N" style="display:none;">
-			        <a href="/ko/magazine/exhibitions/8812444309176"  onclick="GA_main('eventBanner',$(this));" >
-			            <img src="/medias/220421-2-1-tom-01.jpg?context=bWFzdGVyfGltYWdlc3wxNzAyMXxpbWFnZS9qcGVnfGltYWdlcy9oM2YvaDEwLzkyOTMzMzQ5NzAzOTguanBnfDkyMzFkNmU1N2E5MGYxOTdmNTdkMTZkM2ExZTBjZjk1ZTE0NDFhMjQ4MGY3OWMxYTNiY2I4ZGIyODJkYjVhZmQ" alt="banner image" />
-		                <div class="ban_txt_wrap">
-		                    <p class="title"><font color=white>TOM LIFESTYLE</font></p>
-		                    <p class="s_title"><font color=white>봄의 에너지를 담은 테이블웨어</font></p>
-		                </div>
-			        </a>
-			    </div>
-			 <div class="banner2 banner2_N" style="display:none;">
-			        <a href="/ko/c/we094/#1_0_0_0_0_14_0_0_0"  onclick="GA_main('eventBanner',$(this));" >
-			            <img src="/medias/220429-2-2-sjsj-01.jpg?context=bWFzdGVyfGltYWdlc3wxNDQyNHxpbWFnZS9qcGVnfGltYWdlcy9oNmUvaGIxLzkyOTU1NDQ5NzUzOTAuanBnfDBmMjlkODM4YmEyNGNhZjY1ZTBjNjZhZjliMGFmMmM0NTM1ZjBhNjFmMTY0YTU4ODQyZmNjMTgxNDJlMDY5NGM" alt="banner image" />
-		                <div class="ban_txt_wrap">
-		                    <p class="title"><font color=white>Scent in Tales</font> </p>
-		                    <p class="s_title"><font color=white>향을 품은 SJSJ의 캡슐 컬렉션</font></p>
-		                </div>
-			        </a>
-			    </div>
-			 </div>
-            <div class="edt_banner_wrap1903">
-              <h4 class="tit">기획전</h4>
-              <div class="edt_banner_inner1">
- <div class="edt_banner">
-       <a href="/ko/magazine/exhibitions/8812510271160"  onclick="GA_main('exhibitionBanner',$(this));">
-           <img src="/medias/220428-B-obzee.jpg?context=bWFzdGVyfGltYWdlc3w4NTQwM3xpbWFnZS9qcGVnfGltYWdlcy9oNzAvaDNiLzkyOTUyMjE2ODYzMDIuanBnfGRkYTRiNWJmY2IxYTBlNTFjNTZiODM2MTQ2MWZhODhiYmNhNDRiYTRjY2EzYTY1YjgzMWM1ZWExMTc2YTcwYTM" alt="기획전 배너">
-           <div class="ban_txt_wrap">
-               <span class="sticker" style="background:#99a5d7;">style guide</span>
-               <p class="s_title">
-                   <font color="#FFFFFF">써머 리조트룩을 재해석한 뉴 컬렉션</font>
-               </p>
-               <p class="title">
-                   <span class="bar-in">
-                       <font color="#FFFFFF">YACHTIE OBZÉÉ</font>
-                       <span class="ab-bar left" style="background-color:#FFFFFF;"></span>
-					   <span class="ab-bar right" style="background-color:#FFFFFF;"></span>
-                   </span>
-               </p>
-           </div>
-       </a>
-   </div>
-   <div class="edt_list1903">
-       <div class="edt_list_inner swiper-container" id="edtSlider1903_0">
-           <p class="tit">OBZÉÉ SUMMER</p>
-           <ul class="swiper-wrapper">
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/OB2C4WOP536W_BL" class="item_info1" onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WOP536W_BL','OBZEE','[YACHTIE] 프린팅 노트 플리츠 드레스', '0');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WOP536W_BL_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/OB2C4WOP536W_BL" class="item_info2" onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WOP536W_BL','OBZEE','[YACHTIE] 프린팅 노트 플리츠 드레스', '0');">
-                           <span class="brand">OBZEE</span>
-                           <span class="title">[YACHTIE] 프린팅 노트 플리츠 드레스</span>
-                           <span class="price">745000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/OB2C4WVT049W_LB" class="item_info1" onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WVT049W_LB','OBZEE','[YACHTIE] 세일러 칼라 체인 베스트', '0');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WVT049W_LB_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/OB2C4WVT049W_LB" class="item_info2" onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WVT049W_LB','OBZEE','[YACHTIE] 세일러 칼라 체인 베스트', '0');">
-                           <span class="brand">OBZEE</span>
-                           <span class="title">[YACHTIE] 세일러 칼라 체인 베스트</span>
-                           <span class="price">995000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/OB2C4WPC324W_CR" class="item_info1" onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WPC324W_CR','OBZEE','[YACHTIE] 린넨 블렌드 핀턱 와이드 팬츠', '0');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WPC324W_CR_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/OB2C4WPC324W_CR" class="item_info2" onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WPC324W_CR','OBZEE','[YACHTIE] 린넨 블렌드 핀턱 와이드 팬츠', '0');">
-                           <span class="brand">OBZEE</span>
-                           <span class="title">[YACHTIE] 린넨 블렌드 핀턱 와이드 팬츠</span>
-                           <span class="price">425000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/OB2C4WOP530W_AB" class="item_info1" onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WOP530W_AB','OBZEE','[YACHTIE] 벌룬 슬리브 프릴 칼라 드레스', '0');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WOP530W_AB_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/OB2C4WOP530W_AB" class="item_info2" onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WOP530W_AB','OBZEE','[YACHTIE] 벌룬 슬리브 프릴 칼라 드레스', '0');">
-                           <span class="brand">OBZEE</span>
-                           <span class="title">[YACHTIE] 벌룬 슬리브 프릴 칼라 드레스</span>
-                           <span class="price">695000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/OB2C4WJC047W_YN" class="item_info1" onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WJC047W_YN','OBZEE','[YACHTIE] 린넨 블렌드 벨티드 싱글 재킷', '0');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WJC047W_YN_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/OB2C4WJC047W_YN" class="item_info2" onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WJC047W_YN','OBZEE','[YACHTIE] 린넨 블렌드 벨티드 싱글 재킷', '0');">
-                           <span class="brand">OBZEE</span>
-                           <span class="title">[YACHTIE] 린넨 블렌드 벨티드 싱글 재킷</span>
-                           <span class="price">645000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/OB2C4WPC338W_BK" class="item_info1" onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WPC338W_BK','OBZEE','[YACHTIE] 핀턱 와이드 쇼츠', '0');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WPC338W_BK_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/OB2C4WPC338W_BK" class="item_info2" onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WPC338W_BK','OBZEE','[YACHTIE] 핀턱 와이드 쇼츠', '0');">
-                           <span class="brand">OBZEE</span>
-                           <span class="title">[YACHTIE] 핀턱 와이드 쇼츠</span>
-                           <span class="price">395000.0</span>
-                       </a>
-                   </div>
-               </li>
-               </ul>
-           <div class="edt-swiper-pagination"></div>
-       </div>
-       <div class="swiper-button-next btn0"></div>
-       <div class="swiper-button-prev btn0"></div>
-    </div>
-</div>
-<div class="edt_banner_inner2">
-   <div class="edt_banner">
-      <ul>
- <li>
-            <a href="/ko/magazine/exhibitions/8812509845176"  target="_blank" onclick="GA_main('exhibitionBanner',$(this));">
-                <img src="/medias/220428-C-fourm.jpg?context=bWFzdGVyfGltYWdlc3w1Njk0NXxpbWFnZS9qcGVnfGltYWdlcy9oNzcvaGI0LzkyOTUyMjE4ODI5MTAuanBnfDFmN2VlMjFmYTc1N2UwYWY5MDg0MTk0MDgzZDljNDhmYWI0MzE2OWVjZjE2ZDhjOWQ1NDNlYTdjZjg1NWU5YWM" alt="기획전 배너">
-                <div class="ban_txt_wrap">
-                   <span class="sticker" style="background:#86B404">exclusive</span>
-                   <p class="s_title"><font color="#FFFFFF">봄과 여름 사이, 폼더스토어의 새로운 팔레트</font></p>
-                   <p class="title"><font color="#FFFFFF">NEW PALETTE</font></p>
-               </div>
-            </a>
-        </li>
-<li>
-            <a href="/ko/magazine/exhibitions/8812477109944"  onclick="GA_main('exhibitionBanner',$(this));">
-                <img src="/medias/220428-C-phillip.jpg?context=bWFzdGVyfGltYWdlc3wxMDk1ODR8aW1hZ2UvanBlZ3xpbWFnZXMvaDI0L2gwMy85Mjk1MjIyMDEzOTgyLmpwZ3xhN2E1MjAzOWE3NWJkNmU0ZTYyYWE3NmNjNjFhODc3MmQ2NDQzZDkwNjg4N2NiNmZhMTBjOWRiNWZkNWUyNjA4" alt="기획전 배너">
-                <div class="ban_txt_wrap">
-                   <span class="sticker" style="background:#e16a6a;">new</span>
-                   <p class="s_title"><font color="#ffffff">현대인을 위한 필립림의 쿨 이지웨어</font></p>
-                   <p class="title"><font color="#ffffff">LIVE FREE</font></p>
-               </div>
-            </a>
-        </li>
-<li>
-            <a href="/ko/magazine/exhibitions/8812477601464"  onclick="GA_main('exhibitionBanner',$(this));">
-                <img src="/medias/220428-C-brand.jpg?context=bWFzdGVyfGltYWdlc3w2NTk4NnxpbWFnZS9qcGVnfGltYWdlcy9oNDYvaDQ1LzkyOTUyMjIyMTA1OTAuanBnfGE4NjE3YjVkYjM0OWJiNjFiMDNjZjhiMTZlNmZjNjExNzgzYWIxNjJhZWFkZjE2NjQ5MGZhMzVlZjkxYjVhZjc" alt="기획전 배너">
-                <div class="ban_txt_wrap">
-                   <span class="sticker" style="background:#e99143;">we love</span>
-                   <p class="s_title"><font color="#FFFFFF">발리의 새로운 아이코닉 라인 #CABANA</font></p>
-                   <p class="title"><font color="#FFFFFF">BALLY CABANA</font></p>
-               </div>
-            </a>
-        </li>
-</ul>
-    </div>
-</div>
-<div class="edt_banner_inner3">
-<div class="edt_banner">
-       <a href="/ko/magazine/exhibitions/8812182394552"  onclick="GA_main('exhibitionBanner',$(this));">
-           <img src="/medias/220428-B-clubmonaco.jpg?context=bWFzdGVyfGltYWdlc3w1OTU2NnxpbWFnZS9qcGVnfGltYWdlcy9oZWYvaDMxLzkyOTUyMjIyNzYxMjYuanBnfDg0Yzg0ZDhkOTYzYzdmMGRkMDE4ODE4Nzk1YjJkODhiN2ViODRmMmNiMDgyMDAwZjRmOGY2YWRlYWQ2NWZhNDA" alt="기획전 배너">
-           <div class="ban_txt_wrap">
-               <span class="sticker" style="background:#e16a6a;">new</span>
-               <p class="s_title">
-                   <font color="#ffffff">클럽모나코 22SS 티셔츠 컬렉션</font>
-               </p>
-               <p class="title">
-                   <span class="bar-in">
-                       <font color="#ffffff">MODERN & MINIMAL</font>
-                       <span class="ab-bar left" style="background-color:#ffffff;"></span>
-					   <span class="ab-bar right" style="background-color:#ffffff;"></span>
-                   </span>
-               </p>
-           </div>
-       </a>
-   </div>
-   <div class="edt_list1903">
-       <div class="edt_list_inner swiper-container" id="edtSlider1903_1">
-           <p class="tit">CLUB MONACO</p>
-           <ul class="swiper-wrapper">
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3TTS025H4A_MB" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4A_MB','CLUB MONACO','오픈 칼라 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS025H4A_MB_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3TTS025H4A_MB" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4A_MB','CLUB MONACO','오픈 칼라 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">오픈 칼라 티셔츠</span>
-                           <span class="price">158000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3TTS022H4A_BL" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS022H4A_BL','CLUB MONACO','컬러 라인 피케 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS022H4A_BL_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3TTS022H4A_BL" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS022H4A_BL','CLUB MONACO','컬러 라인 피케 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">컬러 라인 피케 티셔츠</span>
-                           <span class="price">128000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3TTS035H5A_MB" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS035H5A_MB','CLUB MONACO','히든 버튼 칼라 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS035H5A_MB_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3TTS035H5A_MB" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS035H5A_MB','CLUB MONACO','히든 버튼 칼라 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">히든 버튼 칼라 티셔츠</span>
-                           <span class="price">158000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3TTS025H4E_MT" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4E_MT','CLUB MONACO','오픈 칼라 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS025H4E_MT_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3TTS025H4E_MT" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4E_MT','CLUB MONACO','오픈 칼라 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">오픈 칼라 티셔츠</span>
-                           <span class="price">158000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C4WTO605MP_BK" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C4WTO605MP_BK','CLUB MONACO','오픈 칼라 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C4WTO605MP_BK_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C4WTO605MP_BK" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C4WTO605MP_BK','CLUB MONACO','오픈 칼라 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">오픈 칼라 티셔츠</span>
-                           <span class="price">198000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3TTS023H4A_WT" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS023H4A_WT','CLUB MONACO','일러스트 프린팅 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS023H4A_WT_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3TTS023H4A_WT" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS023H4A_WT','CLUB MONACO','일러스트 프린팅 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">일러스트 프린팅 티셔츠</span>
-                           <span class="price">118000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C4TTO606M_NY" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C4TTO606M_NY','CLUB MONACO','스트라이프 버튼 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C4TTO606M_NY_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C4TTO606M_NY" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C4TTO606M_NY','CLUB MONACO','스트라이프 버튼 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">스트라이프 버튼 티셔츠</span>
-                           <span class="price">258000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3KTS042H6E_DG" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3KTS042H6E_DG','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3KTS042H6E_DG_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3KTS042H6E_DG" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3KTS042H6E_DG','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">라운드넥 니트 티셔츠</span>
-                           <span class="price">258000.0</span>
-                       </a>
-                   </div>
-               </li>
-               <li class="swiper-slide">
-                   <div class="item_box">
-                       <a href="/ko/p/MM2C3KTS012H6E_CR" class="item_info1" onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3KTS012H6E_CR','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
-                           <span class="item_img">
-                                <img src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3KTS012H6E_CR_T01.jpg/dims/resize/180x272" alt="" class="respon_image">
-                           </span>
-                       </a>
-                       <a href="/ko/p/MM2C3KTS012H6E_CR" class="item_info2" onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3KTS012H6E_CR','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
-                           <span class="brand">CLUB MONACO</span>
-                           <span class="title">라운드넥 니트 티셔츠</span>
-                           <span class="price">238000.0</span>
-                       </a>
-                   </div>
-               </li>
-               </ul>
-           <div class="edt-swiper-pagination"></div>
-       </div>
-       <div class="swiper-button-next btn1"></div>
-       <div class="swiper-button-prev btn1"></div>
-    </div>
-</div>
-</div>
-             
-             
-            <!-- new & best -->
-            <div class="product_list1903">
-                <div class="nbe_cnt new">
-                    <div class="product_left_menu">
-                        <h4 class="tit">신상품</h4>
-                        <ul>
-                        </ul>
-                    </div>
-                    <div class="nbe_cnt_inner_wrap">
-                    </div>
-                </div>
-                <div class="nbe_cnt best">
-                    <div class="product_left_menu">
-                        <h4 class="tit">베스트</h4>
-                        <ul>
-                        </ul>
-                    </div>
-                    <div class="nbe_cnt_inner_wrap">
-                    </div>
-                </div>
-            </div>
-            <!-- new & best -->
-        </div>
-        <!-- //main_container-->
-        <!-- video_main_wrap-->
-        <div class="video_main_wrap">
-					<h4 class="tit"><spring:theme code="main.video.title" /></h4>
-					<div class="video_area1903" id="videoDiv1903">
-						<a href="javascript:void(0);" onclick="GA_main('exhibitionVideo',$(this));">
-							<div class="video_main" style="display: block;">
-								<span class="play_btn"></span>
-								<img src="/medias/220428-D-lanvin-05.jpg?context=bWFzdGVyfGltYWdlc3w2NDY2OHxpbWFnZS9qcGVnfGltYWdlcy9oZWEvaDZlLzkyOTUyMjI2NjkzNDIuanBnfGQyZWVlMmMxMjQxNjAwZTA4YzAyZWQ5ZTBjODJhODA0MjEyYWJkMTAzNzJhYzk3ZTJmM2Y3ZDk3NzYzN2NjYWE" alt="poster">
+	<!-- bodyWrap -->
+	<div id="bodyWrap" style="padding-bottom: 0;">
+		<!-- layer pop-->
+		<div class="notice_pop" id="mainNoticeWrap"></div>
+		<div id="mainPopwrap1"></div>
+		<div id="mainPopwrap2"></div>
+		<div id="nightEventPopup"></div>
+		<div id="membershipInfoMainWrap"></div>
+		<!-- //layer pop -->
+		<!-- main_container-->
+		<div class="big_banner1903">
+			<div class="swiper-container big_banner_inner" id="mainSlider1903_0">
+				<div class="big_banner_frame"></div>
+				<ul class="slides swiper-wrapper">
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
+						<a href="/ko/magazine/exhibitions/8812640949944"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> </span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">배우 이제훈이 선택한<br>리퀴드 퍼퓸바의 대표
+										브랜드를 소개합니다
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Shop Now</div>
 							</div>
-							<video id="video" class="video-js" controls="auto" preload="auto" style="display: none; width:884px; height:auto;" onended="videoEnded('videoDiv1903',0)" width="884" height="auto">
-								<source src="http://s3.ap-northeast-2.amazonaws.com/cdn.thehandsome.com-kr/pc/0_main_video/220427_lanvin/lanvin%20collection_22SS.mp4" type="video/mp4">
-							</video>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
+						<a href="/ko/magazine/events/8803990165376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">AweSOME
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
+										이상 구매 시 증정
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
+						<a href="/ko/magazine/exhibitions/8812575610552"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">The
+											TIMEing</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의
+										무한한 여정이 펼쳐집니다
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
+						<a href="/ko/magazine/editorials/8805989013576"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">타임옴므가
+											꿈꾸는 여름</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인
+										전용 컬렉션
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
+						<a href="/ko/magazine/exhibitions/8812608542392"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">HOLIDAY
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을
+										표현하세요
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
+						<a href="/ko/magazine/exhibitions/8812640917176"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">PANTS
+											FIT GUIDE</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
+										와이즐리 사은품 EVENT
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0);"></div>
+						<a href="/ko/magazine/events/8803957397376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">5월의
+											신규가입 Event</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">첫 구매하신 고객님께 드리는<br>산뜻한 음료
+										기프티콘 혜택
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
+						<a href="/ko/magazine/exhibitions/8812510435000"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">PUMA
+											X GARFIELD</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한
+										재치있는 스트릿 웨어
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg);"></div>
+						<a href="/ko/magazine/editorials/8805989046344"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">WOMEN'S
+											T-SHIRTS</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">디자인별 여성 티셔츠 스타일<br>더한섬닷컴 PICK
+										티셔츠 추천
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+				</ul>
+				<div class="swiper-pagination"></div>
+			</div>
+			<div class="swiper-container big_banner_inner init"
+				id="mainSlider1903_1" style="margin-top: -480px; left: 1035px;">
+				<div class="big_banner_frame"></div>
+				<ul class="slides swiper-wrapper">
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
+						<a href="/ko/magazine/exhibitions/8812640949944"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> </span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">배우 이제훈이 선택한<br>리퀴드 퍼퓸바의 대표
+										브랜드를 소개합니다
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
+						<a href="/ko/magazine/events/8803990165376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">AweSOME
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
+										이상 구매 시 증정
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
+						<a href="/ko/magazine/exhibitions/8812575610552"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">The
+											TIMEing</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의
+										무한한 여정이 펼쳐집니다
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
+						<a href="/ko/magazine/editorials/8805989013576"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">타임옴므가
+											꿈꾸는 여름</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인
+										전용 컬렉션
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
+						<a href="/ko/magazine/exhibitions/8812608542392"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">HOLIDAY
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을
+										표현하세요
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
+						<a href="/ko/magazine/exhibitions/8812640917176"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">PANTS
+											FIT GUIDE</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
+										와이즐리 사은품 EVENT
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0);"></div>
+						<a href="/ko/magazine/events/8803957397376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">5월의
+											신규가입 Event</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">첫 구매하신 고객님께 드리는<br>산뜻한 음료
+										기프티콘 혜택
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
+						<a href="/ko/magazine/exhibitions/8812510435000"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">PUMA
+											X GARFIELD</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한
+										재치있는 스트릿 웨어
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg);"></div>
+						<a href="/ko/magazine/editorials/8805989046344"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">WOMEN'S
+											T-SHIRTS</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">디자인별 여성 티셔츠 스타일<br>더한섬닷컴 PICK
+										티셔츠 추천
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+				</ul>
+			</div>
+			<div class="swiper-container big_banner_inner init"
+				id="mainSlider1903_2" style="margin-top: -480px; left: -1035px;">
+				<div class="big_banner_frame"></div>
+				<ul class="slides swiper-wrapper">
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
+						<a href="/ko/magazine/exhibitions/8812640949944"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> </span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">배우 이제훈이 선택한<br>리퀴드 퍼퓸바의 대표
+										브랜드를 소개합니다
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
+						<a href="/ko/magazine/events/8803990165376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">AweSOME
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
+										이상 구매 시 증정
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
+						<a href="/ko/magazine/exhibitions/8812575610552"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">The
+											TIMEing</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의
+										무한한 여정이 펼쳐집니다
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
+						<a href="/ko/magazine/editorials/8805989013576"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">타임옴므가
+											꿈꾸는 여름</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인
+										전용 컬렉션
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
+						<a href="/ko/magazine/exhibitions/8812608542392"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">HOLIDAY
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을
+										표현하세요
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
+						<a href="/ko/magazine/exhibitions/8812640917176"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">PANTS
+											FIT GUIDE</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
+										와이즐리 사은품 EVENT
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0);"></div>
+						<a href="/ko/magazine/events/8803957397376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">5월의
+											신규가입 Event</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">첫 구매하신 고객님께 드리는<br>산뜻한 음료
+										기프티콘 혜택
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220427-A-5new-03.jpg?context=bWFzdGVyfGltYWdlc3wxMjg1NTh8aW1hZ2UvanBlZ3xpbWFnZXMvaDI5L2hkZS85Mjk1ODEyNjU3MTgyLmpwZ3w5NDE4MDg5MDVkMWNiNjU3NTMxZGE0ZjY5NWRiMjFiM2RlOWVjY2VhMTJhZTI2OGMxZjMyYjYxODA2ZTQ0ZTE0"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
+						<a href="/ko/magazine/exhibitions/8812510435000"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">PUMA
+											X GARFIELD</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한
+										재치있는 스트릿 웨어
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg);"></div>
+						<a href="/ko/magazine/editorials/8805989046344"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap ">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">WOMEN'S
+											T-SHIRTS</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">디자인별 여성 티셔츠 스타일<br>더한섬닷컴 PICK
+										티셔츠 추천
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220429-A-weeklypick-03.jpg?context=bWFzdGVyfGltYWdlc3w2NzU3OXxpbWFnZS9qcGVnfGltYWdlcy9oYzcvaGM4LzkyOTU1NTEyOTk2MTQuanBnfDU2M2YzZmE5NDlmMDg3MDQ3NDBhNThkNjg2NjFiNjQ5ZTk4MDQ0ODNjMDg1NzIwMWE4Zjg4MGRiZWFkYWU2NTg"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+				</ul>
+			</div>
+			<div class="swiper-button-prev bigb"></div>
+			<div class="swiper-button-next bigb"></div>
+		</div>
+		<div class="main_container">
+			<div class="mid_banner" style="display: none;">
+				<div class="banner1 banner1_N" style="display: none;">
+					<a href="/ko/c/we09v/#1_0_0_0_0_14_0_0_0"
+						onclick="GA_main('eventBanner',$(this));"> <img
+						src="/medias/220428-2-1-mine-01.jpg?context=bWFzdGVyfGltYWdlc3wxMjI4MnxpbWFnZS9qcGVnfGltYWdlcy9oZjYvaDRkLzkyOTUyMjEwNjM3MTAuanBnfGE4Yzc1YTZjNjEzYjA5MTIwYjZiZDE2MGE5N2FjN2I4YzY5NDNkNGI4YjFjYjA3MjUyNDU3YWI1NGMzYjVjMTQ"
+						alt="banner image" />
+						<div class="ban_txt_wrap">
+							<p class="title">CODE MINE : E</p>
+							<p class="s_title">마인식으로 새롭게 정의한 아웃도어</p>
+						</div>
+					</a>
+				</div>
+				<div class="banner1 banner1_N" style="display: none;">
+					<a href="/ko/magazine/exhibitions/8812444309176"
+						onclick="GA_main('eventBanner',$(this));"> <img
+						src="/medias/220421-2-1-tom-01.jpg?context=bWFzdGVyfGltYWdlc3wxNzAyMXxpbWFnZS9qcGVnfGltYWdlcy9oM2YvaDEwLzkyOTMzMzQ5NzAzOTguanBnfDkyMzFkNmU1N2E5MGYxOTdmNTdkMTZkM2ExZTBjZjk1ZTE0NDFhMjQ4MGY3OWMxYTNiY2I4ZGIyODJkYjVhZmQ"
+						alt="banner image" />
+						<div class="ban_txt_wrap">
+							<p class="title">
+								<font color=white>TOM LIFESTYLE</font>
+							</p>
+							<p class="s_title">
+								<font color=white>봄의 에너지를 담은 테이블웨어</font>
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="banner2 banner2_N" style="display: none;">
+					<a href="/ko/c/we094/#1_0_0_0_0_14_0_0_0"
+						onclick="GA_main('eventBanner',$(this));"> <img
+						src="/medias/220429-2-2-sjsj-01.jpg?context=bWFzdGVyfGltYWdlc3wxNDQyNHxpbWFnZS9qcGVnfGltYWdlcy9oNmUvaGIxLzkyOTU1NDQ5NzUzOTAuanBnfDBmMjlkODM4YmEyNGNhZjY1ZTBjNjZhZjliMGFmMmM0NTM1ZjBhNjFmMTY0YTU4ODQyZmNjMTgxNDJlMDY5NGM"
+						alt="banner image" />
+						<div class="ban_txt_wrap">
+							<p class="title">
+								<font color=white>Scent in Tales</font>
+							</p>
+							<p class="s_title">
+								<font color=white>향을 품은 SJSJ의 캡슐 컬렉션</font>
+							</p>
+						</div>
+					</a>
+				</div>
+			</div>
+			<div class="edt_banner_wrap1903">
+				<h4 class="tit">기획전</h4>
+				<div class="edt_banner_inner1">
+					<div class="edt_banner">
+						<a href="/ko/magazine/exhibitions/8812510271160"
+							onclick="GA_main('exhibitionBanner',$(this));"> <img
+							src="/medias/220428-B-obzee.jpg?context=bWFzdGVyfGltYWdlc3w4NTQwM3xpbWFnZS9qcGVnfGltYWdlcy9oNzAvaDNiLzkyOTUyMjE2ODYzMDIuanBnfGRkYTRiNWJmY2IxYTBlNTFjNTZiODM2MTQ2MWZhODhiYmNhNDRiYTRjY2EzYTY1YjgzMWM1ZWExMTc2YTcwYTM"
+							alt="기획전 배너">
+							<div class="ban_txt_wrap">
+								<span class="sticker" style="background: #99a5d7;">style
+									guide</span>
+								<p class="s_title">
+									<font color="#FFFFFF">써머 리조트룩을 재해석한 뉴 컬렉션</font>
+								</p>
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">YACHTIE
+											OBZÉÉ</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+							</div>
 						</a>
 					</div>
-					<div class="txt">
-						<p class="tit">JOIE VIVE LANVIN<br>SYNDROME</p>
-						<p class="s_t">초현실적인 공간에서 만난 랑방컬렉션의<br>명화 같은 2022 SS COLLECTION</p>
+					<div class="edt_list1903">
+						<div class="edt_list_inner swiper-container" id="edtSlider1903_0">
+							<p class="tit">OBZÉÉ SUMMER</p>
+							<ul class="swiper-wrapper">
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/OB2C4WOP536W_BL" class="item_info1"
+											onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WOP536W_BL','OBZEE','[YACHTIE] 프린팅 노트 플리츠 드레스', '0');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WOP536W_BL_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/OB2C4WOP536W_BL" class="item_info2"
+											onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WOP536W_BL','OBZEE','[YACHTIE] 프린팅 노트 플리츠 드레스', '0');">
+											<span class="brand">OBZEE</span> <span class="title">[YACHTIE]
+												프린팅 노트 플리츠 드레스</span> <span class="price">745000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/OB2C4WVT049W_LB" class="item_info1"
+											onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WVT049W_LB','OBZEE','[YACHTIE] 세일러 칼라 체인 베스트', '0');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WVT049W_LB_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/OB2C4WVT049W_LB" class="item_info2"
+											onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WVT049W_LB','OBZEE','[YACHTIE] 세일러 칼라 체인 베스트', '0');">
+											<span class="brand">OBZEE</span> <span class="title">[YACHTIE]
+												세일러 칼라 체인 베스트</span> <span class="price">995000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/OB2C4WPC324W_CR" class="item_info1"
+											onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WPC324W_CR','OBZEE','[YACHTIE] 린넨 블렌드 핀턱 와이드 팬츠', '0');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WPC324W_CR_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/OB2C4WPC324W_CR" class="item_info2"
+											onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WPC324W_CR','OBZEE','[YACHTIE] 린넨 블렌드 핀턱 와이드 팬츠', '0');">
+											<span class="brand">OBZEE</span> <span class="title">[YACHTIE]
+												린넨 블렌드 핀턱 와이드 팬츠</span> <span class="price">425000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/OB2C4WOP530W_AB" class="item_info1"
+											onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WOP530W_AB','OBZEE','[YACHTIE] 벌룬 슬리브 프릴 칼라 드레스', '0');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WOP530W_AB_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/OB2C4WOP530W_AB" class="item_info2"
+											onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WOP530W_AB','OBZEE','[YACHTIE] 벌룬 슬리브 프릴 칼라 드레스', '0');">
+											<span class="brand">OBZEE</span> <span class="title">[YACHTIE]
+												벌룬 슬리브 프릴 칼라 드레스</span> <span class="price">695000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/OB2C4WJC047W_YN" class="item_info1"
+											onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WJC047W_YN','OBZEE','[YACHTIE] 린넨 블렌드 벨티드 싱글 재킷', '0');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WJC047W_YN_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/OB2C4WJC047W_YN" class="item_info2"
+											onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WJC047W_YN','OBZEE','[YACHTIE] 린넨 블렌드 벨티드 싱글 재킷', '0');">
+											<span class="brand">OBZEE</span> <span class="title">[YACHTIE]
+												린넨 블렌드 벨티드 싱글 재킷</span> <span class="price">645000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/OB2C4WPC338W_BK" class="item_info1"
+											onclick="GA_main('exhibitionListImage0',$(this));setEcommerceDataCompnt('OB2C4WPC338W_BK','OBZEE','[YACHTIE] 핀턱 와이드 쇼츠', '0');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/OB/2C/SS/OB2C4WPC338W_BK_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/OB2C4WPC338W_BK" class="item_info2"
+											onclick="GA_main('exhibitionList0',$(this));setEcommerceDataCompnt('OB2C4WPC338W_BK','OBZEE','[YACHTIE] 핀턱 와이드 쇼츠', '0');">
+											<span class="brand">OBZEE</span> <span class="title">[YACHTIE]
+												핀턱 와이드 쇼츠</span> <span class="price">395000.0</span>
+										</a>
+									</div>
+								</li>
+							</ul>
+							<div class="edt-swiper-pagination"></div>
+						</div>
+						<div class="swiper-button-next btn0"></div>
+						<div class="swiper-button-prev btn0"></div>
 					</div>
 				</div>
-			<!--// video_main_wrap-->
-        <!-- main_container-->
-        <div class="main_container">
-            <!-- the_magazine_wrap1903-->
-            <div class="the_magazine_wrap1903">
-                <h4 class="tit">THE 매거진</h4>
-                <div class="magazine_slider1903 swiper-container" id="magazinSlider1903">
-                    <ul class="swiper-wrapper">
-                    </ul>
-                </div>
-                <!--add arrow -->
-                <div class="themagazine_arrow next">다음</div>
-                <div class="themagazine_arrow prev">이전</div>
-            </div>
-            <!-- //the_magazine_wrap1903-->
-            <!--배너영역 -->
-            <!--//배너영역 -->
-             
-	        <!-- pick_for-->
-	        <div class="pickfor_wrap1903">
-	            <h4 class="tit"><span>당신</span>만을 위한 특별한 추천</h4>
-	                <div class="pick_for" id="pickForSlider1903">
-	                <ul class="slides"></ul>
-	            </div>
-	            <div class="controls" id="pickforControls">
-	                <a href="#;" class="prev"></a>
-	                <a href="#;" class="next"></a>
-	            </div>
-	        </div>
-	        <!--// pick_for-->
-        </div>
-        <!-- //main_container-->
-        <!-- instagram -->
-        <div class="instagram_wrap1903" style="display:none">
-            <div class="txt_wrap">
-                <h4 class="tit"># THE HANDSOME MOMENT</h4>
-                <p class="s_title">한섬 브랜드 공식 인스타그램 속 사진을 감상하세요.</p>
-            </div>
-            <div class="pic_wrap swiper-container" id="instaContents">
-                <ul class="swiper-wrapper">
-                </ul>
-                <div class="instagram_arrow next">다음</div>
-                <div class="instagram_arrow prev">이전</div>
-            </div>
-            <a href="/ko/magazine/instagram" class="insta_view_more">전체보기</a>
-        </div>
-        <!-- //instagram -->
-        </div>
-    
-    <!-- //bodyWrap -->
-    <div class="layerArea" id="hpMemberLayer" style="display:none;">
-        <div class="layerBg" style="display:block;" tabindex="-1"></div> 
-        <div class="popwrap w_type_8" id="" style="position: absolute; z-index: 201; display: block;top:50%;margin-top:-283px;" tabindex="-1">
-            <!-- Title1 -->
-            <div class="pop_tltwrap3">
-                <h3>현대백화점 통합회원 가입 안내</h3>
-            </div>
-            <!-- //Title1 -->
-            <div class="pop_cnt">
-                <div class="hpoint">
-                    <p class="txt">현대백화점 통합회원으로 가입 시<br />현대백화점그룹의 관계사 사이트를 동시에 이용하실 수 있으며,<br />각종 혜택을 누리실 수 있습니다.</p>
-                    <p class="img"><img src="/_ui/desktop/common/images/popup/main_popup_hpoint.jpg" style="vertical-align:top" alt="" /></p>
-                    <div class="noticeTxt">
-                        <p>동의하실 경우 다음의 정보가 공유됩니다.</p>
-                        <p>- 제공받는자 : (주)현대백화점</p>
-                        <p>- 목적 : 회원가입 시 필수정보 입력, 기 가입여부, 타인과의 아이디 중복여부 확인</p>
-                        <p>- 항목 : 성명, 아이디, 생년월일, 전화번호, 이메일</p>
-                    </div>
-                    <div class="btnwrap mt30">
-                        <input class="btn gray" value="동의하고 회원가입 진행" type="button" style="width:200px" onclick="hpoinJoin();" />
-                        <input class="btn wt" value="쇼핑 계속하기" type="button" style="width:200px" onclick="layerPopup3('close');" />
-                    </div>
-                </div>
-            </div>
-            <div class="grayBox">
-                <input type="checkbox" id="memPop" name="memPop" onclick="layerPopup3('close');" /><label for="chk1">다시보지않기</label>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 <input type="checkbox" id="oweek" name="oweek"  onclick="layerPopup3('oneweek');" /><label for="chk2">1주일동안 열지 않음</label>
-            </div>
-            <!-- btn_close -->
-            <a href="#" class="btn_close" id="closeLayerPop" onclick="layerPopup3('close');"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>
-            <!-- //btn_close -->
-        </div>
-    </div>
-<!--  criteo 메인 페이지 트래커 START -->
-<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js" async="true"></script>
-<script type="text/javascript">
+				<div class="edt_banner_inner2">
+					<div class="edt_banner">
+						<ul>
+							<li><a href="/ko/magazine/exhibitions/8812509845176"
+								target="_blank" onclick="GA_main('exhibitionBanner',$(this));">
+									<img
+									src="/medias/220428-C-fourm.jpg?context=bWFzdGVyfGltYWdlc3w1Njk0NXxpbWFnZS9qcGVnfGltYWdlcy9oNzcvaGI0LzkyOTUyMjE4ODI5MTAuanBnfDFmN2VlMjFmYTc1N2UwYWY5MDg0MTk0MDgzZDljNDhmYWI0MzE2OWVjZjE2ZDhjOWQ1NDNlYTdjZjg1NWU5YWM"
+									alt="기획전 배너">
+									<div class="ban_txt_wrap">
+										<span class="sticker" style="background: #86B404">exclusive</span>
+										<p class="s_title">
+											<font color="#FFFFFF">봄과 여름 사이, 폼더스토어의 새로운 팔레트</font>
+										</p>
+										<p class="title">
+											<font color="#FFFFFF">NEW PALETTE</font>
+										</p>
+									</div>
+							</a></li>
+							<li><a href="/ko/magazine/exhibitions/8812477109944"
+								onclick="GA_main('exhibitionBanner',$(this));"> <img
+									src="/medias/220428-C-phillip.jpg?context=bWFzdGVyfGltYWdlc3wxMDk1ODR8aW1hZ2UvanBlZ3xpbWFnZXMvaDI0L2gwMy85Mjk1MjIyMDEzOTgyLmpwZ3xhN2E1MjAzOWE3NWJkNmU0ZTYyYWE3NmNjNjFhODc3MmQ2NDQzZDkwNjg4N2NiNmZhMTBjOWRiNWZkNWUyNjA4"
+									alt="기획전 배너">
+									<div class="ban_txt_wrap">
+										<span class="sticker" style="background: #e16a6a;">new</span>
+										<p class="s_title">
+											<font color="#ffffff">현대인을 위한 필립림의 쿨 이지웨어</font>
+										</p>
+										<p class="title">
+											<font color="#ffffff">LIVE FREE</font>
+										</p>
+									</div>
+							</a></li>
+							<li><a href="/ko/magazine/exhibitions/8812477601464"
+								onclick="GA_main('exhibitionBanner',$(this));"> <img
+									src="/medias/220428-C-brand.jpg?context=bWFzdGVyfGltYWdlc3w2NTk4NnxpbWFnZS9qcGVnfGltYWdlcy9oNDYvaDQ1LzkyOTUyMjIyMTA1OTAuanBnfGE4NjE3YjVkYjM0OWJiNjFiMDNjZjhiMTZlNmZjNjExNzgzYWIxNjJhZWFkZjE2NjQ5MGZhMzVlZjkxYjVhZjc"
+									alt="기획전 배너">
+									<div class="ban_txt_wrap">
+										<span class="sticker" style="background: #e99143;">we
+											love</span>
+										<p class="s_title">
+											<font color="#FFFFFF">발리의 새로운 아이코닉 라인 #CABANA</font>
+										</p>
+										<p class="title">
+											<font color="#FFFFFF">BALLY CABANA</font>
+										</p>
+									</div>
+							</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="edt_banner_inner3">
+					<div class="edt_banner">
+						<a href="/ko/magazine/exhibitions/8812182394552"
+							onclick="GA_main('exhibitionBanner',$(this));"> <img
+							src="/medias/220428-B-clubmonaco.jpg?context=bWFzdGVyfGltYWdlc3w1OTU2NnxpbWFnZS9qcGVnfGltYWdlcy9oZWYvaDMxLzkyOTUyMjIyNzYxMjYuanBnfDg0Yzg0ZDhkOTYzYzdmMGRkMDE4ODE4Nzk1YjJkODhiN2ViODRmMmNiMDgyMDAwZjRmOGY2YWRlYWQ2NWZhNDA"
+							alt="기획전 배너">
+							<div class="ban_txt_wrap">
+								<span class="sticker" style="background: #e16a6a;">new</span>
+								<p class="s_title">
+									<font color="#ffffff">클럽모나코 22SS 티셔츠 컬렉션</font>
+								</p>
+								<p class="title">
+									<span class="bar-in"> <font color="#ffffff">MODERN
+											& MINIMAL</font> <span class="ab-bar left"
+										style="background-color: #ffffff;"></span> <span
+										class="ab-bar right" style="background-color: #ffffff;"></span>
+									</span>
+								</p>
+							</div>
+						</a>
+					</div>
+					<div class="edt_list1903">
+						<div class="edt_list_inner swiper-container" id="edtSlider1903_1">
+							<p class="tit">CLUB MONACO</p>
+							<ul class="swiper-wrapper">
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3TTS025H4A_MB" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4A_MB','CLUB MONACO','오픈 칼라 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS025H4A_MB_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3TTS025H4A_MB" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4A_MB','CLUB MONACO','오픈 칼라 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">오픈
+												칼라 티셔츠</span> <span class="price">158000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3TTS022H4A_BL" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS022H4A_BL','CLUB MONACO','컬러 라인 피케 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS022H4A_BL_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3TTS022H4A_BL" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS022H4A_BL','CLUB MONACO','컬러 라인 피케 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">컬러
+												라인 피케 티셔츠</span> <span class="price">128000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3TTS035H5A_MB" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS035H5A_MB','CLUB MONACO','히든 버튼 칼라 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS035H5A_MB_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3TTS035H5A_MB" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS035H5A_MB','CLUB MONACO','히든 버튼 칼라 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">히든
+												버튼 칼라 티셔츠</span> <span class="price">158000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3TTS025H4E_MT" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4E_MT','CLUB MONACO','오픈 칼라 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS025H4E_MT_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3TTS025H4E_MT" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS025H4E_MT','CLUB MONACO','오픈 칼라 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">오픈
+												칼라 티셔츠</span> <span class="price">158000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C4WTO605MP_BK" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C4WTO605MP_BK','CLUB MONACO','오픈 칼라 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C4WTO605MP_BK_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C4WTO605MP_BK" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C4WTO605MP_BK','CLUB MONACO','오픈 칼라 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">오픈
+												칼라 티셔츠</span> <span class="price">198000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3TTS023H4A_WT" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3TTS023H4A_WT','CLUB MONACO','일러스트 프린팅 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3TTS023H4A_WT_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3TTS023H4A_WT" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3TTS023H4A_WT','CLUB MONACO','일러스트 프린팅 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">일러스트
+												프린팅 티셔츠</span> <span class="price">118000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C4TTO606M_NY" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C4TTO606M_NY','CLUB MONACO','스트라이프 버튼 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C4TTO606M_NY_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C4TTO606M_NY" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C4TTO606M_NY','CLUB MONACO','스트라이프 버튼 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">스트라이프
+												버튼 티셔츠</span> <span class="price">258000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3KTS042H6E_DG" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3KTS042H6E_DG','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3KTS042H6E_DG_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3KTS042H6E_DG" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3KTS042H6E_DG','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">라운드넥
+												니트 티셔츠</span> <span class="price">258000.0</span>
+										</a>
+									</div>
+								</li>
+								<li class="swiper-slide">
+									<div class="item_box">
+										<a href="/ko/p/MM2C3KTS012H6E_CR" class="item_info1"
+											onclick="GA_main('exhibitionListImage1',$(this));setEcommerceDataCompnt('MM2C3KTS012H6E_CR','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
+											<span class="item_img"> <img
+												src="http://newmedia.thehandsome.com/MM/2C/SS/MM2C3KTS012H6E_CR_T01.jpg/dims/resize/180x272"
+												alt="" class="respon_image">
+										</span>
+										</a> <a href="/ko/p/MM2C3KTS012H6E_CR" class="item_info2"
+											onclick="GA_main('exhibitionList1',$(this));setEcommerceDataCompnt('MM2C3KTS012H6E_CR','CLUB MONACO','라운드넥 니트 티셔츠', '1');">
+											<span class="brand">CLUB MONACO</span> <span class="title">라운드넥
+												니트 티셔츠</span> <span class="price">238000.0</span>
+										</a>
+									</div>
+								</li>
+							</ul>
+							<div class="edt-swiper-pagination"></div>
+						</div>
+						<div class="swiper-button-next btn1"></div>
+						<div class="swiper-button-prev btn1"></div>
+					</div>
+				</div>
+			</div>
+
+
+			<!-- new & best -->
+			<div class="product_list1903">
+				<div class="nbe_cnt new">
+					<div class="product_left_menu">
+						<h4 class="tit">신상품</h4>
+						<ul>
+						</ul>
+					</div>
+					<div class="nbe_cnt_inner_wrap"></div>
+				</div>
+				<div class="nbe_cnt best">
+					<div class="product_left_menu">
+						<h4 class="tit">베스트</h4>
+						<ul>
+						</ul>
+					</div>
+					<div class="nbe_cnt_inner_wrap"></div>
+				</div>
+			</div>
+			<!-- new & best -->
+		</div>
+		<!-- //main_container-->
+		<!-- video_main_wrap-->
+		<div class="video_main_wrap">
+			<h4 class="tit">
+				<spring:theme code="main.video.title" />
+			</h4>
+			<div class="video_area1903" id="videoDiv1903">
+				<a href="javascript:void(0);"
+					onclick="GA_main('exhibitionVideo',$(this));">
+					<div class="video_main" style="display: block;">
+						<span class="play_btn"></span> <img
+							src="/medias/220428-D-lanvin-05.jpg?context=bWFzdGVyfGltYWdlc3w2NDY2OHxpbWFnZS9qcGVnfGltYWdlcy9oZWEvaDZlLzkyOTUyMjI2NjkzNDIuanBnfGQyZWVlMmMxMjQxNjAwZTA4YzAyZWQ5ZTBjODJhODA0MjEyYWJkMTAzNzJhYzk3ZTJmM2Y3ZDk3NzYzN2NjYWE"
+							alt="poster">
+					</div> <video id="video" class="video-js" controls="auto" preload="auto"
+						style="display: none; width: 884px; height: auto;"
+						onended="videoEnded('videoDiv1903',0)" width="884" height="auto">
+						<source
+							src="http://s3.ap-northeast-2.amazonaws.com/cdn.thehandsome.com-kr/pc/0_main_video/220427_lanvin/lanvin%20collection_22SS.mp4"
+							type="video/mp4">
+					</video>
+				</a>
+			</div>
+			<div class="txt">
+				<p class="tit">
+					JOIE VIVE LANVIN<br>SYNDROME
+				</p>
+				<p class="s_t">
+					초현실적인 공간에서 만난 랑방컬렉션의<br>명화 같은 2022 SS COLLECTION
+				</p>
+			</div>
+		</div>
+		<!--// video_main_wrap-->
+		<!-- main_container-->
+		<div class="main_container">
+			<!-- the_magazine_wrap1903-->
+			<div class="the_magazine_wrap1903">
+				<h4 class="tit">THE 매거진</h4>
+				<div class="magazine_slider1903 swiper-container"
+					id="magazinSlider1903">
+					<ul class="swiper-wrapper">
+					</ul>
+				</div>
+				<!--add arrow -->
+				<div class="themagazine_arrow next">다음</div>
+				<div class="themagazine_arrow prev">이전</div>
+			</div>
+			<!-- //the_magazine_wrap1903-->
+			<!--배너영역 -->
+			<!--//배너영역 -->
+
+			<!-- pick_for-->
+			<div class="pickfor_wrap1903">
+				<h4 class="tit">
+					<span>당신</span>만을 위한 특별한 추천
+				</h4>
+				<div class="pick_for" id="pickForSlider1903">
+					<ul class="slides"></ul>
+				</div>
+				<div class="controls" id="pickforControls">
+					<a href="#;" class="prev"></a> <a href="#;" class="next"></a>
+				</div>
+			</div>
+			<!--// pick_for-->
+		</div>
+		<!-- //main_container-->
+		<!-- instagram -->
+		<div class="instagram_wrap1903" style="display: none">
+			<div class="txt_wrap">
+				<h4 class="tit"># THE HANDSOME MOMENT</h4>
+				<p class="s_title">한섬 브랜드 공식 인스타그램 속 사진을 감상하세요.</p>
+			</div>
+			<div class="pic_wrap swiper-container" id="instaContents">
+				<ul class="swiper-wrapper">
+				</ul>
+				<div class="instagram_arrow next">다음</div>
+				<div class="instagram_arrow prev">이전</div>
+			</div>
+			<a href="/ko/magazine/instagram" class="insta_view_more">전체보기</a>
+		</div>
+		<!-- //instagram -->
+	</div>
+
+	<!-- //bodyWrap -->
+	<div class="layerArea" id="hpMemberLayer" style="display: none;">
+		<div class="layerBg" style="display: block;" tabindex="-1"></div>
+		<div class="popwrap w_type_8" id=""
+			style="position: absolute; z-index: 201; display: block; top: 50%; margin-top: -283px;"
+			tabindex="-1">
+			<!-- Title1 -->
+			<div class="pop_tltwrap3">
+				<h3>현대백화점 통합회원 가입 안내</h3>
+			</div>
+			<!-- //Title1 -->
+			<div class="pop_cnt">
+				<div class="hpoint">
+					<p class="txt">
+						현대백화점 통합회원으로 가입 시<br />현대백화점그룹의 관계사 사이트를 동시에 이용하실 수 있으며,<br />각종
+						혜택을 누리실 수 있습니다.
+					</p>
+					<p class="img">
+						<img src="/resources/images/popup/main_popup_hpoint.jpg"
+							style="vertical-align: top" alt="" />
+					</p>
+					<div class="noticeTxt">
+						<p>동의하실 경우 다음의 정보가 공유됩니다.</p>
+						<p>- 제공받는자 : (주)현대백화점</p>
+						<p>- 목적 : 회원가입 시 필수정보 입력, 기 가입여부, 타인과의 아이디 중복여부 확인</p>
+						<p>- 항목 : 성명, 아이디, 생년월일, 전화번호, 이메일</p>
+					</div>
+					<div class="btnwrap mt30">
+						<input class="btn gray" value="동의하고 회원가입 진행" type="button"
+							style="width: 200px" onclick="hpoinJoin();" /> <input
+							class="btn wt" value="쇼핑 계속하기" type="button" style="width: 200px"
+							onclick="layerPopup3('close');" />
+					</div>
+				</div>
+			</div>
+			<div class="grayBox">
+				<input type="checkbox" id="memPop" name="memPop"
+					onclick="layerPopup3('close');" /><label for="chk1">다시보지않기</label>
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input
+					type="checkbox" id="oweek" name="oweek"
+					onclick="layerPopup3('oneweek');" /><label for="chk2">1주일동안
+					열지 않음</label>
+			</div>
+			<!-- btn_close -->
+			<a href="#" class="btn_close" id="closeLayerPop"
+				onclick="layerPopup3('close');"><img
+				src="/resources/images/popup/ico_close.png"></a>
+			<!-- //btn_close -->
+		</div>
+	</div>
+	<!--  criteo 메인 페이지 트래커 START -->
+	<script type="text/javascript" src="//static.criteo.net/js/ld/ld.js"
+		async="true"></script>
+	<script type="text/javascript">
 
 
     var banner1 = $(".banner1");
@@ -5664,95 +6284,114 @@ if ( 'true' == 'false' ) {
     };
 }
 </script>
-<!--  criteo 메인 페이지 트래커 END -->
+	<!--  criteo 메인 페이지 트래커 END -->
 
-    <div class="layerArea" id="simpJoinLayer" style="display:none;">
-        <div class="layerBg" style="display:block;" tabindex="-1"></div> 
-        <div class="popwrap w_type_8" id="" style="position: absolute; z-index: 201; display: block;" tabindex="-1">
-            <div class="pop_tltwrap3">
-                <h3>더한섬닷컴 회원가입</h3>
-            </div>
-            <div class="pop_cnt">
-                <div class="hpoint">
-                    <p class="img"><img src="/_ui/desktop/common/images/popup/join_pop_icon.jpg" style="vertical-align:top"></p>
-                    <p class="txt">
-                        H.Point통합회원 정보로 더한섬닷컴에 회원가입이 가능합니다.<br />
-                        단, 더한섬닷컴 가입확인을 위해 아래의 정보로 조회가 진행됩니다.<br />
-                        동의하시면 회원가입 해주세요.<br />
-                        <span>※ 조회정보 : 이름, 생년월일, 휴대폰번호</span>
-                    </p>
-                    <div class="btnwrap mt30">
-                        <input class="btn gray" value="더한섬닷컴 가입" type="button" style="width:200px" onclick="simpJoin();" />
-                    </div>
-                </div>
-            </div>
-            <a href="#" class="btn_close" id="closeLayerPop" onclick="layerPopup4('close');"><img src="/_ui/desktop/common/images/popup/ico_close.png" ></a>
-        </div>
-    </div>
-    
-<!-- 마케팅 수신 팝업 : s -->
-<div class="layerArea" id="marketingAgreeLayer" style="display:none;">
-    <div class="layerBg" style="display:block;"></div>
-        <div class="popwrap w_type_8" style="outline:none;top:50%;margin-top:-235px;" tabindex="-1">
-            <!-- Title1 -->
-            <div class="pop_tltwrap3">
-                <h3>마케팅 수신 재동의 안내</h3>
-            </div>
-            <!-- //Title1 -->
-            <div class="pop_cnt">
-                <div class="hpoint">
-                    <p class="txt">고객님께서는 마케팅 수신 재동의 대상입니다.<br>더한섬닷컴에서 제공되는 서비스에 대한 수신동의 여부를<br>다시 한번 확인해주세요.<br>선택 하시면 더한섬닷컴에서 진행하는 마케팅 및 이벤트소식을<br>받아보실 수 있습니다.</p>
-                    <div class="marketing_rcv_box" style="overflow:hidden;text-align:center;">
-                        <!-- marketing_rcv_con -->
-                        <div class="marketing_rcv_con" style="display:inline-block;margin:0 20px;">
-                            <input type="checkbox" id="emailchk" name="agree_marketing" />
-                            <label for="emailchk">이메일(Email)</label>
-                        </div>
-                        <!-- // marketing_rcv_con -->
-                        <!-- marketing_rcv_con -->
-                        <div class="marketing_rcv_con" style="display:inline-block;margin:0 20px;">
-                            <input type="checkbox" id="smschk" name="agree_marketing" />
-                            <label for="smschk">SMS</label>
-                        </div>
-                        <!-- // marketing_rcv_con -->
-                        </div>
-                    <div class="noticeTxt">
-                        <p>단, 가입 및 주문/결제와 재입고 알림 등에 관련된 이메일과 SMS는 동의와 상관없이 발송됩니다.</p>
-                    </div>
-                    <div class="btnwrap mt30">
-                        <input class="btn gray" value="확인하기" type="button" onclick="maketingAgreeAlert();" />
-                    </div>
-                </div>
-            </div>
-            <!-- btn_close -->
-            <a href="#" class="btn_close" id="closeLayerPop" onclick="maketingAgreeClose();"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>
-            <!-- //btn_close -->
-    </div>
-</div>
-<!-- 마케팅 수신 팝업 : e -->
+	<div class="layerArea" id="simpJoinLayer" style="display: none;">
+		<div class="layerBg" style="display: block;" tabindex="-1"></div>
+		<div class="popwrap w_type_8" id=""
+			style="position: absolute; z-index: 201; display: block;"
+			tabindex="-1">
+			<div class="pop_tltwrap3">
+				<h3>더한섬닷컴 회원가입</h3>
+			</div>
+			<div class="pop_cnt">
+				<div class="hpoint">
+					<p class="img">
+						<img src="/resources/images/popup/join_pop_icon.jpg"
+							style="vertical-align: top">
+					</p>
+					<p class="txt">
+						H.Point통합회원 정보로 더한섬닷컴에 회원가입이 가능합니다.<br /> 단, 더한섬닷컴 가입확인을 위해 아래의
+						정보로 조회가 진행됩니다.<br /> 동의하시면 회원가입 해주세요.<br /> <span>※ 조회정보
+							: 이름, 생년월일, 휴대폰번호</span>
+					</p>
+					<div class="btnwrap mt30">
+						<input class="btn gray" value="더한섬닷컴 가입" type="button"
+							style="width: 200px" onclick="simpJoin();" />
+					</div>
+				</div>
+			</div>
+			<a href="#" class="btn_close" id="closeLayerPop"
+				onclick="layerPopup4('close');"><img
+				src="/resources/images/popup/ico_close.png"></a>
+		</div>
+	</div>
 
-    <form id="simpJoinForm" method="post" action="" target="simpStart_window">
-        <input type="hidden" name="prtnrId" value="D080" /> 
-        <input type="hidden" name="chnnlId" value="1705" />
-        <input type="hidden" name="ssoMcustNo" id="ssoMcustNo" value="" />
-        <input type="hidden" name="ptcoReqnMdaInf" id="ptcoReqnMdaInf" />
-    </form>
+	<!-- 마케팅 수신 팝업 : s -->
+	<div class="layerArea" id="marketingAgreeLayer" style="display: none;">
+		<div class="layerBg" style="display: block;"></div>
+		<div class="popwrap w_type_8"
+			style="outline: none; top: 50%; margin-top: -235px;" tabindex="-1">
+			<!-- Title1 -->
+			<div class="pop_tltwrap3">
+				<h3>마케팅 수신 재동의 안내</h3>
+			</div>
+			<!-- //Title1 -->
+			<div class="pop_cnt">
+				<div class="hpoint">
+					<p class="txt">
+						고객님께서는 마케팅 수신 재동의 대상입니다.<br>더한섬닷컴에서 제공되는 서비스에 대한 수신동의 여부를<br>다시
+						한번 확인해주세요.<br>선택 하시면 더한섬닷컴에서 진행하는 마케팅 및 이벤트소식을<br>받아보실 수
+						있습니다.
+					</p>
+					<div class="marketing_rcv_box"
+						style="overflow: hidden; text-align: center;">
+						<!-- marketing_rcv_con -->
+						<div class="marketing_rcv_con"
+							style="display: inline-block; margin: 0 20px;">
+							<input type="checkbox" id="emailchk" name="agree_marketing" /> <label
+								for="emailchk">이메일(Email)</label>
+						</div>
+						<!-- // marketing_rcv_con -->
+						<!-- marketing_rcv_con -->
+						<div class="marketing_rcv_con"
+							style="display: inline-block; margin: 0 20px;">
+							<input type="checkbox" id="smschk" name="agree_marketing" /> <label
+								for="smschk">SMS</label>
+						</div>
+						<!-- // marketing_rcv_con -->
+					</div>
+					<div class="noticeTxt">
+						<p>단, 가입 및 주문/결제와 재입고 알림 등에 관련된 이메일과 SMS는 동의와 상관없이 발송됩니다.</p>
+					</div>
+					<div class="btnwrap mt30">
+						<input class="btn gray" value="확인하기" type="button"
+							onclick="maketingAgreeAlert();" />
+					</div>
+				</div>
+			</div>
+			<!-- btn_close -->
+			<a href="#" class="btn_close" id="closeLayerPop"
+				onclick="maketingAgreeClose();"><img
+				src="/resources/images/popup/ico_close.png"></a>
+			<!-- //btn_close -->
+		</div>
+	</div>
+	<!-- 마케팅 수신 팝업 : e -->
 
-    <form id="userHiddenForm" method="post" target="transMember">
-        <input type="hidden" name="prtnrReqGb" value="03" />
-        <input type="hidden" name="prtnrId" id="prtnrId" value="" />
-        <input type="hidden" name="chnnlId" id="chnnlId" value="" />
-        <input type="hidden" name="custNm" id="custNm" value="" />
-        <input type="hidden" name="birthDt" id="birthDt" value="" />
-        <input type="hidden" name="mophNo" id="mophNo" value="" />
-        <input type="hidden" name="chId" id="chId" value="" />  
-        <input type="hidden" name="custUniqKey" id="custUniqKey" value="" />
-        <input type="hidden" name="email" id="email" value="" />
-        <input type="hidden" name="sexGbCd" id="sexGbCd" value="" />
-        <input type="hidden" name="ci" id="ci" value="" /> 
-        <input type="hidden" name="ptcoReqnMdaInf"  id="ptcoReqnMdaInf" value="" />      
-    </form>
-    <script type="application/ld+json">
+	<form id="simpJoinForm" method="post" action=""
+		target="simpStart_window">
+		<input type="hidden" name="prtnrId" value="D080" /> <input
+			type="hidden" name="chnnlId" value="1705" /> <input type="hidden"
+			name="ssoMcustNo" id="ssoMcustNo" value="" /> <input type="hidden"
+			name="ptcoReqnMdaInf" id="ptcoReqnMdaInf" />
+	</form>
+
+	<form id="userHiddenForm" method="post" target="transMember">
+		<input type="hidden" name="prtnrReqGb" value="03" /> <input
+			type="hidden" name="prtnrId" id="prtnrId" value="" /> <input
+			type="hidden" name="chnnlId" id="chnnlId" value="" /> <input
+			type="hidden" name="custNm" id="custNm" value="" /> <input
+			type="hidden" name="birthDt" id="birthDt" value="" /> <input
+			type="hidden" name="mophNo" id="mophNo" value="" /> <input
+			type="hidden" name="chId" id="chId" value="" /> <input type="hidden"
+			name="custUniqKey" id="custUniqKey" value="" /> <input type="hidden"
+			name="email" id="email" value="" /> <input type="hidden"
+			name="sexGbCd" id="sexGbCd" value="" /> <input type="hidden"
+			name="ci" id="ci" value="" /> <input type="hidden"
+			name="ptcoReqnMdaInf" id="ptcoReqnMdaInf" value="" />
+	</form>
+	<script type="application/ld+json">
     {
      "@context": "http://schema.org",
      "@type": "Organization",
@@ -5766,9 +6405,9 @@ if ( 'true' == 'false' ) {
      ]
     }
     </script>
-<!-- footerWrap -->
+	<!-- footerWrap -->
 
-<script type="text/javascript">
+	<script type="text/javascript">
 //<![CDATA[ 
 
 $(document).ready(function(){
@@ -5802,178 +6441,294 @@ function setLogout(){
 //]]>
 </script>
 
-<div id="footerWrap">
-	<div id="topBtn">
-		<a href="javascript:void(0);" class="viewTopArea"><img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/top_btn.png" alt="맨 위로" onclick="GA_Event('공통','퀵버튼','TOP');"/></a>
-	</div>
-	<div class="footer">
-		<!--footer_cnts1 -->
-		<div class="footer_cnts1 clearfix">
-			<!-- footer_menu-->
-			<div class="footer_menu cnts1_left">
-				<div class="footer_logo"><a href="/ko/main" onclick="GA_Event('공통','로고','하단');"><img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/footer_logo_renew.png" alt="HANDSOME" /></a></div>
-				<div class="footer_link">
-					<ul class="clearfix">
-					    <li><a href="/ko/svcenter/theClubInfo" onclick="GA_Event('공통','푸터_메뉴','온라인 멤버십');">온라인 멤버십</a></li>
-						<li><a href="/ko/svcenter/memberbenefitguide" onclick="GA_Event('공통','푸터_메뉴','한섬 VVIP 혜택');">한섬 VVIP 혜택</a></li>
-						<li><a href="/ko/svcenter/pointguide" onclick="GA_Event('공통','푸터_메뉴','한섬마일리지 혜택');">한섬마일리지 혜택</a></li>
-						<li><a href="/ko/svcenter/couponguide" onclick="GA_Event('공통','푸터_메뉴','쿠폰');">쿠폰</a></li>
-<li><a href="/ko/svcenter/asguide" onclick="GA_Event('공통','푸터_메뉴','반품&환불안내');">반품&amp;환불안내</a></li>
-							</ul>
-					<ul class="clearfix">
-						<li><a href="/ko/svcenter/submain" onclick="GA_Event('공통','푸터_메뉴','고객센터');">고객센터</a></li>
-						<li><a href="/ko/svcenter/faq" onclick="GA_Event('공통','푸터_메뉴','FAQ');">FAQ</a></li>
-						<li><a href="/ko/svcenter/mending" onclick="GA_Event('공통','푸터_메뉴','수선진행조회');">수선진행조회</a></li>
-						</ul>
-					<ul class="clearfix">
-					   <li><a href="/ko/member/login" onclick="GA_Event('공통','푸터_메뉴','로그인');">로그인</a></li>
-					   <li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','푸터_메뉴','주문배송조회');">주문배송조회</a></li>
-						<li><a href="/ko/mypage/order/myorders" onclick="GA_Event('공통','푸터_메뉴','취소/반품');">취소/반품</a></li>
-						<li><a href="/ko/mypage/myWish" onclick="GA_Event('공통','푸터_메뉴','위시리스트');">위시리스트</a></li>
-					</ul>
-					<ul class="clearfix">
-						<li><a href="http://www.handsome.co.kr/ko/company/aboutHandsome.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','회사소개');">회사소개<!-- 회사소개 --></a></li>
-						<li><a href="http://www.handsome.co.kr/ko/brand/fashion.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','브랜드소개');">브랜드소개</a></li>
-						<li><a href="http://www.handsome.co.kr/ko/ir/governance01.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','투자정보');">투자정보</a></li>
-						<li><a href="https://recruit.ehyundai.com/recruit-info/announcement/list.nhd?pageNo=1&hireGb=01&coCd=HDHAN" target="_blank" onclick="GA_Event('공통','푸터_메뉴','채용정보');">채용정보</a></li>
-						<li><a href="http://www.handsome.co.kr/ko/sustainability/sharedGrowth01.do" target="_blank" onclick="GA_Event('공통','푸터_메뉴','동반성장');">동반성장</a></li>
-						</ul>
-				</div>
-			</div>
-			<!-- //footer_menu-->
-			<div class="footer_apps cnts1_right">
-				<ul>
-					<li class="loca"><a href="/ko/b/storeInformation" onclick="GA_Event('공통','푸터','매장안내');">매장안내</a></li>
-					<li class="look"><a href="/ko/magazine/lookbook" onclick="GA_Event('공통','푸터','룩북');">룩북</a></li>
-					<li class="ico_youtube"><a href="/ko/magazine/youtubeList" onclick="GA_Event('공통','푸터_SNS','YOUTUBE');">비디오</a></li><!-- 200330 추가 -->
-					<li class="ico_insta" id="f_insta" style="display:none;"><a href="https://www.instagram.com/thehandsome_official/" target="_blank" onclick="GA_Event('공통','푸터_SNS','INSTAGRAM');">인스타그램</a></li><!-- 200330 추가 -->
-				</ul>
-				<!--download_app , athome-->
-				<div class="cnts1_right_inner">
-				    <a href="/ko/appDownloadSMS/sendSMSPage" onclick="GA_Event('공통','푸터','APP다운로드');">
-<img src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/footer_ico_apps.png" alt="APP 다운로드" style="width:52px;height:71px;">
-<!-- 				        <img src="/_ui/desktop/common/images/common/ico_apps_new.png" alt="APP 다운로드" style="width:54px;height:70px;"> -->
-<p>APP 다운로드 &gt;</p>
-			        </a>
-				    <a href="/ko/svcenter/footerAthomeInfo" style="margin-right:0;" onclick="GA_Event('공통','푸터','딜리버리서비스');">
-<img src="http://cdn.thehandsome.com/pc/footer/footer_athome_car.png" alt="딜리버리 서비스" style="width:85px;">
-<!-- 				        <img src="http://cdn.thehandsome.com/pc/footer_athome_car.jpg" alt="딜리버리 서비스" style="width:95px;"> -->
-<p>딜리버리 서비스 &#62;</p>
-			        </a>
-			    </div>
-				<!--//download_app , athome-->
-			</div>
+	<div id="footerWrap">
+		<div id="topBtn">
+			<a href="javascript:void(0);" class="viewTopArea"><img
+				src="http://cdn.thehandsome.com/resources/images/common/top_btn.png"
+				alt="맨 위로" onclick="GA_Event('공통','퀵버튼','TOP');" /></a>
 		</div>
-		<!--//footer_cnts1 -->
-	</div>
-	<!--footer_cnts2 -->
-	<div class="footer_cnts2 clearfix">
 		<div class="footer">
-			<div class="cnts2_left">
-				<a href="/ko/footer/footerTermBusiness" onclick="GA_Event('공통','푸터_CNT','서비스이용약관');">서비스이용약관</a>
-				<a href="/ko/footer/footerPrivacy" onclick="GA_Event('공통','푸터_CNT','개인정보처리방침');"><strong>개인정보처리방침<!-- 개인정보처리방침 --></strong></a>
-				<a href="javascript:void(0);" class="box" onclick="javascript:window.open('http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=1208126337', 'communicationViewPopup', 'width=750, height=700');GA_Event('공통','푸터_CNT','통신판매사업자정보확인');">통신판매사업자정보확인</a>
-				<a href="https://mark.inicis.com/mark/escrow_popup.php?mid=handsomep1" class="box" onclick="GA_Event('공통','푸터_CNT','에스크로서비스가입확인');">에스크로서비스 가입 확인</a>
-				<p class="top_p"><span>(주)한섬</span><span>대표이사 : 김민덕</span><span>서울시 강남구 도산대로 523 한섬빌딩</span><span>TEL 1800-5700 (유료)</span><span class="bgnone">FAX 02-6078-2856</span></p>
-				<p><span>사업자등록번호 120-81-26337</span><span>통신판매업신고번호 강남 제 00826호</span><span>개인정보관리책임자 윤인수</span><span class="bgnone">호스팅서비스 : (주) 한섬</span></p>
-				<p class="copyright">COPYRIGHT © 2017 HANDSOME. ALL RIGHT RESERVED.</p>
+			<!--footer_cnts1 -->
+			<div class="footer_cnts1 clearfix">
+				<!-- footer_menu-->
+				<div class="footer_menu cnts1_left">
+					<div class="footer_logo">
+						<a href="/ko/main" onclick="GA_Event('공통','로고','하단');"><img
+							src="http://cdn.thehandsome.com/resources/images/common/footer_logo_renew.png"
+							alt="HANDSOME" /></a>
+					</div>
+					<div class="footer_link">
+						<ul class="clearfix">
+							<li><a href="/ko/svcenter/theClubInfo"
+								onclick="GA_Event('공통','푸터_메뉴','온라인 멤버십');">온라인 멤버십</a></li>
+							<li><a href="/ko/svcenter/memberbenefitguide"
+								onclick="GA_Event('공통','푸터_메뉴','한섬 VVIP 혜택');">한섬 VVIP 혜택</a></li>
+							<li><a href="/ko/svcenter/pointguide"
+								onclick="GA_Event('공통','푸터_메뉴','한섬마일리지 혜택');">한섬마일리지 혜택</a></li>
+							<li><a href="/ko/svcenter/couponguide"
+								onclick="GA_Event('공통','푸터_메뉴','쿠폰');">쿠폰</a></li>
+							<li><a href="/ko/svcenter/asguide"
+								onclick="GA_Event('공통','푸터_메뉴','반품&환불안내');">반품&amp;환불안내</a></li>
+						</ul>
+						<ul class="clearfix">
+							<li><a href="/ko/svcenter/submain"
+								onclick="GA_Event('공통','푸터_메뉴','고객센터');">고객센터</a></li>
+							<li><a href="/ko/svcenter/faq"
+								onclick="GA_Event('공통','푸터_메뉴','FAQ');">FAQ</a></li>
+							<li><a href="/ko/svcenter/mending"
+								onclick="GA_Event('공통','푸터_메뉴','수선진행조회');">수선진행조회</a></li>
+						</ul>
+						<ul class="clearfix">
+							<li><a href="/ko/member/login"
+								onclick="GA_Event('공통','푸터_메뉴','로그인');">로그인</a></li>
+							<li><a href="/ko/mypage/order/myorders"
+								onclick="GA_Event('공통','푸터_메뉴','주문배송조회');">주문배송조회</a></li>
+							<li><a href="/ko/mypage/order/myorders"
+								onclick="GA_Event('공통','푸터_메뉴','취소/반품');">취소/반품</a></li>
+							<li><a href="/ko/mypage/myWish"
+								onclick="GA_Event('공통','푸터_메뉴','위시리스트');">위시리스트</a></li>
+						</ul>
+						<ul class="clearfix">
+							<li><a
+								href="http://www.handsome.co.kr/ko/company/aboutHandsome.do"
+								target="_blank" onclick="GA_Event('공통','푸터_메뉴','회사소개');">회사소개<!-- 회사소개 --></a></li>
+							<li><a href="http://www.handsome.co.kr/ko/brand/fashion.do"
+								target="_blank" onclick="GA_Event('공통','푸터_메뉴','브랜드소개');">브랜드소개</a></li>
+							<li><a
+								href="http://www.handsome.co.kr/ko/ir/governance01.do"
+								target="_blank" onclick="GA_Event('공통','푸터_메뉴','투자정보');">투자정보</a></li>
+							<li><a
+								href="https://recruit.ehyundai.com/recruit-info/announcement/list.nhd?pageNo=1&hireGb=01&coCd=HDHAN"
+								target="_blank" onclick="GA_Event('공통','푸터_메뉴','채용정보');">채용정보</a></li>
+							<li><a
+								href="http://www.handsome.co.kr/ko/sustainability/sharedGrowth01.do"
+								target="_blank" onclick="GA_Event('공통','푸터_메뉴','동반성장');">동반성장</a></li>
+						</ul>
+					</div>
+				</div>
+				<!-- //footer_menu-->
+				<div class="footer_apps cnts1_right">
+					<ul>
+						<li class="loca"><a href="/ko/b/storeInformation"
+							onclick="GA_Event('공통','푸터','매장안내');">매장안내</a></li>
+						<li class="look"><a href="/ko/magazine/lookbook"
+							onclick="GA_Event('공통','푸터','룩북');">룩북</a></li>
+						<li class="ico_youtube"><a href="/ko/magazine/youtubeList"
+							onclick="GA_Event('공통','푸터_SNS','YOUTUBE');">비디오</a></li>
+						<!-- 200330 추가 -->
+						<li class="ico_insta" id="f_insta" style="display: none;"><a
+							href="https://www.instagram.com/thehandsome_official/"
+							target="_blank" onclick="GA_Event('공통','푸터_SNS','INSTAGRAM');">인스타그램</a></li>
+						<!-- 200330 추가 -->
+					</ul>
+					<!--download_app , athome-->
+					<div class="cnts1_right_inner">
+						<a href="/ko/appDownloadSMS/sendSMSPage"
+							onclick="GA_Event('공통','푸터','APP다운로드');"> <img
+							src="http://cdn.thehandsome.com/resources/images/common/footer_ico_apps.png"
+							alt="APP 다운로드" style="width: 52px; height: 71px;"> <!-- 				        <img src="/resources/images/common/ico_apps_new.png" alt="APP 다운로드" style="width:54px;height:70px;"> -->
+							<p>APP 다운로드 &gt;</p>
+						</a> <a href="/ko/svcenter/footerAthomeInfo" style="margin-right: 0;"
+							onclick="GA_Event('공통','푸터','딜리버리서비스');"> <img
+							src="http://cdn.thehandsome.com/pc/footer/footer_athome_car.png"
+							alt="딜리버리 서비스" style="width: 85px;"> <!-- 				        <img src="http://cdn.thehandsome.com/pc/footer_athome_car.jpg" alt="딜리버리 서비스" style="width:95px;"> -->
+							<p>딜리버리 서비스 &#62;</p>
+						</a>
+					</div>
+					<!--//download_app , athome-->
+				</div>
 			</div>
-			<div class="cnts2_right">
-				<div class="related_site clearfix">
-					<dl class="global lang_1911">
-					    <dt><a href="javascript:void(0);" class="" onclick="GA_Event('공통','푸터_CNT','LANGUAGE');">LANGUAGE</a></dt>
-						<dd style="display: none;">
-							<ul>
-								<li><a href="javascript:language('ko')" onclick="GA_Event('공통','푸터_CNT','LANGUAGE_한국어');">한국어</a></li>
-								<li><a href="javascript:language('en')" onclick="GA_Event('공통','푸터_CNT','LANGUAGE_ENGLISH');">ENGLISH</a></li>
-								<li><a href="javascript:language('zh')" onclick="GA_Event('공통','푸터_CNT','LANGUAGE_中文');">中文</a></li>
-							</ul>
-						</dd>
-					</dl>
-					<dl class="family">
-						<dt><a href="javascript:void(0);" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE');">FAMILY SITE<!-- FAMILY SITE --></a></dt>
-						<dd style="">
-							<ul>
-	                            <li class="bold_division1811">쇼핑몰 Site<!-- 쇼핑몰 Site --></li>
-	                            <li><a href="https://www.thehyundai.com/Home.html" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_더현대닷컴');">더현대닷컴<!-- 더현대닷컴 --></a></li>
-	                            <li><a href="https://www.hddfs.com/shop/dm/main.do?ptnrChlCd=00003014" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대백화점 면세점');">현대백화점 면세점<!-- 현대백화점 DUTY FREE --></a></li>
-	                            <li><a href="http://esuper.ehyundai.com/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_e수퍼마켓');">e수퍼마켓<!-- e수퍼마켓 --></a></li>
-	                            <li><a href="https://www.hyundaihmall.com/Home.html" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대Hmall');">현대Hmall<!-- 현대 Hmall --></a></li>
-	                            <li><a href="http://mall.hyundailivart.co.kr/front/vrStoreList.lv" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대리바트몰');">현대리바트몰<!-- 현대리바트몰 --></a></li>
-	                            <li><a href="http://www.hyundairentalcare.co.kr/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대렌탈케어');">현대렌탈케어<!-- 현대렌탈케어 --></a></li>
-	                            <li><a href="http://www.hfashionmall.com/sfmweb/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_H패션몰');">H패션몰<!-- H패션몰 --></a></li>
-	                            <li><a href="https://www.h-vrstation.com/main" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_VR STATION');">VR STATION<!-- VR STATION --></a></li>
-	                            
-	                            <li class="bold_division1811">관계사 Site<!-- 관계사 Site --></li>
-	                            <li><a href="http://www.ehyundai.com/newPortal/ir/main.do" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대백화점그룹');">현대백화점그룹<!-- 현대백화점 그룹 --></a></li>
-	                            <li><a href="https://www.ehyundai.com/newPortal/index.do" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대백화점');">현대백화점<!-- 현대백화점 --></a></li>
-	                            <li><a href="http://www.hyundaigreenfood.com/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대그린푸드');">현대그린푸드<!-- (주)현대그린푸드 --></a></li>
-	                            <li><a href="https://www.hyundaihmall.com/Home.html" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대홈쇼핑');">현대홈쇼핑<!-- (주)현대홈쇼핑 --></a></li>
-	                            <li><a href="http://www.hyundailivart.co.kr/ko/intro/index.lvt" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대리바트');">현대리바트<!-- (주)현대 리바트 --></a></li>
-	                            <li><a href="http://www.hyundaimedia.com/mpp/index.hcn" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대미디어');">현대미디어<!-- 현대 미디어 --></a></li>
-	                            <li><a href="http://www.hyundairentalcare.co.kr/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대렌탈케어');">현대렌탈케어<!-- 현대렌탈케어 --></a></li>
-	                            <li><a href="http://www.hyundaidreamtour.com/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대드림투어');">현대드림투어<!-- 현대드림투어 --></a></li>
-	                            <li><a href="http://www.everdigm.com/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_에버다임');">에버다임<!-- 에버다임 --></a></li>
-	                            <li><a href="http://www.cnsfoodsystem.co.kr/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_씨엔에스푸드시스템');">씨엔에스푸드시스템<!-- 씨엔에스푸드시스템 --></a></li>
-	                            <li><a href="http://www.hyundaicatering.co.kr/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대캐터링시스템');">현대캐터링시스템<!-- 현대캐터링시스템 --></a></li>
-	                            <li><a href="http://www.hyundai-ite.com/index.jsp" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대IT&amp;E');">현대IT&amp;E<!-- 현대IT&amp;E --></a></li>
-	                            <li><a href="http://www.hyundailnc.com/" target="_blank" onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대L&amp;C');">현대L&amp;C<!-- 현대L&amp;C --></a></li>
-	                        </ul>
-						</dd>
-					</dl>
-				
-				
-				</div>
-				<!-- 푸터 공지 추가 220404 -->
-				<!-- 공지 -->
-				<div id="noticeWrap" class="notice">
-					<div class="controls">
-						<a href="javascript:void(0);" class="prev">이전</a>
-						<a href="javascript:void(0);" class="next">다음</a>
-					</div>
-					<div class="list">
-						<div class="tlt">공지<!-- 공지 --></div>
-						<ul class="list_new">
-							<!-- NoticeContent -->
-						</ul>
-					</div>
-				</div>
-				<!-- //공지 -->
-				
-				<!-- 뉴스 -->
-				<div id="newsWrap" class="news">
-					<div class="controls">
-						<a href="javascript:void(0);" class="prev">이전</a>
-						<a href="javascript:void(0);" class="next">다음</a>
-					</div>
-					<div class="list">
-						<div class="tlt">뉴스<!-- 뉴스 --></div>
-						<ul class="list_new">
-							<!-- NewsContent -->
-						</ul>
-					</div>
-				</div>
-				<!-- //뉴스 -->
-				<!-- // 푸터 공지 추가 220404 -->
-				</div>
+			<!--//footer_cnts1 -->
 		</div>
+		<!--footer_cnts2 -->
+		<div class="footer_cnts2 clearfix">
+			<div class="footer">
+				<div class="cnts2_left">
+					<a href="/ko/footer/footerTermBusiness"
+						onclick="GA_Event('공통','푸터_CNT','서비스이용약관');">서비스이용약관</a> <a
+						href="/ko/footer/footerPrivacy"
+						onclick="GA_Event('공통','푸터_CNT','개인정보처리방침');"><strong>개인정보처리방침<!-- 개인정보처리방침 --></strong></a>
+					<a href="javascript:void(0);" class="box"
+						onclick="javascript:window.open('http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=1208126337', 'communicationViewPopup', 'width=750, height=700');GA_Event('공통','푸터_CNT','통신판매사업자정보확인');">통신판매사업자정보확인</a>
+					<a
+						href="https://mark.inicis.com/mark/escrow_popup.php?mid=handsomep1"
+						class="box" onclick="GA_Event('공통','푸터_CNT','에스크로서비스가입확인');">에스크로서비스
+						가입 확인</a>
+					<p class="top_p">
+						<span>(주)한섬</span><span>대표이사 : 김민덕</span><span>서울시 강남구 도산대로
+							523 한섬빌딩</span><span>TEL 1800-5700 (유료)</span><span class="bgnone">FAX
+							02-6078-2856</span>
+					</p>
+					<p>
+						<span>사업자등록번호 120-81-26337</span><span>통신판매업신고번호 강남 제
+							00826호</span><span>개인정보관리책임자 윤인수</span><span class="bgnone">호스팅서비스
+							: (주) 한섬</span>
+					</p>
+					<p class="copyright">COPYRIGHT © 2017 HANDSOME. ALL RIGHT
+						RESERVED.</p>
+				</div>
+				<div class="cnts2_right">
+					<div class="related_site clearfix">
+						<dl class="global lang_1911">
+							<dt>
+								<a href="javascript:void(0);" class=""
+									onclick="GA_Event('공통','푸터_CNT','LANGUAGE');">LANGUAGE</a>
+							</dt>
+							<dd style="display: none;">
+								<ul>
+									<li><a href="javascript:language('ko')"
+										onclick="GA_Event('공통','푸터_CNT','LANGUAGE_한국어');">한국어</a></li>
+									<li><a href="javascript:language('en')"
+										onclick="GA_Event('공통','푸터_CNT','LANGUAGE_ENGLISH');">ENGLISH</a></li>
+									<li><a href="javascript:language('zh')"
+										onclick="GA_Event('공통','푸터_CNT','LANGUAGE_中文');">中文</a></li>
+								</ul>
+							</dd>
+						</dl>
+						<dl class="family">
+							<dt>
+								<a href="javascript:void(0);"
+									onclick="GA_Event('공통','푸터_CNT','FAMILY SITE');">FAMILY
+									SITE<!-- FAMILY SITE -->
+								</a>
+							</dt>
+							<dd style="">
+								<ul>
+									<li class="bold_division1811">쇼핑몰 Site<!-- 쇼핑몰 Site --></li>
+									<li><a href="https://www.thehyundai.com/Home.html"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_더현대닷컴');">더현대닷컴<!-- 더현대닷컴 --></a></li>
+									<li><a
+										href="https://www.hddfs.com/shop/dm/main.do?ptnrChlCd=00003014"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대백화점 면세점');">현대백화점
+											면세점<!-- 현대백화점 DUTY FREE -->
+									</a></li>
+									<li><a href="http://esuper.ehyundai.com/" target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_e수퍼마켓');">e수퍼마켓<!-- e수퍼마켓 --></a></li>
+									<li><a href="https://www.hyundaihmall.com/Home.html"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대Hmall');">현대Hmall<!-- 현대 Hmall --></a></li>
+									<li><a
+										href="http://mall.hyundailivart.co.kr/front/vrStoreList.lv"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대리바트몰');">현대리바트몰<!-- 현대리바트몰 --></a></li>
+									<li><a href="http://www.hyundairentalcare.co.kr/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대렌탈케어');">현대렌탈케어<!-- 현대렌탈케어 --></a></li>
+									<li><a href="http://www.hfashionmall.com/sfmweb/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_H패션몰');">H패션몰<!-- H패션몰 --></a></li>
+									<li><a href="https://www.h-vrstation.com/main"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_VR STATION');">VR
+											STATION<!-- VR STATION -->
+									</a></li>
+
+									<li class="bold_division1811">관계사 Site<!-- 관계사 Site --></li>
+									<li><a href="http://www.ehyundai.com/newPortal/ir/main.do"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대백화점그룹');">현대백화점그룹<!-- 현대백화점 그룹 --></a></li>
+									<li><a href="https://www.ehyundai.com/newPortal/index.do"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대백화점');">현대백화점<!-- 현대백화점 --></a></li>
+									<li><a href="http://www.hyundaigreenfood.com/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대그린푸드');">현대그린푸드<!-- (주)현대그린푸드 --></a></li>
+									<li><a href="https://www.hyundaihmall.com/Home.html"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대홈쇼핑');">현대홈쇼핑<!-- (주)현대홈쇼핑 --></a></li>
+									<li><a
+										href="http://www.hyundailivart.co.kr/ko/intro/index.lvt"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대리바트');">현대리바트<!-- (주)현대 리바트 --></a></li>
+									<li><a href="http://www.hyundaimedia.com/mpp/index.hcn"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대미디어');">현대미디어<!-- 현대 미디어 --></a></li>
+									<li><a href="http://www.hyundairentalcare.co.kr/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대렌탈케어');">현대렌탈케어<!-- 현대렌탈케어 --></a></li>
+									<li><a href="http://www.hyundaidreamtour.com/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대드림투어');">현대드림투어<!-- 현대드림투어 --></a></li>
+									<li><a href="http://www.everdigm.com/" target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_에버다임');">에버다임<!-- 에버다임 --></a></li>
+									<li><a href="http://www.cnsfoodsystem.co.kr/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_씨엔에스푸드시스템');">씨엔에스푸드시스템<!-- 씨엔에스푸드시스템 --></a></li>
+									<li><a href="http://www.hyundaicatering.co.kr/"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대캐터링시스템');">현대캐터링시스템<!-- 현대캐터링시스템 --></a></li>
+									<li><a href="http://www.hyundai-ite.com/index.jsp"
+										target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대IT&amp;E');">현대IT&amp;E<!-- 현대IT&amp;E --></a></li>
+									<li><a href="http://www.hyundailnc.com/" target="_blank"
+										onclick="GA_Event('공통','푸터_CNT','FAMILY SITE_현대L&amp;C');">현대L&amp;C<!-- 현대L&amp;C --></a></li>
+								</ul>
+							</dd>
+						</dl>
+
+
+					</div>
+					<!-- 푸터 공지 추가 220404 -->
+					<!-- 공지 -->
+					<div id="noticeWrap" class="notice">
+						<div class="controls">
+							<a href="javascript:void(0);" class="prev">이전</a> <a
+								href="javascript:void(0);" class="next">다음</a>
+						</div>
+						<div class="list">
+							<div class="tlt">
+								공지
+								<!-- 공지 -->
+							</div>
+							<ul class="list_new">
+								<!-- NoticeContent -->
+							</ul>
+						</div>
+					</div>
+					<!-- //공지 -->
+
+					<!-- 뉴스 -->
+					<div id="newsWrap" class="news">
+						<div class="controls">
+							<a href="javascript:void(0);" class="prev">이전</a> <a
+								href="javascript:void(0);" class="next">다음</a>
+						</div>
+						<div class="list">
+							<div class="tlt">
+								뉴스
+								<!-- 뉴스 -->
+							</div>
+							<ul class="list_new">
+								<!-- NewsContent -->
+							</ul>
+						</div>
+					</div>
+					<!-- //뉴스 -->
+					<!-- // 푸터 공지 추가 220404 -->
+				</div>
+			</div>
+		</div>
+		<!--//footer_cnts2 -->
 	</div>
-	<!--//footer_cnts2 -->
-	</div><!-- 네이버 애널리틱스 전환페이지 설정 : s -->
-    <!-- 네이버 애널리틱스 전환페이지 설정 : e -->
+	<!-- 네이버 애널리틱스 전환페이지 설정 : s -->
+	<!-- 네이버 애널리틱스 전환페이지 설정 : e -->
 	<form name="accessiblityForm">
-		<input type="hidden" id="accesibility_refreshScreenReaderBufferField" name="accesibility_refreshScreenReaderBufferField" value=""/>
+		<input type="hidden" id="accesibility_refreshScreenReaderBufferField"
+			name="accesibility_refreshScreenReaderBufferField" value="" />
 	</form>
-	<div id="ariaStatusMsg" class="skip" role="status" aria-relevant="text" aria-live="polite"></div>
-	
+	<div id="ariaStatusMsg" class="skip" role="status" aria-relevant="text"
+		aria-live="polite"></div>
+
 	<!--loadingbar-->
 	<div class="layerBg"></div>
 	<!--//loadingbar-->
-	
-	<div class="layerArea" id="mapleLayer" style="display:none;">
-	   <div class="layerBg"></div>
+
+	<div class="layerArea" id="mapleLayer" style="display: none;">
+		<div class="layerBg"></div>
 	</div>
-	
+
 	<!-- Google 리마케팅 태그 코드 -->
 	<script type="text/javascript">
 	/* <![CDATA[ */
@@ -5982,14 +6737,16 @@ function setLogout(){
 	var google_remarketing_only = true;
 	/* ]]> */
 	</script>
-	<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+	<script type="text/javascript"
+		src="//www.googleadservices.com/pagead/conversion.js">
 	</script>
 	<noscript>
-	<div style="display:inline;">
-	<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/943253288/?value=0&amp;guid=ON&amp;script=0"/>
-	</div>
+		<div style="display: inline;">
+			<img height="1" width="1" style="border-style: none;" alt=""
+				src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/943253288/?value=0&amp;guid=ON&amp;script=0" />
+		</div>
 	</noscript>
-	
+
 	<script type="text/javascript">  
 	
 	    var virtusizeViewYn = false;
@@ -6001,18 +6758,19 @@ function setLogout(){
 	    }
 	</script>
 
-<input type="hidden" id="apiConfmKey" value="U01TX0FVVEgyMDE5MDYxNzE2NDczMzEwODgxNTI="/>
+	<input type="hidden" id="apiConfmKey"
+		value="U01TX0FVVEgyMDE5MDYxNzE2NDczMzEwODgxNTI=" />
 
-<!-- GTM 추적코드 추가 -->
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PCJDFJ"
-     height="0" width="0" style="display:none;visibility:hidden"></iframe>
-</noscript>
-<!-- End Google Tag Manager (noscript) -->
+	<!-- GTM 추적코드 추가 -->
+	<!-- Google Tag Manager (noscript) -->
+	<noscript>
+		<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5PCJDFJ"
+			height="0" width="0" style="display: none; visibility: hidden"></iframe>
+	</noscript>
+	<!-- End Google Tag Manager (noscript) -->
 
-<!-- Beusable(뷰저블 코드) : s -->
-<script type="text/javascript">
+	<!-- Beusable(뷰저블 코드) : s -->
+	<script type="text/javascript">
 (function(w, d, a){
     w.__beusablerumclient__ = {
         load : function(src){
@@ -6023,10 +6781,10 @@ function setLogout(){
     };w.__beusablerumclient__.load(a);
 })(window, document, "//rum.beusable.net/script/b200506e124944u371/29f6068460");
 </script>
-<!-- Beusable(뷰저블 코드) : e -->
+	<!-- Beusable(뷰저블 코드) : e -->
 
-<!-- Braze(브레이즈 스니펫 코드) : s -->
-<script type="text/javascript">
+	<!-- Braze(브레이즈 스니펫 코드) : s -->
+	<script type="text/javascript">
     +function(a,p,P,b,y){a.appboy={};a.appboyQueue=[];for(var s="initialize destroy getDeviceId toggleAppboyLogging setLogger openSession changeUser requestImmediateDataFlush requestFeedRefresh subscribeToFeedUpdates requestContentCardsRefresh subscribeToContentCardsUpdates logCardImpressions logCardClick logCardDismissal logFeedDisplayed logContentCardsDisplayed logInAppMessageImpression logInAppMessageClick logInAppMessageButtonClick logInAppMessageHtmlClick subscribeToNewInAppMessages subscribeToInAppMessage removeSubscription removeAllSubscriptions logCustomEvent logPurchase isPushSupported isPushBlocked isPushGranted isPushPermissionGranted registerAppboyPushMessages unregisterAppboyPushMessages trackLocation stopWebTracking resumeWebTracking wipeData ab ab.DeviceProperties ab.User ab.User.Genders ab.User.NotificationSubscriptionTypes ab.User.prototype.getUserId ab.User.prototype.setFirstName ab.User.prototype.setLastName ab.User.prototype.setEmail ab.User.prototype.setGender ab.User.prototype.setDateOfBirth ab.User.prototype.setCountry ab.User.prototype.setHomeCity ab.User.prototype.setLanguage ab.User.prototype.setEmailNotificationSubscriptionType ab.User.prototype.setPushNotificationSubscriptionType ab.User.prototype.setPhoneNumber ab.User.prototype.setAvatarImageUrl ab.User.prototype.setLastKnownLocation ab.User.prototype.setUserAttribute ab.User.prototype.setCustomUserAttribute ab.User.prototype.addToCustomAttributeArray ab.User.prototype.removeFromCustomAttributeArray ab.User.prototype.incrementCustomUserAttribute ab.User.prototype.addAlias ab.User.prototype.setCustomLocationAttribute ab.InAppMessage ab.InAppMessage.SlideFrom ab.InAppMessage.ClickAction ab.InAppMessage.DismissType ab.InAppMessage.OpenTarget ab.InAppMessage.ImageStyle ab.InAppMessage.TextAlignment ab.InAppMessage.Orientation ab.InAppMessage.CropType ab.InAppMessage.prototype.subscribeToClickedEvent ab.InAppMessage.prototype.subscribeToDismissedEvent ab.InAppMessage.prototype.removeSubscription ab.InAppMessage.prototype.removeAllSubscriptions ab.InAppMessage.prototype.closeMessage ab.InAppMessage.Button ab.InAppMessage.Button.prototype.subscribeToClickedEvent ab.InAppMessage.Button.prototype.removeSubscription ab.InAppMessage.Button.prototype.removeAllSubscriptions ab.SlideUpMessage ab.ModalMessage ab.FullScreenMessage ab.HtmlMessage ab.ControlMessage ab.Feed ab.Feed.prototype.getUnreadCardCount ab.ContentCards ab.ContentCards.prototype.getUnviewedCardCount ab.Card ab.Card.prototype.dismissCard ab.ClassicCard ab.CaptionedImage ab.Banner ab.ControlCard ab.WindowUtils display display.automaticallyShowNewInAppMessages display.showInAppMessage display.showFeed display.destroyFeed display.toggleFeed display.showContentCards display.hideContentCards display.toggleContentCards sharedLib".split(" "),i=0;i<s.length;i++){for(var m=s[i],k=a.appboy,l=m.split("."),j=0;j<l.length-1;j++)k=k[l[j]];k[l[j]]=(new Function("return function "+m.replace(/\./g,"_")+"(){window.appboyQueue.push(arguments); return true}"))()}window.appboy.getUser=function(){return new window.appboy.ab.User};window.appboy.getCachedFeed=function(){return new window.appboy.ab.Feed};window.appboy.getCachedContentCards=function(){return new window.appboy.ab.ContentCards};(y=p.createElement(P)).type='text/javascript';
         y.src='https://js.appboycdn.com/web-sdk/2.7/appboy.min.js';
         y.async=1;(b=p.getElementsByTagName(P)[0]).parentNode.insertBefore(y,b)
@@ -6040,22 +6798,22 @@ function setLogout(){
         console.log(e);
     }
 </script>
-<!-- Braze(브레이즈 스니펫 코드) : e -->
-<script type="text/javascript">
+	<!-- Braze(브레이즈 스니펫 코드) : e -->
+	<script type="text/javascript">
 </script>
-<!-- 네이버 애널리틱스 공통 적용 : s -->
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript">
+	<!-- 네이버 애널리틱스 공통 적용 : s -->
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript">
 	if (!wcs_add) var wcs_add = {};
 	wcs_add["wa"] = "5c81384bbc8d5c";
 	if (window.wcs) {
 		wcs_do();
 	}
-</script> 
-<!-- 네이버 애널리틱스 공통 적용 : e -->
-<!-- 네이버 애널리틱스 공통 적용(프리미엄로그분석) : s -->
-<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
-<script type="text/javascript"> 
+</script>
+	<!-- 네이버 애널리틱스 공통 적용 : e -->
+	<!-- 네이버 애널리틱스 공통 적용(프리미엄로그분석) : s -->
+	<script type="text/javascript" src="//wcs.naver.net/wcslog.js"></script>
+	<script type="text/javascript"> 
     if (!wcs_add)
     var wcs_add = {};
     wcs_add["wa"] = "s_56892c2154ef";
@@ -6065,9 +6823,9 @@ function setLogout(){
     wcs.inflow("thehandsome.com");
     wcs_do(_nasa);
 </script>
-<!-- 네이버 애널리틱스 공통 적용(프리미엄로그분석) : e -->
-<!-- Enliple Tracker Start -->
-<script type="text/javascript">
+	<!-- 네이버 애널리틱스 공통 적용(프리미엄로그분석) : e -->
+	<!-- Enliple Tracker Start -->
+	<script type="text/javascript">
 	try{
 	    (function(a,g,e,n,t){a.enp=a.enp||function(){(a.enp.q=a.enp.q||[]).push(arguments)};n=g.createElement(e);n.async=!0;n.defer=!0;n.src="https://cdn.megadata.co.kr/dist/prod/enp_tracker_self_hosted.min.js";t=g.getElementsByTagName(e)[0];t.parentNode.insertBefore(n,t)})(window,document,"script");
 		enp('create', 'common', 'thehandsome', { device: 'W' });  // W:웹, M: 모바일, B: 반응형
@@ -6076,16 +6834,18 @@ function setLogout(){
 	    console.log(e);
 	}
 </script>
-<!-- Enliple Tracker End -->
+	<!-- Enliple Tracker End -->
 </body>
-
 <!-- AceCounter Log Gathering Script V.7.5.2013010701 -->
-<script language='javascript'>
+<script type='test/javascript'>
 	var _AceGID=(function(){var Inf=['dgc17.acecounter.com','8080','AP6F40149814536','CW','0','NaPm,Ncisy','ALL','0']; var _CI=(!_AceGID)?[]:_AceGID.val;var _N=0;var _T=new Image(0,0);if(_CI.join('.').indexOf(Inf[3])<0){ _T.src =( location.protocol=="https:"?"https://"+Inf[0]:"http://"+Inf[0]+":"+Inf[1]) +'/?cookie'; _CI.push(Inf);  _N=_CI.length; } return {o: _N,val:_CI}; })();
 	var _AceCounter=(function(){var G=_AceGID;if(G.o!=0){var _A=G.val[G.o-1];var _G=( _A[0]).substr(0,_A[0].indexOf('.'));var _C=(_A[7]!='0')?(_A[2]):_A[3];	var _U=( _A[5]).replace(/\,/g,'_');var _S=((['<scr','ipt','type="text/javascr','ipt"></scr','ipt>']).join('')).replace('tt','t src="'+location.protocol+ '//cr.acecounter.com/Web/AceCounter_'+_C+'.js?gc='+_A[2]+'&py='+_A[4]+'&gd='+_G+'&gp='+_A[1]+'&up='+_U+'&rd='+(new Date().getTime())+'" t');document.writeln(_S); return _S;} })();
 </script>
-<noscript><img src='http://dgc17.acecounter.com:8080/?uid=AP6F40149814536&je=n&' border='0' width='0' height='0' alt=''></noscript>	
-<!-- AceCounter Log Gathering Script End --> 
+<noscript>
+	<img src='http://dgc17.acecounter.com:8080/?uid=AP6F40149814536&je=n&'
+		border='0' width='0' height='0' alt=''>
+</noscript>
+<!-- AceCounter Log Gathering Script End -->
 
 <!-- adinsight 공통스크립트 start -->
 <script type="text/javascript">
