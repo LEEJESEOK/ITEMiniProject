@@ -15,7 +15,7 @@ public class MemberVO {
 	String mpassword;
 	String mname;
 	String memail;
-	String mte;
+	String mtel;
 	String mzipcode;
 	String maddress1;
 	String maddress2;
