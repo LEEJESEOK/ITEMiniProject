@@ -3,14 +3,14 @@ package com.thehandsome.domain;
 import lombok.Data;
 
 /**
- * @author °íµ¿Çö
- * Àå¹Ù±¸´Ï °ü·Ã vo ÀÛ¼º
+ * @author ê³ ë™í˜„
+ * ì¥ë°”êµ¬ë‹ˆ ê´€ë ¨ vo ì‘ì„±
  */
 @Data
 public class MyCartVO {
-	private String mid; // cartÂüÁ¶ ¸â¹ö id
-	private String pid; // cartÂüÁ¶ »óÇ° id
-	private String psize; // cart¿¡ ´ã±ä »óÇ° size
-	private String pcolor; // cart¿¡ ´ã±ä »óÇ° »ö»ó
-	private int pamount; // »óÇ° ¼ö·®
+	private String mid; // cartì°¸ì¡° ë©¤ë²„ id
+	private String pid; // cartì°¸ì¡° ìƒí’ˆ id
+	private String psize; // cartì— ë‹´ê¸´ ìƒí’ˆ size
+	private String pcolor; // cartì— ë‹´ê¸´ ìƒí’ˆ ìƒ‰ìƒ
+	private int pamount; // ìƒí’ˆ ìˆ˜ëŸ‰
 }

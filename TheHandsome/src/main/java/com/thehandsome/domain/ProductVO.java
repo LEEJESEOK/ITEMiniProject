@@ -4,18 +4,18 @@ import lombok.Data;
 
 /**
  * 
- * @author °íµ¿
- * »óÇ°°ü·Ã VO
+ * @author ê³ ë™
+ * ìƒí’ˆê´€ë ¨ VO
  */
 @Data
 public class ProductVO {
-	private String pid; // »óÇ° id
-	private int bno; // »óÇ° ºê·£µå number
-	private String clarge; // ´ëºĞ·ù
-	private String cmedium; // ÁßºĞ·ù
-	private String csmall; // ¼ÒºĞ·ù
-	private String pname; // »óÇ°¸í
-	private int pprice; // »óÇ°°¡°İ
-	private String pdetail; // »óÇ°¼³¸í
-	private String pseason; // »óÇ° ½ÃÁğ
+	private String pid; // ìƒí’ˆ id
+	private int bno; // ìƒí’ˆ ë¸Œëœë“œ number
+	private String clarge; // ëŒ€ë¶„ë¥˜
+	private String cmedium; // ì¤‘ë¶„ë¥˜
+	private String csmall; // ì†Œë¶„ë¥˜
+	private String pname; // ìƒí’ˆëª…
+	private int pprice; // ìƒí’ˆê°€ê²©
+	private String pdetail; // ìƒí’ˆì„¤ëª…
+	private String pseason; // ìƒí’ˆ ì‹œì¦Œ
 }

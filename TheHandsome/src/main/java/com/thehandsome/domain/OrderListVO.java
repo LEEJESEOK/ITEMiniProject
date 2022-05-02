@@ -5,22 +5,22 @@ import java.sql.Date;
 import lombok.Data;
 /**
  * 
- * @author °íµ¿Çö
- * ÁÖ¹®¸®½ºÆ® °ü·Ã VO
+ * @author ê³ ë™í˜„
+ * ì£¼ë¬¸ë¦¬ìŠ¤íŠ¸ ê´€ë ¨ VO
  */
 @Data
 public class OrderListVO {
-	private String oid; // ÁÖ¹®¸®½ºÆ®°¡ ÂüÁ¶ÇÏ´Â ÁÖ¹®¹øÈ£
-	private String mid; // ÁÖ¹®¸®½ºÆ®°¡ ÂüÁ¶ÇÏ´Â °í°´ id
-	private int ozipcode; // ¿ìÆí¹øÈ£
-	private String oaddress1; // ÁÖ¼Ò
-	private String oaddress2; // »ó¼¼ÁÖ¼Ò
-	private String oreceiver; // ¼ö½ÅÀÎ
-	private String otel; // ÀüÈ­¹øÈ£
-	private String omessage; // ¿äÃ»»çÇ×
-	private Date odate; // ÁÖ¹®ÀÏÀÚ
-	private int ousedmileage; // »ç¿ë ¸¶ÀÏ¸®Áö
-	private int opayment; // ÁÖ¹®±İ¾×
-	private int odiscounted; //ÇÒÀÎ±İ¾×
+	private String oid; // ì£¼ë¬¸ë¦¬ìŠ¤íŠ¸ê°€ ì°¸ì¡°í•˜ëŠ” ì£¼ë¬¸ë²ˆí˜¸
+	private String mid; // ì£¼ë¬¸ë¦¬ìŠ¤íŠ¸ê°€ ì°¸ì¡°í•˜ëŠ” ê³ ê° id
+	private int ozipcode; // ìš°í¸ë²ˆí˜¸
+	private String oaddress1; // ì£¼ì†Œ
+	private String oaddress2; // ìƒì„¸ì£¼ì†Œ
+	private String oreceiver; // ìˆ˜ì‹ ì¸
+	private String otel; // ì „í™”ë²ˆí˜¸
+	private String omessage; // ìš”ì²­ì‚¬í•­
+	private Date odate; // ì£¼ë¬¸ì¼ì
+	private int ousedmileage; // ì‚¬ìš© ë§ˆì¼ë¦¬ì§€
+	private int opayment; // ì£¼ë¬¸ê¸ˆì•¡
+	private int odiscounted; //í• ì¸ê¸ˆì•¡
 
 }

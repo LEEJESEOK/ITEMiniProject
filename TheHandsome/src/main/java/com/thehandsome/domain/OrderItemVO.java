@@ -4,14 +4,14 @@ import lombok.Data;
 
 /**
  * 
- * @author °íµ¿Çö
- * ÁÖ¹® °ü·Ã VO ÀÛ¼º
+ * @author ê³ ë™í˜„
+ * ì£¼ë¬¸ ê´€ë ¨ VO ì‘ì„±
  */
 @Data
 public class OrderItemVO {
-	private String oid; //ÁÖ¹®¹øÈ£
-	private String pid; //ÁÖ¹®ÇÑ »óÇ° id
-	private String ccolorname; //ÁÖ¹®ÇÑ »óÇ° »ö»ó
-	private String ssize; //ÁÖ¹®ÇÑ »óÇ° »çÀÌÁî
-	private int oamount; //ÁÖ¹®ÇÑ »óÇ° °³¼ö
+	private String oid; //ì£¼ë¬¸ë²ˆí˜¸
+	private String pid; //ì£¼ë¬¸í•œ ìƒí’ˆ id
+	private String ccolorname; //ì£¼ë¬¸í•œ ìƒí’ˆ ìƒ‰ìƒ
+	private String ssize; //ì£¼ë¬¸í•œ ìƒí’ˆ ì‚¬ì´ì¦ˆ
+	private int oamount; //ì£¼ë¬¸í•œ ìƒí’ˆ ê°œìˆ˜
 }
