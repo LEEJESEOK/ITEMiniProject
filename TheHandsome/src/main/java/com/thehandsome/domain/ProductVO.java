@@ -1,5 +1,7 @@
 package com.thehandsome.domain;
 
+import java.sql.Date;
+
 import lombok.Data;
 
 /**
@@ -18,4 +20,6 @@ public class ProductVO {
 	private int pprice; // 상품가격
 	private String pdetail; // 상품설명
 	private String pseason; // 상품 시즌
+	private String paveragerate; // 상품 평점
+	private Date preleasedate; // 상품 출시일
 }
