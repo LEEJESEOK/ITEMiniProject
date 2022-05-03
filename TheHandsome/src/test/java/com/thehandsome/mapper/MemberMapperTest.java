@@ -24,7 +24,8 @@ import lombok.extern.log4j.Log4j;
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class MemberMapperTests {
+public class MemberMapperTest {
+
 	@Autowired
 	MemberMapper memberMapper;
 
@@ -44,12 +45,12 @@ public class MemberMapperTests {
 
 	@Test
 	public void test20_insertMember() {
-//		MemberVO member = new MemberVO("test", "test", "테스트 사용자", "test@test.com", "01012345678", "03077",
+//		MemberVO member = new MemberVO("test", "test", "테스트 회원", "test@test.com", "01012345678", "03077",
 //				"서울특별시 종로구 창경궁로 254", "701", null, 0, "T");
 		MemberVO member = new MemberVO();
 		member.setMid("mapper_test");
-		member.setMpassword("mapper_test");
-		member.setMname("테스트");
+		member.setMpassword("test");
+		member.setMname("new");
 		member.setMemail("mapper@test.com");
 		member.setMtel("01012345678");
 		member.setMzipcode("03077");
@@ -78,8 +79,8 @@ public class MemberMapperTests {
 	public void test40_updateMemberInformation() {
 		MemberVO member = new MemberVO();
 		member.setMid("mapper_test");
-		member.setMpassword("updatetest");
-		member.setMname("수정한 사용자");
+		member.setMpassword("test");
+		member.setMname("update");
 		member.setMemail("test@test.com");
 		member.setMtel("01044448888");
 		member.setMzipcode("03077");
