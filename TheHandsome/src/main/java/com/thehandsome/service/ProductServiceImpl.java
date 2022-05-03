@@ -21,32 +21,32 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ArrayList<ProductVO> read(int mode) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("get list by mode....");
+		return mapper.read(mode);
 	}
 
 	@Override
 	public ArrayList<ProductVO> read_by_brand(int bno) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("read by brand ....");
+		return mapper.read_by_brand(bno);
 	}
 
 	@Override
 	public ArrayList<ProductVO> read_by_color(String ccolorname) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("read by color ....");
+		return mapper.read_by_color(ccolorname);
 	}
 
 	@Override
 	public ArrayList<ProductVO> read_by_size(String size) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("read by size ....");
+		return mapper.read_by_size(size);
 	}
 
 	@Override
 	public ProductVO read_product_detail(String pid) {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("read product detail ....");
+		return mapper.read_product_detail(pid);
 	}
 	
 
