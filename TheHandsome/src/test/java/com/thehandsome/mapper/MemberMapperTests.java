@@ -25,7 +25,7 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class MemberMapperTests {
-	@Setter(onMethod_ = @Autowired)
+	@Autowired
 	MemberMapper mapper;
 
 //	@Test
@@ -34,7 +34,7 @@ public class MemberMapperTests {
 	}
 
 	@Test
-	public void test02_registry() {
+	public void test02_insertMember() {
 //		MemberVO member = new MemberVO("test", "test", "테스트 사용자", "test@test.com", "01012345678", "03077",
 //				"서울특별시 종로구 창경궁로 254", "701", null, 0, "T");
 		MemberVO member = new MemberVO();
@@ -48,18 +48,18 @@ public class MemberMapperTests {
 		member.setMaddress2("701");
 		log.info("member : " + member);
 
-		log.info(mapper.registry(member));
+		log.info(mapper.insertMember(member));
 	}
 
 	@Test
-	public void test03_read() {
-		MemberVO member = mapper.read("test");
+	public void test03_selectMemberInformation() {
+		MemberVO member = mapper.selectMemberInformation("test");
 
 		log.info("read member : " + member);
 	}
 
 	@Test
-	public void test04_edit() {
+	public void test04_updateMemberInformation() {
 		MemberVO member = new MemberVO();
 		member.setMid("test");
 		member.setMpassword("updatetest");
@@ -72,16 +72,16 @@ public class MemberMapperTests {
 		member.setMgrade("");
 		member.setMmileage(10);
 
-		log.info("secession : " + mapper.edit(member));
+		log.info("secession : " + mapper.updateMemberInformation(member));
 	}
 
 	@Test
-	public void test05_secession() {
-		log.info("secession : " + mapper.secession("test"));
+	public void test05_updateMember2Secession() {
+		log.info("secession : " + mapper.updateMember2Secession("test"));
 	}
 
 	@Test
-	public void test99_delete() {
-		log.info("delete : " + mapper.delete("test"));
+	public void test99_deleteMember() {
+		log.info("delete : " + mapper.deleteMember("test"));
 	}
 }

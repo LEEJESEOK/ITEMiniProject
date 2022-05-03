@@ -4,10 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thehandsome.mapper.MemberMapper">
 
-	<insert id="registry" statementType="CALLABLE">
-		{call sp_member_register
-		(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel}, #{mzipcode},
-		#{maddress1}, #{maddress2})}
+	<insert id="insertMember" statementType="CALLABLE">
+		{call sp_member_register(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel},
+		 #{mzipcode}, #{maddress1}, #{maddress2})}
 	</insert>
 
 	<resultMap type="com.thehandsome.domain.MemberVO"
@@ -27,7 +26,7 @@
 		<result property="menabled" column="menabled" />
 	</resultMap>
 
-	<select id="read" resultMap="memberMap">
+	<select id="selectMemberInformation" resultMap="memberMap">
 		SELECT
 		mid, mpassword, mname, memail, mtel,
 		mzipcode, maddress1, maddress2, mgrade, mdate,
@@ -36,7 +35,7 @@
 		WHERE mid = #{mid}
 	</select>
 
-	<update id="edit">
+	<update id="updateMemberInformation">
 		UPDATE member
 		SET
 		mpassword=#{mpassword}, mname=#{mname}, memail=#{memail}, mtel=#{mtel},
@@ -46,7 +45,7 @@
 		mid=#{mid}
 	</update>
 
-	<update id="secession">
+	<update id="updateMember2Secession">
 		UPDATE member
 		SET
 		menabled='F'
@@ -54,7 +53,7 @@
 		mid=#{mid}
 	</update>
 
-	<delete id="delete">
+	<delete id="deleteMember">
 		DELETE member
 		WHERE
 		mid=#{mid}

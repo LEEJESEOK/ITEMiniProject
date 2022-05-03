@@ -14,20 +14,20 @@ public interface MemberMapper {
 	 * @param mid
 	 * @return 회원 id에 해당하는 회원 정보 반환
 	 */
-	MemberVO read(String mid);
+	MemberVO selectMemberInformation(String mid);
 
 	/**
-	 * 회원 정보 추가
+	 * member 테이블 정보 추가
 	 * @param member
 	 * @return 
 	 */
-	int registry(MemberVO member);
+	int insertMember(MemberVO member);
 
 	/**
 	 * 회원 정보 수정
 	 * @return
 	 */
-	int edit(MemberVO member);
+	int updateMemberInformation(MemberVO member);
 	
 	/**
 	 * 회원 탈퇴
@@ -35,12 +35,12 @@ public interface MemberMapper {
 	 * @param mid
 	 * @return 
 	 */
-	int secession(String mid);
+	int updateMember2Secession(String mid);
 	
 	/**
 	 * 회원 정보 삭제
 	 * @param mid
 	 * @return
 	 */
-	int delete(String mid);
+	int deleteMember(String mid);
 }
