@@ -21,7 +21,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired
 	MemberMapper mapper;
-	
+
 	@Override
 	public boolean isExistMemberByMid(String mid) {
 		return mapper.isExistMemberByMid(mid);

@@ -2,6 +2,9 @@ package com.thehandsome.mapper;
 
 import static org.junit.Assert.assertNotNull;
 
+import java.util.Date;
+
+import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,8 +29,15 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberMapperTest {
 
+	static long currentTime;
+
 	@Autowired
 	MemberMapper memberMapper;
+
+	@BeforeClass
+	public static void init() {
+		currentTime = (new Date()).getTime();
+	}
 
 	@Test
 	public void test00_mapper() {
@@ -38,7 +48,7 @@ public class MemberMapperTest {
 	@Test
 	public void test10_isExistMemberByMid() {
 		log.info("isExistMemberByMid");
-		String mid = "mapper_test";
+		String mid = "mapper_test" + currentTime;
 
 		log.info("isExistMemberByMid : " + memberMapper.isExistMemberByMid(mid));
 	}
@@ -48,7 +58,7 @@ public class MemberMapperTest {
 //		MemberVO member = new MemberVO("test", "test", "테스트 회원", "test@test.com", "01012345678", "03077",
 //				"서울특별시 종로구 창경궁로 254", "701", null, 0, "T");
 		MemberVO member = new MemberVO();
-		member.setMid("mapper_test");
+		member.setMid("mapper_test" + currentTime);
 		member.setMpassword("test");
 		member.setMname("new");
 		member.setMemail("mapper@test.com");
@@ -64,13 +74,13 @@ public class MemberMapperTest {
 	@Test
 	public void test21_isExistMemberByMid() {
 		log.info("isExistMemberByMid");
-		String mid = "mapper_test";
+		String mid = "mapper_test" + currentTime;
 		log.info("isExistMemberByMid : " + memberMapper.isExistMemberByMid(mid));
 	}
 
 	@Test
 	public void test30_selectMemberInformation() {
-		String mid = "mapper_test";
+		String mid = "mapper_test" + currentTime;
 		MemberVO member = memberMapper.selectMemberInformation(mid);
 		log.info("selectMemberInformation : " + member);
 	}
@@ -78,7 +88,7 @@ public class MemberMapperTest {
 	@Test
 	public void test40_updateMemberInformation() {
 		MemberVO member = new MemberVO();
-		member.setMid("mapper_test");
+		member.setMid("mapper_test" + currentTime);
 		member.setMpassword("test");
 		member.setMname("update");
 		member.setMemail("test@test.com");
@@ -94,14 +104,14 @@ public class MemberMapperTest {
 
 	@Test
 	public void test41_updateMember2Secession() {
-		String mid = "mapper_test";
+		String mid = "mapper_test" + currentTime;
 
 		log.info("updateMember2Secession : " + memberMapper.updateMember2Secession(mid));
 	}
 
 	@Test
 	public void test99_deleteMember() {
-		String mid = "mapper_test";
+		String mid = "mapper_test" + currentTime;
 
 		log.info("deleteMember : " + memberMapper.deleteMember(mid));
 	}

@@ -191,7 +191,7 @@ h4.tit{color:#0b0b0b;font-size:26px;font-family:'Apple SD Gothic Neo',sans-serif
 #instaContents li a > div.insta_pic_info, #instaContents li a > div.insta_pic_info_txt{position:absolute;top:0;left:0;width:100%; height:100% !important; z-index: 1; display:none;}
 #instaContents li .insta_pic_info{background-color:#000; opacity:0.6;}
 #instaContents li .insta_pic_info_txt p{padding:30px;color:#fff;font-family:"whitneyLight", "malgun gothic";letter-spacing: 1px; text-align:center; color:#fff; font-size:13px;}
-#instaContents li .insta_pic_info_txt .tag{margin-top:15px;padding-top:15px;line-height: 20px;font-size: 12px;background:url("/_ui/desktop/common/images/main/ico_insta_bul.gif") center 0 no-repeat;}
+#instaContents li .insta_pic_info_txt .tag{margin-top:15px;padding-top:15px;line-height: 20px;font-size: 12px;background:url("/resources/images/main/ico_insta_bul.gif") center 0 no-repeat;}
 #instaContents li a > img{
     vertical-align:middle;
     -webkit-transform:scale(1.0);

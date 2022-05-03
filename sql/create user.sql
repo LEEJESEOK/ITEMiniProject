@@ -1,4 +1,4 @@
-
+alter session set "_oracle_script"=true;
 DROP USER HANDSOME CASCADE;
 
 CREATE USER handsome IDENTIFIED BY handsome

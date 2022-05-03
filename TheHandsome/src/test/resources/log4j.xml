@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.thehandsome.myapp">
+	<logger name="com.thehandsome.controller">
 		<level value="info" />
 	</logger>
 	
