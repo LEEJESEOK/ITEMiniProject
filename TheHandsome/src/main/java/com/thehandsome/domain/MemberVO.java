@@ -2,14 +2,18 @@ package com.thehandsome.domain;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-@Data
+import lombok.NoArgsConstructor;
+
 /**
  * 
  * @author "Seungyeon"
  *
  */
-
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 public class MemberVO {
 	String mid;
 	String mpassword;
@@ -19,8 +23,8 @@ public class MemberVO {
 	String mzipcode;
 	String maddress1;
 	String maddress2;
+	String mgrade;
 	Date mdate;
 	int mmileage;
 	String menabled;
-
 }
