@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thehandsome.mapper.CartMapper">
+
+	<select id = "list" resultType = "com.thehandsome.domain.MyCartVO">
+		SELECT * FROM TABLE(sf_cart_display(#{mid}))
+	</select>
+	
+	<insert id="insert_cart" statementType="CALLABLE">
+		{call sp_cart_insert
+		(#{mid}, #{pid}, #{psize}, #{pcolor}, #{pamount})}
+	</insert>
+	
+	<delete id = "delete_cart" statementType="CALLABLE">
+		{call sp_cart_delete(#{pid})}
+	</delete>
+	
+	<update id="update_cart" statementType="CALLABLE">
+		{call sp_cart_amount_update(#{pid}, #{pamount})}
+	</update>
+	
+</mapper>

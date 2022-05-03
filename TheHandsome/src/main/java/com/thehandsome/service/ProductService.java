@@ -2,27 +2,33 @@ package com.thehandsome.service;
 
 import java.util.ArrayList;
 
+
 import com.thehandsome.domain.ProductVO;
 
 public interface ProductService {
 
-	//제품등록날짜 컬럼, 평점 컬럼 추가
-	public ArrayList<ProductVO> read(int mode);
+	public ArrayList<ProductVO> display(int mode);
 	/*
-	 * 1 : 전체상품 조회
-	 * 2 : 베스트 상품 조회 => 펑점 기준
-	 * 3 : 신상품 조회 => 제품등록날짜 기준
-	 * 4 : 높은가격순 조회 => 가격 기준
-	 * 5 : 낮은가격순 조회 => 가격 기준
+	 * 1 : 신상품
+	 * 2 : 베스트상품
 	 */
 	
-	public ArrayList<ProductVO> read_by_brand(int bno); // 브랜드별 조회
+	public ArrayList<ProductVO> display_by_brand(String bname); // 브랜드별 상품 조회
 	
-	public ArrayList<ProductVO> read_by_color(String ccolorname); // 상품 색상별 조회
+	public ArrayList<ProductVO> display_by_brand_sort(int mode, String bname);
+	/*
+	 * 1 : 브랜드별 신상품
+	 * 2 : 브랜드별 베스트 상품
+	 * 3 : 브랜드별 가격높은순 정렬
+	 * 4 : 브랜드별 가격낮은순 정렬
+	 */
 	
-	// 제품 사이즈 컬럼 추가
-	public ArrayList<ProductVO> read_by_size(String size); // 상품 사이즈별 조회
+	public ArrayList<ProductVO> display_by_brand_color(String bname, String ccolorname); 
+	// 브랜드, 색상별 상품 조회
 	
-	public ProductVO read_product_detail(String pid); // 상품 상세 조회
+	public ArrayList<ProductVO> display_by_brand_size(String bname, String psize); 
+	// 브랜드, 사이즈별 상품 조회
+	
+	public ProductVO display_product_detail(String pid); // 상품 상세 조회
 
 }

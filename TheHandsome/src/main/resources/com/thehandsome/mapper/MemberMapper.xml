@@ -5,7 +5,7 @@
 <mapper namespace="com.thehandsome.mapper.MemberMapper">
 
 	<insert id="registry" statementType="CALLABLE">
-		{call sp_member_register
+		{call sp_member_insert 
 		(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel}, #{mzipcode},
 		#{maddress1}, #{maddress2})}
 	</insert>

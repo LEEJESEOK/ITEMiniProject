@@ -37,18 +37,20 @@ public class MemberMapperTests {
 	public void test02_registry() {
 //		MemberVO member = new MemberVO("test", "test", "테스트 사용자", "test@test.com", "01012345678", "03077",
 //				"서울특별시 종로구 창경궁로 254", "701", null, 0, "T");
-		MemberVO member = new MemberVO();
-		member.setMid("test");
-		member.setMpassword("test");
-		member.setMname("테스트 사용자");
-		member.setMemail("test@test.com");
-		member.setMtel("01012345678");
-		member.setMzipcode("03077");
-		member.setMaddress1("서울특별시 종로구 창경궁로 254");
-		member.setMaddress2("701");
-		log.info("member : " + member);
+		for (int i = 0; i < 20; i++) {
+			MemberVO member = new MemberVO();
+			member.setMid("test" + i);
+			member.setMpassword("test" + i);
+			member.setMname("테스트 사용자");
+			member.setMemail("test@test.com");
+			member.setMtel("01012345678");
+			member.setMzipcode("03077");
+			member.setMaddress1("서울특별시 종로구 창경궁로 254");
+			member.setMaddress2("701");
+			log.info("member : " + member);
 
-		log.info(mapper.registry(member));
+			log.info(mapper.registry(member));
+		}
 	}
 
 	@Test

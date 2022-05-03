@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thehandsome.mapper.ProductMapper">
+	
+	<select id = "display" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT * FROM TABLE(sf_product_display(#{mode}))
+	</select>
+	
+	<select id = "display_by_brand" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT * FROM TABLE(sf_product_display_by_brand(#{bname}))
+	</select>
+	
+	<select id = "display_by_brand_sort" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT * FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bname}))
+	</select>
+	
+	<select id = "display_by_brand_color" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT * FROM TABLE(sf_product_display_by_brand_color(#{bname}, #{ccolorname}))
+	</select>
+	
+	<select id = "display_by_brand_size" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT * FROM TABLE(sf_product_display_by_brand_size(#{bname}, #{psize}))
+	</select>
+	
+	
+	<resultMap type="com.thehandsome.domain.ProductVO"
+		id="productMap">
+		<id property="pid" column="pid" />
+		<result property="pid" column="pid" />
+		<result property="bno" column="bno" javaType="int"/>
+		<result property="clarge" column="clarge" />
+		<result property="cmedium" column="cmedium" />
+		<result property="csmall" column="csmall" />
+		<result property="pname" column="pname" />
+		<result property="pprice" column="pprice" javaType="int"/>
+		<result property="pdetail" column="pdetail" />
+		<result property="pseason" column="pseason" />
+		<result property="paveragerate" column="paveragerate" javaType="int"/>
+		<result property="preleasedate" column="preleasedate" javaType="Date" />
+		<result property="psize" column="psize" />
+		<result property="ccolorname" column = "ccolorname" />
+	</resultMap>
+
+	<select id="display_product_detail" resultMap="productMap">
+		SELECT * FROM TABLE(sf_product_detail_display(#{pid}))
+	</select>
+	
+	
+</mapper>
