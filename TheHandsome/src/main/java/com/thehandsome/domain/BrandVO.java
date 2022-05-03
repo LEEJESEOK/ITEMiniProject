@@ -1,4 +1,5 @@
 package com.thehandsome.domain;
+
 import lombok.Data;
 
 @Data
@@ -9,7 +10,7 @@ import lombok.Data;
  *
  */
 public class BrandVO {
-	Long bno; //브랜드 번호
-	String bname; //브랜드 명
 
+	Long bno; // 브랜드 번호
+	String bname; // 브랜드 명
 }

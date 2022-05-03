@@ -4,8 +4,22 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thehandsome.mapper.MemberMapper">
 
+	<select id="isExistMemberByMid" parameterType="HashMap" resultType="boolean">
+		SELECT
+		    CASE
+		        WHEN COUNT(*) = 0 THEN
+		            'FALSE'
+		        ELSE
+		            'TRUE'
+		    END AS isexist
+		FROM
+		    member
+		WHERE
+		    mid = #{mid}
+   	</select>
+
 	<insert id="insertMember" statementType="CALLABLE">
-		{call sp_member_register(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel},
+		{call sp_member_insert(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel},
 		 #{mzipcode}, #{maddress1}, #{maddress2})}
 	</insert>
 
@@ -39,7 +53,7 @@
 		UPDATE member
 		SET
 		mpassword=#{mpassword}, mname=#{mname}, memail=#{memail}, mtel=#{mtel},
-		mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}, mgrade=#{mgrade},
+		mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}, mgrade=#{mgrade, jdbcType=VARCHAR},
 		mmileage=#{mmileage}
 		WHERE
 		mid=#{mid}

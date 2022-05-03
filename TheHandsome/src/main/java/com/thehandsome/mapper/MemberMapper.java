@@ -9,8 +9,17 @@ import com.thehandsome.domain.MemberVO;
  *
  */
 public interface MemberMapper {
+
+	/**
+	 * 
+	 * @param mid
+	 * @return mid가 member 등록되어 있으면 True
+	 */
+	boolean isExistMemberByMid(String mid);
+
 	/**
 	 * 회원 정보 조회
+	 * 
 	 * @param mid
 	 * @return 회원 id에 해당하는 회원 정보 반환
 	 */
@@ -18,27 +27,30 @@ public interface MemberMapper {
 
 	/**
 	 * member 테이블 정보 추가
+	 * 
 	 * @param member
-	 * @return 
+	 * @return
 	 */
 	int insertMember(MemberVO member);
 
 	/**
 	 * 회원 정보 수정
+	 * 
 	 * @return
 	 */
 	int updateMemberInformation(MemberVO member);
-	
+
 	/**
-	 * 회원 탈퇴
-	 * menabled 상태 'F'로 변경
+	 * 회원 탈퇴 menabled 상태 'F'로 변경
+	 * 
 	 * @param mid
-	 * @return 
+	 * @return
 	 */
 	int updateMember2Secession(String mid);
-	
+
 	/**
 	 * 회원 정보 삭제
+	 * 
 	 * @param mid
 	 * @return
 	 */
