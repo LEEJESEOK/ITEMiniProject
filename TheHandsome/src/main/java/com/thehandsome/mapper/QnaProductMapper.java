@@ -9,10 +9,10 @@ import org.apache.ibatis.annotations.Param;
  *
  */
 public interface QnaProductMapper {
-	public List<QnaProductVO> getListReview();
-
 	public List<QnaProductVO> getListReviewPaging(@Param("cri") Criteria cri,
-											      @Param("pid") QnaProductVO pid);
+		      									  @Param("pid") QnaProductVO pid);
+	
+	public List<QnaProductVO> getListQna();
 
 	public QnaProductVO read(Long pid);
 	
