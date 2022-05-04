@@ -1,6 +1,6 @@
 package com.thehandsome.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class MemberVO {
+
 	String mid;
 	String mpassword;
 	String mname;

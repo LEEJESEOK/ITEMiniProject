@@ -1,6 +1,6 @@
 package com.thehandsome.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
 import lombok.Data;
 
@@ -11,6 +11,7 @@ import lombok.Data;
  */
 @Data
 public class QnaProductVO {
+
 	long qid;
 	String pid;
 	String mid;

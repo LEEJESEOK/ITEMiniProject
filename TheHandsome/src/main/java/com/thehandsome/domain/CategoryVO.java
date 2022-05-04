@@ -9,8 +9,8 @@ import lombok.Data;
  *
  */
 public class CategoryVO {
+
 	String clarge;
 	String cmedium;
 	String csmall;
-	
 }

@@ -6,9 +6,22 @@
 <c:set var="requestURL" value="${pageContext.request.requestURL }" />
 <c:set var="requestURI" value="${pageContext.request.requestURI }" />
 <c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<!-- 8월 올빼미 이벤트 :s -->
+<!-- 셋팅시간 -->
+<!-- 노출여부 -->
+<!-- 8월 올빼미 이벤트  :e -->
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<meta name="naver-site-verification"
+	content="2f9358e1e36605519854a595f243f0171519dd1d" />
+<meta name="google-site-verification"
+	content="0bGV8gPhwO_PzritNvIsz2k74EH5yPsrXXluJ8ZUed8" />
+<meta name="google-site-verification"
+	content="dO99-Ao-ywXeVDEz4jz5nJBXzQXVCgmX4WXzxl_Nf3c" />
+<meta name="facebook-domain-verification"
+	content="jvxpdjfrqqan9oe1qdrjfyxj553an6" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="pragma" content="no-cache" />
@@ -62,11 +75,11 @@
 		var ACC = { config: {} };
 			ACC.config.contextPath = "";
 			ACC.config.encodedContextPath = "/ko";
-			ACC.config.commonResourcePath = "/resources";
+			ACC.config.commonResourcePath = "/_ui/desktop/common";
 			ACC.config.themeResourcePath = "/_ui/desktop/theme-blue";
 			ACC.config.siteResourcePath = "/_ui/desktop/site-handsome";
 			ACC.config.rootPath = "/_ui/desktop";	
-			ACC.config.CSRFToken = "3de4f578-9983-4f70-8b91-fb368a78b6aa";
+			ACC.config.CSRFToken = "f77e0d1a-03b3-4138-9baf-e892cb7044ea";
 			ACC.pwdStrengthVeryWeak = 'Very weak';
 			ACC.pwdStrengthWeak = 'Weak';
 			ACC.pwdStrengthMedium = 'Medium';
@@ -125,9 +138,9 @@
 <script type="text/javascript"
 	src="/resources/js/makePCookie.js"></script>
 
-<script type="text/javascript" src="/resources/js/siteoverlay.js"></script>
+<script type="text/javascript" src="/_ui/shared/js/siteoverlay.js"></script>
 <script type="text/javascript"
-	src="/resources/js/jquery.min.js"></script>
+	src="/resources/wisenut/js/jquery.min.js"></script>
 
 <script type="text/javascript"
 	src="/resources/js/swiper.min.js"></script>
@@ -609,82 +622,20 @@ keyframes target_image { 0% {
 50%
 {
 transform
-
-
-
-
-
-
-
-
 :
-
-
-
-
  
-
-
-
-
 rotate
-
-
-
-
-
-
-
-
-(9
-deg
-
-
-
-
-
-
-)
+(9deg)
+ 
 }
 100%
 {
 transform
-
-
-
-
-
-
-
-
 :
-
-
-
-
  
-
-
-
-
 rotate
-
-
-
-
-
-
-
-
-(-1
-deg
-
-
-
-
-
-
-);
+(-1deg);
+ 
 }
 }
 </style>
@@ -1033,7 +984,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </head>
 
 <body oncontextmenu='return false'>
-	<p>${contextURL}" ${contextURI}" ${contextPath}"</p>
 	<!-- <div id="transparent_mask"></div> -->
 	<script>
 			//라쿠텐 유입
@@ -1091,7 +1041,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 	<form id="CSRFForm" action="/ko/" method="post">
 		<div>
 			<input type="hidden" name="CSRFToken"
-				value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
+				value="f77e0d1a-03b3-4138-9baf-e892cb7044ea" />
 		</div>
 	</form>
 	<!-- headerWrap -->
@@ -1118,7 +1068,7 @@ function callChatbot(token, talkId) {
         $.ajax({
             type:"POST",
             url:"/ko/chatbot/token",
-            data: {"CSRFToken":"3de4f578-9983-4f70-8b91-fb368a78b6aa"},
+            data: {"CSRFToken":"f77e0d1a-03b3-4138-9baf-e892cb7044ea"},
             async : false,
             success:function(data){
                 if(data.result == "SHOULD_LOGIN") {
@@ -1534,7 +1484,7 @@ $(document).ready(function() {
 	            $.ajax({
 	                type:"POST",
 	                url:"/ko/chatbot/chkholiday",
-	                data: {"CSRFToken":"3de4f578-9983-4f70-8b91-fb368a78b6aa"},
+	                data: {"CSRFToken":"f77e0d1a-03b3-4138-9baf-e892cb7044ea"},
 	                async : false,
 	                success:function(result){
 	                    if(result == true) {
@@ -1991,7 +1941,7 @@ function GA_search(){
 						<form name="search" id="search" action="/ko/hssearch/searchCount"
 							method="post" onsubmit="return false;">
 							<input type="hidden" name="CSRFToken"
-								value="3de4f578-9983-4f70-8b91-fb368a78b6aa" /> <input
+								value="f77e0d1a-03b3-4138-9baf-e892cb7044ea" /> <input
 								type="hidden" name="searchwords" value="" /> <input
 								type="hidden" name="startCount" value=""> <input
 								type="hidden" name="mode" value=""> <input type="hidden"
@@ -2051,7 +2001,7 @@ function GA_search(){
 									<input type="hidden" name="query" value="" /> <input
 										type="hidden" name="collection" value="" /> <input
 										type="hidden" id="CSRFToken" name="CSRFToken"
-										value="3de4f578-9983-4f70-8b91-fb368a78b6aa" /> <input
+										value="f77e0d1a-03b3-4138-9baf-e892cb7044ea" /> <input
 										type="hidden" id="searchStyleYn" name="searchStyleYn"
 										value="searchStyle" />
 								</form>
@@ -2198,7 +2148,7 @@ function GA_search(){
 					type="hidden" name="talkId" id="chatbot_talkId">
 				<div>
 					<input type="hidden" name="CSRFToken"
-						value="3de4f578-9983-4f70-8b91-fb368a78b6aa" />
+						value="f77e0d1a-03b3-4138-9baf-e892cb7044ea" />
 				</div>
 			</form>
 			<!-- //headerWrap -->
@@ -2876,6 +2826,17 @@ function GA_search(){
 												</li>
 											</ul></li>
 										<!--  status2.last end -->
+										<li><a href="/ko/c/be02/"
+											onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_메이크업');">메이크업</a>
+											<ul class="clearfix">
+												<li><a href="/ko/c/be021/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_메이크업_페이스 메이크업');">페이스
+														메이크업</a></li>
+												<li><a href="/ko/c/be023/"
+													onclick="GA_Event('공통_카테고리','3DEPTH','뷰티_메이크업_립 메이크업');">립
+														메이크업</a></li>
+											</ul></li>
+										<!--  status2.last end -->
 										<li><a href="/ko/c/be03/"
 											onclick="GA_Event('공통_카테고리','2DEPTH','뷰티_바디/헤어케어');">바디/헤어케어</a>
 											<ul class="clearfix">
@@ -3025,7 +2986,14 @@ function GA_search(){
 											</ul></li>
 									</ul>
 									<div class="img_themaga_sub">
-										<a
+										<a href="/ko/magazine/editorials/8806021814344"> <img
+											class="amc_img"
+											src="http://cdn.thehandsome.com/mobile/editorial/list/banner/20220503_38152662776577284_ko.jpg"
+											alt="" />
+											<p>
+												<strong>#SOME</strong> <span>제주 부부의 함께하는 여행</span>
+											</p>
+										</a> <a
 											href="/magazine/newsDetailtemplatetype4?newsCode=8803498645276">
 											<img class="amc_img"
 											src="http://cdn.thehandsome.com/mobile/news/list/banner/20220502_38037817234832454_ko.jpg"
@@ -3039,13 +3007,6 @@ function GA_search(){
 											alt="" />
 											<p>
 												<strong>#SOME</strong> <span>일상을 빛내는 작가 켈리박</span>
-											</p>
-										</a> <a href="/ko/magazine/editorials/8805989046344"> <img
-											class="amc_img"
-											src="http://cdn.thehandsome.com/pc/editorial/detail/image/20220429_37795065057341863_ko.jpg"
-											alt="" />
-											<p>
-												<strong>위클리 픽</strong> <span>WOMEN'S T-SHIRTS</span>
 											</p>
 										</a>
 									</div>
@@ -4839,7 +4800,7 @@ function GA_search(){
             $.ajax({
                 type:"POST",
                 url:"/ko/appDownloadSMS/maketingAgree",
-                data:{"emailChkYn" : emailChkYn, "smsChkYn" : smsChkYn, "CSRFToken" : "3de4f578-9983-4f70-8b91-fb368a78b6aa"},
+                data:{"emailChkYn" : emailChkYn, "smsChkYn" : smsChkYn, "CSRFToken" : "f77e0d1a-03b3-4138-9baf-e892cb7044ea"},
                 error:function(e){
                     console.log(e);
                 }
@@ -4922,6 +4883,91 @@ function GA_search(){
 				<ul class="slides swiper-wrapper">
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-minebeauty-01.jpg?context=bWFzdGVyfGltYWdlc3w0MDcyNnxpbWFnZS9qcGVnfGltYWdlcy9oMjcvaGZjLzkyOTYyNjk3MDUyNDYuanBnfDNiNWEwYzJjMTI0ZGRlMGRjMjZjMzFkYTJkODZmMDYzNWRhN2FhYTQ2YTcxNmJhNTQ2NmRlZjI2ZjAxZDJhYjg);"></div>
+						<a href="/ko/magazine/exhibitions/8811789014712"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">자연을
+											담은 마인 뷰티</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">마인 뷰티와 배우 박규영의 만남<br>5월의 특별한
+										런칭 이벤트까지
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-minebeauty-01.jpg?context=bWFzdGVyfGltYWdlc3w0MDcyNnxpbWFnZS9qcGVnfGltYWdlcy9oMjcvaGZjLzkyOTYyNjk3MDUyNDYuanBnfDNiNWEwYzJjMTI0ZGRlMGRjMjZjMzFkYTJkODZmMDYzNWRhN2FhYTQ2YTcxNmJhNTQ2NmRlZjI2ZjAxZDJhYjg"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220503-A-some-03.jpg?context=bWFzdGVyfGltYWdlc3wxOTAxMjl8aW1hZ2UvanBlZ3xpbWFnZXMvaDljL2hmMS85Mjk2NDk2OTg0MDk0LmpwZ3wzOTk3MTA2MmJhMjlmNzUwZDU1ZWM2OWViM2FiMTYzY2NiN2Q2NDQ0ODE5MTdjN2FkZTY3OGMzYmJmMTJiNGZl);"></div>
+						<a href="/ko/magazine/editorials/8806021814344"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">제주부부의
+											여행</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">모험을 일상으로 만든 제주 부부의<br>여행 같은
+										라이프스타일과 옷장
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220503-A-some-03.jpg?context=bWFzdGVyfGltYWdlc3wxOTAxMjl8aW1hZ2UvanBlZ3xpbWFnZXMvaDljL2hmMS85Mjk2NDk2OTg0MDk0LmpwZ3wzOTk3MTA2MmJhMjlmNzUwZDU1ZWM2OWViM2FiMTYzY2NiN2Q2NDQ0ODE5MTdjN2FkZTY3OGMzYmJmMTJiNGZl"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
+						<a href="/ko/magazine/events/8803990165376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">aweSOME
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
+										이상 구매 시 증정
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
 							style="background-image: url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
 						<a href="/ko/magazine/exhibitions/8812640949944"
 						onclick="GA_main('banner',$(this));">
@@ -4946,105 +4992,20 @@ function GA_search(){
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
-						<a href="/ko/magazine/events/8803990165376"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-bally-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzkxNTB8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g2Yi85Mjk2MjMzNjI3Njc4LmpwZ3xmNjg2YTg0ZDg4YzkzNTNhMzZkZWFhN2YxYmZhYmFkOTFkMzJlOGMzMDdjMzQ1OGZlNjU0ZjI1ZjA5ZTQzMzA0);"></div>
+						<a href="/ko/magazine/exhibitions/8812608509624"
 						onclick="GA_main('banner',$(this));">
 							<div class="a_txt_wrap left">
 								<p class="title">
-									<span class="bar-in"> <font color="#000000">AweSOME
-											GIFT</font> <span class="ab-bar left"
-										style="background-color: #000000;"></span> <span
-										class="ab-bar right" style="background-color: #000000;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
-										이상 구매 시 증정
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
-						<a href="/ko/magazine/exhibitions/8812575610552"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap ">
-								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">The
-											TIMEing</font> <span class="ab-bar left"
-										style="background-color: #FFFFFF;"></span> <span
-										class="ab-bar right" style="background-color: #FFFFFF;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의
-										무한한 여정이 펼쳐집니다
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
-						<a href="/ko/magazine/editorials/8805989013576"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap left">
-								<p class="title">
-									<span class="bar-in"> <font color="#000000">타임옴므가
-											꿈꾸는 여름</font> <span class="ab-bar left"
-										style="background-color: #000000;"></span> <span
-										class="ab-bar right" style="background-color: #000000;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인
-										전용 컬렉션
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #000000; color: #000000">Check Out
-									Now</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
-						<a href="/ko/magazine/exhibitions/8812608542392"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap left">
-								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">HOLIDAY
+									<span class="bar-in"> <font color="#FFFFFF">BALLY
 											GIFT</font> <span class="ab-bar left"
 										style="background-color: #FFFFFF;"></span> <span
 										class="ab-bar right" style="background-color: #FFFFFF;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을
-										표현하세요
+									<font color="#FFFFFF">발리의 홀리데이 기프트 아이템<br>10% 할인
+										코드를 확인하세요
 									</font>
 								</p>
 								<div class="shop_now_btn"
@@ -5052,35 +5013,35 @@ function GA_search(){
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM"
+									src="/medias/220502-A-bally-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzkxNTB8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g2Yi85Mjk2MjMzNjI3Njc4LmpwZ3xmNjg2YTg0ZDg4YzkzNTNhMzZkZWFhN2YxYmZhYmFkOTFkMzJlOGMzMDdjMzQ1OGZlNjU0ZjI1ZjA5ZTQzMzA0"
 									alt="" class="entity-img" />
 							</div>
 					</a>
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
-						<a href="/ko/magazine/exhibitions/8812640917176"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-system-05.jpg?context=bWFzdGVyfGltYWdlc3wxMTAxMzJ8aW1hZ2UvanBlZ3xpbWFnZXMvaGQyL2hiZC85Mjk2MjM0NDQ2ODc4LmpwZ3xkYjMxMTMzNDAzNDhkYmMxOGIyYmZjNzhiMmQyNmNkZTE1ZDgwNjQxMGVkNmYwMTZlNzU2NWVjNTkyYTJlZjc5);"></div>
+						<a href="/ko/magazine/exhibitions/8812641113784"
 						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap ">
+							<div class="a_txt_wrap left">
 								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">PANTS
-											FIT GUIDE</font> <span class="ab-bar left"
-										style="background-color: #FFFFFF;"></span> <span
-										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									<span class="bar-in"> <font color="#000000">시스템옴므의
+											봄</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
-										와이즐리 사은품 EVENT
+									<font color="#000000">배우 기도훈과 함께한 스프링 룩<br>5만원 구매
+										리워드를 드려요
 									</font>
 								</p>
 								<div class="shop_now_btn"
-									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+									style="border-color: #000000; color: #000000">Shop Now</div>
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									src="/medias/220502-A-system-05.jpg?context=bWFzdGVyfGltYWdlc3wxMTAxMzJ8aW1hZ2UvanBlZ3xpbWFnZXMvaGQyL2hiZC85Mjk2MjM0NDQ2ODc4LmpwZ3xkYjMxMTMzNDAzNDhkYmMxOGIyYmZjNzhiMmQyNmNkZTE1ZDgwNjQxMGVkNmYwMTZlNzU2NWVjNTkyYTJlZjc5"
 									alt="" class="entity-img" />
 							</div>
 					</a>
@@ -5115,20 +5076,20 @@ function GA_search(){
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
-						<a href="/ko/magazine/exhibitions/8812510435000"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
+						<a href="/ko/magazine/exhibitions/8812640917176"
 						onclick="GA_main('banner',$(this));">
 							<div class="a_txt_wrap ">
 								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">PUMA
-											X GARFIELD</font> <span class="ab-bar left"
+									<span class="bar-in"> <font color="#FFFFFF">PANTS
+											FIT GUIDE</font> <span class="ab-bar left"
 										style="background-color: #FFFFFF;"></span> <span
 										class="ab-bar right" style="background-color: #FFFFFF;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한
-										재치있는 스트릿 웨어
+									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
+										와이즐리 사은품 EVENT
 									</font>
 								</p>
 								<div class="shop_now_btn"
@@ -5136,7 +5097,31 @@ function GA_search(){
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0"
+									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-oera-02.jpg?context=bWFzdGVyfGltYWdlc3w0NzU4MHxpbWFnZS9qcGVnfGltYWdlcy9oOWUvaGEzLzkyOTYyNTY1NjUyNzguanBnfDNjZTNhZGJlNjQ0YTcxNmJhYjhiMmM5NzU1ZjRjM2FhZTY5YjdkNGFmN2MyN2FkM2M4ZTllZTI4ZDdkMTcwODE);"></div>
+						<a href="/ko/magazine/exhibitions/8812641146552"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> </span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">오에라 가정의 달 기프트 세트<br>5월 한정 사은품
+										혜택까지!
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-oera-02.jpg?context=bWFzdGVyfGltYWdlc3w0NzU4MHxpbWFnZS9qcGVnfGltYWdlcy9oOWUvaGEzLzkyOTYyNTY1NjUyNzguanBnfDNjZTNhZGJlNjQ0YTcxNmJhYjhiMmM5NzU1ZjRjM2FhZTY5YjdkNGFmN2MyN2FkM2M4ZTllZTI4ZDdkMTcwODE"
 									alt="" class="entity-img" />
 							</div>
 					</a>
@@ -5179,6 +5164,91 @@ function GA_search(){
 				<ul class="slides swiper-wrapper">
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-minebeauty-01.jpg?context=bWFzdGVyfGltYWdlc3w0MDcyNnxpbWFnZS9qcGVnfGltYWdlcy9oMjcvaGZjLzkyOTYyNjk3MDUyNDYuanBnfDNiNWEwYzJjMTI0ZGRlMGRjMjZjMzFkYTJkODZmMDYzNWRhN2FhYTQ2YTcxNmJhNTQ2NmRlZjI2ZjAxZDJhYjg);"></div>
+						<a href="/ko/magazine/exhibitions/8811789014712"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">자연을
+											담은 마인 뷰티</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">마인 뷰티와 배우 박규영의 만남<br>5월의 특별한
+										런칭 이벤트까지
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-minebeauty-01.jpg?context=bWFzdGVyfGltYWdlc3w0MDcyNnxpbWFnZS9qcGVnfGltYWdlcy9oMjcvaGZjLzkyOTYyNjk3MDUyNDYuanBnfDNiNWEwYzJjMTI0ZGRlMGRjMjZjMzFkYTJkODZmMDYzNWRhN2FhYTQ2YTcxNmJhNTQ2NmRlZjI2ZjAxZDJhYjg"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220503-A-some-03.jpg?context=bWFzdGVyfGltYWdlc3wxOTAxMjl8aW1hZ2UvanBlZ3xpbWFnZXMvaDljL2hmMS85Mjk2NDk2OTg0MDk0LmpwZ3wzOTk3MTA2MmJhMjlmNzUwZDU1ZWM2OWViM2FiMTYzY2NiN2Q2NDQ0ODE5MTdjN2FkZTY3OGMzYmJmMTJiNGZl);"></div>
+						<a href="/ko/magazine/editorials/8806021814344"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">제주부부의
+											여행</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">모험을 일상으로 만든 제주 부부의<br>여행 같은
+										라이프스타일과 옷장
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220503-A-some-03.jpg?context=bWFzdGVyfGltYWdlc3wxOTAxMjl8aW1hZ2UvanBlZ3xpbWFnZXMvaDljL2hmMS85Mjk2NDk2OTg0MDk0LmpwZ3wzOTk3MTA2MmJhMjlmNzUwZDU1ZWM2OWViM2FiMTYzY2NiN2Q2NDQ0ODE5MTdjN2FkZTY3OGMzYmJmMTJiNGZl"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
+						<a href="/ko/magazine/events/8803990165376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">aweSOME
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
+										이상 구매 시 증정
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
 							style="background-image: url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
 						<a href="/ko/magazine/exhibitions/8812640949944"
 						onclick="GA_main('banner',$(this));">
@@ -5203,105 +5273,20 @@ function GA_search(){
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
-						<a href="/ko/magazine/events/8803990165376"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-bally-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzkxNTB8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g2Yi85Mjk2MjMzNjI3Njc4LmpwZ3xmNjg2YTg0ZDg4YzkzNTNhMzZkZWFhN2YxYmZhYmFkOTFkMzJlOGMzMDdjMzQ1OGZlNjU0ZjI1ZjA5ZTQzMzA0);"></div>
+						<a href="/ko/magazine/exhibitions/8812608509624"
 						onclick="GA_main('banner',$(this));">
 							<div class="a_txt_wrap left">
 								<p class="title">
-									<span class="bar-in"> <font color="#000000">AweSOME
-											GIFT</font> <span class="ab-bar left"
-										style="background-color: #000000;"></span> <span
-										class="ab-bar right" style="background-color: #000000;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
-										이상 구매 시 증정
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
-						<a href="/ko/magazine/exhibitions/8812575610552"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap ">
-								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">The
-											TIMEing</font> <span class="ab-bar left"
-										style="background-color: #FFFFFF;"></span> <span
-										class="ab-bar right" style="background-color: #FFFFFF;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의
-										무한한 여정이 펼쳐집니다
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
-						<a href="/ko/magazine/editorials/8805989013576"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap left">
-								<p class="title">
-									<span class="bar-in"> <font color="#000000">타임옴므가
-											꿈꾸는 여름</font> <span class="ab-bar left"
-										style="background-color: #000000;"></span> <span
-										class="ab-bar right" style="background-color: #000000;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인
-										전용 컬렉션
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #000000; color: #000000">Check Out
-									Now</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
-						<a href="/ko/magazine/exhibitions/8812608542392"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap left">
-								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">HOLIDAY
+									<span class="bar-in"> <font color="#FFFFFF">BALLY
 											GIFT</font> <span class="ab-bar left"
 										style="background-color: #FFFFFF;"></span> <span
 										class="ab-bar right" style="background-color: #FFFFFF;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을
-										표현하세요
+									<font color="#FFFFFF">발리의 홀리데이 기프트 아이템<br>10% 할인
+										코드를 확인하세요
 									</font>
 								</p>
 								<div class="shop_now_btn"
@@ -5309,35 +5294,35 @@ function GA_search(){
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM"
+									src="/medias/220502-A-bally-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzkxNTB8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g2Yi85Mjk2MjMzNjI3Njc4LmpwZ3xmNjg2YTg0ZDg4YzkzNTNhMzZkZWFhN2YxYmZhYmFkOTFkMzJlOGMzMDdjMzQ1OGZlNjU0ZjI1ZjA5ZTQzMzA0"
 									alt="" class="entity-img" />
 							</div>
 					</a>
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
-						<a href="/ko/magazine/exhibitions/8812640917176"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-system-05.jpg?context=bWFzdGVyfGltYWdlc3wxMTAxMzJ8aW1hZ2UvanBlZ3xpbWFnZXMvaGQyL2hiZC85Mjk2MjM0NDQ2ODc4LmpwZ3xkYjMxMTMzNDAzNDhkYmMxOGIyYmZjNzhiMmQyNmNkZTE1ZDgwNjQxMGVkNmYwMTZlNzU2NWVjNTkyYTJlZjc5);"></div>
+						<a href="/ko/magazine/exhibitions/8812641113784"
 						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap ">
+							<div class="a_txt_wrap left">
 								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">PANTS
-											FIT GUIDE</font> <span class="ab-bar left"
-										style="background-color: #FFFFFF;"></span> <span
-										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									<span class="bar-in"> <font color="#000000">시스템옴므의
+											봄</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
-										와이즐리 사은품 EVENT
+									<font color="#000000">배우 기도훈과 함께한 스프링 룩<br>5만원 구매
+										리워드를 드려요
 									</font>
 								</p>
 								<div class="shop_now_btn"
-									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+									style="border-color: #000000; color: #000000">Shop Now</div>
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									src="/medias/220502-A-system-05.jpg?context=bWFzdGVyfGltYWdlc3wxMTAxMzJ8aW1hZ2UvanBlZ3xpbWFnZXMvaGQyL2hiZC85Mjk2MjM0NDQ2ODc4LmpwZ3xkYjMxMTMzNDAzNDhkYmMxOGIyYmZjNzhiMmQyNmNkZTE1ZDgwNjQxMGVkNmYwMTZlNzU2NWVjNTkyYTJlZjc5"
 									alt="" class="entity-img" />
 							</div>
 					</a>
@@ -5372,20 +5357,20 @@ function GA_search(){
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
-						<a href="/ko/magazine/exhibitions/8812510435000"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
+						<a href="/ko/magazine/exhibitions/8812640917176"
 						onclick="GA_main('banner',$(this));">
 							<div class="a_txt_wrap ">
 								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">PUMA
-											X GARFIELD</font> <span class="ab-bar left"
+									<span class="bar-in"> <font color="#FFFFFF">PANTS
+											FIT GUIDE</font> <span class="ab-bar left"
 										style="background-color: #FFFFFF;"></span> <span
 										class="ab-bar right" style="background-color: #FFFFFF;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한
-										재치있는 스트릿 웨어
+									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
+										와이즐리 사은품 EVENT
 									</font>
 								</p>
 								<div class="shop_now_btn"
@@ -5393,7 +5378,31 @@ function GA_search(){
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0"
+									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-oera-02.jpg?context=bWFzdGVyfGltYWdlc3w0NzU4MHxpbWFnZS9qcGVnfGltYWdlcy9oOWUvaGEzLzkyOTYyNTY1NjUyNzguanBnfDNjZTNhZGJlNjQ0YTcxNmJhYjhiMmM5NzU1ZjRjM2FhZTY5YjdkNGFmN2MyN2FkM2M4ZTllZTI4ZDdkMTcwODE);"></div>
+						<a href="/ko/magazine/exhibitions/8812641146552"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> </span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">오에라 가정의 달 기프트 세트<br>5월 한정 사은품
+										혜택까지!
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-oera-02.jpg?context=bWFzdGVyfGltYWdlc3w0NzU4MHxpbWFnZS9qcGVnfGltYWdlcy9oOWUvaGEzLzkyOTYyNTY1NjUyNzguanBnfDNjZTNhZGJlNjQ0YTcxNmJhYjhiMmM5NzU1ZjRjM2FhZTY5YjdkNGFmN2MyN2FkM2M4ZTllZTI4ZDdkMTcwODE"
 									alt="" class="entity-img" />
 							</div>
 					</a>
@@ -5435,6 +5444,91 @@ function GA_search(){
 				<ul class="slides swiper-wrapper">
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-minebeauty-01.jpg?context=bWFzdGVyfGltYWdlc3w0MDcyNnxpbWFnZS9qcGVnfGltYWdlcy9oMjcvaGZjLzkyOTYyNjk3MDUyNDYuanBnfDNiNWEwYzJjMTI0ZGRlMGRjMjZjMzFkYTJkODZmMDYzNWRhN2FhYTQ2YTcxNmJhNTQ2NmRlZjI2ZjAxZDJhYjg);"></div>
+						<a href="/ko/magazine/exhibitions/8811789014712"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#FFFFFF">자연을
+											담은 마인 뷰티</font> <span class="ab-bar left"
+										style="background-color: #FFFFFF;"></span> <span
+										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">마인 뷰티와 배우 박규영의 만남<br>5월의 특별한
+										런칭 이벤트까지
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-minebeauty-01.jpg?context=bWFzdGVyfGltYWdlc3w0MDcyNnxpbWFnZS9qcGVnfGltYWdlcy9oMjcvaGZjLzkyOTYyNjk3MDUyNDYuanBnfDNiNWEwYzJjMTI0ZGRlMGRjMjZjMzFkYTJkODZmMDYzNWRhN2FhYTQ2YTcxNmJhNTQ2NmRlZjI2ZjAxZDJhYjg"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220503-A-some-03.jpg?context=bWFzdGVyfGltYWdlc3wxOTAxMjl8aW1hZ2UvanBlZ3xpbWFnZXMvaDljL2hmMS85Mjk2NDk2OTg0MDk0LmpwZ3wzOTk3MTA2MmJhMjlmNzUwZDU1ZWM2OWViM2FiMTYzY2NiN2Q2NDQ0ODE5MTdjN2FkZTY3OGMzYmJmMTJiNGZl);"></div>
+						<a href="/ko/magazine/editorials/8806021814344"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">제주부부의
+											여행</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">모험을 일상으로 만든 제주 부부의<br>여행 같은
+										라이프스타일과 옷장
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">Check Out
+									Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220503-A-some-03.jpg?context=bWFzdGVyfGltYWdlc3wxOTAxMjl8aW1hZ2UvanBlZ3xpbWFnZXMvaDljL2hmMS85Mjk2NDk2OTg0MDk0LmpwZ3wzOTk3MTA2MmJhMjlmNzUwZDU1ZWM2OWViM2FiMTYzY2NiN2Q2NDQ0ODE5MTdjN2FkZTY3OGMzYmJmMTJiNGZl"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
+						<a href="/ko/magazine/events/8803990165376"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> <font color="#000000">aweSOME
+											GIFT</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
+									</span>
+								</p>
+								<p class="s_title">
+									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
+										이상 구매 시 증정
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
 							style="background-image: url(http://www.thehandsome.com/medias/220502-A-liquidesbar-07.jpg?context=bWFzdGVyfGltYWdlc3w1MDMyN3xpbWFnZS9qcGVnfGltYWdlcy9oZjIvaGY0LzkyOTU4MjM5MjkzNzQuanBnfDZmOWE0MjVmMjI3Y2ZkZmMzN2Y0YmNlMzU0MTJlOWRiNGYwY2ZlOWUzMjAyNWZkNzlkYzdiZmZlMDI0MjVmZjU);"></div>
 						<a href="/ko/magazine/exhibitions/8812640949944"
 						onclick="GA_main('banner',$(this));">
@@ -5459,105 +5553,20 @@ function GA_search(){
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4);"></div>
-						<a href="/ko/magazine/events/8803990165376"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-bally-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzkxNTB8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g2Yi85Mjk2MjMzNjI3Njc4LmpwZ3xmNjg2YTg0ZDg4YzkzNTNhMzZkZWFhN2YxYmZhYmFkOTFkMzJlOGMzMDdjMzQ1OGZlNjU0ZjI1ZjA5ZTQzMzA0);"></div>
+						<a href="/ko/magazine/exhibitions/8812608509624"
 						onclick="GA_main('banner',$(this));">
 							<div class="a_txt_wrap left">
 								<p class="title">
-									<span class="bar-in"> <font color="#000000">AweSOME
-											GIFT</font> <span class="ab-bar left"
-										style="background-color: #000000;"></span> <span
-										class="ab-bar right" style="background-color: #000000;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#000000">더한섬닷컴 X 켈리박 구매 기프트<br>정상 40만원
-										이상 구매 시 증정
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #000000; color: #000000">이벤트 자세히 보기</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220502-pc-main-A-01.jpg?context=bWFzdGVyfGltYWdlc3wxOTAwMzF8aW1hZ2UvanBlZ3xpbWFnZXMvaGY3L2hlYi85Mjk1ODIwNTU0MjcwLmpwZ3xiZWVlNDBmN2JiMGVhZGM2MGI0NGM2NDk3MDhjNzJlYWFhZTVhYzIzZjM2OGMwMDk5ZTIzNWRiNTVjNTM5MGU4"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4);"></div>
-						<a href="/ko/magazine/exhibitions/8812575610552"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap ">
-								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">The
-											TIMEing</font> <span class="ab-bar left"
-										style="background-color: #FFFFFF;"></span> <span
-										class="ab-bar right" style="background-color: #FFFFFF;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#FFFFFF">자신만의 '포에틱 시퀀스'를 찾아가는<br>타임의
-										무한한 여정이 펼쳐집니다
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220428-A-time-01-pc.jpg?context=bWFzdGVyfGltYWdlc3wyNjE0MTN8aW1hZ2UvanBlZ3xpbWFnZXMvaGJhL2g4ZC85Mjk1NDMwMzIwMTU4LmpwZ3xiNmVmZTAxYWQwM2ZjODJlZDNmNWFjYWFkNWM2MjA2MTVjYWJmMzFhNzQxZDRjZjQ0NjIyZjU1YTk3NTA3NDA4"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx);"></div>
-						<a href="/ko/magazine/editorials/8805989013576"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap left">
-								<p class="title">
-									<span class="bar-in"> <font color="#000000">타임옴므가
-											꿈꾸는 여름</font> <span class="ab-bar left"
-										style="background-color: #000000;"></span> <span
-										class="ab-bar right" style="background-color: #000000;"></span>
-									</span>
-								</p>
-								<p class="s_title">
-									<font color="#000000">데님과 파스텔 컬러가 조화로운<br>타임옴므 온라인
-										전용 컬렉션
-									</font>
-								</p>
-								<div class="shop_now_btn"
-									style="border-color: #000000; color: #000000">Check Out
-									Now</div>
-							</div>
-							<div class="v_img">
-								<img
-									src="/medias/220428-A-timehomme-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzgxMTF8aW1hZ2UvanBlZ3xpbWFnZXMvaDY1L2hkZi85Mjk1NDM4MjE3MjQ2LmpwZ3w0NmQzMzI4YTk3NmI2YWZjOWE3N2E4M2FjNDYzMmQ4YzdlYzdiMmRiODlhNjE1NTllNDUwOTdmMGIwZmRjNTcx"
-									alt="" class="entity-img" />
-							</div>
-					</a>
-					</li>
-					<li class="swiper-slide">
-						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM);"></div>
-						<a href="/ko/magazine/exhibitions/8812608542392"
-						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap left">
-								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">HOLIDAY
+									<span class="bar-in"> <font color="#FFFFFF">BALLY
 											GIFT</font> <span class="ab-bar left"
 										style="background-color: #FFFFFF;"></span> <span
 										class="ab-bar right" style="background-color: #FFFFFF;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">고마운 마음을 전하는 계절<br>특별한 선물로 마음을
-										표현하세요
+									<font color="#FFFFFF">발리의 홀리데이 기프트 아이템<br>10% 할인
+										코드를 확인하세요
 									</font>
 								</p>
 								<div class="shop_now_btn"
@@ -5565,35 +5574,35 @@ function GA_search(){
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220428-A-brand-01.jpg?context=bWFzdGVyfGltYWdlc3w4NjU3MXxpbWFnZS9qcGVnfGltYWdlcy9oMjYvaDBkLzkyOTUyMjI3MzQ4NzguanBnfDA5ZDNkMjk5MmU1NThmZTYzODE4YmZhZjY5MmYxY2ZlOGYyOTkxMjM5YTc5NmI4ODExZTE0OTU5NWQwOWM0NWM"
+									src="/medias/220502-A-bally-02.jpg?context=bWFzdGVyfGltYWdlc3wxMzkxNTB8aW1hZ2UvanBlZ3xpbWFnZXMvaDVlL2g2Yi85Mjk2MjMzNjI3Njc4LmpwZ3xmNjg2YTg0ZDg4YzkzNTNhMzZkZWFhN2YxYmZhYmFkOTFkMzJlOGMzMDdjMzQ1OGZlNjU0ZjI1ZjA5ZTQzMzA0"
 									alt="" class="entity-img" />
 							</div>
 					</a>
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
-						<a href="/ko/magazine/exhibitions/8812640917176"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-system-05.jpg?context=bWFzdGVyfGltYWdlc3wxMTAxMzJ8aW1hZ2UvanBlZ3xpbWFnZXMvaGQyL2hiZC85Mjk2MjM0NDQ2ODc4LmpwZ3xkYjMxMTMzNDAzNDhkYmMxOGIyYmZjNzhiMmQyNmNkZTE1ZDgwNjQxMGVkNmYwMTZlNzU2NWVjNTkyYTJlZjc5);"></div>
+						<a href="/ko/magazine/exhibitions/8812641113784"
 						onclick="GA_main('banner',$(this));">
-							<div class="a_txt_wrap ">
+							<div class="a_txt_wrap left">
 								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">PANTS
-											FIT GUIDE</font> <span class="ab-bar left"
-										style="background-color: #FFFFFF;"></span> <span
-										class="ab-bar right" style="background-color: #FFFFFF;"></span>
+									<span class="bar-in"> <font color="#000000">시스템옴므의
+											봄</font> <span class="ab-bar left"
+										style="background-color: #000000;"></span> <span
+										class="ab-bar right" style="background-color: #000000;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
-										와이즐리 사은품 EVENT
+									<font color="#000000">배우 기도훈과 함께한 스프링 룩<br>5만원 구매
+										리워드를 드려요
 									</font>
 								</p>
 								<div class="shop_now_btn"
-									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+									style="border-color: #000000; color: #000000">Shop Now</div>
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									src="/medias/220502-A-system-05.jpg?context=bWFzdGVyfGltYWdlc3wxMTAxMzJ8aW1hZ2UvanBlZ3xpbWFnZXMvaGQyL2hiZC85Mjk2MjM0NDQ2ODc4LmpwZ3xkYjMxMTMzNDAzNDhkYmMxOGIyYmZjNzhiMmQyNmNkZTE1ZDgwNjQxMGVkNmYwMTZlNzU2NWVjNTkyYTJlZjc5"
 									alt="" class="entity-img" />
 							</div>
 					</a>
@@ -5628,20 +5637,20 @@ function GA_search(){
 					</li>
 					<li class="swiper-slide">
 						<div class="slide-bgimg"
-							style="background-image: url(http://www.thehandsome.com/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0);"></div>
-						<a href="/ko/magazine/exhibitions/8812510435000"
+							style="background-image: url(http://www.thehandsome.com/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj);"></div>
+						<a href="/ko/magazine/exhibitions/8812640917176"
 						onclick="GA_main('banner',$(this));">
 							<div class="a_txt_wrap ">
 								<p class="title">
-									<span class="bar-in"> <font color="#FFFFFF">PUMA
-											X GARFIELD</font> <span class="ab-bar left"
+									<span class="bar-in"> <font color="#FFFFFF">PANTS
+											FIT GUIDE</font> <span class="ab-bar left"
 										style="background-color: #FFFFFF;"></span> <span
 										class="ab-bar right" style="background-color: #FFFFFF;"></span>
 									</span>
 								</p>
 								<p class="s_title">
-									<font color="#FFFFFF">퓨마의 새로운 콜라보레이션<br>가필드와 함께한
-										재치있는 스트릿 웨어
+									<font color="#FFFFFF">핏가이드로 똑똑하게 쇼핑하는 법<br>더한섬닷컴 X
+										와이즐리 사은품 EVENT
 									</font>
 								</p>
 								<div class="shop_now_btn"
@@ -5649,7 +5658,31 @@ function GA_search(){
 							</div>
 							<div class="v_img">
 								<img
-									src="/medias/220428-A-puma-02.jpg?context=bWFzdGVyfGltYWdlc3wxODg0NzV8aW1hZ2UvanBlZ3xpbWFnZXMvaGY0L2hlMy85Mjk1MjQwODIyODE0LmpwZ3xmNzdiMTMzMzVjMGM4MGM2MjQ2NzNkMTBmMjYzMzVlMGNkNjExMDI5NTkzYjFkYWY5MGFmMzI2YzYxODE3N2Q0"
+									src="/medias/220429-A-fitguide-01.jpg?context=bWFzdGVyfGltYWdlc3wxMDExMDV8aW1hZ2UvanBlZ3xpbWFnZXMvaGNhL2hmZC85Mjk1NTQ0ODQ0MzE4LmpwZ3w3YjcwYzEyYzIwMTczNTk4ZGViNmRhYzY1NzcxZTk0Nzk5ZjVmYTBjNGI2MDg4NGUwOGNlNDY4OTIyM2VjYjRj"
+									alt="" class="entity-img" />
+							</div>
+					</a>
+					</li>
+					<li class="swiper-slide">
+						<div class="slide-bgimg"
+							style="background-image: url(http://www.thehandsome.com/medias/220502-A-oera-02.jpg?context=bWFzdGVyfGltYWdlc3w0NzU4MHxpbWFnZS9qcGVnfGltYWdlcy9oOWUvaGEzLzkyOTYyNTY1NjUyNzguanBnfDNjZTNhZGJlNjQ0YTcxNmJhYjhiMmM5NzU1ZjRjM2FhZTY5YjdkNGFmN2MyN2FkM2M4ZTllZTI4ZDdkMTcwODE);"></div>
+						<a href="/ko/magazine/exhibitions/8812641146552"
+						onclick="GA_main('banner',$(this));">
+							<div class="a_txt_wrap left">
+								<p class="title">
+									<span class="bar-in"> </span>
+								</p>
+								<p class="s_title">
+									<font color="#FFFFFF">오에라 가정의 달 기프트 세트<br>5월 한정 사은품
+										혜택까지!
+									</font>
+								</p>
+								<div class="shop_now_btn"
+									style="border-color: #FFFFFF; color: #FFFFFF">Shop Now</div>
+							</div>
+							<div class="v_img">
+								<img
+									src="/medias/220502-A-oera-02.jpg?context=bWFzdGVyfGltYWdlc3w0NzU4MHxpbWFnZS9qcGVnfGltYWdlcy9oOWUvaGEzLzkyOTYyNTY1NjUyNzguanBnfDNjZTNhZGJlNjQ0YTcxNmJhYjhiMmM5NzU1ZjRjM2FhZTY5YjdkNGFmN2MyN2FkM2M4ZTllZTI4ZDdkMTcwODE"
 									alt="" class="entity-img" />
 							</div>
 					</a>
@@ -5712,6 +5745,21 @@ function GA_search(){
 							</p>
 							<p class="s_title">
 								<font color=white>봄의 에너지를 담은 테이블웨어</font>
+							</p>
+						</div>
+					</a>
+				</div>
+				<div class="banner2 banner2_N" style="display: none;">
+					<a href="/ko/magazine/events/8804022966144"
+						onclick="GA_main('eventBanner',$(this));"> <img
+						src="/medias/220428-2-2-payco-02.jpg?context=bWFzdGVyfGltYWdlc3wxNTEwOXxpbWFnZS9qcGVnfGltYWdlcy9oNjQvaDgyLzkyOTU4Mjg3NDYyNzAuanBnfDFmM2Q4MmMxZGEzZDhjMThhMjc5N2I0NDI5Y2FiNTgyNGVhMmJiYWMyNzliZDdhOTZhNTA4NDEyMjlkYWI5OGY"
+						alt="banner image" />
+						<div class="ban_txt_wrap">
+							<p class="title">
+								<font color=white>PAYCO 결제 혜택</font>
+							</p>
+							<p class="s_title">
+								<font color=white>최대 2% 포인트 리워드를 드려요!</font>
 							</p>
 						</div>
 					</a>
@@ -5909,7 +5957,7 @@ function GA_search(){
 				</div>
 				<div class="edt_banner_inner3">
 					<div class="edt_banner">
-						<a href="/ko/magazine/exhibitions/8812182394552"
+						<a href="/ko/magazine/exhibitions/8812477339320"
 							onclick="GA_main('exhibitionBanner',$(this));"> <img
 							src="/medias/220428-B-clubmonaco.jpg?context=bWFzdGVyfGltYWdlc3w1OTU2NnxpbWFnZS9qcGVnfGltYWdlcy9oZWYvaDMxLzkyOTUyMjIyNzYxMjYuanBnfDg0Yzg0ZDhkOTYzYzdmMGRkMDE4ODE4Nzk1YjJkODhiN2ViODRmMmNiMDgyMDAwZjRmOGY2YWRlYWQ2NWZhNDA"
 							alt="기획전 배너">
@@ -6836,8 +6884,9 @@ function setLogout(){
 </script>
 	<!-- Enliple Tracker End -->
 </body>
+
 <!-- AceCounter Log Gathering Script V.7.5.2013010701 -->
-<script type='test/javascript'>
+<script>
 	var _AceGID=(function(){var Inf=['dgc17.acecounter.com','8080','AP6F40149814536','CW','0','NaPm,Ncisy','ALL','0']; var _CI=(!_AceGID)?[]:_AceGID.val;var _N=0;var _T=new Image(0,0);if(_CI.join('.').indexOf(Inf[3])<0){ _T.src =( location.protocol=="https:"?"https://"+Inf[0]:"http://"+Inf[0]+":"+Inf[1]) +'/?cookie'; _CI.push(Inf);  _N=_CI.length; } return {o: _N,val:_CI}; })();
 	var _AceCounter=(function(){var G=_AceGID;if(G.o!=0){var _A=G.val[G.o-1];var _G=( _A[0]).substr(0,_A[0].indexOf('.'));var _C=(_A[7]!='0')?(_A[2]):_A[3];	var _U=( _A[5]).replace(/\,/g,'_');var _S=((['<scr','ipt','type="text/javascr','ipt"></scr','ipt>']).join('')).replace('tt','t src="'+location.protocol+ '//cr.acecounter.com/Web/AceCounter_'+_C+'.js?gc='+_A[2]+'&py='+_A[4]+'&gd='+_G+'&gp='+_A[1]+'&up='+_U+'&rd='+(new Date().getTime())+'" t');document.writeln(_S); return _S;} })();
 </script>

@@ -9,9 +9,9 @@ import lombok.Data;
  *
  */
 public class GradeVO {
+
 	String gname;
 	int gmin;
 	int gmax;
 	int gsale;
-
 }
