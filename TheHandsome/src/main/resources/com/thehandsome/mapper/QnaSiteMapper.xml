@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thehandsome.mapper.QnaSiteMapper">
+
+	<insert id="insert" statementType="CALLABLE">
+		{call insert_qna_site
+		(#{qid},
+		 #{mid}, #{qtitle}, #{qcontent}, #{qdate}, #{qmanager, jdbcType=VARCHAR},
+		#{qreplytitle,jdbcType=VARCHAR }, #{qreplycontent,jdbcType=VARCHAR},#{qreplydate,jdbcType=VARCHAR})
+		}
+	</insert>
+
+	<select id="All_select" statementType="CALLABLE" resultType="map">
+		<![CDATA[
+		select * from table(qna_site_list_display(#{mid}))
+		]]>
+	</select>
+
+
+	<select id="read" statementType="CALLABLE" resultType="com.thehandsome.domain.QnaSiteVO">
+		<![CDATA[
+		select * from table(qna_list_one_display(#{qid}))
+		]]>
+	</select>
+
+
+	<update id="update" statementType="CALLABLE">
+		{call
+		update_qna_site(#{qid},#{qtitle},#{qcontent})
+		}
+
+	</update>
+
+
+	<delete id="delete" statementType="CALLABLE">
+		{call
+		delete_qna_site(#{qid})
+		}
+	</delete>
+</mapper>

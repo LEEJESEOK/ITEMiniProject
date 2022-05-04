@@ -12,7 +12,7 @@ public interface ReviewMapper {
 	public List<ReviewVO> getListReviewPaging(@Param("cri") Criteria cri,
 										@Param("pid") ProductVO pid);
 	
-	public List<ReviewVO> getListReview();
+	/* public List<ReviewVO> getListReview(); */
 	
 	public ReviewVO read(Long rno);
 	
@@ -20,8 +20,9 @@ public interface ReviewMapper {
 	
 	public int delete(Long rno);
 	
-	public int update(ReviewVO reviewvo);
+	public int update(ReviewVO reviewVO);
 	
+	public List All_select(String pid);
 	}
 
 

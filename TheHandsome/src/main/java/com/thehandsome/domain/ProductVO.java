@@ -2,7 +2,9 @@ package com.thehandsome.domain;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 상품관련 VO
@@ -10,6 +12,8 @@ import lombok.Data;
  * @author 고동
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductVO {
 
 	private String pid; // 상품 id
