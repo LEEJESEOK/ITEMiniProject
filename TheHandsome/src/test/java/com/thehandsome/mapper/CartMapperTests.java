@@ -7,7 +7,9 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 import com.thehandsome.domain.MyCartVO;
+
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -50,7 +52,7 @@ public class CartMapperTests {
 	@Test
 	public void test04_update() {
 		mapper.update_cart("ABCDE", 20);
-		}
+	}
 
 	@Test
 	public void test05_delete() {

@@ -26,15 +26,20 @@ create table brand(
 alter table product drop primary key cascade;
 drop table product;
 create table product(
-    pid varchar2(30),
-    bno number, -- 브랜드
-    clarge varchar2(50), -- 대분류
-    cmedium varchar2(50), -- 중분류
-    csmall varchar2(50), -- 소분류
-    pname varchar2(50), -- 상품 이름
-    pprice number, -- 상품 가격
-    pdetail varchar2(4000), -- 상품 설명
-    pseason varchar2(10), -- 시즌
+   "PID" VARCHAR2(30 BYTE), 
+   "BNO" NUMBER, -- 브랜드
+   "CLARGE" VARCHAR2(50 BYTE), -- 대분류
+   "CMEDIUM" VARCHAR2(50 BYTE), -- 중분류
+   "CSMALL" VARCHAR2(50 BYTE), -- 소분류
+   "PNAME" VARCHAR2(50 BYTE), -- 상품 이름
+   "PPRICE" NUMBER, -- 상품 가격
+   "PDETAIL" VARCHAR2(4000 BYTE), -- 상품 설명
+   "PSEASON" VARCHAR2(10 BYTE), -- 시즌
+   "PAVERAGERATE" NUMBER DEFAULT 0 NOT NULL ENABLE, 
+   "PRELEASEDATE" DATE, 
+   "PIMG1" VARCHAR2(500 BYTE) DEFAULT 'default.jpg', 
+   "PIMG2" VARCHAR2(500 BYTE) DEFAULT 'default.jpg', 
+   "PIMG3" VARCHAR2(500 BYTE) DEFAULT 'default.jpg', 
     constraint pk_product primary key (pid),
     constraint fk_product_bno foreign key (bno) references brand(bno) on delete cascade,
     constraint fk_product_category foreign key (clarge, cmedium, csmall) references category(clarge, cmedium, csmall) on delete cascade
@@ -48,6 +53,15 @@ create table color(
     ccolorname varchar2(10), -- 색상 코드
     constraint pk_color primary key(pid, ccolorname),
     constraint fk_color_pid foreign key (pid) references product(pid) on delete cascade
+);
+
+alter table product_size drop primary key cascade;
+drop table product_size;
+create table PRODUCT_SIZE(
+    pid varchar2(30),
+    psize varchar2(10),
+    constraint pk_size primary key(pid, psize),
+    constraint fk_size_pid foreign key(pid) references product(pid) on delete cascade
 );
 
 ---- 쿠폰
