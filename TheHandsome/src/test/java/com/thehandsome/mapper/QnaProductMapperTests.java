@@ -37,8 +37,8 @@ public class QnaProductMapperTests {
 	public void test02_insert() {
 		QnaProductVO vo = new QnaProductVO();
 		vo.setQid(200L);
-		vo.setMid("2");
-		vo.setPid("1234_5678");
+		vo.setMid("rhehd002");
+		vo.setPid("ABCDE");
 		vo.setQtitle("제목1입니다.");
 		vo.setQcontent("내용1입니다.");
 		vo.setQdate(new Date());
@@ -49,33 +49,33 @@ public class QnaProductMapperTests {
 
 	@Test
 	public void test03_select() {
-		List vo = (List) mapper.All_select("1234_5678"); // pid(String) 값 삽입
+		List vo = (List) mapper.All_select("ABCDE"); // pid(String) 값 삽입
 		log.info("test03" + vo);
 	}
 
 	@Test
 	public void test04_read() {
-		QnaProductVO vo = mapper.read(1L); //qid
-
+		QnaProductVO vo = mapper.read(4L); // qid
+		log.info("test04 : " + vo);
 	}
 
 	@Test
 	public void test05_update() {
 		QnaProductVO vo = new QnaProductVO();
-		vo.setQid(200L);
-		vo.setMid("2");
-		vo.setPid("1234_5678");
+		vo.setQid(4L);
+		vo.setMid("rhehd002");
+		vo.setPid("ABCDE");
 
 		Date date = new Date();
 		vo.setQdate(date);
-		vo.setQtitle("QnA제목수정입니다.");
-		vo.setQcontent("QnA수정내용입니다.");
-		int result = mapper.update(vo);
+		vo.setQtitle("QnA수정입니다.");
+		vo.setQcontent("QnA수정입니다.");
+		log.info("test05 : " + mapper.update(vo));
 	}
 
 	@Test
 	public void test05_delete() {
-		int result = mapper.delete(200);
+		int result = mapper.delete(4L);
 		log.info("result : " + result);
 	}
 
