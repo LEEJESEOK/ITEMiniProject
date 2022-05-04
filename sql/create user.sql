@@ -1,4 +1,4 @@
-
+alter session set "_oracle_script"=true;
 DROP USER HANDSOME CASCADE;
 
 CREATE USER handsome IDENTIFIED BY handsome
@@ -13,6 +13,7 @@ GRANT
     CREATE PROCEDURE,
     CREATE TRIGGER,
     CREATE VIEW,
-    CREATE SEQUENCE
+    CREATE SEQUENCE,
+    CREATE TYPE
 TO handsome;
 

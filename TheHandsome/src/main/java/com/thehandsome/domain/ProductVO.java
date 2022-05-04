@@ -1,18 +1,17 @@
 package com.thehandsome.domain;
 
-
-
 import java.util.Date;
 
 import lombok.Data;
 
 /**
+ * 상품관련 VO
  * 
  * @author 고동
- * 상품관련 VO
  */
 @Data
 public class ProductVO {
+
 	private String pid; // 상품 id
 	private int bno; // 상품 브랜드 number
 	private String clarge; // 대분류

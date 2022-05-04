@@ -9,7 +9,7 @@ import lombok.Data;
  *
  */
 public class ColorVO {
+
 	String pid;
 	String ccolorname;
-
 }
