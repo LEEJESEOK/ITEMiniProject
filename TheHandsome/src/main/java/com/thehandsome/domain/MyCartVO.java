@@ -1,6 +1,8 @@
 package com.thehandsome.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 장바구니 관련 vo 작성
@@ -9,6 +11,8 @@ import lombok.Data;
  * 
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class MyCartVO {
 
 	private String mid; // cart참조 멤버 id

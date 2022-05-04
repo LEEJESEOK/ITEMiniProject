@@ -2,14 +2,17 @@ package com.thehandsome.domain;
 
 import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
+import lombok.NoArgsConstructor;
 /**
  * 주문리스트 관련 VO
  * 
  * @author 고동현
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderListVO {
 
 	private String oid; // 주문리스트가 참조하는 주문번호
