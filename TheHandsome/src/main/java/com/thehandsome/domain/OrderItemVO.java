@@ -1,6 +1,8 @@
 package com.thehandsome.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -8,6 +10,8 @@ import lombok.Data;
  * 주문 관련 VO 작성
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderItemVO {
 	private String oid; //주문번호
 	private String pid; //주문한 상품 id

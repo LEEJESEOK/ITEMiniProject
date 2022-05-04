@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thehandsome.mapper.ReviewMapper">
+	
+	<insert id="insert" statementType="CALLABLE">
+		{call insert_review
+		(#{rno}, #{mid}, #{pid}, #{pcolor}, #{psize}, #{rdate}, #{rrate}, #{rcontent}, #{rimage})
+		}
+	</insert>
+	
+	<select id="All_select" statementType="CALLABLE" resultType="map">
+		<![CDATA[
+		select * from table(review_list_display(#{pid}))
+		]]>
+	</select>
+	
+
+	<select id="read" statementType="CALLABLE" resultType="com.thehandsome.domain.ReviewVO">
+		<![CDATA[
+		select * from table(review_list_one_display(#{rno}))
+		]]>
+	</select>
+
+
+	<update id="update" statementType="CALLABLE">
+		{call update_review(#{rno},#{rcontent},#{rdate},#{rrate})
+		}
+		
+	</update>
+
+	
+	<delete id="delete"  statementType="CALLABLE" >
+		{call delete_review(#{rno})
+		}	
+	</delete>
+
+</mapper>

@@ -1,6 +1,5 @@
 package com.thehandsome.mapper;
 
-import org.junit.AfterClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,7 +10,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.thehandsome.domain.MemberVO;
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 /**
@@ -25,7 +23,8 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
 public class MemberMapperTests {
-	@Setter(onMethod_ = @Autowired)
+	
+	@Autowired
 	MemberMapper mapper;
 
 //	@Test

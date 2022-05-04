@@ -1,6 +1,9 @@
 package com.thehandsome.domain;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 /**
@@ -8,6 +11,8 @@ import lombok.Data;
  * @author "Seungyeon"
  *
  */
+@AllArgsConstructor
+@NoArgsConstructor
 public class CategoryVO {
 	String clarge;
 	String cmedium;

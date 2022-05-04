@@ -1,8 +1,10 @@
 package com.thehandsome.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -10,6 +12,8 @@ import lombok.Data;
  * 상품관련 VO
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductVO {
 	private String pid; // 상품 id
 	private int bno; // 상품 브랜드 number

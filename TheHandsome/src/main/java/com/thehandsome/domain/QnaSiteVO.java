@@ -1,8 +1,10 @@
 package com.thehandsome.domain;
 
-import java.sql.Date;
+import java.util.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * 
@@ -10,6 +12,8 @@ import lombok.Data;
  *
  */
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class QnaSiteVO {
 	long qid;
 	String mid;
