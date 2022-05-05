@@ -1742,8 +1742,8 @@ table.e-gift .tlt_wrap p{padding-top:10px;color:#c69c6c;font-size:11px;letter-sp
 .tbl_ltype.review_betterment1905 thead tr th.pd_resize{padding:15px 8px}
 .tbl_ltype.review_betterment1905 .btn.wt_ss{word-break:keep-all}/*추가 191209*/
 /*vip 채팅 서비스 1905*/
-#headerWrap .gnbwarp .util_menu > ul > li.honey_talk_service1905{max-width:112px;overflow:hidden;position:relative;top:-11px;}
-#headerWrap .gnbwarp .util_menu > ul > li.honey_talk_service1905 > div{width:112px;}
+#headerWrap .gnbwrap .util_menu > ul > li.honey_talk_service1905{max-width:112px;overflow:hidden;position:relative;top:-11px;}
+#headerWrap .gnbwrap .util_menu > ul > li.honey_talk_service1905 > div{width:112px;}
 .btn_viptalk_v2.v3 {display: block; width: 55px; height: 64px;text-align: center;position:absolute;top:0;right:0;}
 .vip_chat_img { width: 112px; height: 64px; background: url("http://cdn.thehandsome.com/mobile/ico_vip_talk_v3_190513.png") no-repeat; -webkit-background-size: auto 64px; -khtml-background-size: auto 64px; -moz-background-size: auto 64px; -ms-background-size: auto 64px; -o-background-size: auto 64px; background-size: auto 64px; -webkit-animation: playv3 3s steps(12) infinite; -khtml-animation: playv3 3s steps(12) infinite; -moz-animation: playv3 3s steps(12) infinite; -ms-animation: playv3 3s steps(12) infinite; -o-animation: playv3 3s steps(12) infinite; animation: playv3 3s steps(12) infinite;}
 .vip_chat_img span { text-indent: -5000px; font-size: 0; }
@@ -1955,7 +1955,7 @@ div.deilvery_chk_order span{font-size:11px;}
 .cl_select a.on{width: 18px; height: 18px; border: 1px solid #e3e3e3;}
 .cl_select a.on:after{content:""; display:block; width:100%; height:2px; position: absolute; bottom:-5.5px; left:0px; background-color:#000;}
 
-#headerWrap .gnbwarp .util_menu > ul > li.honey_talk_service1905 > div{position:relative; width:44px; height:44px; margin-top:7px; margin-left:20px;}
+#headerWrap .gnbwrap .util_menu > ul > li.honey_talk_service1905 > div{position:relative; width:44px; height:44px; margin-top:7px; margin-left:20px;}
 .btn_viptalk_v2.v3{width:44px; height:44px;}
 
 .search_box_wrap .search_box .ico{background: url(http://cdn.thehandsome.com/_ui/desktop/common/images/common/ico_utilmenu_new.png) 0px 6px no-repeat; width: 15px;}
