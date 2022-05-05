@@ -1,4 +1,6 @@
-package com.thehandsome.mapper;
+package com.thehandsome.service;
+
+import static org.junit.Assert.*;
 
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -12,30 +14,24 @@ import com.thehandsome.domain.ProductVO;
 
 import lombok.extern.log4j.Log4j;
 
-/**
- * test
- * 
- * @author 고동현
- * 
- */
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @Log4j
-public class ProductMapperTests {
+public class ProductServiceImplTest {
 
 	@Autowired
-	ProductMapper mapper;
-
+	private ProductService service;
+	
 	@Test
-	public void test01_mapper() {
-		log.info(mapper);
+	public void test01_service() {
+		log.info(service);
 	}
 
 	@Test
-	public void test02_display() {
+	public void test02_service_display() {
 		for (int i = 1; i < 3; i++) {
-			mapper.display(i).forEach(product -> log.info(product));
+			service.display(i).forEach(product -> log.info(product));
 		}
 	}
 	/*
@@ -44,14 +40,14 @@ public class ProductMapperTests {
 	 */
 
 	@Test
-	public void test03_display_by_brand() {
-		mapper.display_by_brand("꼼데가르송").forEach(product -> log.info(product));
+	public void test03_service_display_by_brand() {
+		service.display_by_brand("리바이스").forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test04_display_by_brand_sort() {
 		for (int i = 1; i < 5; i++) {
-			mapper.display_by_brand_sort(i, "꼼데가르송").forEach(product -> log.info(product));
+			service.display_by_brand_sort(i, "리바이스").forEach(product -> log.info(product));
 		}
 	}
 	/*
@@ -62,19 +58,20 @@ public class ProductMapperTests {
 	 */
 
 	@Test
-	public void test05_display_by_brand_color() {
-		mapper.display_by_brand_color("꼼데가르송", "red").forEach(product -> log.info(product));
+	public void test05_service_display_by_brand_color() {
+		service.display_by_brand_color("리바이스", "blue").forEach(product -> log.info(product));
 	}
 
 	@Test
-	public void test05_display_by_brand_size() {
-		mapper.display_by_brand_size("꼼데가르송", "XL").forEach(product -> log.info(product));
+	public void test06_service_display_by_brand_size() {
+		service.display_by_brand_size("꼼데가르송", "XL").forEach(product -> log.info(product));
 	}
 
 	@Test
-	public void test06_display_product_detail() {
-		ProductVO product = mapper.display_product_detail("ABCDE");
+	public void test07_display_product_detail() {
+		ProductVO product = service.display_product_detail("ABCDE");
 
 		log.info("read product detail : " + product);
 	}
+
 }

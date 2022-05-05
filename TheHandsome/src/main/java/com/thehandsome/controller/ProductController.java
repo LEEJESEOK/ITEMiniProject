@@ -23,9 +23,15 @@ public class ProductController {
 	private ProductService service;
 	
 	@GetMapping("/list")
-	public void list(Model model) {
-		log.info("list");
-		model.addAttribute("list", service.display(1));
+	public void list_new(Model model) {
+		log.info("list_new");
+		model.addAttribute("list_new", service.display(1)); //신상품
+	}
+	
+	@GetMapping("/list")
+	public void list_best(Model model) {
+		log.info("list_best");
+		model.addAttribute("list_best", service.display(2)); //베스트
 	}
 	
 	//@getMapping("/")

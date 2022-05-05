@@ -25,7 +25,7 @@ public class ProductVO {
 	private int pprice; // 상품가격
 	private String pdetail; // 상품설명
 	private String pseason; // 상품 시즌
-	private String paveragerate; // 상품 평점
+	private int paveragerate; // 상품 평점
 	private Date preleasedate; // 상품 출시일
 	private String psize; // 상품 사이즈
 	private String ccolorname; // 상품색상
