@@ -77,6 +77,15 @@ public class MemberMapperTest {
 		String mid = "mapper_test" + currentTime;
 		log.info("isExistMemberByMid : " + memberMapper.isExistMemberByMid(mid));
 	}
+	
+	@Test
+	public void test22_isValidMember() {
+		log.info("isValidMember");
+		String mid = "test";
+		String mpassword = "test";
+		
+		log.info("isValidMember : " + memberMapper.isValidMember(mid, mpassword));
+	}
 
 	@Test
 	public void test30_selectMemberInformation() {

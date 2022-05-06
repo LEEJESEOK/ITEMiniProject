@@ -760,7 +760,7 @@ p.amc_morebtn a::before{ content:''; position:absolute; top:-15px; left:-25px; w
 #headerWrap .gnbwrap .gnb_nav1903 > ul.gnbul2 > li:last-child > a.on:after{background:#000;}
 
 .honey_talk_service1905.remove1907{top:56px; right:-65px;}
-#headerWrap .gnbwrap .logo a{background: url(http://cdn.thehandsome.com/_ui/desktop/common/images/main/top-header-handsome-logo.png) 0 7px no-repeat; width:195px;}
+#headerWrap .gnbwrap .logo a{background: url(/resources/images/main/top-header-handsome-logo.png) 0 7px no-repeat; width:195px;}
 
 #headerWrap .gnbwrap .gnb_nav > ul.gnbul2 > li > a{margin:0;}
 #headerWrap .gnbwrap .gnb_nav1803 > ul.gnbul2 > li > a:after{display:none;}

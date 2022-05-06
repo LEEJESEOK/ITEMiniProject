@@ -17,6 +17,20 @@
 		WHERE
 		    mid = #{mid}
    	</select>
+   	
+   	<select id="isValidMember" resultType="boolean">
+   		SELECT
+   			CASE
+   				WHEN count(*) = 0 THEN
+   					'FALSE'
+  				ELSE
+  					'TRUE'
+			END AS ISVALID
+  		FROM
+  			member
+		WHERE
+			mid=#{mid} and mpassword=#{mpassword}
+   	</select>
 
 	<insert id="insertMember" statementType="CALLABLE">
 		{call sp_member_insert(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel},
@@ -62,15 +76,16 @@
 	<update id="updateMember2Secession">
 		UPDATE member
 		SET
-		menabled='F'
+			menabled='F'
 		WHERE
-		mid=#{mid}
+			mid=#{mid}
 	</update>
 
 	<delete id="deleteMember">
-		DELETE member
+		DELETE
+			member
 		WHERE
-		mid=#{mid}
+			mid=#{mid}
 	</delete>
 
 </mapper>

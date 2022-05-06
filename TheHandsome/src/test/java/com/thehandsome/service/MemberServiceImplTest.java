@@ -74,6 +74,16 @@ public class MemberServiceImplTest {
 		assertTrue(result);
 		log.info("test21_isExist : " + result);
 	}
+	
+	@Test
+	public void test22_isValidMember() {
+		String mid = "test";
+		String mpassword = "test";
+		boolean result = memberService.isValidMember(mid, mpassword);
+		
+		assertTrue(result);
+		log.info("test22_isValidMember : " + result);
+	}
 
 	@Test
 	public void test40_changeMemberInformation() {

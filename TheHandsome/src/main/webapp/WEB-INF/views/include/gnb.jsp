@@ -4,6 +4,7 @@
 	<h1 class="logo logo1903">
 		<a href="/main">thehandsome.com</a>
 	</h1>
+	
 	<div class="gnb_nav gnb_nav1903 hscene1906 hscene1910">
 		<h2 class="invisible">주메뉴</h2>
 		<ul class="cate_m cate_banner gnbul1" id="cate_m_main">
@@ -374,8 +375,8 @@
 	</div>
 	<!-- 첫번째 c:if -->
 
-
 	<div id="transparent_mask"></div>
+	
 	<!-- 201803 util menu -->
 	<div class="util_menu util_menu1803">
 		<ul class="clearfix">

@@ -1,5 +1,7 @@
 package com.thehandsome.service;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.thehandsome.domain.MemberVO;
 
 /**
@@ -18,10 +20,20 @@ public interface MemberService {
 	public boolean joinMember(MemberVO member);
 
 	/**
+	 * 회원 id 중복 확인
 	 * 
-	 * @return
+	 * @return 해당하는 id가 있으면 true
 	 */
 	public boolean isExistMemberByMid(String mid);
+
+	/**
+	 * 회원 id, password를 통해 계정 확인
+	 * 
+	 * @param mid
+	 * @param mpassword
+	 * @return 일치하는 계정이 있으면 true
+	 */
+	public boolean isValidMember(String mid, String mpassword);
 
 	/**
 	 * mid에 해당하는 회원 정보 반환

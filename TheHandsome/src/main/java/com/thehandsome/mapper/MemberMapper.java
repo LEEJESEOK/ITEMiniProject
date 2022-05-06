@@ -1,5 +1,7 @@
 package com.thehandsome.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.thehandsome.domain.MemberVO;
 
 /**
@@ -11,11 +13,21 @@ import com.thehandsome.domain.MemberVO;
 public interface MemberMapper {
 
 	/**
+	 * mid가 등록되어 있는지 확인
 	 * 
 	 * @param String mid 회원 id
 	 * @return mid가 member 등록되어 있으면 true
 	 */
 	boolean isExistMemberByMid(String mid);
+
+	/**
+	 * mid, mpassword가 일치하는 회원 정보 검색
+	 * 
+	 * @param mid
+	 * @param mpassword
+	 * @return 해당하는 회원이 있으면 true
+	 */
+	boolean isValidMember(@Param("mid") String mid, @Param("mpassword") String mpassword);
 
 	/**
 	 * 회원 정보 조회

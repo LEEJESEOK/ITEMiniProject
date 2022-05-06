@@ -2,8 +2,7 @@
 	pageEncoding="UTF-8"%>
 <div id="topBtn">
 	<a href="javascript:void(0);" class="viewTopArea"><img
-		src="http://cdn.thehandsome.com/_ui/desktop/common/images/common/top_btn.png"
-		alt="맨 위로"></a>
+		src="${contextPath }/resources/images/common/top_btn.png" alt="맨 위로"></a>
 </div>
 <div class="footer">
 	<!--footer_cnts1 -->
@@ -38,8 +37,7 @@
 			</div>
 		</div>
 		<!-- //footer_menu-->
-		<div class="footer_apps cnts1_right">
-		</div>
+		<div class="footer_apps cnts1_right"></div>
 	</div>
 	<!--//footer_cnts1 -->
 </div>
@@ -50,7 +48,7 @@
 			<a href="/footer/footerTermBusiness">서비스이용약관</a> <a
 				href="/footer/footerPrivacy"><strong>개인정보처리방침 <!-- 개인정보처리방침 -->
 			</strong></a> <a href="javascript:void(0);" class="box"
-				onclick="javascript:window.open('http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=1208126337', 'communicationViewPopup', 'width=750, height=700');GA_Event('공통','푸터_CNT','통신판매사업자정보확인');">통신판매사업자정보확인</a>
+				onclick="javascript:window.open('http://www.ftc.go.kr/info/bizinfo/communicationViewPopup.jsp?wrkr_no=1208126337', 'communicationViewPopup', 'width=750, height=700');">통신판매사업자정보확인</a>
 			<a
 				href="https://mark.inicis.com/mark/escrow_popup.php?mid=handsomep1"
 				class="box">에스크로서비스 가입 확인</a>
@@ -141,10 +139,10 @@
 								target="_blank">현대캐터링시스템 <!-- 현대캐터링시스템 -->
 							</a></li>
 							<li><a href="http://www.hyundai-ite.com/index.jsp"
-								target="_blank">현대IT&amp;E <!-- 현대IT&amp;E -->
+								target="_blank"> 현대IT&amp;E <!-- 현대IT&amp;E -->
 							</a></li>
-							<li><a href="http://www.hyundailnc.com/" target="_blank">현대L&amp;C
-									<!-- 현대L&amp;C -->
+							<li><a href="http://www.hyundailnc.com/" target="_blank">
+									현대L&amp;C <!-- 현대L&amp;C -->
 							</a></li>
 						</ul>
 					</dd>

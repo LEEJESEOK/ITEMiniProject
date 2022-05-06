@@ -1,96 +1,255 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="">
-<meta name="author" content="">
-<title>SB Admin 2 - Bootstrap Admin Theme</title>
-<!-- Bootstrap Core CSS -->
-<link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<!-- MetisMenu CSS -->
-<link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
-<!-- Custom Fonts -->
-<link href="/resources/vendor/font-awesome/css/font-awesome.min.css"
-	rel="stylesheet" type="text/css">
-<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="No-Cache">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="더한섬닷컴 | THE HANDSOME.COM">
+<meta property="og:description"
+	content="타임, 마인, 시스템, SJSJ 등 프리미엄 브랜드 및 트렌디한 해외·편집숍까지 가득한 스타일 플랫폼!">
+<meta property="og:image"
+	content="http://s3.ap-northeast-2.amazonaws.com/cdn.thehandsome.com-kr/pc/210510_logo/%E3%84%B9%EB%A1%9C%EA%B3%A0.png">
+<meta property="og:url" content="http://www.thehandsome.com/ko/">
+<meta name="keywords"
+	contents="한섬, 더한섬닷컴, 한섬몰, 한섬아울렛, 한섬닷컴, 더한섬, 한섬올라인몰, HANDSOME, thehandsome">
+<title>더한섬닷컴 | THE HANDSOME.COM</title>
+<link rel="shortcut icon"
+	href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/font_80.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/common.css?20220401" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/layout.css?20220331" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/popup.css?20210225" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/jquery-ui.min.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/brand.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/swiper.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/main_201903.css" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/footer.css?20220406" media="all">
+<link rel="stylesheet" type="text/css"
+	href="${contextPath}/resources/css/contents.css?20220221" media="all">
+<style type="text/css" media="print">
+@IMPORT url("${contextPath}/resources/blueprint/print.css");
+</style>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-1.11.2.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery-ui-1.11.2.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/handsome/common.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/handsome/html5shiv-printshiv.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/handsome/jquery.flexslider.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/handsome/ui.js?20211105"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/handsome/jquery.bxslider.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/common_function.js?20220411"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery.vticker.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/jquery.form-3.51.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/swiper.min.js"></script>
+<script type="text/javascript"
+	src="${contextPath}/resources/js/videojs-ie8.min.js"></script>
 </head>
-
-
 <body>
+	<!-- headerWrap -->
+	<div id="headerWrap">
+		<div class="header header_fixed header_main1903">
+			<form id="autologinForm" name="autologinForm"
+				action="${contextPath}/hp/autologin" method="get">
+				<input type="hidden" name="hcid" id="hcid" value="e2gaf@naver.com">
+			</form>
 
-	<div class="container">
-		<div class="row">
-			<div class="col-md-4 col-md-offset-4">
-				<div class="login-panel panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Please Sign In</h3>
-					</div>
-					<div class="panel-body">
-<!-- 폼시작 -->
-						<form role="form" method='post' action="/login">
-							<fieldset>
-								<div class="form-group">
-									<input class="form-control" placeholder="userid"
-										name="username" type="text" autofocus>
-								</div>
-								<div class="form-group">
-									<input class="form-control" placeholder="Password"
-										name="password" type="password" value="">
-								</div>
-								<div class="checkbox">
-									<label> <input name="remember-me" type="checkbox">RememberMe
-									</label>
-								</div>
-								<!-- Change this to a button or input when using this as a form -->
-								<a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
-							</fieldset>
-							<input type="hidden" name="${_csrf.parameterName}"
-								value="${_csrf.token}" />
-						</form>
-<!-- 폼 끝 -->
+			<%@include file="include/top_nav.jsp"%>
+
+			<!-- validation check message global -->
+			<input type="hidden" id="validationCheckPwd"
+				value="비밀번호를 재입력 하셔야 합니다."> <input type="hidden"
+				id="validationCheck" value="필수데이터가 입력되지 않았습니다."> <input
+				type="hidden" id="validationCheckMsg" value="다음 사항을 확인해 주세요.">
+			<input type="hidden" id="validationCheckMsg1"
+				value="필수데이터가 입력되지 않았습니다."> <input type="hidden"
+				id="validationCheckMsg2" value="동일문자를 3번 이상 사용할 수 없습니다."> <input
+				type="hidden" id="validationCheckMsg3"
+				value="연속된 문자열(123 또는 321, abc, cba 등) 3자리이상 올 수 없습니다."> <input
+				type="hidden" id="validationCheckMsg4" value="Caps Lock 이 켜져 있습니다.">
+			<input type="hidden" id="validationCheckMsg5"
+				value="이메일 아이디의 중복 확인이 필요합니다."> <input type="hidden"
+				id="validationCheckMsg6" value="이메일의 중복확인이 필요합니다."> <input
+				type="hidden" id="deliveryOkMsg" value="확인"> <input
+				type="hidden" id="deliveryCancelMsg" value="취소">
+
+			<%@include file="include/gnb_member.jsp"%>
+		</div>
+	</div>
+	<!-- end headerWrap -->
+
+	<script type="text/javascript">
+		var loginLayer = document.getElementById("loginLayer");
+		$(document)
+				.ready(
+						function() {
+							$("#login_btn")
+									.click(
+											function() {
+												var id = $("#loginForm").find(
+														"[id='j_username']")
+														.eq(0).val();
+												var pw = $("#loginForm").find(
+														"[id='j_password']")
+														.eq(0).val();
+
+												document
+														.getElementById("loginLayer").value = "E";
+
+												if (false) {
+													if (id == "") {
+														layerAlert("이메일을 입력하셔야 합니다.");
+														return;
+													}
+
+													if (pw == "") {
+														layerAlert("Please enter your password");
+														return;
+													}
+												}
+
+												if (true) {
+													if (id == "") {
+														layerAlert("아이디를 입력해 주십시요.");
+														return;
+													}
+
+													if (pw == "") {
+														layerAlert("비밀번호를 입력해 주십시요.");
+														return;
+													}
+												}
+
+												$
+														.ajax({
+															type : "POST",
+															url : "/member/isValidMember",
+															data : {
+																"uid" : id,
+																"upw" : pw,
+																"CSRFToken" : "ec2daf47-066e-4fea-9742-92f9ce1c0d91"
+															},
+															success : function(
+																	data) {
+																if (data.result == "exist") {
+																	GA_Event(
+																			'로그인',
+																			'로그인',
+																			'로그인');
+																	$(
+																			"#inputId")
+																			.val(
+																					id);
+																	$(
+																			"#loginForm")
+																			.submit();
+																} else {
+																	if (true) {
+																		hpLogin(
+																				id,
+																				pw);
+																	} else {
+																		var hs_id = "";
+																		if (id != hs_id) {
+																			location.href = "/member/login?error=true&id="
+																					+ id;
+																		} else {
+																			location.href = "/member/login?error=true";
+
+																		}
+																	}
+																}
+															},
+															error : function(e) {
+																location.href = "/member/login?error=true";
+															}
+														});
+											});
+						});
+	</script>
+	<input type="hidden" name="loginLayer" id="loginLayer" value="E" />
+	<!-- bodyWrap -->
+	<div id="bodyWrap" class="login">
+		<h3 class="cnts_title">
+			<span>로그인</span>
+		</h3>
+
+		<div class="sub_container">
+			<div id="handsomeCust" class="login_wrap box_type_1 renewal1904"
+				style="display: flex; justify-content: center;">
+				<div class="border_box1">
+					<!-- 추가 190417 -->
+					<div class="inner_box">
+						<div class="title_wrap">
+							<h4>회원</h4>
+						</div>
+						<div id="hpIPLogin">
+							<form id="loginForm" name="loginForm"
+								action="/j_spring_security_check" method="post">
+								<input type="hidden" name="inputId" id="inputId" value="">
+								<fieldset>
+									<legend>로그인 입력항목</legend>
+									<div class="login_section">
+
+										<p class="login_err_txt" id="hpErrMsg"
+											style="margin-left: 0px;"></p>
+										<div>
+											<div>
+												<input type="text" id="j_username" name="j_username"
+													placeholder="아이디 / 이메일을 입력하세요." title="아이디" value="">
+											</div>
+											<div>
+												<input type="password" id="j_password" name="j_password"
+													placeholder="비밀번호를 입력하세요." title="비밀번호">
+											</div>
+										</div>
+										<a href="javascript:void(0);" class="btn_login" id="login_btn">로그인</a>
+										<div class="id_save">
+											<input type="checkbox" id="id_save" name="id_save" value="Y">
+											<label for="id_save">아이디 저장</label>
+										</div>
+									</div>
+								</fieldset>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
+			<!--//login wrap-->
 		</div>
 	</div>
+	<!-- end bodyWrap -->
 
-
-
-<!-- jQuery -->
-<script src="/resources/vendor/jquery/jquery.min.js"></script>
-<!-- Bootstrap Core JavaScript -->
-<script src="/resources/vendor/bootstrap/js/bootstrap.min.js"></script>
-<!-- Metis Menu Plugin JavaScript -->
-<script src="/resources/vendor/metisMenu/metisMenu.min.js"></script>
-<!-- Custom Theme JavaScript -->
-<script src="/resources/dist/js/sb-admin-2.js"></script>
-
- <script>
-  $(".btn-success").on("click", function(e){    
-    e.preventDefault();
-    $("form").submit();    
-  });//end $(".btn-success").on("click"  
-  </script>
-  
-<c:if test="${param.logout != null}">
-    <script>
-     $(document).ready(function(){
-    	alert("로그아웃하였습니다.");
-     });
-    </script>
-</c:if>  
-
+	<!-- footerWrap -->
+	<div id="footerWrap">
+		<%@include file="include/footer.jsp"%>
+	</div>
+	<!-- end footerWrap -->
 </body>
 </html>
