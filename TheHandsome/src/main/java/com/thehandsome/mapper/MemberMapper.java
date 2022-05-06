@@ -21,13 +21,23 @@ public interface MemberMapper {
 	boolean isExistMemberByMid(String mid);
 
 	/**
-	 * mid, mpassword가 일치하는 회원 정보 검색
+	 * 해당 회원이 활성 상태인지 확인
 	 * 
 	 * @param mid
 	 * @param mpassword
 	 * @return 해당하는 회원이 있으면 true
+	 * @deprecated
 	 */
-	boolean isValidMember(@Param("mid") String mid, @Param("mpassword") String mpassword);
+	boolean isValidMember(@Param("mid") String mid);
+	
+	/**
+	 * mid, mpassword가 일치하는 회원 정보 검색
+	 * 
+	 * @param mid
+	 * @param mpassword
+	 * @return 해당하는 회원의 회원 정보
+	 */
+	MemberVO selectMemberByAccount(@Param("mid") String mid, @Param("mpassword") String mpassword);
 
 	/**
 	 * 회원 정보 조회

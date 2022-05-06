@@ -29,6 +29,15 @@
   		FROM
   			member
 		WHERE
+			mid=#{mid} and menabled='T'
+   	</select>
+   	
+   	<select id="selectMemberByAccount" parameterType="HashMap" resultType="com.thehandsome.domain.MemberVO">
+   		SELECT
+   			*
+ 		FROM
+ 			member
+		WHERE
 			mid=#{mid} and mpassword=#{mpassword}
    	</select>
 

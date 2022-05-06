@@ -122,18 +122,6 @@
 												document
 														.getElementById("loginLayer").value = "E";
 
-												if (false) {
-													if (id == "") {
-														layerAlert("이메일을 입력하셔야 합니다.");
-														return;
-													}
-
-													if (pw == "") {
-														layerAlert("Please enter your password");
-														return;
-													}
-												}
-
 												if (true) {
 													if (id == "") {
 														layerAlert("아이디를 입력해 주십시요.");
@@ -149,19 +137,17 @@
 												$
 														.ajax({
 															type : "POST",
-															url : "/member/isValidMember",
-															data : {
-																"uid" : id,
-																"upw" : pw,
-																"CSRFToken" : "ec2daf47-066e-4fea-9742-92f9ce1c0d91"
-															},
+															url : "/member/auth",
+															data : JSON
+																	.stringify({
+																		mid : id,
+																		mpassword : pw
+																	}),
+															contentType : "application/json",
+															dataType : "json",
 															success : function(
 																	data) {
 																if (data.result == "exist") {
-																	GA_Event(
-																			'로그인',
-																			'로그인',
-																			'로그인');
 																	$(
 																			"#inputId")
 																			.val(
@@ -169,25 +155,21 @@
 																	$(
 																			"#loginForm")
 																			.submit();
-																} else {
-																	if (true) {
-																		hpLogin(
-																				id,
-																				pw);
-																	} else {
-																		var hs_id = "";
-																		if (id != hs_id) {
-																			location.href = "/member/login?error=true&id="
-																					+ id;
-																		} else {
-																			location.href = "/member/login?error=true";
-
-																		}
-																	}
+																	location.href = "/main";
 																}
 															},
-															error : function(e) {
-																location.href = "/member/login?error=true";
+															error : function(
+																	request,
+																	status,
+																	error) {
+																alert("code:"
+																		+ request.status
+																		+ "\n"
+																		+ "message:"
+																		+ request.responseText
+																		+ "\n"
+																		+ "error:"
+																		+ error);
 															}
 														});
 											});
@@ -217,8 +199,7 @@
 									<legend>로그인 입력항목</legend>
 									<div class="login_section">
 
-										<p class="login_err_txt" id="hpErrMsg"
-											style="margin-left: 0px;"></p>
+										<p class="login_err_txt" id="hpErrMsg"></p>
 										<div>
 											<div>
 												<input type="text" id="j_username" name="j_username"
@@ -229,11 +210,12 @@
 													placeholder="비밀번호를 입력하세요." title="비밀번호">
 											</div>
 										</div>
-										<a href="javascript:void(0);" class="btn_login" id="login_btn">로그인</a>
 										<div class="id_save">
 											<input type="checkbox" id="id_save" name="id_save" value="Y">
 											<label for="id_save">아이디 저장</label>
 										</div>
+										<a href="javascript:void(0);" class="btn_login" id="login_btn">로그인</a>
+										<a href="javascript:void(0);" class="btn join" id="join_btn">회원가입</a>
 									</div>
 								</fieldset>
 							</form>
@@ -252,4 +234,5 @@
 	</div>
 	<!-- end footerWrap -->
 </body>
+
 </html>

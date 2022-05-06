@@ -79,7 +79,7 @@
 			</form>
 
 			<%@include file="include/top_nav.jsp"%>
-			
+
 			<!-- validation check message global -->
 			<input type="hidden" id="validationCheckPwd"
 				value="비밀번호를 재입력 하셔야 합니다."> <input type="hidden"
@@ -102,1411 +102,1822 @@
 	</div>
 	<!-- end headerWrap -->
 	<script type="text/javascript">
-		var newItemsSlider = "";
-		var bestItemsSlider = "";
-		var newProductCategory = "";
-		var bestProductCategory = "";
-		var checkInstagramInfo = false;
-		var allLinkTemp = [];
-		var allUrlTemp = [];
-		var allCaptionTemp = [];
-		var allIndex = 0;
-		var accountCount = 0;
-		var horiz = $(".horiz_topbanner").length;
-
-		var rate_en = "";
-		var symbol_en = "";
-		var rate_zh = "";
-		var symbol_zh = "";
-
-		$(document).ready(function () {
-			var todayDate = new Date();
-
-
-
-
-			if (horiz > 0) {
-				$("#mainNoticeWrap").css("top", "230px");
-				$(".popWrap1901").css("top", "78px");
-			}
-
-			mainSlider1903();
-			edtSlider1903();
-			videoPlay1903();
-
-			$.ajax({
-				type: "get",
-				url: "/intro/mainCategoryList",
-				async: true,
-				contentType: "application/json",
-				error: function (request, status, error) {
-					console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-				},
-				success: function (result) {
-					if (result.length > 0) {
-						var newHtml = "";
-						var bestHtml = "";
-						var newCount = 0;
-						var bestCount = 0;
-						var isoCode = "ko";
-						var categoryName = "";
-
-						for (var i = 0; i < result.length; i++) {
-							if (isoCode == "ko") {
-								categoryName = result[i].categoryName;
-							} else if (isoCode == "en") {
-								categoryName = result[i].categoryNameEN;
-							} else if (isoCode == "zh") {
-								categoryName = result[i].categoryNameZH;
-							}
-
-							if (result[i].displayTypeYn == true) {
-								if (result[i].displayType == true) {
-									if (newCount == 0) {
-										newProductCategory = result[i].categoryCode;
-										newHtml += '<li class="on">';
-									} else {
-										newHtml += '<li>';
-									}
-
-									newHtml += '	<a href="javascript:getNewProductList(\'' + result[i].categoryCode + '\')" >' + categoryName + '</a>';
-									newHtml += '</li>';
-									newCount++;
-								} else if (result[i].displayType == false) {
-									if (bestCount == 0) {
-										bestProductCategory = result[i].categoryCode;
-										bestHtml += '<li class="on">';
-									} else {
-										bestHtml += '<li>';
-									}
-
-									bestHtml += '	<a href="javascript:getBestProductList(\'' + result[i].categoryCode + '\')" >' + categoryName + '</a>';
-									bestHtml += '</li>';
-									bestCount++;
-								}
-							}
-						}
-						$(".nbe_cnt.new .product_left_menu > ul").html(newHtml);
-						tabNew();
-						getNewProductList(newProductCategory);
-						$(".nbe_cnt.best .product_left_menu > ul").html(bestHtml);
-						tabBest();
-						getBestProductList(bestProductCategory);
-					}
-				}
-			});
-
-			getMagazineList();
-
-			var getUrlParameter = function getUrlParameter(sParam) {//URL에 포함된 파라미터 이용하기
-				var sPageURL = window.location.search.substring(1),
-					sURLVariables = sPageURL.split('&'),
-					sParameterName,
-					i;
-				for (i = 0; i < sURLVariables.length; i++) {
-					sParameterName = sURLVariables[i].split('=');
-					if (sParameterName[0] === sParam) {
-						return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
-					}
-				}
-			};
-			//layerPopup front test (노출 기한 상관 없이 pk 이용하여 메인에서 팝업 보기)
-			var pop1 = getUrlParameter('pop1');
-			if (typeof pop1 == "undefined") pop1 = "N";
-
-			$.ajax({
-				type: "get",
-				url: "/svcenter/mainNotice",
-				cache: false,
-				data: { "pop1": pop1 },
-				async: true,
-				contentType: "application/json",
-				error: function (request, status, error) {
-					console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-				},
-				success: function (result) {
-					var todayDate = new Date();
-					var switchMain = "";
-					if (result.length > 0) switchMain = result[0].readCount;
-					if ("N" != switchMain) {//switchMain = "N" 이면 메인팝업 기존방식(하드코딩)으로 돌리기 
-						if (result.length > 0) {
-							var documentResult = "";
-							var isocode = "ko";
-							for (var i = 0; i < result.length; i++) {
-								var showYn = "N";
-								if (getCookie(result[i].pk + isocode) != todayDate.getDate()) showYn = "Y"; // 오늘은 그만보기
-								if (pop1 != "N") showYn = "Y"; //팝업 미리보기
-								if (showYn == "Y") {
-									if (null != result[i].bgImage && "" != result[i].bgImage.trim()) {
-										documentResult += "<div class='popwrap_renewal1910 txtonimg add1' id='" + result[i].pk + isocode + "'>";
-										documentResult += "<img src='" + result[i].bgImage + "' alt='' class='pop_backimg'>";
-									} else {
-										documentResult += "<div class='popwrap_renewal1910' id='" + result[i].pk + isocode + "'>";
-									}
-									documentResult += "    <div class='pop_cnt'>";
-									if (null != result[i].noticeContentsYN && result[i].noticeContentsYN) {//단순 텍스트 출력 시 title 노출, html 포함 출력 시 title 비노출(html 코드에 title 포함)
-										if (null != result[i].noticeTitle && "" != result[i].noticeTitle.trim()) {
-											var noticeTitle = result[i].noticeTitle;
-											var replacedTitle = noticeTitle.replace(/(?:\r\n|\r|\n)/g, '<br>');
-											documentResult += '<h3 class="pop_tlt">' + replacedTitle + '</h3>';
-										}
-									}
-									if (null != result[i].noticeContents && "" != result[i].noticeContents.trim()) {
-										if (result[i].noticeContentsYN) {
-											documentResult += "        <p class='pop_txt'>";
-										} else {//html 코드 출력
-											documentResult += "        <p class='pop_txt' style='min-height: 0; padding: 25px 0 0 0;'>";
-										}
-										var noticeContents = result[i].noticeContents;
-										var replacedContents = noticeContents.replace(/(?:\r\n|\r|\n)/g, '<br>');
-										documentResult += replacedContents;
-										documentResult += "        </p>";
-									}
-									if (null != result[i].bannerLink && "" != result[i].bannerLink.trim()) {
-										documentResult += "        <div class='linkbox'>";
-										documentResult += "            <a href='" + result[i].bannerLink + "'>";
-										if (null != result[i].bannerLinkText && "" != result[i].bannerLinkText.trim()) documentResult += result[i].bannerLinkText;
-										documentResult += "            </a>";
-										documentResult += "        </div>";
-									}
-									documentResult += "    </div>";
-									documentResult += "    <div class='btnwrap'>";
-									documentResult += "        <input type='button' class='btn stoptoday closeLayerPopup' value=\"오늘은 그만보기 \">";
-									documentResult += "        <input type='button' class='btn close closeLayerPopup' value=\"닫기\">";
-									documentResult += "    </div>";
-									documentResult += "    <a href='#' class='btn_close closeLayerPopup'><img src='/_ui/desktop/common/images/popup/ico_close.png' alt=\"닫기\"></a>";
-									documentResult += "</div>";
-								}
-							}
-							$("#mainNoticeWrap").html(documentResult);
-
-							$(".closeLayerPopup").on("click", function () {
-								if ($(this).hasClass("stoptoday")) {//오늘은 그만보기
-									var todayDate = new Date();
-									var cookieId = $(this).parents(".popwrap_renewal1910").attr("id");
-									setCookie(cookieId, todayDate.getDate(), 1);
-								}
-								$(this).parents(".popwrap_renewal1910").css("display", "none");
-							});
-
-						}
-					} else {
-						// 한섬마일리지 조회/사용불가
-						if (getCookie('HSlayerPopup3') != todayDate.getDate()) {
-							var startDate1 = new Date('2018/12/28 16:00:00'), endDate1 = new Date('2019/02/31 00:00:00');
-							if (todayDate.getTime() >= startDate1.getTime() && todayDate.getTime() <= endDate1.getTime()) {
-								//layerPopup6('open');
-							}
-						}
-					}
-				}
-			});
-
-			$(".closeLayerPopup").on("click", function () {
-				if ($(this).hasClass("stoptoday")) {//오늘은 그만보기
-					var todayDate = new Date();
-					var cookieId = $(this).parents(".popwrap_renewal1910").attr("id");
-					setCookie(cookieId, todayDate.getDate(), 1);
-				}
-				$(this).parents(".popwrap_renewal1910").css("display", "none");
-			});
-
-			//비로그인 상태에서 메인페이지 진입시 쿠키 삭제 
-
-			deletecookiePath("UID", "/");
-			deletecookiePath("criteoEmail", "/");
-			deletecookiePath("memberGb", "/");
-
-
-			var todayDate = new Date();
-
-			//전환된 회원일 경우 처리
-
-
-			//전환가입유도 팝업
-
-
-			//자동로그인 팝업
-
-
-			//인스타그램 생성 --START-- 중국어 인스타 그램 제외
-
-			$.ajax({
-				type: "get",
-				url: "/magazine/getAllInstargram" + "?type=search",
-				cache: false,
-				dataType: "json",
-				async: true,
-				contentType: "application/json",
-				error: function (request, status, error) {
-					console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-				},
-				success: function (result) {
-					if (result.length > 0) {
-						//정보 보여주기
-						var allHtml = [];
-						var account = "", logoImg = "";
-						var html = "";
-						accountCount = result.length;
-
-						for (var i = 0; i < result.length; i++) {
-							account = result[i].account;
-							logoImg = result[i].accountLogoImage;
-
-							allHtml = JSON.parse(result[i].html).data;
-							allHtml.sort(function (a, b) {
-								return a.created_time > b.created_time ? -1 : a.created_time < b.created_time ? 1 : 0;
-							});
-
-							$.each(allHtml, function (j, v) {
-								if (j == 0) {
-									if (v.user.username != "fourm_official" && v.user.username != "youarehandsome") {
-										html += '<li class="swiper-slide">';
-										html += '    <a href="' + '/magazine/instagram"' + '>';
-										html += '       <img src="' + v.images.low_resolution.url + '" class="respon_image" onerror="this.src=\'http://cdn.thehandsome.com/_ui/desktop/common/images/instagram_video_thumb_283.jpg\'" />';
-										html += '		<div class="insta_account1903">';
-										html += '			<div class="account">';
-										html += '				<div class="img_wrap">';
-										if (account == v.user.username) {
-											html += '					<img src="' + logoImg + '/dims/resize/50x50" alt="brandimg">';
-										}
-										html += '				</div>';
-										html += '				<p>@' + v.user.username + '</p>';
-										html += '			</div>';
-										html += '		</div>';
-										html += '		<div class="insta_pic_info"></div>';
-										html += '		<div class="insta_pic_info_txt">';
-										if (v.caption != null) {
-											html += '			<p class="title">' + v.caption.text.normalize('NFC') + '</p>';
-										} else {
-											html += '          <p class="title"></p>';
-										}
-										html += '		</div>';
-										html += '	</a>';
-										html += '	<div class="insta_cover_dim"></div>';
-										html += '</li>';
-									}
-								}
-							});
-						}
-					}
-
-					$('#instaContents > ul').html(html);
-
-					instagramSlider1903();
-					instaImgHover();
-				}
-			});
-
-			//인스타그램 생성 --END--
-
-			//룰렛 이벤트
-
-			var uid = "anonymous";
-			var chkUid = ["test1", "test2", "test3", "test4", "test5", "dlwnsdnjs7@yopmail.com",
-				"test6", "test7", "test8", "test10", "dlwnsdnjs70@yopmail.com"];
-
-			var jeventStartDate = new Date('2019/11/01 00:00:00'), jeventEndDate = new Date('2019/12/31 00:00:00');
-
-			if (location.href.indexOf("www.thehandsome.com") > -1) {
-				jeventStartDate = new Date('2019/12/01 00:00:00')
-			}
-
-
-			var eventStartDate = new Date('2019/10/29 00:00:00'), eventEndDate = new Date('2019/12/01 00:00:00');
-
-			if (location.href.indexOf("www.thehandsome.com") > -1) {
-				eventStartDate = new Date('2019/11/01 13:00:00')
-			}
-
-			for (var i = 0; i < $("#edtSlider1903_0 > ul > li .price").length; i++) {
-				var exPrice = $("#edtSlider1903_0 > ul > li .price").eq(i).html();
-				$("#edtSlider1903_0 > ul > li .price").eq(i).html(getExchangePrice(exPrice));
-			}
-
-			for (var i = 0; i < $("#edtSlider1903_1 > ul > li .price").length; i++) {
-				var exPrice = $("#edtSlider1903_1 > ul > li .price").eq(i).html();
-				$("#edtSlider1903_1 > ul > li .price").eq(i).html(getExchangePrice(exPrice));
-			}
-
-
-
-			function getNewProductList(categoryCode) {
-				$.ajax({
-					type: "get",
-					url: "/intro/mainNewProductList" + "?categoryCode=" + categoryCode,
-					dataType: "json",
-					async: true,
-					contentType: "application/json",
-					error: function (request, status, error) {
-						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					},
-					success: function (result) {
-						var html = "";
-						if (result.length > 0) {
-							window.sessionStorage.setItem('main_new_ecommerceDataList', JSON.stringify(result));
-							html += '<div class="nbe_cnt_inner swiper-container" id="newListSlider">';
-							html += '	<ul class="items_list swiper-wrapper">';
-							for (var i = 0; i < result.length; i++) {
-								html += '		<li class="swiper-slide">';
-								html += '			<div class="item_box">';
-								html += '				<a href="/p/' + result[i].productCode + '" class="item_info1" setEcommerceData(' + i + ', \'NEW\', \'' + categoryCode + '\');">';
-								html += '					<span class="item_img">';
-								html += '						<img src="' + result[i].T01imageUrl + '/dims/resize/234x353" alt="" name="' + result[i].productName + '" class="respon_image">';
-								html += '					</span>';
-								html += '				</a>';
-								html += '				<a href="/p/' + result[i].productCode + '" class="item_info2" setEcommerceData(' + i + ', \'NEW\', \'' + categoryCode + '\');">';
-								html += '					<span class="brand">' + result[i].brandName + '</span>';
-								html += '					<span class="price">' + getExchangePrice(result[i].price) + '</span>';
-								html += '				</a>';
-								html += '			</div>';
-								html += '		</li>';
-							}
-							html += '	</ul>';
-							html += '<div class="swiper-button-next"></div>';
-							html += '<div class="swiper-button-prev"></div>';
-							html += '</div>';
-							$(".product_list1903 .nbe_cnt.new .nbe_cnt_inner_wrap").html(html);
-							newProductListSlider1903();
-						} else {
-							$(".product_list1903 .nbe_cnt.new .nbe_cnt_inner_wrap").html(html);
-						}
-					}
-				});
-			}
-
-			function getBestProductList(categoryCode) {
-				$.ajax({
-					type: "get",
-					url: "/intro/mainBestProductList" + "?categoryCode=" + categoryCode,
-					dataType: "json",
-					async: true,
-					contentType: "application/json",
-					error: function (request, status, error) {
-						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					},
-					success: function (result) {
-						var html = "";
-						if (result.length > 0) {
-							window.sessionStorage.setItem('main_best_ecommerceDataList', JSON.stringify(result));
-							html += '<div class="nbe_cnt_inner swiper-container" id="bestListSlider">';
-							html += '	<ul class="items_list swiper-wrapper">';
-							for (var i = 0; i < result.length; i++) {
-								html += '		<li class="swiper-slide">';
-								html += '			<div class="item_box">';
-								html += '				<a href="/p/' + result[i].productCode + '" class="item_info1" onclick="javascript:setEcommerceData(' + i + ', \'BEST\', \'' + categoryCode + '\');">';
-								html += '					<span class="item_img">';
-								html += '						<img src="' + result[i].T01imageUrl + '/dims/resize/234x353" alt="" name="' + result[i].productName + '" class="respon_image" >';
-								html += '					</span>';
-								html += '				</a>';
-								html += '				<a href="/p/' + result[i].productCode + '" class="item_info2">';
-								html += '					<span class="brand">' + result[i].brandName + '</span>';
-								html += '					<span class="price">' + getExchangePrice(result[i].price) + '</span>';
-								html += '				</a>';
-								html += '			</div>';
-								html += '		</li>';
-							}
-							html += '	</ul>';
-							html += '<div class="swiper-button-next"></div>';
-							html += '<div class="swiper-button-prev"></div>';
-							html += '</div>';
-							$(".product_list1903 .nbe_cnt.best .nbe_cnt_inner_wrap").html(html);
-							bestProductListSlider1903();
-						} else {
-							$(".product_list1903 .nbe_cnt.best .nbe_cnt_inner_wrap").html(html);
-						}
-					}
-				});
-			}
-
-			function getMagazineList() {
-				$.ajax({
-					type: "get",
-					url: "/intro/mainMagazine",
-					cache: false,
-					dataType: "json",
-					async: true,
-					contentType: "application/json",
-					error: function (request, status, error) {
-						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					},
-					success: function (result) {
-						var categoryText = "";
-						var url = "";
-						var html = "";
-						if (result.length > 0) {
-							for (var i = 0; i < result.length; i++) {
-								if (result[i].category == "뉴스") {
-									categoryText = "뉴스";
-								} else if (result[i].category == "SPOTLIGHT_ON") {
-									categoryText = "위클리 픽";
-								} else if (result[i].category == "HANDSOME_PEOPLE") {
-									categoryText = "핸썸피플";
-								} else if (result[i].category == "TREND_TO_KNOW") {
-									categoryText = "셀렉션";
-								} else if (result[i].category == "HOW_TO_STYLE") {
-									categoryText = "커버스토리";
-								} else if (result[i].category == "EDITORS_PICK") {
-									categoryText = "스타일 가이드";
-								} else if (result[i].category == "PLAY_PLAY") {
-									categoryText = "플레이";
-								} else if (result[i].category == "SHARP_SOME") {
-									categoryText = "#SOME";
-								}
-
-								html += '<li class="swiper-slide">';
-								if (result[i].category == "뉴스") {
-									html += '	<a href="/magazine/newsDetail' + result[i].template + '?newsCode=' + result[i].pk + '" class="img_wrap">';
-								} else {
-									html += '	<a href="/magazine/editorials/' + result[i].pk + '" class="img_wrap">';
-								}
-								if (result[i].imageUrl.indexOf(".mp4") > -1) {
-									html += '          <video autoplay muted playsinline loop preload="auto" style="width:100%; max-height:352px; auto;outline:none;" poster="">';
-									html += '          <source src="' + result[i].imageUrl + '" type="video/mp4">';
-									html += '          </video>';
-								} else {
-									html += '       <img src="' + result[i].imageUrl + '/dims/resize/348x352" alt="매거진이미지">';
-								}
-
-
-								html += '	</a>';
-								html += '	<div class="txt_wrap">';
-								html += '		<p class="magazine_tit">' + categoryText + '</p>';
-								html += '		<p class="tit">' + result[i].desktopTitle + '</p>';
-								html += '		<p class="s_t">' + result[i].desktopSubTitle + '</p>';
-								if (result[i].category == "뉴스") {
-									html += '		<a href="/magazine/newsDetail' + result[i].template + '?newsCode=' + result[i].pk + '" class="detail">자세히 보기</a>';
-								} else {
-									html += '		<a href="/magazine/editorials/' + result[i].pk + '" class="detail">자세히 보기</a>';
-								}
-								html += '	</div>';
-								html += '</li>';
-								html += '';
-							}
-							$(".the_magazine_wrap1903 .magazine_slider1903 > ul").html(html);
-							magazinSlider1903();
-						}
-					}
-				});
-			}
-
-			// 상단 띠 배너 닫기
-			function popClose03() {
-				$('.horiz_topbanner, .horiz_topbanner_inner').slideUp();
-				if (horiz > 0) {
-					$("#mainNoticeWrap").css("top", "150px");
-				}
-			};
-
-			// RECOMMEND 호출 ajax
-			function getProductInfo(productOrderCode) {
-
-				var categorySize = 0;
-				var categoryList = "";
-
-				$.ajax({
-					type: "get",
-					url: "/intro/newRecommend",
-					cache: false,
-					dataType: "json",
-					contentType: "application/json",
-					error: function (request, status, error) {
-						console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-					},
-					success: function (result) {
-						//추천상풍 리스트
-
-						var html = "";
-						if (result.length > 0) {
-							window.sessionStorage.setItem('main_recommend_ecommerceDataList', JSON.stringify(result));
-						}
-						for (var i = 0; i < result.length; i++) {
-							var image = result[i].imageUrl;
-							if (image.indexOf("_T01") > -1) {
-								image = image.replace("_T01", "_S01");
-							}
-
-							html += "<li>";
-							//                         html +="    <a href=\"javascript:goDetailPagebyRecommend('" + result[i].baseProductCode + "','" + result[i].clicklogRedirectLink + "')\" > \n";
-							//                         html += '	<a href="/p/'+result[i].productCode+'" class="item_info1" onclick="javascript:setEcommerceData('+ i +', \'RECOMMEND\', \'\');">';
-							html += '   <a href="javascript:goDetailPagebyRecommend(\'' + result[i].baseProductCode + '\',\'' + result[i].clicklogRedirectLink + '\')" class="item_info1">';
-							html += "        <img src=\"" + image + "/dims/resize/289x289\"/> \n";
-							html += "    </a>";
-							html += "    <span class=\"item_info2\">";
-							html += "            <span class=\"brand " + result[i].brandCode + "\">" + result[i].brandName + "</span> \n";
-							html += "            <span class=\"title\">" + result[i].productName + "</span> \n";
-							if (result[i].price === 0) {
-								html += "        <span class=\"price\"></span> \n";
-							} else {
-								html += "        <span class=\"price\">" + getExchangePrice(result[i].price) + "</span> \n";
-							}
-							html += "    </span> \n";
-							html += "    <span class=\"flag\"></span> \n";
-							html += "</li>";
-						}
-
-						if (result.length == 0) {
-							$(".pickfor_wrap1903").hide();
-						}
-						$("#pickForSlider1903 ul").html(html);
-						pickForSlider1903();
-					}
-				});
-			}
-
-			//전환가입
-			function hpoinJoin() {
-				var url = "/hpoint/transInfo";
-
-				$.ajax({
-					type: "GET",
-					url: url,
-					success: function (data) {
-						var hdUrl = data.hpUrl + "/cu/join/start.nhd";
-						$("#prtnrId").val(data.pt1002.prtnrId);
-						$("#chnnlId").val(data.pt1002.chnnlId);
-						$("#custNm").val(data.pt1002.custNm);
-						$("#birthDt").val(data.pt1002.birthDt);
-						$("#mophNo").val(data.pt1002.mophNo);
-						$("#chId").val(data.pt1002.chId);
-						$("#custUniqKey").val(data.pt1002.custUniqKey);
-						$("#email").val(data.pt1002.email);
-						$("#sexGbCd").val(data.pt1002.sexGbCd);
-
-						window.open(hdUrl, "transMember");
-
-						document.getElementById("ptcoReqnMdaInf").value = "pc";
-						$("#userHiddenForm").attr("action", hdUrl);
-						$("#userHiddenForm").submit();
-						$("#hpMemberLayer").hide();
-					},
-					error: function (e) {
-					}
-				});
-			}
-
-			function ssoTokenSuc(data) {
-				if (data.succYn == "Y") {
-					$.ajax({
-						type: "GET",
-						url: "/hpoint/simpleJoinMember",
-						data: { "mcustNo": data.mcustNo },
-						success: function (data) {
-							if (data.resultCode == "C") {
-								$("#ssoMcustNo").val(data.mcustNo);
-								layerPopup4('open');
-							}
-						},
-						error: function (e) {
-						}
-					});
-				}
-			}
-
-			//간편회원가입 전송
-			function simpJoin() {
-				var hdUrl = "https://www.h-point.co.kr/cu/join/simpJoinStart.nhd";
-				window.open(hdUrl, "simpStart_window");
-
-				document.getElementById("ptcoReqnMdaInf").value = "pc";
-				$("#simpJoinForm").attr("action", hdUrl);
-				$("#simpJoinForm").submit();
-				$("#simpJoinLayer").hide();
-			}
-
-			//전환가입 유도 팝업    
-			function layerPopup3(division) {
-				if (division == "open") {
-					$("#hpMemberLayer").show();
-				} else if (division == "close") {
-					if ($('#memPop').is(":checked")) {
-						setCookie("memberTransPopup", 'Y', 90);
-					} else {
-						setCookie("memberTransPopup", 'N', 0);
-					}
-					$("#hpMemberLayer").hide();
-				} else if (division == "oneweek") {
-					if ($('#oweek').is(":checked")) {
-						setCookie("memberTransPopup", 'Y', 7);
-					} else {
-						setCookie("memberTransPopup", 'N', 0);
-					}
-					$("#hpMemberLayer").hide();
-				}
-			}
-			//간편가입팝업
-			function layerPopup4(division) {
-				if (division == "open") {
-					$("#simpJoinLayer").show();
-				} else {
-					$("#simpJoinLayer").hide();
-				}
-			}
-
-			function layerPopup6(division) {
-				var documentResult = "";
-
-				if (division == "open") {
-
-					//                     documentResult += '<div class="popWrap1901" style="position:fixed;top:90px;right:20px;z-index:3;">                                     ';
-					// 	                documentResult += '    <div class="popwrap main_banner position1" style="position:relative;">                                          ';
-					// 	                documentResult += '        <div class="pop_cnt">                                                                                       ';
-					// 	                documentResult += '            <img usemap="#main_popup" src="http://cdn.thehandsome.com/pc/notice/pc_delivnoti_ko_190906.jpg" alt=""> ';
-					// 	                documentResult += '            <div class="chkbox_cls">                                                                                ';
-					// 	                documentResult += '                <input type="checkbox" id="popPos3" name="popPos3" onclick="layerPopup6(\'close\');" > <label for="popPos3">오늘 하루 열지 않음</label>               ';
-					// 	                documentResult += '            </div>                                                                                                  ';
-					// 	                documentResult += '        </div>                                                                                                      ';
-					// 	                documentResult += '        <a href="#" class="btn_close" onclick="layerPopup6(\'close\');">닫기</a>                                           ';
-					// 	                documentResult += '    </div>                                                                                                          ';
-					// 	                documentResult += '</div>                                                                                                              ';
-
-					documentResult += '<div class="popWrap1901" style="position:fixed;top:-22px;right:10px;z-index:20;">                                           ';
-					documentResult += '    <div class="popwrap main_banner position1" style="position:relative;">                                             ';
-					documentResult += '        <div class="pop_cnt" style="position:relative;">                                                               ';
-					documentResult += '            <img src="http://cdn.thehandsome.com/pc/notice/pc_delivnoti_ko_200922.jpg" alt="">                         ';
-					documentResult += '            <a href="/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:5%;width:140px;height:35px;">자세히보기</a>';
-					documentResult += '        </div>                                                                                                         ';
-					documentResult += '        <div class="chkbox_cls" style="background:#363636;">                                                           ';
-					documentResult += '            <input type="checkbox" id="popPos3" name="popPos3" onclick="layerPopup6(\'close\');"> <label for="popPos3">1일 동안 열지 않음</label>            ';
-					documentResult += '        </div>                                                                                                         ';
-					documentResult += '        <a href="#" class="btn_close" onclick="layerPopup6(\'close\');"">닫기</a>                                              ';
-					documentResult += '    </div>                                                                                                             ';
-					documentResult += '</div>                                                                                                                 ';
-
-					$("#mainPopwrap1").html(documentResult);
-
-				} else if (division == "close") {
-
-					if ($('#popPos3').is(":checked")) {
-						var todayDate = new Date();
-						setCookie("HSlayerPopup3", todayDate.getDate(), 1);
-					}
-					$("#mainPopwrap1").data('scroll', $('#mainPopwrap1').scrollTop());
-					$("#mainPopwrap1").hide();
-				}
-			}
-			//설날 공지 팝업
-			function layerPopup7(division) {
-
-				var todayDate = new Date();
-				var endBankCheck = new Date('2020/01/26 06:00:00');
-				var documentResult = "";
-				if (division == "open") {
-
-					documentResult += '<div class="popWrap1901" style="position:fixed;top:78px;right:10px;z-index:20;"><!--수정 200117--> ';
-					documentResult += '    <div class="popwrap main_banner position1" style="position:relative;">';
-					documentResult += '        <div class="pop_cnt" style="position:relative;">';
-					if (todayDate.getTime() < endBankCheck.getTime()) {
-						documentResult += '            <img src="http://cdn.thehandsome.com/pc/notice/pc_main_popup_holiday_20200122_ko.jpg" alt="2020년 명절배송안내"><!--수정 200117-->';
-						documentResult += '            <a href="/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:107px;bottom:10px;width:142px;height:37px;">자세히보기</a><!--수정 200122-->';
-					} else {
-						documentResult += '            <img src="http://cdn.thehandsome.com/pc/notice/pc_main_popup_holiday_200116_ko.jpg" alt="2020년 명절배송안내"><!--수정 200117-->';
-						documentResult += '            <a href="/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:178px;transform:translate3d(-50%,0,0);bottom:29px;width:142px;height:37px;">자세히보기</a><!--수정 200117-->';
-					}
-					documentResult += '        </div>';
-					documentResult += '        <div class="chkbox_cls" style="background:#363636;">';
-					documentResult += '            <input type="checkbox" id="popPos4" name="popPos4" onclick="layerPopup7(\'close\');"><label for="popPos4">1일 동안 열지 않음</label>                      ';
-					documentResult += '        </div>';
-					documentResult += '        <a href="#" class="btn_close" onclick="layerPopup7(\'close\');">닫기</a>';
-					documentResult += '    </div>';
-					documentResult += '</div>';
-
-
-					$("#mainPopwrap1").html(documentResult);
-				} else if (division == "close") {
-
-					if ($('#popPos4').is(":checked")) {
-						var todayDate = new Date();
-						setCookie("newYearPopup", todayDate.getDate(), 1);
-					}
-					$("#mainPopwrap1").data('scroll', $('#mainPopwrap1').scrollTop());
-					$("#mainPopwrap1").hide();
-				}
-			}
-
-			//올빼미 8월 이벤트 팝업
-			function layerPopup8(division, week) {
-
-				if (division === "open") {
-					var documentResult = "";
-
-					if (week === "fri" || week === "sat" || week === "sun") {
-						documentResult += '<div class="layerArea" id="nightEvtPop">';
-						documentResult += '    <div class="layerBg" style="display:block;"></div>';
-						documentResult += '        <div class="popwrap notipop_20190813 images-event-popup" style="display:block;">';
-						documentResult += '            <div class="in-box">';
-						documentResult += '                <div class="in-ab">';
-						if (week === "fri") {
-							documentResult += '        <div class="event-img-zone">';
-							documentResult += '            <img src="http://cdn.thehandsome.com/mobile/event/detail/image/handsome_202008/happy_4hour_mob_popup_img_01.jpg" style="width:100%;" alt="">';
-							documentResult += '        </div>';
-							documentResult += '        <div class="grayCloseCheckBox190821 black">';
-							documentResult += '            <input type="checkbox" id="eventpop_check_fri" onclick="layerPopup8(\'close\', \'fri\');"><label for="eventpop_check">오늘 그만 보기</label>';
-							documentResult += '        </div>';
-						}
-						if (week === "sat") {
-							documentResult += '        <div class="event-img-zone">';
-							documentResult += '            <img src="http://cdn.thehandsome.com/mobile/event/detail/image/handsome_202008/happy_4hour_mob_popup_img_02.jpg" style="width:100%;" alt="">';
-							documentResult += '        </div>';
-							documentResult += '        <div class="grayCloseCheckBox190821 black">';
-							documentResult += '            <input type="checkbox" id="eventpop_check_sat" onclick="layerPopup8(\'close\', \'sat\');"><label for="eventpop_check">오늘 그만 보기</label>';
-							documentResult += '        </div>';
-						}
-						if (week === "sun") {
-							documentResult += '        <div class="event-img-zone">';
-							documentResult += '            <img src="http://cdn.thehandsome.com/mobile/event/detail/image/handsome_202008/happy_4hour_mob_popup_img_03.jpg" style="width:100%;" alt="">';
-							documentResult += '        </div>';
-							documentResult += '        <div class="grayCloseCheckBox190821 black">';
-							documentResult += '            <input type="checkbox" id="eventpop_check_sun" onclick="layerPopup8(\'close\', \'sun\');"><label for="eventpop_check">오늘 그만 보기</label>';
-							documentResult += '        </div>';
-						}
-						documentResult += '                <a href="javascript:void(0);" class="btn_close" onclick="nightEvtPopLayerClose();"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>';
-						documentResult += '            </div>';
-						documentResult += '        </div>';
-						documentResult += '    </div>';
-						documentResult += '</div>';
-					}
-
-					$("#nightEventPopup").html(documentResult);
-
-				} else if (division === "close") {
-
-					if (week === "fri" && $("#eventpop_check_fri").is(":checked")) {
-						var todayDate = new Date();
-						setCookie("nightEvtFriPopup", todayDate.getDate(), 1);
-					}
-
-					if (week === "sat" && $("#eventpop_check_sat").is(":checked")) {
-						var todayDate = new Date();
-						setCookie("nightEvtSatPopup", todayDate.getDate(), 1);
-					}
-
-					if (week === "sun" && $("#eventpop_check_sun").is(":checked")) {
-						var todayDate = new Date();
-						setCookie("nightEvtSunPopup", todayDate.getDate(), 1);
-					}
-
-					$("#nightEventPopup").data('scroll', $('#mainPopwrap1').scrollTop());
-					$("#nightEventPopup").hide();
-				}
-
-			}
-
-			//설날 공지 팝업 (2021)
-			function layerPopup9(division) {
-
-				var todayDate = new Date();
-				var documentResult = "";
-				if (division == "open") {
-
-					documentResult += '	<div class="popWrap1901" style="position:fixed;top:-21px;right:10px;z-index:20;"> ';
-					documentResult += '		<div class="popwrap main_banner position1 newyears-pop" style="position:relative;">';
-					documentResult += '        	<div class="pop_cnt" style="position:relative;">';
-					documentResult += '				<img src="http://cdn.thehandsome.com/pc/notice/pc_newyear_ko_220120.jpg" alt="설 연휴 배송 안내">';
-					documentResult += '        		<a href="/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:5%;width:140px;height:35px;">자세히보기</a>';
-					documentResult += '        	</div>';
-					documentResult += '        	<div class="chkbox_cls" style="background:#363636;">';
-					documentResult += '        		<input type="checkbox" id="cls" onclick="layerPopup9(\'close\')"> <label for="cls"> 1일 동안 열지 않음</label>';
-					documentResult += '			</div>';
-					documentResult += '			<a href="javascript:;" class="btn_close" onclick="layerPopup9(\'close\')">닫기</a>';
-					documentResult += '		</div>';
-					documentResult += '	</div>';
-
-
-					$("#mainPopwrap1").html(documentResult);
-				} else if (division == "close") {
-
-					if ($('#cls').is(":checked")) {
-						var todayDate = new Date();
-						setCookie("newYearPopup2022", todayDate.getDate(), 1);
-					}
-					$("#mainPopwrap1").data('scroll', $('#mainPopwrap1').scrollTop());
-					$("#mainPopwrap1").hide();
-				}
-			}
-
-			//추석 공지 팝업 (2021)
-			function layerPopup11(division) {
-
-				var todayDate = new Date();
-				var documentResult = "";
-				if (division == "open") {
-
-					documentResult += ' <div class="popWrap1901" style="position:fixed;top:78px;right:10px;z-index:20;"> ';
-					documentResult += '     <div class="popwrap main_banner position1 newyears-pop" style="position:relative;">';
-					documentResult += '         <div class="pop_cnt" style="position:relative;">';
-					documentResult += '             <img src="http://cdn.thehandsome.com/pc/notice/pc_thanksgiving_ko_210914.jpg" alt="추석 연휴 배송 안내">';
-					documentResult += '             <a href="/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:5%;width:140px;height:35px;">자세히보기</a>';
-					documentResult += '         </div>';
-					documentResult += '         <div class="chkbox_cls" style="background:#363636;">';
-					documentResult += '             <input type="checkbox" id="cls" onclick="layerPopup11(\'close\')"> <label for="cls"> 1일 동안 열지 않음</label>';
-					documentResult += '         </div>';
-					documentResult += '         <a href="javascript:;" class="btn_close" onclick="layerPopup11(\'close\')">닫기</a>';
-					documentResult += '     </div>';
-					documentResult += ' </div>';
-
-
-					$("#mainPopwrap1").html(documentResult);
-				} else if (division == "close") {
-
-					if ($('#cls').is(":checked")) {
-						var todayDate = new Date();
-						setCookie("chuseokPopup2021", todayDate.getDate(), 1);
-					}
-					$("#mainPopwrap1").data('scroll', $('#mainPopwrap1').scrollTop());
-					$("#mainPopwrap1").hide();
-				}
-			}
-
-			//통합 멤버십 약관 제정 안내 팝업(21/03/01 00시~ 03/07 23:59:59)
-			function layerPopup10(division) {
-
-				var todayDate = new Date();
-				var documentResult = "";
-				if (division == "open") {
-
+        var newItemsSlider = "";
+        var bestItemsSlider = "";
+        var newProductCategory = "";
+        var bestProductCategory = "";
+        var checkInstagramInfo = false;
+        var allLinkTemp = [];
+        var allUrlTemp = [];
+        var allCaptionTemp = [];
+        var allIndex = 0;
+        var accountCount = 0;
+        var horiz = $(".horiz_topbanner").length;
+        
+        var rate_en = "";
+        var symbol_en = "";
+        var rate_zh = "";
+        var symbol_zh = "";
+        
+        $(document).ready(function(){
+            var todayDate = new Date(); 
+            
+            if(getCookie('newYearPopup2022') != todayDate.getDate()) {
+                var startNewYear = new Date('2022/01/25 21:00:00'), endNewYear = new Date('2022/02/01 23:59:59');
+                if (todayDate.getTime() >= startNewYear.getTime() && todayDate.getTime() <= endNewYear.getTime()) {
+                    layerPopup9('open'); 
+                }
+            }
+            
+            if(getCookie('HSlayerPopup3') != todayDate.getDate()) { // 추석
+                var startDate1 = new Date('2020/09/26 12:00:00'), endDate1 = new Date('2020/10/03 23:59:59');
+                if (todayDate.getTime() >= startDate1.getTime() && todayDate.getTime() <= endDate1.getTime()) {
+                    layerPopup6('open');
+                }
+            }
+            if(getCookie('newYearPopup') != todayDate.getDate()) { //설날
+                var startNewYear = new Date('2020/01/20 00:00:00'), endNewYear = new Date('2020/01/28 00:00:00');
+                if (todayDate.getTime() >= startNewYear.getTime() && todayDate.getTime() < endNewYear.getTime()) {
+                    layerPopup7('open'); //설날
+                }
+            }
+            
+           //설날 공지 팝업(2021)
+            if(getCookie('newYearPopup2021') != todayDate.getDate()) {
+                var startNewYear = new Date('2021/02/03 11:59:59'), endNewYear = new Date('2021/02/14 23:59:59');
+                if (todayDate.getTime() >= startNewYear.getTime() && todayDate.getTime() <= endNewYear.getTime()) {
+                	layerPopup9('open'); 
+                }
+            }
+
+            //추석 공지 팝업(2021)
+            if(getCookie('chuseokPopup2021') != todayDate.getDate()) {
+                var startChuseok = new Date('2021/09/15 16:00:00'), endChuseok = new Date('2021/09/21 23:59:59');
+                if (todayDate.getTime() >= startChuseok.getTime() && todayDate.getTime() <= endChuseok.getTime()) {
+                    layerPopup11('open'); 
+                }
+            }
+            
+         	//통합 멤버십 약관 제정 안내 팝업(2021/03/01~2021/03/07)
+            if(getCookie('membershipInfoMain') == "") {
+                var startMemberInfoMain = new Date('2021/03/01 00:00:00'), endMemberInfoMain = new Date('2021/03/07 23:59:59');
+                //유효기간 validation
+                if (todayDate.getTime() >= startMemberInfoMain.getTime() && todayDate.getTime() <= endMemberInfoMain.getTime()) {
+                	//팝업 호출
+                	layerPopup10('open'); 
+                }
+            } 
+            if(horiz > 0) {
+                $("#mainNoticeWrap").css("top","230px");
+                $(".popWrap1901").css("top", "78px");
+            }
+            
+            mainSlider1903();
+            edtSlider1903();
+            videoPlay1903();
+            
+            $.ajax({
+            	type: "get",
+            	url : "/ko/intro/mainCategoryList",
+                async : true,
+                contentType : "application/json",
+                error : function( request, status, error ){
+                    console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+                }, 
+                success : function( result ) {
+                	if(result.length > 0) {
+                		var newHtml = "";
+                		var bestHtml = "";
+                		var newCount = 0;
+                		var bestCount = 0;
+                		var isoCode = "ko";
+                		var categoryName = "";
+                		
+                		for(var i=0; i < result.length; i++) {
+                			if(isoCode == "ko") {
+                				categoryName = result[i].categoryName;
+                			} else if(isoCode == "en") {
+                				categoryName = result[i].categoryNameEN;
+                			} else if(isoCode == "zh") {
+                				categoryName = result[i].categoryNameZH;
+                			}
+                			
+               				if(result[i].displayTypeYn == true) {
+	                			if(result[i].displayType == true) {
+		                			if(newCount == 0) {
+		                				newProductCategory = result[i].categoryCode;
+		                				newHtml += '<li class="on">';
+		                			} else {
+		                				newHtml += '<li>';
+		                			}
+		                			
+		                			newHtml += '	<a href="javascript:getNewProductList(\''+result[i].categoryCode+'\')" onclick="GA_Event(\'메인\', \'신상품\', \''+categoryName+'\');">'+categoryName+'</a>';
+		                			newHtml += '</li>';
+		                			newCount++;
+	                			} else if(result[i].displayType == false) {
+	                				if(bestCount == 0) {
+	                					bestProductCategory = result[i].categoryCode;
+	                					bestHtml += '<li class="on">';
+		                			} else {
+		                				bestHtml += '<li>';
+		                			}
+		                			
+	                				bestHtml += '	<a href="javascript:getBestProductList(\''+result[i].categoryCode+'\')" onclick="GA_Event(\'메인\', \'베스트\', \''+categoryName+'\');">'+categoryName+'</a>';
+	                				bestHtml += '</li>';
+	                				bestCount++;
+	                			}
+               				}
+                		}
+                		$(".nbe_cnt.new .product_left_menu > ul").html(newHtml);
+                		tabNew();
+                		getNewProductList(newProductCategory);
+                		$(".nbe_cnt.best .product_left_menu > ul").html(bestHtml);
+                		tabBest();
+                		getBestProductList(bestProductCategory);
+                	}
+                }
+            });
+            
+            getMagazineList();
+            
+            var getUrlParameter = function getUrlParameter(sParam) {//URL에 포함된 파라미터 이용하기
+                var sPageURL = window.location.search.substring(1),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
+                for (i = 0; i < sURLVariables.length; i++) {
+                    sParameterName = sURLVariables[i].split('=');
+                    if (sParameterName[0] === sParam) {
+                        return sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+                    }
+                }
+            };
+            //layerPopup front test (노출 기한 상관 없이 pk 이용하여 메인에서 팝업 보기)
+            var pop1 = getUrlParameter('pop1'); 
+            if (typeof pop1 == "undefined") pop1 = "N";
+            
+            $.ajax({
+                type: "get",
+                url : "/ko/svcenter/mainNotice",
+                cache : false,
+                data: {"pop1":pop1},
+                async : true,
+                contentType : "application/json",
+                error : function( request, status, error ){     
+                    console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+                }, 
+                success : function( result ) {
+                    var todayDate = new Date(); 
+                    var switchMain = "";
+                    if(result.length > 0) switchMain = result[0].readCount;
+                    if("N" != switchMain){//switchMain = "N" 이면 메인팝업 기존방식(하드코딩)으로 돌리기 
+                        if(result.length > 0) {
+                            var documentResult="";
+                            var isocode = "ko";
+                            for(var i = 0 ; i < result.length ; i ++ ){
+                                var showYn = "N";
+                                if(getCookie(result[i].pk+isocode) != todayDate.getDate()) showYn = "Y"; // 오늘은 그만보기
+                                if(pop1 != "N") showYn = "Y"; //팝업 미리보기
+                                if(showYn == "Y") {
+                                     if(null != result[i].bgImage && "" != result[i].bgImage.trim()) {
+                                        documentResult += "<div class='popwrap_renewal1910 txtonimg add1' id='"+result[i].pk+isocode+"'>";
+                                        documentResult += "<img src='"+result[i].bgImage+"' alt='' class='pop_backimg'>";
+                                     } else {
+                                         documentResult += "<div class='popwrap_renewal1910' id='"+result[i].pk+isocode+"'>";
+                                     }
+                                     documentResult += "    <div class='pop_cnt'>";
+                                     if(null != result[i].noticeContentsYN && result[i].noticeContentsYN) {//단순 텍스트 출력 시 title 노출, html 포함 출력 시 title 비노출(html 코드에 title 포함)
+                                         if(null != result[i].noticeTitle && "" != result[i].noticeTitle.trim()) {
+                                             var noticeTitle = result[i].noticeTitle;
+                                             var replacedTitle = noticeTitle.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                                             documentResult += '<h3 class="pop_tlt">'+replacedTitle+'</h3>';
+                                         }
+                                     } 
+                                     if(null != result[i].noticeContents && "" != result[i].noticeContents.trim()){
+                                         if(result[i].noticeContentsYN) {
+                                             documentResult += "        <p class='pop_txt'>";
+                                         } else {//html 코드 출력
+                                             documentResult += "        <p class='pop_txt' style='min-height: 0; padding: 25px 0 0 0;'>";
+                                         }
+                                         var noticeContents = result[i].noticeContents;
+                                         var replacedContents = noticeContents.replace(/(?:\r\n|\r|\n)/g, '<br>');
+                                         documentResult +=                replacedContents;
+                                         documentResult += "        </p>";
+                                     }
+                                     if(null != result[i].bannerLink && "" != result[i].bannerLink.trim()){
+                                         documentResult += "        <div class='linkbox'>";
+                                         documentResult += "            <a href='"+result[i].bannerLink+"'>";
+                                        if(null != result[i].bannerLinkText && "" != result[i].bannerLinkText.trim()) documentResult += result[i].bannerLinkText;
+                                         documentResult += "            </a>";
+                                         documentResult += "        </div>";
+                                     }
+                                     documentResult += "    </div>";
+                                     documentResult += "    <div class='btnwrap'>";
+                                     documentResult += "        <input type='button' class='btn stoptoday closeLayerPopup' value=\"오늘은 그만보기 \">";
+                                     documentResult += "        <input type='button' class='btn close closeLayerPopup' value=\"닫기\">";
+                                     documentResult += "    </div>";
+                                     documentResult += "    <a href='#' class='btn_close closeLayerPopup'><img src='/_ui/desktop/common/images/popup/ico_close.png' alt=\"닫기\"></a>";
+                                     documentResult += "</div>";
+                                }
+                            }
+                            $("#mainNoticeWrap").html(documentResult);
+                            
+                            $(".closeLayerPopup").on("click", function(){
+                                if($(this).hasClass("stoptoday")){//오늘은 그만보기
+                                    var todayDate = new Date(); 
+                                    var cookieId = $(this).parents(".popwrap_renewal1910").attr("id");
+                                    setCookie(cookieId, todayDate.getDate(),1);
+                                }
+                                $(this).parents(".popwrap_renewal1910").css("display","none");
+                            });
+                            
+                        }
+                    } else {
+                        // 한섬마일리지 조회/사용불가
+                        if(getCookie('HSlayerPopup3') != todayDate.getDate()) {
+                            var startDate1 = new Date('2018/12/28 16:00:00'), endDate1 = new Date('2019/02/31 00:00:00');
+                            if (todayDate.getTime() >= startDate1.getTime() && todayDate.getTime() <= endDate1.getTime()) {
+                                //layerPopup6('open');
+                            }
+                        }
+                    }
+                }
+            });
+                     
+            $(".closeLayerPopup").on("click", function(){
+                if($(this).hasClass("stoptoday")){//오늘은 그만보기
+                    var todayDate = new Date(); 
+                    var cookieId = $(this).parents(".popwrap_renewal1910").attr("id");
+                    setCookie(cookieId, todayDate.getDate(),1);
+                }
+                $(this).parents(".popwrap_renewal1910").css("display","none");
+            });
+            
+            //추천 상품 호출
+            getProductInfo("RECOMMEND");
+            //비로그인 상태에서 메인페이지 진입시 쿠키 삭제 
+            
+                deletecookiePath("UID", "/");           
+                deletecookiePath("criteoEmail", "/");   
+                deletecookiePath("memberGb", "/");
+            
+            
+            var todayDate = new Date();
+            
+            //전환된 회원일 경우 처리
+            
+            
+            //전환가입유도 팝업
+            
+           
+            //자동로그인 팝업
+            
+                    var ssoUrl = "https://sso.h-point.co.kr:29865" + "/co/setSsoReqJSONP.hd";
+                    gfnSsoReqAjax(ssoUrl, ssoTokenSuc);
+                
+            
+            //인스타그램 생성 --START-- 중국어 인스타 그램 제외
+            
+            $.ajax({
+    	        type: "get",
+    	        url : "/ko/magazine/getAllInstargram"+"?type=search",
+    	        cache : false,
+    	        dataType : "json",
+    	        async : true,
+    	        contentType : "application/json",
+    	        error : function( request, status, error ){     
+    	            console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+    	        }, 
+    	        success : function( result ){
+    	            if(result.length > 0){
+    	                //정보 보여주기
+    	                var allHtml = [];
+    	                var account = "", logoImg = "";
+    	                var html = "";
+    	                accountCount = result.length;
+    	                
+   	                    for(var i=0; i < result.length; i++){
+   	                    	account = result[i].account;
+   	                    	logoImg = result[i].accountLogoImage;
+   	                    	
+   	                        allHtml = JSON.parse(result[i].html).data;
+   	                        allHtml.sort(function (a,b) {
+                       			return a.created_time > b.created_time ? -1 : a.created_time < b.created_time ? 1 : 0;
+                       		});
+   	                        
+   	                        $.each(allHtml, function(j, v){
+                                if(j == 0){
+                                    if(v.user.username != "fourm_official" && v.user.username != "youarehandsome"){
+                                        html += '<li class="swiper-slide">';
+                                        html += '    <a href="' + '/ko/magazine/instagram"' + ' onclick="GA_main(\'moment\',$(this))">';
+   		                                html += '       <img src="' + v.images.low_resolution.url + '" class="respon_image" onerror="this.src=\'http://cdn.thehandsome.com/_ui/desktop/common/images/instagram_video_thumb_283.jpg\'" />';
+   		                                html += '		<div class="insta_account1903">';
+   		                                html += '			<div class="account">';
+   		                                html += '				<div class="img_wrap">';
+   		                                if(account == v.user.username) {
+   		                                html += '					<img src="'+logoImg+'/dims/resize/50x50" alt="brandimg">';
+   		                                }
+   		                                html += '				</div>';
+   		                                html += '				<p>@'+v.user.username+'</p>';
+   		                                html += '			</div>';
+   		                                html += '		</div>';
+   		                                html += '		<div class="insta_pic_info"></div>';
+   		                                html += '		<div class="insta_pic_info_txt">';
+   		                                if(v.caption != null){
+   		                                html += '			<p class="title">' + v.caption.text.normalize('NFC') + '</p>';
+   		                                }else{
+   		                                html += '          <p class="title"></p>';
+   		                                }
+   		                                html += '		</div>';
+   		                                html += '	</a>';
+   		                                html += '	<div class="insta_cover_dim"></div>';
+   		                                html += '</li>';
+                                    }
+                                }
+   	                        });
+   	                    }
+    	            }
+                    
+    	            $('#instaContents > ul').html(html);
+    	            
+    	            instagramSlider1903();
+    	            instaImgHover();
+    	        }
+    	    });
+        
+            //인스타그램 생성 --END--
+		
+            //룰렛 이벤트
+       	     
+        var uid = "anonymous";
+        var chkUid = ["test1", "test2", "test3", "test4", "test5", "dlwnsdnjs7@yopmail.com",
+                      "test6","test7","test8","test10", "dlwnsdnjs70@yopmail.com"];
+		var todayRouletteDate = new Date();
+		//evt_roulette
+		if(getCookie('rouletteEventPopup') != todayRouletteDate.getDate()) {  
+			var rouletteStartDate = new Date('2019/10/07 00:00:00'), rouletteEndDate = new Date('2019/11/01 00:00:00');
+			//이벤트 기간
+			if(todayRouletteDate.getTime() >= rouletteStartDate.getTime() && todayRouletteDate.getTime() < rouletteEndDate.getTime()){
+				//통합회원 일때
+				if("" == "MEMBER_UNION" || chkUid.indexOf(uid) > -1){
+		 	   		$.ajax({
+				   		type:"GET",
+				        url:"/ko/magazine/event/checkUser",
+				        data: {pk:'8799828694912'},
+				        success:function(data){
+				        	
+				        	if(data=="SUCCESS"){
+				            	var innerHtml = "";
+		
+		                          	innerHtml += "<div class=\"popWrap1901\" id=\"popRouletteEvt\" style=\"position:absolute;top:78px;right:10px;z-index:20;\">";
+		                            innerHtml += "	<div class=\"popwrap main_banner position1\" style=\"position:relative;\">";
+		                            innerHtml += "		<div class=\"pop_cnt\" style=\"position:relative;\">";
+		                            innerHtml += "			<img usemap=\"#main_popup\" src=\"http://cdn.thehandsome.com/pc/event/detail/image/190923_event/evt_190917_mainpop.jpg\" alt=\"\"> ";
+		                            innerHtml += "			<a href=\"javascript:goRouletteEvent();\" style=\"display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:40px;width:212px;height:47px;\">지금응모하기</a> ";
+		                            innerHtml += "		</div> ";
+		                            innerHtml += "		<div class=\"chkbox_cls\" style=\"background:#363636;\"> ";
+		                            innerHtml += "			<input type=\"checkbox\" id=\"cls\" onclick=\"rouletteEvtPopClose(\'day_close\')\"><label for=\"cls\">오늘 하루 보지 않기</label> ";
+		                            innerHtml += "		</div> ";
+		                            innerHtml += "		<a href=\"#\" class=\"btn_close\" onclick=\"rouletteEvtPopClose(\'close\')\">닫기</a> ";
+		                            innerHtml += "	</div>";
+		                            innerHtml += "</div> ";
+		                            
+		                            $("#bodyWrap").prepend(innerHtml);
+				            		
+				            }
+				         }
+				     });
+		 	   }
+		    	
+			} 
+		}
+		
+		var jeventStartDate = new Date('2019/11/01 00:00:00'), jeventEndDate = new Date('2019/12/31 00:00:00');
+	       
+        if(location.href.indexOf("www.thehandsome.com") > -1){
+            jeventStartDate = new Date('2019/12/01 00:00:00')
+        }
+        //이벤트 기간
+        if(todayDate.getTime() >= jeventStartDate.getTime() && todayDate.getTime() < jeventEndDate.getTime()){
+            //통합회원 일때
+            if("" == "MEMBER_UNION" || "" == "MEMBER_TRANS"  || chkUid.indexOf(uid) > -1){
+                $.ajax({
+                    type:"GET",
+                    url:"/ko/magazine/event/checkEventPopJoinUser",
+                    success:function(data){
+                        if(data == "SUCCESS"){
+                            
+                            var innerHtml = "";
+        
+                                innerHtml += "<div class=\"layerArea191029\" style=\"display:block;outline:none;\" id=\"joinEventPopup\">";
+                                innerHtml += "  <div class=\"layerBg\" style=\"display:block;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);z-index:999;\"></div>";
+                                innerHtml += "      <div class=\"popwrap notipop_20191127\" style=\"display:block;\">                                                     ";
+	                            innerHtml += "          <div class=\"inner_notipop_20191127\">                                                                          ";
+	                            innerHtml += "              <img src=\"http://cdn.thehandsome.com/pc/event/detail/image/pc_evt_191127_pop.jpg\" alt=\"쿠폰함 바로가기\">  ";
+	                            innerHtml += "              <a href=\"/ko/mypage/voucher\" class=\"go_coupon_page_191127\">쿠폰함 바로가기</a> ";
+	                            innerHtml += "          </div>                                                                                                        ";
+	                            innerHtml += "          <a href=\"javascript:popClose1911();\" class=\"btn_close\" >닫기</a>                                                       ";
+	                            innerHtml += "      </div>                                                                                                            ";
+                                innerHtml += "  </div>";
+                                innerHtml += "</div> ";
+                                
+                                $("#bodyWrap").prepend(innerHtml);
+                                
+                        }
+                     }
+                 });
+           }
+        } 
+	       
+		
+		var eventStartDate = new Date('2019/10/29 00:00:00'), eventEndDate = new Date('2019/12/01 00:00:00');
+		
+		if(location.href.indexOf("www.thehandsome.com") > -1){
+			eventStartDate = new Date('2019/11/01 13:00:00')
+		}
+		//이벤트 기간
+		if(todayDate.getTime() >= eventStartDate.getTime() && todayDate.getTime() < eventEndDate.getTime()){
+			//통합회원 일때
+			if("" == "MEMBER_UNION" || chkUid.indexOf(uid) > -1){
+	 	   		$.ajax({
+			   		type:"GET",
+			        url:"/ko/magazine/event/checkEventPopUser",
+			        data: {pk:'8799959734144'},
+			        success:function(data){
+			        	if(data=="SUCCESS"){
+			            	var innerHtml = "";
+	    
+	                          	innerHtml += "<div class=\"layerArea191029\" style=\"display:block;outline:none;\" id=\"playHandsomeStyle\">";
+	                            innerHtml += "	<div class=\"layerBg\" style=\"display:block;width:100%;height:100%;position:fixed;top:0;left:0;background:rgba(0,0,0,0.5);z-index:999;\"></div>";
+	                            innerHtml += "		<div class=\"locky_popup_1910\" style=\"position:fixed;top:50%;left:50%;transform:translate3d(-50%, -50%, 0);z-index:1000;\">";
+	                            innerHtml += "			<div class=\"pop_inner\" style=\"position:relative;\"> ";
+	                            innerHtml += "			<img src=\"http://cdn.thehandsome.com/pc/event/detail/image/191028_event/guide_popup.jpg\" alt=\"guide_popup\" style=\"display:block;\">";
+	                            innerHtml += "			<a href=\"javascript:goHandsomeStyleEvent();\" style=\"display:block;width:304px;height:63px;position:absolute;bottom:32px;left:50%;transform:translate3d(-50%, 0, 0);overflow:hidden;text-indent:-999em;\">지금 응모하기</a> ";
+	                            innerHtml += "			<a href=\"javascript:popClose1904();\" class=\"pop_close\" style=\"display:block;width:50px;height:50px;position:absolute;top:15px;right:15px;overflow:hidden;text-indent:-9999em;\">닫기</a>";
+	                            innerHtml += "			</div>";
+	                            innerHtml += "		</div> ";
+	                            innerHtml += "	</div>";
+	                            innerHtml += "</div> ";
+	                            
+	                            $("#bodyWrap").prepend(innerHtml);
+			            		
+			            }
+			         }
+			     });
+	 	   }
+		} 
+		
+    	
+	    	for(var i=0; i < $("#edtSlider1903_0 > ul > li .price").length ; i++) {
+	    		var exPrice = $("#edtSlider1903_0 > ul > li .price").eq(i).html();
+	    		$("#edtSlider1903_0 > ul > li .price").eq(i).html(getExchangePrice(exPrice));
+	    	}
+	    	
+	    	for(var i=0; i < $("#edtSlider1903_1 > ul > li .price").length ; i++) {
+	    		var exPrice = $("#edtSlider1903_1 > ul > li .price").eq(i).html();
+	    		$("#edtSlider1903_1 > ul > li .price").eq(i).html(getExchangePrice(exPrice));
+	    	}
+	    	
+            // 마케팅 수신 동의 팝업
+            
+            
+            //8월 올빼미 이벤트 팝업
+        	//올빼미 테스트
+        	var strArray = location.search.split('&');
+        	var testDate = "";
+        	
+        	/* $.each(strArray, function (index, item){
+        		if(item.indexOf('testDate') != -1) {
+        			var strSubArray = item.split('=');
+        			testDate = strSubArray[1];
+        		}
+        	});
+        	
+        	if (testDate !== "") {
+        		if(parseInt(testDate) >= 20200807200000 && parseInt(testDate) <= 20200807235959 && getCookie('nightEvtFriPopup') != todayDate.getDate()) {
+        			layerPopup8('open', 'fri');
+        		}
+        		if(parseInt(testDate) >= 20200808200000 && parseInt(testDate) <= 20200808235959 && getCookie('nightEvtSatPopup') != todayDate.getDate()) {
+        			layerPopup8('open', 'sat');
+        		}
+        		if(parseInt(testDate) >= 20200809200000 && parseInt(testDate) <= 20200809235959 && getCookie('nightEvtSunPopup') != todayDate.getDate()) {
+        			layerPopup8('open', 'sun');
+        		}
+        	} else {
+            	if(false && getCookie('nightEvtFriPopup') != todayDate.getDate()) {
+            		layerPopup8('open', 'fri');
+            	}
+            	if(false && getCookie('nightEvtSatPopup') != todayDate.getDate()) {
+            		layerPopup8('open', 'sat');
+            	}
+            	if(false && getCookie('nightEvtSunPopup') != todayDate.getDate()) {
+            		layerPopup8('open', 'sun');
+            	}
+        	} */
+        	
+        	// braze 메인 진입시
+        	brazeLogCustomEvent("ENTER", "");
+        });
+      
+        
+	    
+        function getNewProductList(categoryCode) {
+        	$.ajax({
+        		type: "get",
+            	url : "/ko/intro/mainNewProductList"+"?categoryCode="+categoryCode,
+                dataType : "json",
+                async : true,
+                contentType : "application/json",
+                error : function( request, status, error ){
+                    console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+                }, 
+                success : function( result ) {
+                	var html = "";
+                	if(result.length > 0) {
+                	    window.sessionStorage.setItem('main_new_ecommerceDataList', JSON.stringify(result));
+                		html += '<div class="nbe_cnt_inner swiper-container" id="newListSlider">';
+                		html += '	<ul class="items_list swiper-wrapper">';
+                		for(var i=0; i < result.length; i++) {
+               			html += '		<li class="swiper-slide">';
+               			html += '			<div class="item_box">';
+                		html += '				<a href="/ko/p/'+result[i].productCode+'" class="item_info1" onclick="javascript:GA_main(\'newImg\',$(this));setEcommerceData('+ i +', \'NEW\', \''+categoryCode+'\');">';
+               			html += '					<span class="item_img">';
+               			html += '						<img src="'+result[i].T01imageUrl+'/dims/resize/234x353" alt="" name="'+result[i].productName+'" class="respon_image">';
+               			html += '					</span>';
+               			html += '				</a>';
+               			html += '				<a href="/ko/p/'+result[i].productCode+'" class="item_info2" onclick="javascript:GA_main(\'new\',$(this));setEcommerceData('+ i +', \'NEW\', \''+categoryCode+'\');">';
+               			html += '					<span class="brand">'+result[i].brandName+'</span>';
+               			html += '					<span class="price">'+ getExchangePrice(result[i].price) +'</span>';
+               			html += '				</a>';
+               			html += '			</div>';
+               			html += '		</li>';
+                		}
+                		html += '	</ul>';
+                		html += '<div class="swiper-button-next"></div>';
+                        html += '<div class="swiper-button-prev"></div>';
+                		html += '</div>';
+                		$(".product_list1903 .nbe_cnt.new .nbe_cnt_inner_wrap").html(html);
+			        	newProductListSlider1903();
+                	} else {
+                		$(".product_list1903 .nbe_cnt.new .nbe_cnt_inner_wrap").html(html);
+                	}
+                }
+        	});
+        }
+        
+        function getBestProductList(categoryCode) {
+        	$.ajax({
+        		type: "get",
+            	url : "/ko/intro/mainBestProductList"+"?categoryCode="+categoryCode,
+                dataType : "json",
+                async : true,
+                contentType : "application/json",
+                error : function( request, status, error ){
+                    console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+                }, 
+                success : function( result ) {
+                	var html = "";
+                	if(result.length > 0) {
+                	    window.sessionStorage.setItem('main_best_ecommerceDataList', JSON.stringify(result));
+                		html += '<div class="nbe_cnt_inner swiper-container" id="bestListSlider">';
+                		html += '	<ul class="items_list swiper-wrapper">';
+                		for(var i=0; i < result.length; i++) {
+               			html += '		<li class="swiper-slide">';
+               			html += '			<div class="item_box">';
+               			html += '				<a href="/ko/p/'+result[i].productCode+'" class="item_info1" onclick="javascript:setEcommerceData('+ i +', \'BEST\', \''+categoryCode+'\');">';
+               			html += '					<span class="item_img">';
+               			html += '						<img src="'+result[i].T01imageUrl+'/dims/resize/234x353" alt="" name="'+result[i].productName+'" class="respon_image" onclick="GA_main(\'bestImg\',$(this))">';
+               			html += '					</span>';
+               			html += '				</a>';
+               			html += '				<a href="/ko/p/'+result[i].productCode+'" class="item_info2" onclick="javascript:GA_main(\'best\',$(this));setEcommerceData('+ i +', \'BEST\', \''+categoryCode+'\');">';
+               			html += '					<span class="brand">'+result[i].brandName+'</span>';
+               			html += '					<span class="price">'+ getExchangePrice(result[i].price) +'</span>';
+               			html += '				</a>';
+               			html += '			</div>';
+               			html += '		</li>';
+                		}
+                		html += '	</ul>';
+                		html += '<div class="swiper-button-next"></div>';
+                        html += '<div class="swiper-button-prev"></div>';
+                		html += '</div>';
+                		$(".product_list1903 .nbe_cnt.best .nbe_cnt_inner_wrap").html(html);
+	                	bestProductListSlider1903();
+                	}else {
+                    	$(".product_list1903 .nbe_cnt.best .nbe_cnt_inner_wrap").html(html);
+                    }
+                }
+        	});
+        }
+        
+        function getMagazineList() {
+        	$.ajax({
+        		type: "get",
+            	url : "/ko/intro/mainMagazine",
+                cache : false,
+                dataType : "json",
+                async : true,
+                contentType : "application/json",
+                error : function( request, status, error ){
+                    console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+                }, 
+                success : function( result ) {
+                	var categoryText = "";
+                	var url = "";
+                	var html = "";
+                	if(result.length > 0) {
+                		for(var i=0; i < result.length; i++) {
+                			if(result[i].category == "뉴스") {
+                				categoryText = "뉴스";
+                			} else if(result[i].category == "SPOTLIGHT_ON") {
+                				categoryText = "위클리 픽";
+                			} else if(result[i].category == "HANDSOME_PEOPLE") {
+                				categoryText = "핸썸피플";
+                			} else if(result[i].category == "TREND_TO_KNOW") {
+                				categoryText = "셀렉션";
+                			} else if(result[i].category == "HOW_TO_STYLE") {
+                				categoryText = "커버스토리";
+                			} else if(result[i].category == "EDITORS_PICK") {
+                				categoryText = "스타일 가이드";
+                			} else if(result[i].category == "PLAY_PLAY") {
+                				categoryText = "플레이";
+                			} else if(result[i].category == "SHARP_SOME") {
+                                categoryText = "#SOME";
+                            }
+                			
+                			html += '<li class="swiper-slide">';
+                			if(result[i].category == "뉴스") {
+                			html += '	<a href="/ko/magazine/newsDetail'+result[i].template+'?newsCode='+result[i].pk+'" class="img_wrap" onclick="GA_main(\''+i+'theMagazine\',$(this));">';
+                			} else {
+                			html += '	<a href="/ko/magazine/editorials/'+result[i].pk+'" class="img_wrap" onclick="GA_main(\''+i+'theMagazine\',$(this));">';
+                			}
+                			if(result[i].imageUrl.indexOf(".mp4") > -1){
+                			    html += '          <video autoplay muted playsinline loop preload="auto" style="width:100%; max-height:352px; auto;outline:none;" poster="">';
+                			    html += '          <source src="'+result[i].imageUrl+'" type="video/mp4">';
+                			    html += '          </video>';
+                            }else{
+                                html += '       <img src="'+result[i].imageUrl+'/dims/resize/348x352" alt="매거진이미지">';
+                            }
+                			
+                			
+                			html += '	</a>';
+                			html += '	<div class="txt_wrap">';
+                			html += '		<p class="magazine_tit">'+categoryText+'</p>';
+                			html += '		<p class="tit">'+result[i].desktopTitle+'</p>';
+                			html += '		<p class="s_t">'+result[i].desktopSubTitle+'</p>';
+                			if(result[i].category == "뉴스") {
+                			html += '		<a href="/ko/magazine/newsDetail'+result[i].template+'?newsCode='+result[i].pk+'" class="detail" onclick="GA_main(\''+i+'theMagazine\',$(this));">자세히 보기</a>';
+                			} else {
+                			html += '		<a href="/ko/magazine/editorials/'+result[i].pk+'" class="detail" onclick="GA_main(\''+i+'theMagazine\',$(this));">자세히 보기</a>';
+                			}
+                			html += '	</div>';
+                			html += '</li>';
+                			html += '';
+                		}
+                		$(".the_magazine_wrap1903 .magazine_slider1903 > ul").html(html);
+        				magazinSlider1903();
+                	}
+                }
+        	});
+        }
+        
+         // 상단 띠 배너 닫기
+        function popClose03() {
+            $('.horiz_topbanner, .horiz_topbanner_inner').slideUp();
+            if(horiz > 0) {
+                $("#mainNoticeWrap").css("top","150px");
+            }
+        };
+
+        // RECOMMEND 호출 ajax
+        function getProductInfo(productOrderCode){
+            
+            var categorySize = 0;
+            var categoryList = "";
+            
+            $.ajax({
+                type: "get",
+                url : "/ko/intro/newRecommend",
+                cache : false,
+                dataType : "json",
+                contentType : "application/json",
+                error : function( request, status, error ){     
+                    console.log( "code:" + request.status+"\n" + "message:" + request.responseText+"\n" + "error:" + error );
+                },
+                success : function( result ){
+                    //추천상풍 리스트
+                    
+                    var html = "";
+                    if(result.length > 0){
+                        window.sessionStorage.setItem('main_recommend_ecommerceDataList', JSON.stringify(result));
+                    }
+                    for(var i = 0; i < result.length; i++) {
+                        var image = result[i].imageUrl;
+                        if(image.indexOf("_T01") > -1){
+                            image = image.replace("_T01","_S01");
+                        }
+                        
+                        html +="<li>";
+//                         html +="    <a href=\"javascript:goDetailPagebyRecommend('" + result[i].baseProductCode + "','" + result[i].clicklogRedirectLink + "')\" onclick=\"GA_main('recommend',$(this))\"> \n";
+//                         html += '	<a href="/ko/p/'+result[i].productCode+'" class="item_info1" onclick="javascript:GA_main(\'recommend\',$(this));setEcommerceData('+ i +', \'RECOMMEND\', \'\');">';
+                        html += '   <a href="javascript:goDetailPagebyRecommend(\'' + result[i].baseProductCode + '\',\'' + result[i].clicklogRedirectLink + '\')" class="item_info1" onclick="javascript:GA_main(\'recommend\',$(this));setEcommerceData('+ i +', \'RECOMMEND\', \'\');">';
+                        html +="        <img src=\""+ image +"/dims/resize/289x289\"/> \n";
+                        html +="    </a>";
+                        html +="    <span class=\"item_info2\">";
+                        html += "            <span class=\"brand "+ result[i].brandCode +"\">"+ result[i].brandName +"</span> \n";
+                        html += "            <span class=\"title\">"+ result[i].productName +"</span> \n";
+                        if(result[i].price === 0) {
+                            html += "        <span class=\"price\"></span> \n";  
+                        } else {
+                            html += "        <span class=\"price\">"+ getExchangePrice(result[i].price) +"</span> \n";
+                        }
+                        html +="    </span> \n";
+                        html +="    <span class=\"flag\"></span> \n";
+                        html +="</li>"; 
+                    }
+                    
+                    if(result.length == 0){
+                        $(".pickfor_wrap1903").hide();
+                    }
+                    $("#pickForSlider1903 ul").html(html);
+	                pickForSlider1903();
+                }
+            });
+        }
+        
+        //전환가입
+        function hpoinJoin(){
+            var url = "/ko/hpoint/transInfo";
+            
+            $.ajax({
+                type:"GET",
+                url:url,
+                success:function(data){
+                    var hdUrl = data.hpUrl + "/cu/join/start.nhd";
+                    $("#prtnrId").val(data.pt1002.prtnrId);
+                    $("#chnnlId").val(data.pt1002.chnnlId);
+                    $("#custNm").val(data.pt1002.custNm);
+                    $("#birthDt").val(data.pt1002.birthDt);
+                    $("#mophNo").val(data.pt1002.mophNo);
+                    $("#chId").val(data.pt1002.chId);
+                    $("#custUniqKey").val(data.pt1002.custUniqKey);
+                    $("#email").val(data.pt1002.email);
+                    $("#sexGbCd").val(data.pt1002.sexGbCd);
+                    
+                    window.open(hdUrl,"transMember");
+                    
+                    document.getElementById("ptcoReqnMdaInf").value = "pc";
+                    $("#userHiddenForm").attr("action", hdUrl);
+                    $("#userHiddenForm").submit();
+                    $("#hpMemberLayer").hide();
+                },
+                error:function(e){
+                }
+            });
+        }
+        
+        function ssoTokenSuc(data){
+            if (data.succYn == "Y") {
+                $.ajax({
+                    type:"GET",
+                    url:"/ko/hpoint/simpleJoinMember",
+                    data: {"mcustNo":data.mcustNo},
+                    success:function(data){
+                        if(data.resultCode == "C"){
+                            $("#ssoMcustNo").val(data.mcustNo);
+                            layerPopup4('open'); 
+                        }
+                    },
+                    error:function(e){
+                    }
+                });
+            }
+        }
+        
+        //간편회원가입 전송
+        function simpJoin(){
+            var hdUrl = "https://www.h-point.co.kr/cu/join/simpJoinStart.nhd";
+            window.open(hdUrl,"simpStart_window");
+            
+            document.getElementById("ptcoReqnMdaInf").value = "pc";
+            $("#simpJoinForm").attr("action", hdUrl);
+            $("#simpJoinForm").submit();
+            $("#simpJoinLayer").hide();  
+        }
+        
+        //전환가입 유도 팝업    
+        function layerPopup3(division) {
+            if(division == "open") {
+                $("#hpMemberLayer").show();
+            } else if(division == "close") {       
+                if($('#memPop').is(":checked")) { 
+                    setCookie("memberTransPopup", 'Y', 90);
+                }else{ 
+                    setCookie("memberTransPopup", 'N', 0);
+                }
+                $("#hpMemberLayer").hide();
+            } else if(division == "oneweek") {       
+                if($('#oweek').is(":checked")) { 
+                    setCookie("memberTransPopup", 'Y', 7);
+                }else{ 
+                    setCookie("memberTransPopup", 'N', 0);
+                }
+                $("#hpMemberLayer").hide();
+            }
+        }
+        //간편가입팝업
+        function layerPopup4(division) {
+            if(division == "open") {
+                $("#simpJoinLayer").show();
+            } else {
+                $("#simpJoinLayer").hide();  
+            }   
+        }
+        
+        function layerPopup6(division) {
+            var documentResult = "";
+            
+            if(division == "open") {
+                
+//                     documentResult += '<div class="popWrap1901" style="position:fixed;top:90px;right:20px;z-index:3;">                                     ';
+// 	                documentResult += '    <div class="popwrap main_banner position1" style="position:relative;">                                          ';
+// 	                documentResult += '        <div class="pop_cnt">                                                                                       ';
+// 	                documentResult += '            <img usemap="#main_popup" src="http://cdn.thehandsome.com/pc/notice/pc_delivnoti_ko_190906.jpg" alt=""> ';
+// 	                documentResult += '            <div class="chkbox_cls">                                                                                ';
+// 	                documentResult += '                <input type="checkbox" id="popPos3" name="popPos3" onclick="layerPopup6(\'close\');" > <label for="popPos3">오늘 하루 열지 않음</label>               ';
+// 	                documentResult += '            </div>                                                                                                  ';
+// 	                documentResult += '        </div>                                                                                                      ';
+// 	                documentResult += '        <a href="#" class="btn_close" onclick="layerPopup6(\'close\');">닫기</a>                                           ';
+// 	                documentResult += '    </div>                                                                                                          ';
+// 	                documentResult += '</div>                                                                                                              ';
+	                
+	                documentResult += '<div class="popWrap1901" style="position:fixed;top:-22px;right:10px;z-index:20;">                                           ';
+		            documentResult += '    <div class="popwrap main_banner position1" style="position:relative;">                                             ';
+		            documentResult += '        <div class="pop_cnt" style="position:relative;">                                                               ';
+		            documentResult += '            <img src="http://cdn.thehandsome.com/pc/notice/pc_delivnoti_ko_200922.jpg" alt="">                         ';
+		            documentResult += '            <a href="/ko/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:5%;width:140px;height:35px;">자세히보기</a>';
+		            documentResult += '        </div>                                                                                                         ';
+		            documentResult += '        <div class="chkbox_cls" style="background:#363636;">                                                           ';
+		            documentResult += '            <input type="checkbox" id="popPos3" name="popPos3" onclick="layerPopup6(\'close\');"> <label for="popPos3">1일 동안 열지 않음</label>            ';
+		            documentResult += '        </div>                                                                                                         ';
+		            documentResult += '        <a href="#" class="btn_close" onclick="layerPopup6(\'close\');"">닫기</a>                                              ';
+		            documentResult += '    </div>                                                                                                             ';
+		            documentResult += '</div>                                                                                                                 ';
+                    
+                    $("#mainPopwrap1").html(documentResult);
+                
+            } else if(division == "close") {
+                
+                if($('#popPos3').is(":checked")) {
+                    var todayDate = new Date(); 
+                    setCookie("HSlayerPopup3",todayDate.getDate(),1);
+                }
+                $("#mainPopwrap1").data('scroll',$('#mainPopwrap1').scrollTop());
+                $("#mainPopwrap1").hide();
+            }
+        }
+      //설날 공지 팝업
+        function layerPopup7(division) {
+    	  
+        	var todayDate = new Date();
+        	var endBankCheck = new Date('2020/01/26 06:00:00');
+            var documentResult = "";
+            if(division == "open") {
+                
+	                documentResult += '<div class="popWrap1901" style="position:fixed;top:78px;right:10px;z-index:20;"><!--수정 200117--> ';
+	                documentResult += '    <div class="popwrap main_banner position1" style="position:relative;">';
+	                documentResult += '        <div class="pop_cnt" style="position:relative;">';
+	                if(todayDate.getTime() < endBankCheck.getTime()){
+	                	documentResult += '            <img src="http://cdn.thehandsome.com/pc/notice/pc_main_popup_holiday_20200122_ko.jpg" alt="2020년 명절배송안내"><!--수정 200117-->';
+	                	documentResult += '            <a href="/ko/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:107px;bottom:10px;width:142px;height:37px;">자세히보기</a><!--수정 200122-->';
+	                } else {
+	                	documentResult += '            <img src="http://cdn.thehandsome.com/pc/notice/pc_main_popup_holiday_200116_ko.jpg" alt="2020년 명절배송안내"><!--수정 200117-->';
+	                	documentResult += '            <a href="/ko/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:178px;transform:translate3d(-50%,0,0);bottom:29px;width:142px;height:37px;">자세히보기</a><!--수정 200117-->';
+	                }
+	                documentResult += '        </div>';
+	                documentResult += '        <div class="chkbox_cls" style="background:#363636;">';
+	                documentResult += '            <input type="checkbox" id="popPos4" name="popPos4" onclick="layerPopup7(\'close\');"><label for="popPos4">1일 동안 열지 않음</label>                      ';
+	                documentResult += '        </div>';
+	                documentResult += '        <a href="#" class="btn_close" onclick="layerPopup7(\'close\');">닫기</a>';
+	                documentResult += '    </div>';
+	                documentResult += '</div>';
+                
+
+                $("#mainPopwrap1").html(documentResult);
+            } else if(division == "close") {
+                
+                if($('#popPos4').is(":checked")) {
+                    var todayDate = new Date(); 
+                    setCookie("newYearPopup",todayDate.getDate(),1);
+                }
+                $("#mainPopwrap1").data('scroll',$('#mainPopwrap1').scrollTop());
+                $("#mainPopwrap1").hide();
+            }
+        }
+      
+      	//올빼미 8월 이벤트 팝업
+        function layerPopup8(division, week) {
+        	
+        	if(division === "open") {
+        		var documentResult = "";
+
+        		if(week === "fri" || week === "sat" || week === "sun") {
+        			documentResult += '<div class="layerArea" id="nightEvtPop">';
+                    documentResult += '    <div class="layerBg" style="display:block;"></div>';
+                    documentResult += '        <div class="popwrap notipop_20190813 images-event-popup" style="display:block;">';
+                    documentResult += '            <div class="in-box">';
+                    documentResult += '                <div class="in-ab">';
+        			if(week === "fri") {
+        				documentResult += '        <div class="event-img-zone">';
+                        documentResult += '            <img src="http://cdn.thehandsome.com/mobile/event/detail/image/handsome_202008/happy_4hour_mob_popup_img_01.jpg" style="width:100%;" alt="">';
+                        documentResult += '        </div>';
+                        documentResult += '        <div class="grayCloseCheckBox190821 black">';
+                        documentResult += '            <input type="checkbox" id="eventpop_check_fri" onclick="layerPopup8(\'close\', \'fri\');"><label for="eventpop_check">오늘 그만 보기</label>';
+                        documentResult += '        </div>';
+            		}
+            		if(week === "sat") {
+            			documentResult += '        <div class="event-img-zone">';
+                        documentResult += '            <img src="http://cdn.thehandsome.com/mobile/event/detail/image/handsome_202008/happy_4hour_mob_popup_img_02.jpg" style="width:100%;" alt="">';
+                        documentResult += '        </div>';
+                        documentResult += '        <div class="grayCloseCheckBox190821 black">';
+                        documentResult += '            <input type="checkbox" id="eventpop_check_sat" onclick="layerPopup8(\'close\', \'sat\');"><label for="eventpop_check">오늘 그만 보기</label>';
+                        documentResult += '        </div>';
+            		}
+            		if(week === "sun") {
+            			documentResult += '        <div class="event-img-zone">';
+                        documentResult += '            <img src="http://cdn.thehandsome.com/mobile/event/detail/image/handsome_202008/happy_4hour_mob_popup_img_03.jpg" style="width:100%;" alt="">';
+                        documentResult += '        </div>';
+                        documentResult += '        <div class="grayCloseCheckBox190821 black">';
+                        documentResult += '            <input type="checkbox" id="eventpop_check_sun" onclick="layerPopup8(\'close\', \'sun\');"><label for="eventpop_check">오늘 그만 보기</label>';
+                        documentResult += '        </div>';
+            		}
+            		documentResult += '                <a href="javascript:void(0);" class="btn_close" onclick="nightEvtPopLayerClose();"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>';
+            		documentResult += '            </div>';
+            		documentResult += '        </div>';
+            		documentResult += '    </div>';
+                    documentResult += '</div>';
+        		}
+                
+                $("#nightEventPopup").html(documentResult);
+                
+        	} else if(division === "close") {
+        		
+        		if(week === "fri" && $("#eventpop_check_fri").is(":checked")) {
+        			var todayDate = new Date(); 
+                    setCookie("nightEvtFriPopup",todayDate.getDate(),1);
+        		}
+        		
+        		if(week === "sat" && $("#eventpop_check_sat").is(":checked")) {
+        			var todayDate = new Date(); 
+                    setCookie("nightEvtSatPopup",todayDate.getDate(),1);
+        		}
+        		
+        		if(week === "sun" && $("#eventpop_check_sun").is(":checked")) {
+        			var todayDate = new Date(); 
+                    setCookie("nightEvtSunPopup",todayDate.getDate(),1);
+        		}
+        		
+        		$("#nightEventPopup").data('scroll',$('#mainPopwrap1').scrollTop());
+                $("#nightEventPopup").hide();
+        	}
+        	
+        }
+      	
+      //설날 공지 팝업 (2021)
+        function layerPopup9(division) {
+    	  
+        	var todayDate = new Date();
+            var documentResult = "";
+            if(division == "open") {
+                
+	                documentResult += '	<div class="popWrap1901" style="position:fixed;top:-21px;right:10px;z-index:20;"> ';
+	                documentResult += '		<div class="popwrap main_banner position1 newyears-pop" style="position:relative;">';
+	                documentResult += '        	<div class="pop_cnt" style="position:relative;">';
+	                documentResult += '				<img src="http://cdn.thehandsome.com/pc/notice/pc_newyear_ko_220120.jpg" alt="설 연휴 배송 안내">';
+	                documentResult += '        		<a href="/ko/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:5%;width:140px;height:35px;">자세히보기</a>';
+	                documentResult += '        	</div>';
+	                documentResult += '        	<div class="chkbox_cls" style="background:#363636;">';
+	                documentResult += '        		<input type="checkbox" id="cls" onclick="layerPopup9(\'close\')"> <label for="cls"> 1일 동안 열지 않음</label>';
+	                documentResult += '			</div>';
+	                documentResult += '			<a href="javascript:;" class="btn_close" onclick="layerPopup9(\'close\')">닫기</a>';
+	                documentResult += '		</div>';
+                	documentResult += '	</div>';
+                
+
+                $("#mainPopwrap1").html(documentResult);
+            } else if(division == "close") {
+                
+                if($('#cls').is(":checked")) {
+                    var todayDate = new Date(); 
+                    setCookie("newYearPopup2022",todayDate.getDate(),1);
+                }
+                $("#mainPopwrap1").data('scroll',$('#mainPopwrap1').scrollTop());
+                $("#mainPopwrap1").hide();
+            }
+        }
+
+        //추석 공지 팝업 (2021)
+        function layerPopup11(division) {
+            
+            var todayDate = new Date();
+            var documentResult = "";
+            if(division == "open") {
+                
+                    documentResult += ' <div class="popWrap1901" style="position:fixed;top:78px;right:10px;z-index:20;"> ';
+                    documentResult += '     <div class="popwrap main_banner position1 newyears-pop" style="position:relative;">';
+                    documentResult += '         <div class="pop_cnt" style="position:relative;">';
+                    documentResult += '             <img src="http://cdn.thehandsome.com/pc/notice/pc_thanksgiving_ko_210914.jpg" alt="추석 연휴 배송 안내">';
+                    documentResult += '             <a href="/ko/svcenter/notice" style="display:block;overflow:hidden;text-indent:-999em;position:absolute;left:50%;transform:translate3d(-50%,0,0);bottom:5%;width:140px;height:35px;">자세히보기</a>';
+                    documentResult += '         </div>';
+                    documentResult += '         <div class="chkbox_cls" style="background:#363636;">';
+                    documentResult += '             <input type="checkbox" id="cls" onclick="layerPopup11(\'close\')"> <label for="cls"> 1일 동안 열지 않음</label>';
+                    documentResult += '         </div>';
+                    documentResult += '         <a href="javascript:;" class="btn_close" onclick="layerPopup11(\'close\')">닫기</a>';
+                    documentResult += '     </div>';
+                    documentResult += ' </div>';
+                
+
+                $("#mainPopwrap1").html(documentResult);
+            } else if(division == "close") {
+                
+                if($('#cls').is(":checked")) {
+                    var todayDate = new Date(); 
+                    setCookie("chuseokPopup2021",todayDate.getDate(),1);
+                }
+                $("#mainPopwrap1").data('scroll',$('#mainPopwrap1').scrollTop());
+                $("#mainPopwrap1").hide();
+            }
+        }
+        
+      //통합 멤버십 약관 제정 안내 팝업(21/03/01 00시~ 03/07 23:59:59)
+        function layerPopup10(division) {
+    	  
+        	var todayDate = new Date();
+            var documentResult = "";
+            if(division == "open") {
+                
 					//layerPopup 생성
-					documentResult += '	<div class="layerArea"> ';
-					documentResult += ' 	<div class="layerBg" style="display:block;"></div>';
-					documentResult += '     <div class="popwrap notipop_20190813 images-event-popup wd-atuo integration-pop" style="display:block;" tabindex="-1">';
-					documentResult += '			<div class="in-box">';
-					documentResult += '     		<div class="in-ab" style="width:420px; height:421px;">';
-					documentResult += '					<div class="event-img-zone">';
-					documentResult += '						<img src="http://cdn.thehandsome.com/pc/notice/main-popup-integration-img.jpg" alt="한섬 통합 멤버십 이용 약관 제정 안내">';
-					documentResult += '						<a href="http://www.thehandsome.com/ko/svcenter/notice?subject=한섬 통합 멤버십 이용 약관 제정 안내" class="link-btn"><span class="blind">자세한 내용 보기</span></a>';
-					documentResult += '					</div>';
-					documentResult += '					<div class="grayCloseCheckBox190821 black">';
-					documentResult += '						<input type="checkbox" id="eventpop_check" name="eventpop_check" onclick="layerPopup10(\'close\')"><label for="eventpop_check">7일 동안 열지 않음</label>';
-					documentResult += '					</div>';
-					documentResult += '					<a href="javascript:void(0)" class="btn_close" onclick="layerPopup10(\'close\')"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>';
-					documentResult += '				</div>';
-					documentResult += '			</div>';
-					documentResult += '		</div>';
-					documentResult += '	</div>';
+	                documentResult += '	<div class="layerArea"> ';
+	                documentResult += ' 	<div class="layerBg" style="display:block;"></div>';
+	                documentResult += '     <div class="popwrap notipop_20190813 images-event-popup wd-atuo integration-pop" style="display:block;" tabindex="-1">';
+	                documentResult += '			<div class="in-box">';
+	                documentResult += '     		<div class="in-ab" style="width:420px; height:421px;">';
+	                documentResult += '					<div class="event-img-zone">';
+	                documentResult += '						<img src="http://cdn.thehandsome.com/pc/notice/main-popup-integration-img.jpg" alt="한섬 통합 멤버십 이용 약관 제정 안내">';
+	                documentResult += '						<a href="http://www.thehandsome.com/ko/svcenter/notice?subject=한섬 통합 멤버십 이용 약관 제정 안내" class="link-btn"><span class="blind">자세한 내용 보기</span></a>';
+	                documentResult += '					</div>';
+	                documentResult += '					<div class="grayCloseCheckBox190821 black">';
+	                documentResult += '						<input type="checkbox" id="eventpop_check" name="eventpop_check" onclick="layerPopup10(\'close\')"><label for="eventpop_check">7일 동안 열지 않음</label>';
+	                documentResult += '					</div>';
+	                documentResult += '					<a href="javascript:void(0)" class="btn_close" onclick="layerPopup10(\'close\')"><img src="/_ui/desktop/common/images/popup/ico_close.png"></a>';
+	                documentResult += '				</div>';
+	                documentResult += '			</div>';
+	                documentResult += '		</div>';
+	                documentResult += '	</div>';
 
-
-					//layerPopup 삽입
-					$("#membershipInfoMainWrap").html(documentResult);
-				} else if (division == "close") {
-					if ($('#eventpop_check').is(":checked")) {
-						//쿠키생성 유효기간 쿠키생성일부터 7일 
-						var todayDate = new Date();
-						setCookie("membershipInfoMain", todayDate.getDate(), 7);
-					}
-					$("#membershipInfoMainWrap").data('scroll', $('#membershipInfoMainWrap').scrollTop());
-					//popup hide
-					$("#membershipInfoMainWrap").hide();
-				}
-			}
-
-			//#1240 recopick 추가
-			function goDetailPagebyRecommend(productCode, clickUrl) {
-				var url = '/p' + "/" + productCode;
-				var host = "http://" + $(location).attr('host') + url + "?type=recommendProd";
-				var tempUrl = clickUrl + "&url=" + encodeURI(host);
-				window.location.href = tempUrl;
-			}
-
-			function mainSlider1903() {
-				$('.big_banner_inner').each(function () {
-					if ($(this).hasClass('init')) {
-						$(this).removeClass('init');
-					}
-				});
-
-				/* 슬라이드 갯수에 따른 loop추가 및 제거(20210222) */
-				var bannerIndex1 = $('#mainSlider1903_0 .swiper-slide').length;
-				var bannerIndex2 = $('#mainSlider1903_1 .swiper-slide').length;
-				var bannerIndex3 = $('#mainSlider1903_2 .swiper-slide').length;
-
-				var interleaveOffset = 1;
-				var swiperOptions0 = {
-					initialSlide: 0,
-					loop: bannerIndex1 === 1 ? false : true,
-					autoplay: {
-						delay: 4000,
-						autoplayDisableOnInteraction: true,// 쓸어 넘기거나 버튼 클릭 시 자동 슬라이드 정지.
-						disableOnInteraction: false,//180911 스와이핑 후에도 자동 롤링 되도록 추가
+                
+                //layerPopup 삽입
+                $("#membershipInfoMainWrap").html(documentResult);
+            } else if(division == "close") {
+                if($('#eventpop_check').is(":checked")) {
+                	//쿠키생성 유효기간 쿠키생성일부터 7일 
+                    var todayDate = new Date(); 
+                    setCookie("membershipInfoMain",todayDate.getDate(),7);
+               	}
+                $("#membershipInfoMainWrap").data('scroll',$('#membershipInfoMainWrap').scrollTop());
+                //popup hide
+                $("#membershipInfoMainWrap").hide();
+            }
+        }
+      
+    //#1240 recopick 추가
+    function goDetailPagebyRecommend(productCode, clickUrl){
+        var url = '/ko/p' + "/" + productCode;
+        var host = "http://"+ $(location).attr('host') + url +"?type=recommendProd";
+        var tempUrl = clickUrl + "&url=" + encodeURI(host);
+        window.location.href=tempUrl;
+    }
+    
+    function mainSlider1903() {
+        $('.big_banner_inner').each(function(){
+            if($(this).hasClass('init')){
+                $(this).removeClass('init');
+            }
+        });
+        
+        /* 슬라이드 갯수에 따른 loop추가 및 제거(20210222) */
+        var bannerIndex1 = $('#mainSlider1903_0 .swiper-slide').length;
+        var bannerIndex2 = $('#mainSlider1903_1 .swiper-slide').length;
+        var bannerIndex3 = $('#mainSlider1903_2 .swiper-slide').length;
+        
+        var interleaveOffset = 1;
+        var swiperOptions0 = {
+            initialSlide:0,
+            loop: bannerIndex1 === 1 ? false:true,
+            autoplay: {
+                delay: 4000,
+                autoplayDisableOnInteraction: true,// 쓸어 넘기거나 버튼 클릭 시 자동 슬라이드 정지.
+                disableOnInteraction: false,//180911 스와이핑 후에도 자동 롤링 되도록 추가
+            },
+            loopAdditionalSlides: 6,
+            speed: 1000,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+             	// 20200914 페이징 퍼이를 위한 주석처리
+                /* type: 'progressbar', */
+            },
+            navigation: {
+                nextEl: '.swiper-button-next.bigb',
+                prevEl: '.swiper-button-prev.bigb',
+            },
+            simulateTouch:false,
+            parallax: true,
+            grabCursor: true,
+            watchSlidesProgress: true,
+            slidesPerView: 'auto',
+            centeredSlides:true,
+            on: {
+                progress: function(){
+                    var swiper = this;
+                    for (var i = 0; i < swiper.slides.length; i++) {
+                        var slideProgress = swiper.slides[i].progress,
+                                innerOffset = swiper.width * interleaveOffset,
+                                innerTranslate = slideProgress * innerOffset;
+                        swiper.slides[i].querySelector(".slide-bgimg").style.transform =
+                            "translate3d(" + innerTranslate + "px, 0, 0)";
+                    }
+                },
+                touchStart: function() {
+                    var swiper = this;
+                    for (var i = 0; i < swiper.slides.length; i++) {
+                        swiper.slides[i].style.transition = "";
+                    }
+                },
+                setTransition: function(speed) {
+                    var swiper = this;
+                    for (var i = 0; i < swiper.slides.length; i++) {
+                        swiper.slides[i].style.transition = speed + "ms";
+                        swiper.slides[i].querySelector(".slide-bgimg").style.transition =
+                            speed + "ms";
+                    }
+                }
+            }
+        }
+            var swiperOptions1 = {
+                initialSlide:1,
+                loop: bannerIndex2 === 1 ? false:true,
+                autoplay: {
+                    delay: 4000,
+                    autoplayDisableOnInteraction: true,// 쓸어 넘기거나 버튼 클릭 시 자동 슬라이드 정지.
+                    disableOnInteraction: false,//180911 스와이핑 후에도 자동 롤링 되도록 추가
+                },
+                loopAdditionalSlides: 6,
+                speed: 1000,
+                navigation: {
+                    nextEl: '.swiper-button-next.bigb',
+                    prevEl: '.swiper-button-prev.bigb',
+                },
+                parallax: true,
+                grabCursor: true,
+                watchSlidesProgress: true,
+                slidesPerView: 'auto',
+                centeredSlides:true,
+                on: {
+                    progress: function(){
+                        var swiper = this;
+                        for (var i = 0; i < swiper.slides.length; i++) {
+                            var slideProgress = swiper.slides[i].progress,
+                                    innerOffset = swiper.width * interleaveOffset,
+                                    innerTranslate = slideProgress * innerOffset;
+                            swiper.slides[i].querySelector(".slide-bgimg").style.transform =
+                                "translate3d(" + innerTranslate + "px, 0, 0)";
+                        }
+                    },
+                    touchStart: function() {
+                        var swiper = this;
+                        for (var i = 0; i < swiper.slides.length; i++) {
+                            swiper.slides[i].style.transition = "";
+                        }
+                    },
+                    setTransition: function(speed) {
+                        var swiper = this;
+                        for (var i = 0; i < swiper.slides.length; i++) {
+                            swiper.slides[i].style.transition = speed + "ms";
+                            swiper.slides[i].querySelector(".slide-bgimg").style.transition =
+                                speed + "ms";
+                        }
+                    }
+                }
+            }
+        var swiper2length = $("#mainSlider1903_2 > ul > li").length;
+        if(swiper2length > 0){
+            swiper2length -= 1;
+        }
+                var swiperOptions2 = {
+                    initialSlide: swiper2length ,
+                    loop: bannerIndex3 === 1 ? false:true,
+                    autoplay: {
+                        delay: 4000,
+                        autoplayDisableOnInteraction: true,// 쓸어 넘기거나 버튼 클릭 시 자동 슬라이드 정지.
+                        disableOnInteraction: false,//180911 스와이핑 후에도 자동 롤링 되도록 추가
+                    },
+                    loopAdditionalSlides: 6,
+                    speed: 1000,
+                    navigation: {
+                        nextEl: '.swiper-button-next.bigb',
+                        prevEl: '.swiper-button-prev.bigb',
+                    },
+                    parallax: true,
+                    grabCursor: true,
+                    watchSlidesProgress: true,
+                    slidesPerView: 'auto',
+                    centeredSlides:true,
+                    on: {
+                        progress: function(){
+                            var swiper = this;
+                            for (var i = 0; i < swiper.slides.length; i++) {
+                                var slideProgress = swiper.slides[i].progress,
+                                        innerOffset = swiper.width * interleaveOffset,
+                                        innerTranslate = slideProgress * innerOffset;
+                                swiper.slides[i].querySelector(".slide-bgimg").style.transform =
+                                    "translate3d(" + innerTranslate + "px, 0, 0)";
+                            }
+                        },
+                        touchStart: function() {
+                            var swiper = this;
+                            for (var i = 0; i < swiper.slides.length; i++) {
+                                swiper.slides[i].style.transition = "";
+                            }
+                        },
+                        setTransition: function(speed) {
+                            var swiper = this;
+                            for (var i = 0; i < swiper.slides.length; i++) {
+                                swiper.slides[i].style.transition = speed + "ms";
+                                swiper.slides[i].querySelector(".slide-bgimg").style.transition =
+                                    speed + "ms";
+                            }
+                        }
+                    }
+        };
+        
+        $("#mainSlider1903_1").find("div.a_txt_wrap").hide();
+        $("#mainSlider1903_2").find("div.a_txt_wrap").hide();
+        var swiper01 = new Swiper("#mainSlider1903_0", swiperOptions0);
+        var swiper02 = new Swiper("#mainSlider1903_1", swiperOptions1);
+        var swiper03 = new Swiper("#mainSlider1903_2", swiperOptions2);
+    }
+    
+    
+    function edtSlider1903(){//기획전 슬라이더
+        $('.edt_banner_wrap1903 .edt_list1903').each(function(idx){
+            var swiper1903 = new Swiper('#edtSlider1903_'+idx, {
+                    slidesPerView: 3,
+                    freeMode: false,
+                    spaceBetween: 11,
+                    simulateTouch:true,
+                    /* scrollbar: {
+                        el: '.swiper-scrollbar.bar'+idx,
+                        hide: false,
+                    }, */
+                    pagination: {
+						el: '.edt-swiper-pagination',
 					},
-					loopAdditionalSlides: 6,
-					speed: 1000,
-					pagination: {
-						el: '.swiper-pagination',
-						clickable: true,
-						// 20200914 페이징 퍼이를 위한 주석처리
-						/* type: 'progressbar', */
-					},
-					navigation: {
-						nextEl: '.swiper-button-next.bigb',
-						prevEl: '.swiper-button-prev.bigb',
-					},
-					simulateTouch: false,
-					parallax: true,
-					grabCursor: true,
-					watchSlidesProgress: true,
-					slidesPerView: 'auto',
-					centeredSlides: true,
-					on: {
-						progress: function () {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								var slideProgress = swiper.slides[i].progress,
-									innerOffset = swiper.width * interleaveOffset,
-									innerTranslate = slideProgress * innerOffset;
-								swiper.slides[i].querySelector(".slide-bgimg").style.transform =
-									"translate3d(" + innerTranslate + "px, 0, 0)";
-							}
-						},
-						touchStart: function () {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								swiper.slides[i].style.transition = "";
-							}
-						},
-						setTransition: function (speed) {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								swiper.slides[i].style.transition = speed + "ms";
-								swiper.slides[i].querySelector(".slide-bgimg").style.transition =
-									speed + "ms";
+                    navigation: {
+                        nextEl: '.swiper-button-next.btn'+idx,
+                        prevEl: '.swiper-button-prev.btn'+idx,
+                    }
+            });
+            
+            if($(this).find('.swiper-slide').length < 4){
+                $(this).find('.swiper-button-next, .swiper-button-prev').hide();
+            }
+        });
+    }
+    
+    function newProductListSlider1903(){//신상품 슬라이더
+        var swiper1903 = new Swiper('#newListSlider', {
+                slidesPerView: 'auto',
+                freeMode: false,
+//                 spaceBetween: 7,
+                simulateTouch:false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+        });
+    }
+    function bestProductListSlider1903(){//베스트 슬라이더
+        var swiper1903 = new Swiper('.product_list1903 .nbe_cnt.best .nbe_cnt_inner', {
+                slidesPerView: 'auto',
+                freeMode: false,
+//                 spaceBetween: 7,
+                simulateTouch:false,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                }
+        });
+    }
+    function tabNew(){
+        var $newMenu = $('.product_list1903 .nbe_cnt.new .product_left_menu');
+        var $newProd = $('.product_list1903 .nbe_cnt.new .nbe_cnt_inner');
+        $newMenu.find('a').on('click',function(){
+            $newMenu.find('li').removeClass('on');
+            $(this).closest('li').addClass('on');
+        });
+    }
+    function tabBest(){
+        var $bestMenu = $('.product_list1903 .nbe_cnt.best .product_left_menu');
+        var $bestProd = $('.product_list1903 .nbe_cnt.best .nbe_cnt_inner');
+        $bestMenu.find('a').on('click',function(){
+            $bestMenu.find('li').removeClass('on');
+            $(this).closest('li').addClass('on');
+        });
+    }
+    function magazinSlider1903(){
+        var swiper1903 = new Swiper('#magazinSlider1903', {
+               slidesPerView: 3,
+               freeMode: false,
+               spaceBetween: 20,
+               navigation: {
+                   nextEl: '.themagazine_arrow.next',
+                   prevEl: '.themagazine_arrow.prev',
+               }
+        });
+        
+        $(".the_magazine_wrap1903 .themagazine_arrow.prev").css("opacity", "1");
+        $(".the_magazine_wrap1903 .themagazine_arrow.next").css("opacity", "1");
+        $(".the_magazine_wrap1903 .magazine_slider1903 ul").css("opacity", "1");
+    }//더매거진 슬라이더
+    function videoWidth(){
+        var target = $('.video_area1903').attr('id');
+        var idx = 0;
+        var width = $("#"+ target +" div:eq("+idx+")").width();
+        var height = $("#"+ target +"  div:eq("+idx+")").height();
+        $('#'+target).find('video').css({'width':width+'px','height':height+'px'});
+        $('#'+target).css({'width':width+'px','height':height+'px'});
+    }
+    function videoPlay1903(){
+	    $('.video_area1903').children('a').on('click',function(){
+	        $(this).find('.video_main').next('video').show();
+	        $(this).find('.video_main').hide();
+	        $('#video')[0].play();
+	    });
+    }
+    function videoEnded(target, idx){
+	    $("#"+ target +" video").hide();
+	    $("#"+ target +" div:eq("+idx+")").show();
+    }
+
+    function pickForSlider1903(){
+        var position = 0;
+        var movesize = 206;
+        var activeSlide = 3;
+        var viewTotalWidth = $("#pickForSlider1903 ul li").size();
+        var $slideId = $('#pickForSlider1903 ul');
+        //$slideId.width((movesize * viewTotalWidth)+88);
+        $slideId.css('left',position);
+        for(var i=0;i<2;i++){
+            $slideId.find('li:last-child').prependTo("#pickForSlider1903 ul");
+        }
+        $slideId.find('li:nth-child('+activeSlide+')').addClass('slide_active');
+        $('#pickforControls > a').click(function(event){
+	        var $target=$(event.target);
+	        if($target.is('#pickforControls > .next')){
+	            if(position==-movesize){
+	                $slideId.css('left',0);
+	                $slideId.find('li:first-child').appendTo("#pickForSlider1903 ul");
+	                position = 0;
+	            }
+	            position-=movesize;
+	            $slideId.stop().animate({left:position}, 'fast', 'swing',function(){
+	                if(position==-movesize){
+	                 $slideId.css('left',0);
+	                 $slideId.find('li:first-child').appendTo("#pickForSlider1903 ul");
+	                 position=0;
+	                }
+	                activeSlide = 3;
+	                $slideId.find('li').removeClass('slide_active');
+	                $slideId.find('li:nth-child('+activeSlide+')').addClass('slide_active');
+	            });
+	
+	        }else if($target.is('#pickforControls > .prev')){
+	            if(position==0){
+	                     $slideId.css('left',-movesize);
+	                     $slideId.find('li:last-child').prependTo("#pickForSlider1903 ul");
+	                     position=-movesize;
+	            }
+	            position+=movesize;
+	            $slideId.stop().animate({left:position}, 'fast',function(){
+	                if(position==0){
+	                 $slideId.css('left',-movesize);
+	                 $slideId.find('li:last-child').prependTo("#pickForSlider1903 ul");
+	                 position=-movesize;
+	                }
+	                activeSlide = 4;
+	             $slideId.find('li').removeClass('slide_active');
+	             $slideId.find('li:nth-child('+activeSlide+')').addClass('slide_active');
+	            });
+	
+	        }
+		});
+        
+        $(".pickfor_wrap1903 .controls .prev").css("opacity", "1");
+        $(".pickfor_wrap1903 .controls .next").css("opacity", "1");
+        $(".pickfor_wrap1903 .pick_for ul").css("opacity", "1");
+     }//당신만을 위 추천 슬라이더
+
+     function instagramSlider1903(){
+         var swiper1903 = new Swiper('#instaContents', {
+                 slidesPerView: 'auto',
+                 paginationClickable: false,
+                 simulateTouch:false,
+                 freeMode: false,
+                 loopedSlides: accountCount,
+                 spaceBetween: 20,
+                 centeredSlides:true,
+                 loop:true,
+                 speed:600,
+                 navigation: {
+                     nextEl: '.instagram_arrow.next',
+                     prevEl: '.instagram_arrow.prev'
+                 }
+         });
+     }
+     
+     function instaImgHover(){//인스타 이미지 hover
+ 		$(".instagram_wrap1903 #instaContents li a > div.insta_pic_info, #instaContents li a > div.insta_pic_info_txt").hide();
+ 		$(".instagram_wrap1903 #instaContents li > a").hover(function(){
+ 			$(this).find(".insta_pic_info").stop().fadeIn("easeOutQuart");
+ 			$(this).find(".insta_pic_info_txt").stop().fadeIn("easeOutQuart");
+ 			$(this).children('img').addClass('active');
+ 		},function(){
+ 			$(this).find(".insta_pic_info, .insta_pic_info_txt").stop().fadeOut("300");
+ 			$(this).children('img').removeClass('active');
+ 		});
+ 	}
+     
+     function rouletteEvtPopClose(type) {
+    	    if(type == "close") {
+    	        $('#popRouletteEvt').hide();
+    	    }else {
+    	    	var date;
+    	    	
+    	    	$.ajax({
+    	    	type : "GET",
+    	    	cache: false,
+    	    	async: false,
+    	    	url: location.href,
+    	    	complete: function (req, textStatus){
+    	    		var dateString = req.getResponseHeader('Date');
+    	    		if(dateString.indexOf('GMT')===-1){
+    	    			dateString +=' GMT';
+    	    		}
+    	    		date = new Date(dateString);
+    	    		
+    	    		}
+    	    	});
+    	    	
+    	        var todayDate = new Date(date);
+    	        setCookie("rouletteEventPopup",todayDate.getDate(),1);
+    	        $('#popRouletteEvt').hide();
+    	    }
+    	}
+
+
+    	function goRouletteEvent(){
+    	    location.href='/ko/magazine/events/8799828694912';
+    	}
+    	
+    	//11월 한섬스타일 이벤트 랜딩
+    	function goHandsomeStyleEvent(){
+    	    location.href='/ko/magazine/events/8799959734144';
+    	}
+    	//이벤트 유도팝업 닫기
+    	function popClose1904(){ //팝업 닫기
+    		$('#playHandsomeStyle').remove();
+    	}
+    	function popClose1911(){ //팝업 닫기
+    		$('#joinEventPopup').remove();
+    	}
+    	
+    	function GA_main(action,e){
+    		var index;
+    		var label;
+    		var eventAction;
+    		if(action == "banner"){
+    			label = escape(e.find('.title').text());
+    			index = parseInt(e.parent().attr('data-swiper-slide-index')) + 1;
+    			eventAction = "배너_"+index;
+    			
+    		} else if (action == "eventBanner"){
+    			eventAction = "이벤트_배너";
+    			label = escape(e.find('.s_title').text());
+    			
+    		} else if (action == "exhibitionBanner"){
+    			eventAction = "기획전_배너";
+    			label = escape(e.find('.s_title').text());
+    			
+    		} else if (action == "exhibitionListImage0"){
+    			eventAction = "기획전_리스트";
+    			label = escape(e.parents().find('.edt_banner_inner1 .s_title').text())+"_"+escape(e.parent().find('.title').html());
+    			
+    		} else if (action == "exhibitionList0"){
+    			eventAction = "기획전_리스트";
+    			label = escape(e.parents().find('.edt_banner_inner1 .s_title').text())+"_"+escape(e.find('.title').html());
+    			
+    		} else if (action == "exhibitionListImage1"){
+    			eventAction = "기획전_리스트";
+    			label = escape(e.parents().find('.edt_banner_inner3 .s_title').text())+"_"+escape(e.parent().find('.title').html());
+    			
+    		} else if (action == "exhibitionList1"){
+    			eventAction = "기획전_리스트";
+    			label = escape(e.parents().find('.edt_banner_inner3 .s_title').text())+"_"+escape(e.find('.title').html());
+    			
+    		} else if (action == "newImg") {
+    			eventAction = "신상품";
+    			label = escape(e.parents().find('.nbe_cnt.new li.on').text())+"_"+escape(e.find('img').attr('name'));
+    			
+    		} else if (action == "new") {
+    			eventAction = "신상품";
+    			label = escape(e.parents().find('.nbe_cnt.new li.on').text())+"_"+escape(e.parent().find('img').attr('name'));
+    			
+    		} else if (action == "bestImg") {
+    			eventAction = "베스트";
+    			label = escape(e.parents().find('.nbe_cnt.best li.on').text())+"_"+escape(e.attr('name'));
+    			
+    		} else if (action == "best") {
+    			eventAction = "베스트";
+    			label = escape(e.parents().find('.nbe_cnt.best li.on').text())+"_"+escape(e.parent().find('img').attr('name'));
+    			
+    		} else if (action == "exhibitionVideo"){    		
+    			eventAction = "기획영상";
+    			label = escape(e.parents().find('.video_main_wrap p.tit').text());
+    			
+    		} else if (action.indexOf("theMagazine") > -1){
+    			action.split("the");
+    			index =parseInt(action[0])+1;
+    			eventAction = "더매거진";
+    			label = index+"_"+ escape(e.parent().find('p.tit').text());
+    		} else if (action == "recommend"){
+    			eventAction = "당신만을위한추천";
+    			label = escape(e.parent().find('.title').text());
+    		} else if (action == "moment"){
+    			eventAction = "한섬모먼트";
+    			label = e.find('.account p').text().substring(1);
+    		}
+    	
+    		
+    		GA_Event("메인", eventAction,label);
+    	}
+    	
+		
+    	//CMS 컴포넌트 처리용 GA 전자상거래 메인데이터
+    	function setEcommerceDataCompnt(productCode, brandName, productName, location){
+    	    var listNm = "";
+    	    var position;
+    	    if(location == "0"){
+    	        listNm = "메인_기획전";
+    	        position = 1;
+    	    }else if(location == "1"){
+                listNm = "메인_기획전_하단";
+                position = 2;
+            }
+    	    
+            dataLayer.push({
+	                'event': 'ga_event', 'layerCategory' : 'Ecommerce', 'layerAction' : 'Click','layerLabel' : undefined,
+	                'ecommerce': {
+	                'currencyCode': 'KRW', //통화
+	                'click': {
+	                'actionField': { 'list': listNm }, //상품 리스트명
+	                'products':
+		                [{
+			                "id": productCode.indexOf("_") > -1 ? productCode.split("_")[0] : productCode, //상품코드
+			                "name": productName.replace(/\&#039;/gi,"'"), //상품명
+			                "brand": brandName.replace(/\&#039;/gi,"'"), //상품 브랜드
+			                "category": "", //상품 카테고리
+			                "position": position //상품 위치
+		                }]
+	                }
+                }
+            });
+            /* Ecommerce data 초기화
+            dataLayer에 남아 있는 경우에는 전자상거래 단계만을 위해 사용하는
+            필드들이 세팅되어 있으므로 undefined를 통해 초기화합니다. */
+            dataLayer.push({
+	            'layerCategory' : undefined,
+	            'layerAction' : undefined,
+	            'nonInteraction' : false,
+	            'ecommerce' : undefined
+            });
+        }
+    	
+    	//기본 GA 전자상거래 메인데이터
+    	function setEcommerceData(idx, type, categoryCode){
+    	    var listNm = "";
+    	    var position;
+    	    var prodList;
+    	    
+    	    if(type == "NEW"){
+    	        prodList = JSON.parse(window.sessionStorage.getItem('main_new_ecommerceDataList'));
+    	        if(categoryCode == "WE"){
+                    listNm += "메인_신상품_여성";
+                    position = 3;
+                }else if(categoryCode == "ME"){
+                    listNm += "메인_신상품_남성";
+                    position = 4;
+                }
+    	    }else if(type == "BEST"){
+    	        prodList = JSON.parse(window.sessionStorage.getItem('main_best_ecommerceDataList'));
+    	        if(categoryCode == "WE"){
+                    listNm += "메인_베스트_여성";
+                    position = 5;
+                }else if(categoryCode == "ME"){
+                    listNm += "메인_베스트_남성";
+                    position = 6;
+                }
+            }else if(type == "RECOMMEND"){
+                
+                prodList = JSON.parse(window.sessionStorage.getItem('main_recommend_ecommerceDataList'));
+                listNm += "메인_개인화 추천";
+                position = 7;
+                
+    	    }
+    	    
+    	    if(prodList != null && typeof prodList != undefined){
+                if(prodList.length > 0){
+                    var prodInfo = prodList[idx];
+                    
+                    if(listNm != ""){
+			    	    dataLayer.push({
+					        'event': 'ga_event', 'layerCategory' : 'Ecommerce', 'layerAction' : 'Click','layerLabel' : undefined,
+					        'ecommerce': {
+					        'currencyCode': 'KRW', //통화
+					        'click': {
+						        'actionField': { 'list': listNm }, //상품 리스트명
+						        'products':
+							        [{
+		                                'id': prodInfo.baseProductCode.indexOf("_") > -1 ? prodInfo.baseProductCode.split("_")[0] : prodInfo.baseProductCode,  //상품코드
+		                                'name': prodInfo.productName, //상품명
+		                                'brand': prodInfo.brandName, //상품 브랜드
+		                                'category': '', //상품 카테고리
+		                                'position': position //상품 위치
+		                            }]
+						        }
+					        }
+				        });
+			    	    /* Ecommerce data 초기화
+			            dataLayer에 남아 있는 경우에는 전자상거래 단계만을 위해 사용하는
+			            필드들이 세팅되어 있으므로 undefined를 통해 초기화합니다. */
+				        dataLayer.push({
+					        'layerCategory' : undefined,
+					        'layerAction' : undefined,
+					        'nonInteraction' : false,
+					        'ecommerce' : undefined
+				        });
+                    }
+                    
+                    if(type == "RECOMMEND"){
+                        brazeLogCustomEvent(type, idx);
+                    }
+                }
+    	    }
+    	}
+    	
+		function getExchangeRate() {
+			$.ajax({
+				type : "get",
+				url : "/ko/intro/getExchageRate",
+				dataType : "json",
+				async : false,
+				success : function( result ) {
+					if(result.length > 0) {
+						for(var i=0; i < result.length; i++) {
+							if(result[i].currencyCode == "USD") {
+								rate_en = result[i].exchangeRate;
+								symbol_en = result[i].symbol;
+							} else {
+								rate_zh = result[i].exchangeRate;
+								symbol_zh = result[i].symbol;
 							}
 						}
 					}
 				}
-				var swiperOptions1 = {
-					initialSlide: 1,
-					loop: bannerIndex2 === 1 ? false : true,
-					autoplay: {
-						delay: 4000,
-						autoplayDisableOnInteraction: true,// 쓸어 넘기거나 버튼 클릭 시 자동 슬라이드 정지.
-						disableOnInteraction: false,//180911 스와이핑 후에도 자동 롤링 되도록 추가
-					},
-					loopAdditionalSlides: 6,
-					speed: 1000,
-					navigation: {
-						nextEl: '.swiper-button-next.bigb',
-						prevEl: '.swiper-button-prev.bigb',
-					},
-					parallax: true,
-					grabCursor: true,
-					watchSlidesProgress: true,
-					slidesPerView: 'auto',
-					centeredSlides: true,
-					on: {
-						progress: function () {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								var slideProgress = swiper.slides[i].progress,
-									innerOffset = swiper.width * interleaveOffset,
-									innerTranslate = slideProgress * innerOffset;
-								swiper.slides[i].querySelector(".slide-bgimg").style.transform =
-									"translate3d(" + innerTranslate + "px, 0, 0)";
-							}
-						},
-						touchStart: function () {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								swiper.slides[i].style.transition = "";
-							}
-						},
-						setTransition: function (speed) {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								swiper.slides[i].style.transition = speed + "ms";
-								swiper.slides[i].querySelector(".slide-bgimg").style.transition =
-									speed + "ms";
-							}
-						}
-					}
-				}
-				var swiper2length = $("#mainSlider1903_2 > ul > li").length;
-				if (swiper2length > 0) {
-					swiper2length -= 1;
-				}
-				var swiperOptions2 = {
-					initialSlide: swiper2length,
-					loop: bannerIndex3 === 1 ? false : true,
-					autoplay: {
-						delay: 4000,
-						autoplayDisableOnInteraction: true,// 쓸어 넘기거나 버튼 클릭 시 자동 슬라이드 정지.
-						disableOnInteraction: false,//180911 스와이핑 후에도 자동 롤링 되도록 추가
-					},
-					loopAdditionalSlides: 6,
-					speed: 1000,
-					navigation: {
-						nextEl: '.swiper-button-next.bigb',
-						prevEl: '.swiper-button-prev.bigb',
-					},
-					parallax: true,
-					grabCursor: true,
-					watchSlidesProgress: true,
-					slidesPerView: 'auto',
-					centeredSlides: true,
-					on: {
-						progress: function () {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								var slideProgress = swiper.slides[i].progress,
-									innerOffset = swiper.width * interleaveOffset,
-									innerTranslate = slideProgress * innerOffset;
-								swiper.slides[i].querySelector(".slide-bgimg").style.transform =
-									"translate3d(" + innerTranslate + "px, 0, 0)";
-							}
-						},
-						touchStart: function () {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								swiper.slides[i].style.transition = "";
-							}
-						},
-						setTransition: function (speed) {
-							var swiper = this;
-							for (var i = 0; i < swiper.slides.length; i++) {
-								swiper.slides[i].style.transition = speed + "ms";
-								swiper.slides[i].querySelector(".slide-bgimg").style.transition =
-									speed + "ms";
-							}
-						}
-					}
-				};
-
-				$("#mainSlider1903_1").find("div.a_txt_wrap").hide();
-				$("#mainSlider1903_2").find("div.a_txt_wrap").hide();
-				var swiper01 = new Swiper("#mainSlider1903_0", swiperOptions0);
-				var swiper02 = new Swiper("#mainSlider1903_1", swiperOptions1);
-				var swiper03 = new Swiper("#mainSlider1903_2", swiperOptions2);
-			}
-
-
-			function edtSlider1903() {//기획전 슬라이더
-				$('.edt_banner_wrap1903 .edt_list1903').each(function (idx) {
-					var swiper1903 = new Swiper('#edtSlider1903_' + idx, {
-						slidesPerView: 3,
-						freeMode: false,
-						spaceBetween: 11,
-						simulateTouch: true,
-						/* scrollbar: {
-							el: '.swiper-scrollbar.bar'+idx,
-							hide: false,
-						}, */
-						pagination: {
-							el: '.edt-swiper-pagination',
-						},
-						navigation: {
-							nextEl: '.swiper-button-next.btn' + idx,
-							prevEl: '.swiper-button-prev.btn' + idx,
-						}
-					});
-
-					if ($(this).find('.swiper-slide').length < 4) {
-						$(this).find('.swiper-button-next, .swiper-button-prev').hide();
-					}
-				});
-			}
-
-			function newProductListSlider1903() {//신상품 슬라이더
-				var swiper1903 = new Swiper('#newListSlider', {
-					slidesPerView: 'auto',
-					freeMode: false,
-					//                 spaceBetween: 7,
-					simulateTouch: false,
-					navigation: {
-						nextEl: '.swiper-button-next',
-						prevEl: '.swiper-button-prev',
-					}
-				});
-			}
-			function bestProductListSlider1903() {//베스트 슬라이더
-				var swiper1903 = new Swiper('.product_list1903 .nbe_cnt.best .nbe_cnt_inner', {
-					slidesPerView: 'auto',
-					freeMode: false,
-					//                 spaceBetween: 7,
-					simulateTouch: false,
-					navigation: {
-						nextEl: '.swiper-button-next',
-						prevEl: '.swiper-button-prev',
-					}
-				});
-			}
-			function tabNew() {
-				var $newMenu = $('.product_list1903 .nbe_cnt.new .product_left_menu');
-				var $newProd = $('.product_list1903 .nbe_cnt.new .nbe_cnt_inner');
-				$newMenu.find('a').on('click', function () {
-					$newMenu.find('li').removeClass('on');
-					$(this).closest('li').addClass('on');
-				});
-			}
-			function tabBest() {
-				var $bestMenu = $('.product_list1903 .nbe_cnt.best .product_left_menu');
-				var $bestProd = $('.product_list1903 .nbe_cnt.best .nbe_cnt_inner');
-				$bestMenu.find('a').on('click', function () {
-					$bestMenu.find('li').removeClass('on');
-					$(this).closest('li').addClass('on');
-				});
-			}
-			function magazinSlider1903() {
-				var swiper1903 = new Swiper('#magazinSlider1903', {
-					slidesPerView: 3,
-					freeMode: false,
-					spaceBetween: 20,
-					navigation: {
-						nextEl: '.themagazine_arrow.next',
-						prevEl: '.themagazine_arrow.prev',
-					}
-				});
-
-				$(".the_magazine_wrap1903 .themagazine_arrow.prev").css("opacity", "1");
-				$(".the_magazine_wrap1903 .themagazine_arrow.next").css("opacity", "1");
-				$(".the_magazine_wrap1903 .magazine_slider1903 ul").css("opacity", "1");
-			}//더매거진 슬라이더
-			function videoWidth() {
-				var target = $('.video_area1903').attr('id');
-				var idx = 0;
-				var width = $("#" + target + " div:eq(" + idx + ")").width();
-				var height = $("#" + target + "  div:eq(" + idx + ")").height();
-				$('#' + target).find('video').css({ 'width': width + 'px', 'height': height + 'px' });
-				$('#' + target).css({ 'width': width + 'px', 'height': height + 'px' });
-			}
-			function videoPlay1903() {
-				$('.video_area1903').children('a').on('click', function () {
-					$(this).find('.video_main').next('video').show();
-					$(this).find('.video_main').hide();
-					$('#video')[0].play();
-				});
-			}
-			function videoEnded(target, idx) {
-				$("#" + target + " video").hide();
-				$("#" + target + " div:eq(" + idx + ")").show();
-			}
-
-			function pickForSlider1903() {
-				var position = 0;
-				var movesize = 206;
-				var activeSlide = 3;
-				var viewTotalWidth = $("#pickForSlider1903 ul li").size();
-				var $slideId = $('#pickForSlider1903 ul');
-				//$slideId.width((movesize * viewTotalWidth)+88);
-				$slideId.css('left', position);
-				for (var i = 0; i < 2; i++) {
-					$slideId.find('li:last-child').prependTo("#pickForSlider1903 ul");
-				}
-				$slideId.find('li:nth-child(' + activeSlide + ')').addClass('slide_active');
-				$('#pickforControls > a').click(function (event) {
-					var $target = $(event.target);
-					if ($target.is('#pickforControls > .next')) {
-						if (position == -movesize) {
-							$slideId.css('left', 0);
-							$slideId.find('li:first-child').appendTo("#pickForSlider1903 ul");
-							position = 0;
-						}
-						position -= movesize;
-						$slideId.stop().animate({ left: position }, 'fast', 'swing', function () {
-							if (position == -movesize) {
-								$slideId.css('left', 0);
-								$slideId.find('li:first-child').appendTo("#pickForSlider1903 ul");
-								position = 0;
-							}
-							activeSlide = 3;
-							$slideId.find('li').removeClass('slide_active');
-							$slideId.find('li:nth-child(' + activeSlide + ')').addClass('slide_active');
-						});
-
-					} else if ($target.is('#pickforControls > .prev')) {
-						if (position == 0) {
-							$slideId.css('left', -movesize);
-							$slideId.find('li:last-child').prependTo("#pickForSlider1903 ul");
-							position = -movesize;
-						}
-						position += movesize;
-						$slideId.stop().animate({ left: position }, 'fast', function () {
-							if (position == 0) {
-								$slideId.css('left', -movesize);
-								$slideId.find('li:last-child').prependTo("#pickForSlider1903 ul");
-								position = -movesize;
-							}
-							activeSlide = 4;
-							$slideId.find('li').removeClass('slide_active');
-							$slideId.find('li:nth-child(' + activeSlide + ')').addClass('slide_active');
-						});
-
-					}
-				});
-
-				$(".pickfor_wrap1903 .controls .prev").css("opacity", "1");
-				$(".pickfor_wrap1903 .controls .next").css("opacity", "1");
-				$(".pickfor_wrap1903 .pick_for ul").css("opacity", "1");
-			}//당신만을 위 추천 슬라이더
-
-			function instagramSlider1903() {
-				var swiper1903 = new Swiper('#instaContents', {
-					slidesPerView: 'auto',
-					paginationClickable: false,
-					simulateTouch: false,
-					freeMode: false,
-					loopedSlides: accountCount,
-					spaceBetween: 20,
-					centeredSlides: true,
-					loop: true,
-					speed: 600,
-					navigation: {
-						nextEl: '.instagram_arrow.next',
-						prevEl: '.instagram_arrow.prev'
-					}
-				});
-			}
-
-			function instaImgHover() {//인스타 이미지 hover
-				$(".instagram_wrap1903 #instaContents li a > div.insta_pic_info, #instaContents li a > div.insta_pic_info_txt").hide();
-				$(".instagram_wrap1903 #instaContents li > a").hover(function () {
-					$(this).find(".insta_pic_info").stop().fadeIn("easeOutQuart");
-					$(this).find(".insta_pic_info_txt").stop().fadeIn("easeOutQuart");
-					$(this).children('img').addClass('active');
-				}, function () {
-					$(this).find(".insta_pic_info, .insta_pic_info_txt").stop().fadeOut("300");
-					$(this).children('img').removeClass('active');
-				});
-			}
-
-			//CMS 컴포넌트 처리용 GA 전자상거래 메인데이터
-			function setEcommerceDataCompnt(productCode, brandName, productName, location) {
-				var listNm = "";
-				var position;
-				if (location == "0") {
-					listNm = "메인_기획전";
-					position = 1;
-				} else if (location == "1") {
-					listNm = "메인_기획전_하단";
-					position = 2;
-				}
-
-				dataLayer.push({
-					'event': 'ga_event', 'layerCategory': 'Ecommerce', 'layerAction': 'Click', 'layerLabel': undefined,
-					'ecommerce': {
-						'currencyCode': 'KRW', //통화
-						'click': {
-							'actionField': { 'list': listNm }, //상품 리스트명
-							'products':
-								[{
-									"id": productCode.indexOf("_") > -1 ? productCode.split("_")[0] : productCode, //상품코드
-									"name": productName.replace(/\&#039;/gi, "'"), //상품명
-									"brand": brandName.replace(/\&#039;/gi, "'"), //상품 브랜드
-									"category": "", //상품 카테고리
-									"position": position //상품 위치
-								}]
-						}
-					}
-				});
-				/* Ecommerce data 초기화
-				dataLayer에 남아 있는 경우에는 전자상거래 단계만을 위해 사용하는
-				필드들이 세팅되어 있으므로 undefined를 통해 초기화합니다. */
-				dataLayer.push({
-					'layerCategory': undefined,
-					'layerAction': undefined,
-					'nonInteraction': false,
-					'ecommerce': undefined
-				});
-			}
-
-			//기본 GA 전자상거래 메인데이터
-			function setEcommerceData(idx, type, categoryCode) {
-				var listNm = "";
-				var position;
-				var prodList;
-
-				if (type == "NEW") {
-					prodList = JSON.parse(window.sessionStorage.getItem('main_new_ecommerceDataList'));
-					if (categoryCode == "WE") {
-						listNm += "메인_신상품_여성";
-						position = 3;
-					} else if (categoryCode == "ME") {
-						listNm += "메인_신상품_남성";
-						position = 4;
-					}
-				} else if (type == "BEST") {
-					prodList = JSON.parse(window.sessionStorage.getItem('main_best_ecommerceDataList'));
-					if (categoryCode == "WE") {
-						listNm += "메인_베스트_여성";
-						position = 5;
-					} else if (categoryCode == "ME") {
-						listNm += "메인_베스트_남성";
-						position = 6;
-					}
-				} else if (type == "RECOMMEND") {
-
-					prodList = JSON.parse(window.sessionStorage.getItem('main_recommend_ecommerceDataList'));
-					listNm += "메인_개인화 추천";
-					position = 7;
-
-				}
-
-				if (prodList != null && typeof prodList != undefined) {
-					if (prodList.length > 0) {
-						var prodInfo = prodList[idx];
-
-						if (listNm != "") {
-							dataLayer.push({
-								'event': 'ga_event', 'layerCategory': 'Ecommerce', 'layerAction': 'Click', 'layerLabel': undefined,
-								'ecommerce': {
-									'currencyCode': 'KRW', //통화
-									'click': {
-										'actionField': { 'list': listNm }, //상품 리스트명
-										'products':
-											[{
-												'id': prodInfo.baseProductCode.indexOf("_") > -1 ? prodInfo.baseProductCode.split("_")[0] : prodInfo.baseProductCode,  //상품코드
-												'name': prodInfo.productName, //상품명
-												'brand': prodInfo.brandName, //상품 브랜드
-												'category': '', //상품 카테고리
-												'position': position //상품 위치
-											}]
-									}
-								}
-							});
-							/* Ecommerce data 초기화
-							dataLayer에 남아 있는 경우에는 전자상거래 단계만을 위해 사용하는
-							필드들이 세팅되어 있으므로 undefined를 통해 초기화합니다. */
-							dataLayer.push({
-								'layerCategory': undefined,
-								'layerAction': undefined,
-								'nonInteraction': false,
-								'ecommerce': undefined
-							});
-						}
-
-					}
-				}
-			}
-
-			function getExchangeRate() {
-				$.ajax({
-					type: "get",
-					url: "/intro/getExchageRate",
-					dataType: "json",
-					async: false,
-					success: function (result) {
-						if (result.length > 0) {
-							for (var i = 0; i < result.length; i++) {
-								if (result[i].currencyCode == "USD") {
-									rate_en = result[i].exchangeRate;
-									symbol_en = result[i].symbol;
-								} else {
-									rate_zh = result[i].exchangeRate;
-									symbol_zh = result[i].symbol;
-								}
-							}
-						}
-					}
-				});
-			}
-
-			function getExchangePrice(price) {
-				var exchangePrice = "";
-
-				exchangePrice = "₩" + addComma(parseInt(price));
-
-
-				return exchangePrice;
-			}
-
+			});
+		}
+		
+		function getExchangePrice(price) {
+			var exchangePrice = "";
+			
+					exchangePrice = "₩" + addComma(parseInt(price));
+				
+			
+			return exchangePrice;
+		}
+        
+        // 마케팅수신동의 팝업 닫기
+        function maketingAgreeClose() {
+            $("#marketingAgreeLayer").hide();
+            
+        }
+        
+        // 마케팅수신동의얼럿
+        function maketingAgreeAlert() {
+        	
+        	 
+        	 
+        	 if ( !$('#emailchk').is(':checked') && !$('#smschk').is(':checked') ) {
+                 var lc = new layerConfirm('고객님께서는 마케팅수신 재동의하지 않으셨습니다. 이대로 진행할 경우, 더한섬닷컴에서 진행하는 마케팅 및 이벤트 소식을 받아보실수 없습니다. 진행하시겠습니까?', '확인', '취소');
+                 lc.confirmAction = function() {
+                     maketingAgreeProcess('N','N');
+                 };
+             } else if ( $('#emailchk').is(':checked') && !$('#smschk').is(':checked') ) { 
+                 var lc = new layerConfirm('고객님께서는 SMS 수신은 동의하지 않으셨습니다. 이대로 진행할 경우, 더한섬닷컴에서 진행하는 마케팅 및 이벤트 소식을 SMS로 받아보실수 없습니다. 진행하시겠습니까?', '확인', '취소');
+                 lc.confirmAction = function() {
+                     maketingAgreeProcess('Y','N');
+                 };
+             } else if ( !$('#emailchk').is(':checked') && $('#smschk').is(':checked') ) {
+                 var lc = new layerConfirm('고객님께서는 이메일 수신은 동의하지 않으셨습니다. 이대로 진행할 경우, 더한섬닷컴에서 진행하는 마케팅 및 이벤트 소식을 이메일로 받아보실수 없습니다. 진행하시겠습니까?', '확인', '취소');
+                 lc.confirmAction = function() {
+                     maketingAgreeProcess('N','Y');
+                 };
+             } else {
+                 maketingAgreeProcess('Y','Y');
+             }
+        	 
+        	 
+        }
+        
+        // 마케팅수신동의처리
+        function maketingAgreeProcess(emailChkYn, smsChkYn) {
+            $.ajax({
+                type:"POST",
+                url:"/ko/appDownloadSMS/maketingAgree",
+                data:{"emailChkYn" : emailChkYn, "smsChkYn" : smsChkYn, "CSRFToken" : "4da7e5f0-b2e3-409b-af1b-095dd50f3356"},
+                error:function(e){
+                    console.log(e);
+                }
+            });
+            maketingAgreeClose();
+        }
+        
+        //8월 올빼미 이벤트 팝업 닫기
+        function nightEvtPopLayerClose(){
+        	$("#nightEvtPop").hide();
+	    }
+        
+        function brazeLogCustomEvent(type, idx){
+            var currentActionTime = new Date().format("yyyyMMddHHmmss");
+            var prodList;
+            
+            if(type == "ENTER"){
+                appboy.logCustomEvent(
+                    "LCE_viewMain",
+                    {
+                        "accessDate"  : currentActionTime
+                    }
+                );
+            }
+            else{ //RECOMMEND
+                prodList = JSON.parse(window.sessionStorage.getItem('main_recommend_ecommerceDataList'));
+            
+                if(prodList != null && typeof prodList != undefined){
+                    if(prodList.length > 0){
+                        var prodInfo = prodList[idx];
+                        //20201222 상품코드 세분화 작업
+                        var baseCd  = "";
+                        var styleCd = "";
+                        var sizeCd  = "";
+                        if(prodInfo.baseProductCode.indexOf("_") > -1){
+                            var tmp = prodInfo.baseProductCode.split("_");
+                            if(tmp.length == 3){ // size
+                                baseCd  = tmp[0];
+                                styleCd = tmp[1];
+                                sizeCd  = tmp[2];
+                            }else if(tmp.length == 2){ // color
+                                baseCd  = tmp[0];
+                                styleCd = tmp[1];
+                            }
+                        }else{ // base
+                            baseCd = prodInfo.baseProductCode;
+                        }
+                        var productCateKoName = setCategoryNameInKO(prodInfo.productCategoryCode, prodInfo.productCategoryName);
+                        appboy.logCustomEvent(
+                            "LCE_recommendAreaClick",
+                            {
+                                "productName" : prodInfo.productName
+                               ,"productCode" : baseCd
+                               ,"colorCode"   : styleCd
+                               ,"sizeCode"    : sizeCd
+                               ,"accessDate"  : currentActionTime
+                               ,"productCategoryCode" : prodInfo.productCategoryCode
+                               ,"productCategoryName" : productCateKoName
+                            }
+                        );
+                    }
+                }
+            }
+        }
 	</script>
 	<div id="bodyWrap">
 		<div class="main_container">

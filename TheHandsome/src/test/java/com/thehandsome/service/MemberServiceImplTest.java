@@ -70,19 +70,30 @@ public class MemberServiceImplTest {
 	@Test
 	public void test21_isExist() {
 		String mid = "service_test" + currentTime;
+
 		boolean result = memberService.isExistMemberByMid(mid);
 		assertTrue(result);
 		log.info("test21_isExist : " + result);
 	}
-	
+
 	@Test
 	public void test22_isValidMember() {
 		String mid = "test";
-		String mpassword = "test";
-		boolean result = memberService.isValidMember(mid, mpassword);
-		
+
+		boolean result = memberService.isValidMember(mid);
 		assertTrue(result);
 		log.info("test22_isValidMember : " + result);
+	}
+
+	@Test
+	public void test23_getMemberAccountByLogin() {
+		String mid = "service_test" + currentTime;
+		String mpassword = "test";
+
+		MemberVO member = memberService.getMemberAccountByLogin(mid, mpassword);
+
+		assertNotNull(member);
+		log.info("getMemberAccountByLogin : " + member);
 	}
 
 	@Test

@@ -33,8 +33,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public boolean isValidMember(String mid, String mpassword) {
-		return mapper.isValidMember(mid, mpassword);
+	public boolean isValidMember(String mid) {
+		return mapper.isValidMember(mid);
+	}
+
+	@Override
+	public MemberVO getMemberAccountByLogin(String mid, String mpassword) {
+		return mapper.selectMemberByAccount(mid, mpassword);
 	}
 
 	@Override

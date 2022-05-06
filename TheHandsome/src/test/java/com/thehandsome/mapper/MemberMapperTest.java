@@ -4,6 +4,7 @@ import static org.junit.Assert.assertNotNull;
 
 import java.util.Date;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -77,14 +78,13 @@ public class MemberMapperTest {
 		String mid = "mapper_test" + currentTime;
 		log.info("isExistMemberByMid : " + memberMapper.isExistMemberByMid(mid));
 	}
-	
+
 	@Test
 	public void test22_isValidMember() {
 		log.info("isValidMember");
-		String mid = "test";
-		String mpassword = "test";
-		
-		log.info("isValidMember : " + memberMapper.isValidMember(mid, mpassword));
+		String mid = "mapper_test" + currentTime;
+
+		log.info("isValidMember : " + memberMapper.isValidMember(mid));
 	}
 
 	@Test
@@ -92,6 +92,14 @@ public class MemberMapperTest {
 		String mid = "mapper_test" + currentTime;
 		MemberVO member = memberMapper.selectMemberInformation(mid);
 		log.info("selectMemberInformation : " + member);
+	}
+
+	@Test
+	public void test31_selectMemberByAccount() {
+		String mid = "mapper_test" + currentTime;
+		String mpassword = "test";
+
+		log.info("selectMemberByAccount : " + memberMapper.selectMemberByAccount(mid, mpassword));
 	}
 
 	@Test
@@ -116,6 +124,15 @@ public class MemberMapperTest {
 		String mid = "mapper_test" + currentTime;
 
 		log.info("updateMember2Secession : " + memberMapper.updateMember2Secession(mid));
+	}
+
+	@Test
+	public void test42_isValidMember() {
+		log.info("isValidMember");
+		String mid = "test";
+
+		log.info("isValidMember : " + memberMapper.isValidMember(mid));
+
 	}
 
 	@Test
