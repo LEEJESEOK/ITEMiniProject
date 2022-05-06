@@ -33,7 +33,7 @@
 
 	</update>
 
-
+	
 	<delete id="delete" statementType="CALLABLE">
 		{call
 		delete_qna(#{qid})

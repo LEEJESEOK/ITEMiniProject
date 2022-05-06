@@ -36,10 +36,10 @@ public class QnaProductMapperTests {
 	@Test
 	public void test02_insert() {
 		QnaProductVO vo = new QnaProductVO();
-		vo.setQid(200L);
+		
 		vo.setMid("rhehd002");
 		vo.setPid("ABCDE");
-		vo.setQtitle("제목1입니다.");
+		vo.setQtitle("제목3입니다.");
 		vo.setQcontent("내용1입니다.");
 		vo.setQdate(new Date());
 		log.info("test02 " + vo);
