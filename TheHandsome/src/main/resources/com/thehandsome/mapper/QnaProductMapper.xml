@@ -33,10 +33,10 @@
 
 	</update>
 
-
+	
 	<delete id="delete" statementType="CALLABLE">
 		{call
-		delete_qna(#{rno})
+		delete_qna(#{qid})
 		}
 	</delete>
 </mapper>

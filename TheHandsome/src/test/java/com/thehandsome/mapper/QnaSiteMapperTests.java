@@ -38,8 +38,8 @@ public class QnaSiteMapperTests {
 		QnaSiteVO vo=new QnaSiteVO();
 		
 		vo.setMid("isaa1107");
-		vo.setQtitle("제목1");
-		vo.setQcontent("내용1");
+		vo.setQtitle("제목2");
+		vo.setQcontent("내용2");
 		Date date= new Date();
 		vo.setQdate(date);
 		

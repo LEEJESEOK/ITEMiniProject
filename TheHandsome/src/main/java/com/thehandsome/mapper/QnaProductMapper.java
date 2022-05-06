@@ -17,7 +17,7 @@ public interface QnaProductMapper {
 
 	/* public List<QnaProductVO> getListQna(); */
 
-	public List All_select(String pid);
+	public List<QnaProductVO> All_select(String pid);
 
 	public QnaProductVO read(long qid);
 
@@ -26,4 +26,6 @@ public interface QnaProductMapper {
 	public int delete(long qid);
 
 	public int update(QnaProductVO qnaproductVO);
+
+	
 }

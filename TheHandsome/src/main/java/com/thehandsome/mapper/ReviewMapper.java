@@ -22,7 +22,9 @@ public interface ReviewMapper {
 	
 	public int update(ReviewVO reviewVO);
 	
-	public List All_select(String pid);
+	public List<ReviewVO> All_select(String pid);
+	public int update_rate( String pid);
+	
 	}
 
 

@@ -25,11 +25,17 @@
 
 
 	<update id="update" statementType="CALLABLE">
-		{call update_review(#{rno},#{rcontent},#{rdate},#{rrate})
+		{call update_review(#{rno},#{rcontent},#{rimage},#{rrate})
 		}
 		
 	</update>
-
+	
+	<update id="update_rate" statementType="CALLABLE">
+		{call
+		sp_review_rate_update(#{pid})
+		}
+	</update> 
+	
 	
 	<delete id="delete"  statementType="CALLABLE" >
 		{call delete_review(#{rno})
