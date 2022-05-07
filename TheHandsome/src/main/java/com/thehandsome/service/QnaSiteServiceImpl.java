@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.thehandsome.domain.Criteria;
 import com.thehandsome.domain.ProductVO;
 import com.thehandsome.domain.QnaSiteVO;
+import com.thehandsome.domain.ReviewVO;
 import com.thehandsome.mapper.QnaSiteMapper;
 
 import lombok.AllArgsConstructor;
@@ -23,6 +24,15 @@ public class QnaSiteServiceImpl implements QnaSiteService{
 	@Autowired
 	private QnaSiteMapper mapper;
 	
+	@Override
+	public int qna_site_total(String mid) {
+		return mapper.qna_site_total(mid);
+	}
+	@Override
+	public List<QnaSiteVO> getList(int pageNum,int amount, String mid){
+		return mapper.getListSitePaging(pageNum,amount,mid);
+	}
+
 	@Override
 	public List<QnaSiteVO> site_all_select(String mid){
 		return mapper.All_select(mid);

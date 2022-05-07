@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.thehandsome.domain.Criteria;
 import com.thehandsome.domain.ReviewVO;
 
 import lombok.extern.log4j.Log4j;
@@ -37,9 +38,9 @@ public class ReviewMapperTests {
 	public void test02_insert() {
 		ReviewVO vo=new ReviewVO();
 		vo.setRno(1L);
-		vo.setMid("2");
-		vo.setPid("1234_5678");
-		vo.setPcolor("Red");
+		vo.setMid("rhehd002");
+		vo.setPid("ABCDE");
+		vo.setPcolor("gray");
 		vo.setPsize("Large");
 		Date date= new Date();
 		vo.setRdate(date);
@@ -65,9 +66,9 @@ public class ReviewMapperTests {
 	@Test
 	public void test05_update() {
 		ReviewVO vo=new ReviewVO();
-		vo.setRno(21L);
+		vo.setRno(84L);
 		vo.setMid("2");
-		vo.setPid("1234_5678");
+		vo.setPid("ABCDE");
 		
 		
 		Date date= new Date();
@@ -77,9 +78,17 @@ public class ReviewMapperTests {
 		int result = mapper.update(vo);
 	}
 	
-	 @Test public void test05_delete() { 
+	 @Test 
+	 public void test05_delete() { 
 		 int result=mapper.delete(22L);
-		 log.info("result : " + result); }
+		 log.info("result : " + result); 
+	}
 	 
-	
+	@Test
+	public void testPaing() {
+		List<ReviewVO> list = mapper.getListReviewPaging(1,10,"ABCDE");
+		list.forEach(review ->log.info(review));
+		
+		
+	}
 }

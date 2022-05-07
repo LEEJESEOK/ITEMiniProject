@@ -4,7 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.thehandsome.domain.Criteria;
 import com.thehandsome.domain.ReviewVO;
 import com.thehandsome.mapper.ReviewMapper;
 
@@ -22,12 +24,14 @@ public class ReviewServiceImpl implements ReviewService {
 	@Autowired
 	private ReviewMapper mapper;
 	
-	/*
-	 * @Override public List<ReviewVO> getListReviewPaging(Criteria cri, ProductVO
-	 * pid) {
-	 * 
-	 * return null; }
-	 */
+	@Override
+	public int review_total(String pid) {
+		return mapper.review_total(pid);
+	}
+	@Override
+	public List<ReviewVO> getList(int pageNum,int amount, String pid){
+		return mapper.getListReviewPaging(pageNum,amount,pid);
+	}
 
 	@Override
 	public List<ReviewVO> review_All_select(String pid) {

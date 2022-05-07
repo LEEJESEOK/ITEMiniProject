@@ -31,7 +31,10 @@ public class QnaProductServiceImplTest {
 	
 	@Autowired
 	QnaProductService service;
-	
+	@Test
+	public void testGetList() {
+		service.getList(1,10,"ABCDE" );
+	}
 	@Test
 	public void testQna_insert() {
 		QnaProductVO qnaproductVO = new QnaProductVO(); //첫번째 데이터 삽입

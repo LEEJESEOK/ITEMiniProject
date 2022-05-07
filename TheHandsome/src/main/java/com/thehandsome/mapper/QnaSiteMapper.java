@@ -2,7 +2,10 @@ package com.thehandsome.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.thehandsome.domain.QnaSiteVO;
+import com.thehandsome.domain.ReviewVO;
 
 
 
@@ -13,12 +16,12 @@ import com.thehandsome.domain.QnaSiteVO;
  */
 public interface QnaSiteMapper {
 	
-//	public List<QnaSiteVO> getListReviewPaging(@Param("cri") Criteria cri,
-//												  @Param("mid") QnaSiteVO mid);
+	public List<QnaSiteVO> getListSitePaging(@Param("pageNum") int pageNum,
+			  								  @Param("amount") int amount,
+			  								  @Param("mid") String mid);
+	public int qna_site_total(String mid);
 	
-//	public List<QnaSiteVO> getListReview();
-	
-	public List All_select(String mid);
+	public List<QnaSiteVO> All_select(String mid);
 	
 	public QnaSiteVO read(long qid);
 	

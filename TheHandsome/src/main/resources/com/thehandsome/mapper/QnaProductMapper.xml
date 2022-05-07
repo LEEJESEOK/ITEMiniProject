@@ -3,7 +3,26 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thehandsome.mapper.QnaProductMapper">
-
+	<select id="getListQnAPaging" resultType="com.thehandsome.domain.QnaProductVO">
+		<![CDATA[
+		select qid, pid, mid, qtitle, qcontent, qdate
+		from(
+			select
+			/*+INDEX_DESC(qna_product pk_qna_product)*/
+			rownum rn, qid, pid, mid, qtitle, qcontent, qdate
+			from qna_product
+			where rownum <=#{pageNum} * #{amount} and pid=#{pid}
+			)
+		where rn >(#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+	
+	<select id="qna_total" resultType="int">
+		<![CDATA[
+		select count(*) from qna_product 
+		where pid=#{pid}
+		]]>
+	</select>
 	<insert id="insert" statementType="CALLABLE">
 		{call insert_qna
 		(#{qid},

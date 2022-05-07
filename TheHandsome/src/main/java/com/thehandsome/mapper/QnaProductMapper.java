@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.thehandsome.domain.Criteria;
 import com.thehandsome.domain.QnaProductVO;
+import com.thehandsome.domain.ReviewVO;
 
 /**
  * 
@@ -13,9 +14,10 @@ import com.thehandsome.domain.QnaProductVO;
  *
  */
 public interface QnaProductMapper {
-	public List<QnaProductVO> getListReviewPaging(@Param("cri") Criteria cri, @Param("pid") QnaProductVO pid);
-
-	/* public List<QnaProductVO> getListQna(); */
+	public List<QnaProductVO> getListQnAPaging(@Param("pageNum") int pageNum,
+			  								  @Param("amount") int amount,
+			  								  @Param("pid") String pid);
+	public int qna_total(String pid);
 
 	public List<QnaProductVO> All_select(String pid);
 

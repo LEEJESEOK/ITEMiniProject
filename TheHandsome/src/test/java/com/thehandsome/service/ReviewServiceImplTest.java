@@ -1,11 +1,7 @@
 package com.thehandsome.service;
 
-import static org.junit.Assert.*;
-
-import org.junit.Test;
 import java.util.Date;
 
-import org.junit.BeforeClass;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.thehandsome.domain.MemberVO;
+import com.thehandsome.domain.Criteria;
 import com.thehandsome.domain.ReviewVO;
 
 import lombok.extern.log4j.Log4j;
@@ -27,12 +23,19 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Log4j
+
 public class ReviewServiceImplTest {
 	@Autowired
 	ReviewService service;
+	
+	@Test
+	public void testGetList() {
+		service.getList(1,10,"ABCDE" );
+	}
+	
 	@Test
 	public void testReview_All_select() {
-		fail("Not yet implemented");
+		service.review_All_select("ABCDE");
 	}
 
 	@Test

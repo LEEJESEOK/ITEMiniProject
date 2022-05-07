@@ -28,11 +28,11 @@ public class ProductController {
 		model.addAttribute("list_new", service.display(1)); //신상품
 	}
 	
-	@GetMapping("/list")
-	public void list_best(Model model) {
-		log.info("list_best");
-		model.addAttribute("list_best", service.display(2)); //베스트
-	}
+	/*
+	 * @GetMapping("/list") public void list_best(Model model) {
+	 * log.info("list_best"); model.addAttribute("list_best", service.display(2));
+	 * //베스트 }
+	 */
 	
 	//@getMapping("/")
 	
