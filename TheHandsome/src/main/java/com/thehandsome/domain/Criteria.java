@@ -1,10 +1,14 @@
 package com.thehandsome.domain;
 
+import lombok.Data;
+
 /**
  * 
  * @author "Seungyeon"
  *
  */
+@Data
+
 public class Criteria {
 
 	private int pageNum;

@@ -9,11 +9,10 @@ import com.thehandsome.domain.*;
  *
  */
 public interface ReviewMapper {
-	public List<ReviewVO> getListReviewPaging(@Param("cri") Criteria cri,
-										@Param("pid") ProductVO pid);
-	
-	/* public List<ReviewVO> getListReview(); */
-	
+	public List<ReviewVO> getListReviewPaging(@Param("pageNum") int pageNum,
+											  @Param("amount") int amount,
+											  @Param("pid") String pid);
+	public int review_total(String pid);
 	public ReviewVO read(Long rno);
 	
 	public int insert(ReviewVO reviewVO);

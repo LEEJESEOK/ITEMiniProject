@@ -31,6 +31,11 @@ public class QnaSiteServiceImplTest {
 	
 	@Autowired
 	QnaSiteService service;
+	
+	@Test
+	public void testGetList() {
+		service.getList(1,10,"rhehd002" );
+	}
 	@Test
 	public void testSite_all_select() {
 		service.site_all_select("rhehd002");
