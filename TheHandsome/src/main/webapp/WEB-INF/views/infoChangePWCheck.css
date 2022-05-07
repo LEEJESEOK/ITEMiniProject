@@ -1,0 +1,29 @@
+<style media="screen">
+    .blsmflw1 {
+        animation: target_image 1.5s;
+        animation-iteration-count: 2;
+        transform-origin: 50% 50%;
+    }
+
+    @ keyframes target_image {
+        0% {
+            transform: rotate(-1deg);
+        }
+
+        50% {
+            transform:
+
+
+                rotate (9 deg)
+        }
+
+        100% {
+            transform:
+
+
+                rotate (-1 deg);
+
+
+        }
+    }
+</style>

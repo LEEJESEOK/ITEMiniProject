@@ -135,7 +135,8 @@
 																			"#loginForm")
 																			.submit();
 																	location.href = "/main";
-																}
+																} else{
+																	$("#hpErrMsg").text(data.message);																}
 															},
 															error : function(
 																	request,

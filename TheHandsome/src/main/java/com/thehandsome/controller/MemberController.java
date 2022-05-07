@@ -72,6 +72,8 @@ public class MemberController {
 			session.setAttribute("session_mmileage", loginMember.getMmileage());
 
 			log.info("set session data");
+		} else {
+			map.put("message", "아이디 또는 비밀번호가 올바르지 않습니다.");
 		}
 
 		return map;
@@ -121,7 +123,7 @@ public class MemberController {
 		member.setMaddress1((String) params.get("address1"));
 		member.setMaddress2((String) params.get("address2"));
 
-//		memberService.joinMember(member);
+		memberService.joinMember(member);
 	}
 
 }

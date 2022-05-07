@@ -43,7 +43,7 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery.form-3.51.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/common_function.js?20220411"></script>
+	src="${contextPath}/resources/js/common_function.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/videojs-ie8.min.js"></script>
 <script type="text/javascript"
@@ -83,10 +83,80 @@
 	</div>
 	<!-- end headerWrap -->
 
+	<script type="text/javascript">
+		//<![CDATA[ 
+		$(document)
+				.ready(
+						function() {
+
+							$("#menuTitle").text("개인정보 변경 / 탈퇴");
+
+							capsLockCheck('j_password');
+
+							$("#login_btn")
+									.click(
+											function() {
+												var vc = new ValidationCheck();
+												vc.checkIdList = [
+														'j_username',
+														'j_password' ];
+												if (vc.isValid()) {
+
+													var pw = $("#j_password")
+															.val();
+													console.log($("#j_password"));
+													$
+															.ajax({
+																type : "post",
+																url : "${contextPath}/common/passwordrecheck",
+																data : JSON.stringify({
+																	callPage:"mypage",
+																	test : "test",
+																	pw : $("#j_password").val(),
+																	CSRFToken : "d231d6c0-62f5-4b90-9d3e-f390c3cd6186"
+																}),
+												                contentType: "application/json",
+												                dataType: "json",
+																success : function(
+																		response) {
+																	console.log(response);
+																	if (response.result == true) {
+																        $("#infomationChangePage").attr("action", "${contextPath}/mypage/infoChange");
+																        $("#infomationChangePage").submit();
+																	} else {
+																		$("#guide_comment").text(response.message);
+																	}
+																},
+																error : function(
+																		e) {
+																	console
+																			.log(e);
+																}
+															});
+												}
+
+											});
+
+							$("#cancle_btn").click(function() {
+								location.href = "${contextPath}/mypage";
+							});
+
+							$("#j_password").keypress(function(event) {
+								// type enter
+								if (event.which == 13) {
+									event.preventDefault();
+									$("#login_btn").click();
+									$(this).blur();
+								}
+							});
+
+						});
+		//]]>
+	</script>
 	<!-- bodyWrap -->
 	<div id="bodyWrap">
 		<h3 class="cnts_title">
-			<span id="menuTitle">개인정보 변경 / 탈퇴</span>
+			<span id="menuTitle"></span>
 		</h3>
 		<div class="sub_container">
 			<!-- lnb -->
@@ -94,25 +164,21 @@
 			<!-- //lnb -->
 
 			<!-- cnts -->
+			<form id="infomationChangePage" name="manToManInquiryForm"
+				method="post">
+				<input type="hidden" name="directInto" value="NO">
+				<div>
+					<input type="hidden" name="CSRFToken"
+						value="d231d6c0-62f5-4b90-9d3e-f390c3cd6186">
+				</div>
+			</form>
 			<div class="sub_cnts">
 
-				<script type="text/javascript">
-					//<![CDATA[
-					$(document).ready(function() {
-						$("#login_btn").click(function() {
-							var vc = new ValidationCheck();
-							vc.checkIdList
-						});
-					});
-
-					//]]>
-				</script>
 
 				<div class="title_wrap mt30">
 					<h4 class="float_left">비밀번호 재확인</h4>
 					<p class="txt_line">고객님의 정보보호를 위하여 비밀번호를 다시 한번 확인합니다.</p>
 				</div>
-
 				<!-- pw_reaffrim -->
 				<div class="pw_reaffirm">
 					<form>
@@ -122,19 +188,20 @@
 
 								<div>
 									<div>
-										<!-- TODO member -->
 										<label for="j_username">아이디</label> <input type="text"
-											id="j_username" name="j_username" value=""
-											disabled="disabled">
+											id="j_username" name="j_username"
+											value="${fn:substring(session_mid, 0, 3) }<c:forEach varStatus="index" begin="1" end="${fn:length(session_mid) - 3}">*</c:forEach>" disabled="disabled">
 									</div>
 									<div>
 										<label for="j_password">비밀번호</label> <input type="password"
 											id="j_password" name="j_password" title="비밀번호">
 									</div>
 								</div>
-								<p class="guide_comment ml50">
+								<p class="guide_comment ml50" id="guide_comment">
+									
 									<!-- 입력하신 아이디 혹은 비밀번호가 일치하지 않습니다. -->
 								</p>
+								
 							</div>
 						</fieldset>
 					</form>

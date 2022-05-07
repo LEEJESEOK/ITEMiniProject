@@ -6,31 +6,55 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.thehandsome.domain.MemberVO;
+import com.thehandsome.service.MemberService;
+
+import lombok.extern.log4j.Log4j;
+
+@Log4j
 @Controller
 @RequestMapping("/common")
 public class CommonController {
 
+	@Autowired
+	MemberService memberService;
+
 	@RequestMapping("/passwordrecheck")
-	public boolean passwordReCheck(HttpServletRequest request, HttpSession session,
-			@RequestParam Map<String, Object> params) {
+	@ResponseBody
+	public Map<String, Object> passwordReCheck(HttpServletRequest request, HttpSession session,
+			@RequestBody Map<String, Object> params) {
+		
+		for(String key : params.keySet())
+			log.info(key + ":"+ params.get(key));
 
 		session = request.getSession();
 
 		String callPage = (String) params.get("callPage");
 
 		String mid = (String) session.getAttribute("session_mid");
-		String mpassword = (String) params.get("mpassword");
+		String mpassword = (String) params.get("pw");
 		String csrfToken = (String) params.get("CSRFToken");
+		log.info(mid);
+		log.info(mpassword);
 
-		// TODO
-		// Request check password
-		
-		boolean result = false;
+		MemberVO member = memberService.getMemberAccountByLogin(mid, mpassword);
+		log.info(member);
 
-		return result;
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", (member != null) ? true : false);
+
+		if ((boolean) map.get("result")) {
+			
+		} else {
+			map.put("message", "입력하신 비밀번호가 일치하지 않습니다.");
+		}
+
+		return map;
 	}
 }
