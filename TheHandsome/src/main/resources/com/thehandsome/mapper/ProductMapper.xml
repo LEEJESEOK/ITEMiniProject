@@ -5,23 +5,23 @@
 <mapper namespace="com.thehandsome.mapper.ProductMapper">
 	
 	<select id = "display" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display(#{mode}))
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid FROM TABLE(sf_product_display(#{mode}))
 	</select>
 	
 	<select id = "display_by_brand" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display_by_brand(#{bname}))
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno FROM TABLE(sf_product_display_by_brand(#{bno}))
 	</select>
 	
 	<select id = "display_by_brand_sort" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bname}))
+		SELECT * FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bno}))
 	</select>
 	
 	<select id = "display_by_brand_color" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display_by_brand_color(#{bname}, #{ccolorname}))
+		SELECT * FROM TABLE(sf_product_display_by_brand_color(#{bno}, #{ccolorname}))
 	</select>
 	
 	<select id = "display_by_brand_size" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display_by_brand_size(#{bname}, #{psize}))
+		SELECT * FROM TABLE(sf_product_display_by_brand_size(#{bno}, #{psize}))
 	</select>
 	
 	
@@ -41,10 +41,21 @@
 		<result property="preleasedate" column="preleasedate" javaType="Date" />
 		<result property="psize" column="psize" />
 		<result property="ccolorname" column = "ccolorname" />
+		<result property="pimg1" column="pimg1" />
+		<result property="pimg2" column="pimg2" />
+		<result property="pimg3" column="pimg3" />
 	</resultMap>
 
 	<select id="display_product_detail" resultMap="productMap">
-		SELECT * FROM TABLE(sf_product_detail_display(#{pid}))
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, pdetail FROM TABLE(sf_product_detail_display(#{pid}))
+	</select>
+	
+	<select id="display_product_color" resultMap="productMap">
+		SELECT distinct ccolorname FROM TABLE(sf_product_detail_display(#{pid}))
+	</select>
+	
+	<select id="display_product_size" resultMap="productMap">
+		SELECT distinct psize FROM TABLE(sf_product_detail_display(#{pid}))
 	</select>
 	
 	

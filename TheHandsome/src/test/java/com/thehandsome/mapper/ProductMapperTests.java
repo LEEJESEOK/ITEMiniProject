@@ -45,13 +45,13 @@ public class ProductMapperTests {
 
 	@Test
 	public void test03_display_by_brand() {
-		mapper.display_by_brand("꼼데가르송").forEach(product -> log.info(product));
+		mapper.display_by_brand(1).forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test04_display_by_brand_sort() {
 		for (int i = 1; i < 5; i++) {
-			mapper.display_by_brand_sort(i, "꼼데가르송").forEach(product -> log.info(product));
+			mapper.display_by_brand_sort(i, 1).forEach(product -> log.info(product));
 		}
 	}
 	/*
@@ -63,17 +63,17 @@ public class ProductMapperTests {
 
 	@Test
 	public void test05_display_by_brand_color() {
-		mapper.display_by_brand_color("꼼데가르송", "red").forEach(product -> log.info(product));
+		mapper.display_by_brand_color(1, "white").forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test05_display_by_brand_size() {
-		mapper.display_by_brand_size("꼼데가르송", "XL").forEach(product -> log.info(product));
+		mapper.display_by_brand_size(1, "S").forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test06_display_product_detail() {
-		ProductVO product = mapper.display_product_detail("ABCDE");
+		ProductVO product = mapper.display_product_detail("TH2C5KTN040N");
 
 		log.info("read product detail : " + product);
 	}

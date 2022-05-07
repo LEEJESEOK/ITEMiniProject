@@ -26,33 +26,46 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ArrayList<ProductVO> display_by_brand(String bname) {
+	public ArrayList<ProductVO> display_by_brand(int bno) {
 		log.info("get list by brand....");
-		return mapper.display_by_brand(bname);
+		return mapper.display_by_brand(bno);
 	}
 
 	@Override
-	public ArrayList<ProductVO> display_by_brand_sort(int mode, String bname) {
+	public ArrayList<ProductVO> display_by_brand_sort(int mode, int bno) {
 		log.info("get list by brand using mode....");
-		return mapper.display_by_brand_sort(mode, bname);
+		return mapper.display_by_brand_sort(mode, bno);
 	}
 
 	@Override
-	public ArrayList<ProductVO> display_by_brand_color(String bname, String ccolorname) {
+	public ArrayList<ProductVO> display_by_brand_color(int bno, String ccolorname) {
 		log.info("get list by brand and color....");
-		return mapper.display_by_brand_color(bname, ccolorname);
+		return mapper.display_by_brand_color(bno, ccolorname);
 	}
 
 	@Override
-	public ArrayList<ProductVO> display_by_brand_size(String bname, String psize) {
+	public ArrayList<ProductVO> display_by_brand_size(int bno, String psize) {
 		log.info("get list by brand and size....");
-		return mapper.display_by_brand_size(bname, psize);
+		return mapper.display_by_brand_size(bno, psize);
 	}
 
 	@Override
 	public ProductVO display_product_detail(String pid) {
 		log.info("get product detail....");
 		return mapper.display_product_detail(pid);
+	}
+
+
+	@Override
+	public ArrayList<ProductVO> display_product_color(String pid) {
+		log.info("get product color ....");
+		return mapper.display_product_color(pid);
+	}
+
+	@Override
+	public ArrayList<ProductVO> display_product_size(String pid) {
+		log.info("get product size ....");
+		return mapper.display_product_size(pid);
 	}
 	
 

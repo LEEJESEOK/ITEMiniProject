@@ -41,13 +41,13 @@ public class ProductServiceImplTest {
 
 	@Test
 	public void test03_service_display_by_brand() {
-		service.display_by_brand("리바이스").forEach(product -> log.info(product));
+		service.display_by_brand(1).forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test04_display_by_brand_sort() {
 		for (int i = 1; i < 5; i++) {
-			service.display_by_brand_sort(i, "리바이스").forEach(product -> log.info(product));
+			service.display_by_brand_sort(i, 1).forEach(product -> log.info(product));
 		}
 	}
 	/*
@@ -59,17 +59,17 @@ public class ProductServiceImplTest {
 
 	@Test
 	public void test05_service_display_by_brand_color() {
-		service.display_by_brand_color("리바이스", "blue").forEach(product -> log.info(product));
+		service.display_by_brand_color(1, "white").forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test06_service_display_by_brand_size() {
-		service.display_by_brand_size("꼼데가르송", "XL").forEach(product -> log.info(product));
+		service.display_by_brand_size(1, "S").forEach(product -> log.info(product));
 	}
 
 	@Test
 	public void test07_display_product_detail() {
-		ProductVO product = service.display_product_detail("ABCDE");
+		ProductVO product = service.display_product_detail("TH2C5KTN040N");
 
 		log.info("read product detail : " + product);
 	}

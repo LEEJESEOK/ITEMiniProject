@@ -7,37 +7,50 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thehandsome.domain.ProductVO;
+import com.thehandsome.service.ProductService;
+
+import lombok.extern.log4j.Log4j;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
+@Log4j
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);
 
+	@Autowired
+	private ProductService service;
+	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-
+		ArrayList<ProductVO> productlist_new = new ArrayList<>();
+		ArrayList<ProductVO> productlist_best = new ArrayList<>();
 		// 신상품
-		// 여성, 남성, ...?
-
+		// 여성, 남성
+		productlist_new = service.display(1);
+		model.addAttribute("list_new", productlist_new);
+		log.info(productlist_new);
 		// 베스트
 		// 여성, 남성
-
-		// 매거진
+		productlist_best = service.display(2);
+		model.addAttribute("list_best", productlist_best);
+		log.info(productlist_best);
 
 		return "main";
 	}
@@ -52,30 +65,6 @@ public class MainController {
 		HashMap<String, String> map = new HashMap<String, String>();
 
 		return new ResponseEntity<HashMap<String, String>>(map, HttpStatus.OK);
-	}
-
-	// 여성, 남성에 따른 최신 제품 리스트
-	@RequestMapping(value = "/intro/mainNewProductList", method = RequestMethod.GET)
-	public ResponseEntity<HashMap<String, List<ProductVO>>> mainNewProductList(
-			@RequestParam("categoryCode") String categoryCode) {
-		HashMap<String, List<ProductVO>> map = new HashMap<String, List<ProductVO>>();
-		List<ProductVO> list = new ArrayList<>();
-
-		// TODO
-
-		return new ResponseEntity<HashMap<String, List<ProductVO>>>(map, HttpStatus.OK);
-	}
-
-	// 여성, 남성에 따른 베스트 제품 리스트
-	@RequestMapping(value = "/intro/mainBestProductList", method = RequestMethod.GET)
-	public ResponseEntity<HashMap<String, List<ProductVO>>> mainBetProductList(
-			@RequestParam("categoryCode") String categoryCode) {
-		HashMap<String, List<ProductVO>> map = new HashMap<String, List<ProductVO>>();
-		List<ProductVO> list = new ArrayList<>();
-
-		// TODO
-
-		return new ResponseEntity<HashMap<String, List<ProductVO>>>(map, HttpStatus.OK);
 	}
 
 	// 최신 기사

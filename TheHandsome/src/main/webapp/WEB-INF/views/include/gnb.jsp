@@ -24,57 +24,57 @@
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="TIME" value="NEW_NORMAL_BRANDS_WE#BR01#1"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR01"></label><a
-										href="/b/br01">TIME</a></li>
+										href="/b?bno=1">TIME</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR02"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="MINE" value="NEW_NORMAL_BRANDS_WE#BR02#2"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR02"></label><a
-										href="/b/br02">MINE</a></li>
+										href="/b?bno=2">MINE</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR19"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="LANVIN COLLECTION" value="NEW_NORMAL_BRANDS_WE#BR19#3">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR19"></label><a
-										href="/b/br19">LANVIN COLLECTION</a></li>
+										href="/b?bno=3">LANVIN COLLECTION</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR03"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="SYSTEM" value="NEW_NORMAL_BRANDS_WE#BR03#4"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR03"></label><a
-										href="/b/br03">SYSTEM</a></li>
+										href="/b?bno=4">SYSTEM</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR04"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="SJSJ" value="NEW_NORMAL_BRANDS_WE#BR04#5"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR04"></label><a
-										href="/b/br04">SJSJ</a></li>
+										href="/b?bno=5">SJSJ</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR08"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="the CASHMERE" value="NEW_NORMAL_BRANDS_WE#BR08#6">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR08"></label><a
-										href="/b/br08">the CASHMERE</a></li>
+										href="/b?bno=6">the CASHMERE</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR44"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="CLUB MONACO" value="NEW_NORMAL_BRANDS_WE#BR44#7">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_WE_BR44"></label><a
-										href="/b/br44">CLUB MONACO</a></li>
+										href="/b?bno=7">CLUB MONACO</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR43"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="OBZEE" value="NEW_NORMAL_BRANDS_WE#BR43#8"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR43"></label><a
-										href="/b/br43">OBZEE</a></li>
+										href="/b?bno=8">OBZEE</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR31"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="LÄTT" value="NEW_NORMAL_BRANDS_WE#BR31#9"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR31"></label><a
-										href="/b/br31">LÄTT</a></li>
+										href="/b?bno=9">LÄTT</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR45"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="O'2nd" value="NEW_NORMAL_BRANDS_WE#BR45#10"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR45"></label><a
-										href="/b/br45">O'2nd</a></li>
+										href="/b?bno=10">O'2nd</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_WE_BR61"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="oera" value="NEW_NORMAL_BRANDS_WE#BR61#11"> <label
 										for="gnb_br_NEW_NORMAL_BRANDS_WE_BR61"></label><a
-										href="/b/br61">oera</a></li>
+										href="/b?bno=11">oera</a></li>
 								</ul></li>
 							<li><strong>남성 브랜드</strong>
 								<ul class="clearfix sm_dep2">
@@ -82,22 +82,22 @@
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="TIME HOMME" value="NEW_NORMAL_BRANDS_ME#BR06#1">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR06"></label><a
-										href="/b/br06">TIME HOMME</a></li>
+										href="/b?bno=12">TIME HOMME</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR07"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="SYSTEM HOMME" value="NEW_NORMAL_BRANDS_ME#BR07#2">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR07"></label><a
-										href="/b/br07">SYSTEM HOMME</a></li>
+										href="/b?bno=13">SYSTEM HOMME</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR08"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="the CASHMERE" value="NEW_NORMAL_BRANDS_ME#BR08#3">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR08"></label><a
-										href="/b/br08">the CASHMERE</a></li>
+										href="/b?bno=14">the CASHMERE</a></li>
 									<li><input id="gnb_br_NEW_NORMAL_BRANDS_ME_BR44"
 										name="gnb_br_ch" type="checkbox" class="checkboxEvent"
 										title="CLUB MONACO" value="NEW_NORMAL_BRANDS_ME#BR44#4">
 										<label for="gnb_br_NEW_NORMAL_BRANDS_ME_BR44"></label><a
-										href="/b/br44">CLUB MONACO</a></li>
+										href="/b?bno=15">CLUB MONACO</a></li>
 								</ul></li>
 							<li></li>
 							<!-- <li>

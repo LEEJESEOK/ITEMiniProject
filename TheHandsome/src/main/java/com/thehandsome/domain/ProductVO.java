@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 /**
  * 상품관련 VO
  * 
- * @author 고동
+ * @author 고동현
  */
 @Data
 @AllArgsConstructor
@@ -29,4 +29,8 @@ public class ProductVO {
 	private Date preleasedate; // 상품 출시일
 	private String psize; // 상품 사이즈
 	private String ccolorname; // 상품색상
+	private String pimg1;
+	private String pimg2;
+	private String pimg3;
+	private String bname; // 브랜드이름
 }
