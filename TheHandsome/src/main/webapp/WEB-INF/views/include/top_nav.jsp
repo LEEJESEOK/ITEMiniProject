@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true"%>
 <script type="text/javascript">
 	//<![CDATA[
 	// #1067 - 201803 메인 개편
@@ -296,100 +298,11 @@
 						//자동로그인
 
 						//vip 채팅 서비스
-						if ("" != "") {
-							var pag = "main201903Page";
-
-							var chkPag = [ "svCenterMainPage", "noticePage",
-									"manToManInquiryPage", "faqPage",
-									"mendingPage", "vocProvisionPage",
-									"vocInfoFormPage", "memberJoinGuidePage",
-									"theClubInfoPage",
-									"memberBenefitGuidePage", "pointGuidePage",
-									"couponGuidePage", "paymentGuidePage",
-									"asGuidePage" ];
-
-							var vipPassCheck = "N"; // VVIP/THESTAR/STAR 등급 체크
-							var timePassCheck = "N"; // 평일 0900~1800 체크
-
-							if ("" == "VVIP"
-									|| ("" == "THESTAR" || "" == "STAR")) {
-								vipPassCheck = "Y";
-							}
-
-							if (vipPassCheck == "N" && "" == "PASS") { // MANIA 이하 등급, 평일 체크 
-								// chatbotInfo "PASS" : 등급이 VVIP/THESTAR/STAR/MANIA 이거나 평일 0900~1800
-								var hour = new Date().format("HHmm");
-								var weekName = new Date().format("E");
-								if (weekName != "일요일" && weekName != "토요일"
-										&& hour >= "0900" && hour <= "1800") {
-									$
-											.ajax({
-												type : "POST",
-												url : "/chatbot/chkholiday",
-												data : {
-													"CSRFToken" : "20119da4-eeb4-4095-888b-6153bbd24423"
-												},
-												async : false,
-												success : function(result) {
-													if (result == true) {
-														timePassCheck = "Y";
-													}
-												},
-												error : function(request,
-														statuss, error) {
-													;
-												}
-											});
-								}
-							}
-
-							if ((vipPassCheck == "Y" || timePassCheck == "Y")
-									&& "main201903Page" == "main201903Page") {
-								$('#chatbotMain').show();
-							} else {
-								$('#chatbotMain').hide();
-							}
-
-							if (chkPag.indexOf(pag) > -1) {
-								if (vipPassCheck == "Y" || timePassCheck == "Y") {
-									$('#chatbot').show();
-								} else {
-									$('#chatbot').hide();
-								}
-							} else {
-								$('#chatbot').hide();
-							}
-						}
-
-						//athome
-						if ("" != "") {
-							// #1067 - 메인 개편
-
-							$('.ico.athome').mouseenter(function() {
-								$('.athome_info').show();
-							});
-							$('.athome_header').mouseleave(function() {
-								$('.athome_info').hide();
-							});
-						}
 
 						// ##1141 - 카테고리 개편
 						outletGnbNav();//아울렛 gnb
 
 					});
-
-	function athomeBlink() {
-		$('.ico.athome').css('opacity', '0');
-		setTimeout(function() {
-			$('.ico.athome').css('opacity', '1');
-		}, 500);
-	}
-	function athomeEventBlink() {
-		$('.athome_event').css('opacity', '0');
-		setTimeout(function() {
-			$('.athome_event').css('opacity', '1');
-		}, 500);
-	}
 
 	function hpAutoLogin(data) {
 		//console.log("data.succYn:"+data.succYn);
@@ -1116,27 +1029,21 @@
 		<!--// 201705 search_box_wrap -->
 		<div class="util_menu" style="display: block;">
 			<ul class="clearfix">
-				<li><a href="/member/login">로그인 <!-- 로그인 -->
-				</a></li>
+
+				<c:choose>
+					<c:when test="${empty session_mid}">
+						<li><a href="/member/login">로그인 </a></li>
+					</c:when>
+					<c:otherwise>
+						<li><a href="/member/logout">로그아웃 </a></li>
+					</c:otherwise>
+				</c:choose>
 				<li class="header_dropmemu mypage"><a href="/mypage"
 					class="btn">마이페이지</a>
 					<div class="list"
 						style="display: none; height: 168px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
 						<ul>
-							<li><a href="/mypage/order/myorders">주문조회 <!-- 주문조회 -->
-							</a></li>
-							<li><a href="/mypage/myGradeInfo">나의회원등급 <!-- 온라인등급 -->
-							</a></li>
-							<li><a href="/mypage/voucher">쿠폰조회 <!-- 쿠폰조회 -->
-							</a></li>
-							<li><a href="/mypage/mypoint">마일리지조회 <!-- 포인트조회 -->
-							</a></li>
-							<li><a href="/mypage/myEGiftCard">e-Gift Card <!-- e-Gfit Card -->
-							</a></li>
 							<li><a href="/mypage/personInfomationChangePWCheck">회원정보변경
-									<!-- 회원정보변경 -->
-							</a></li>
-							<li><a href="/svcenter/mantomaninquiry">온라인상담 <!-- 온라인 상담 -->
 							</a></li>
 						</ul>
 					</div></li>

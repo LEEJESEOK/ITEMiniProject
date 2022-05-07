@@ -27,13 +27,22 @@ public interface MemberService {
 	public boolean isExistMemberByMid(String mid);
 
 	/**
-	 * 회원 id, password를 통해 계정 확인
+	 * 회원 계정이 활성 상태인지 확인
 	 * 
 	 * @param mid
 	 * @param mpassword
-	 * @return 일치하는 계정이 있으면 true
+	 * @return 활성 상태이면 true
+	 * @deprecated
 	 */
-	public boolean isValidMember(String mid, String mpassword);
+	public boolean isValidMember(String mid);
+	
+	/**
+	 * 
+	 * @param mid
+	 * @param mpassword
+	 * @return 해당하는 회원의 계정 정보
+	 */
+	public MemberVO getMemberAccountByLogin(String mid, String mpassword);
 
 	/**
 	 * mid에 해당하는 회원 정보 반환
