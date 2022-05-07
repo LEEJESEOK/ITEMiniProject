@@ -25,8 +25,8 @@ import lombok.extern.log4j.Log4j;
 /**
  * Handles requests for the application home page.
  */
-@Controller
 @Log4j
+@Controller
 public class MainController {
 
 	private static final Logger logger = LoggerFactory.getLogger(MainController.class);

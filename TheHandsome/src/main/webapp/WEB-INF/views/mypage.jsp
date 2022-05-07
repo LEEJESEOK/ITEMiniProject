@@ -24,28 +24,8 @@
 <link rel="shortcut icon"
 	href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/font_80.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/common.css?20220401" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/layout.css?20220331" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/popup.css?20210225" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/jquery-ui.min.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/brand.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/swiper.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/main_201903.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/footer.css?20220406" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/contents.css?20220221" media="all">
-<style type="text/css" media="print">
-@IMPORT url("${contextPath}/resources/blueprint/print.css");
-</style>
+	href="${contextPath }/resources/css/style.css">
+
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript"
@@ -57,11 +37,11 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/handsome/jquery.flexslider.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/handsome/ui.js?20211105"></script>
+	src="${contextPath}/resources/js/handsome/ui.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/handsome/jquery.bxslider.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/common_function.js?20220411"></script>
+	src="${contextPath}/resources/js/common_function.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery.vticker.js"></script>
 <script type="text/javascript"
@@ -73,11 +53,11 @@
 </head>
 <body>
 	<script type="text/javascript">
-/*<![CDATA[*/
-	var session = [${session.ssesion_mid}]
+//<![CDATA[
+	var session = "${session_mid}";
 	
 	console.log(session);
-/*]]*/
+//]]>
 	</script>
 	<!-- headerWrap -->
 	<div id="headerWrap">
@@ -126,33 +106,7 @@
 		</div>
 		<div class="sub_container">
 			<!-- lnb -->
-			<div class="lnb_wrap">
-				<h4>
-					<a href="${contextPath}/mypage">마이페이지</a>
-				</h4>
-				<div class="lnb">
-					<dl>
-						<dt>나의 정보관리</dt>
-						<dd>
-							<a href="${contextPath}/mypage/personInfomationChangePWCheck">
-								개인정보 변경/탈퇴</a>
-						</dd>
-					</dl>
-				</div>
-				<!-- ph_guide -->
-				<div class="ph_guide">
-					<p class="tlt">고객센터 운영 안내</p>
-					<p class="phone">
-						1800-5700<span style="color: #c69c6d;" class="txt">(유료)</span>
-					</p>
-					<p class="txt">
-						평일(월~금)<br>am 09:00 ~ pm 18:00<span>토/일, 공휴일 휴무</span>
-					</p>
-					<a href="mailto:shophelp@thehandsome.com">shophelp<br>@thehandsome.com
-					</a>
-				</div>
-				<!-- //ph_guide -->
-			</div>
+			<%@include file="include/lnb_mypage.jsp"%>
 			<!-- //lnb -->
 			<!-- cnts -->
 			<div class="sub_cnts">
@@ -738,24 +692,6 @@ $(document).ready(function(){
         });
         
     };
-            
-        // 한섬 멤버십 통합 전환 여부 조회
-        
-        $.ajax({
-            url      : '/ko/mypage/searchHpMemberList?CSRFToken=01f98955-34f3-45f8-a479-5dde49ca5b31',
-            type     : 'POST',
-            dataType : 'json',
-            data     : { custNm : "이제석", custMpNo : "010-4662-3126" },
-            success  : function(data) {
-                if ( data != null ) {
-                    var membershipCnt = data.length;
-                    if(membershipCnt > 1 && getCookie("mergeInfoPopup") == '') {
-                        membershipMergeInfoPopup();
-                    }
-                }
-            }
-        });
-        
 });
 
 function hideProductLayer() {

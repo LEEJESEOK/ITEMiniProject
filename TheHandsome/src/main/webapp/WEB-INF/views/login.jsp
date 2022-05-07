@@ -24,28 +24,7 @@
 <link rel="shortcut icon"
 	href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
 <link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/font_80.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/common.css?20220401" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/layout.css?20220331" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/popup.css?20210225" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/jquery-ui.min.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/brand.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/swiper.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/main_201903.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/footer.css?20220406" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/contents.css?20220221" media="all">
-<style type="text/css" media="print">
-@IMPORT url("${contextPath}/resources/blueprint/print.css");
-</style>
+	href="${contextPath }/resources/css/style.css">
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript"
@@ -57,11 +36,11 @@
 <script type="text/javascript"
 	src="${contextPath}/resources/js/handsome/jquery.flexslider.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/handsome/ui.js?20211105"></script>
+	src="${contextPath}/resources/js/handsome/ui.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/handsome/jquery.bxslider.min.js"></script>
 <script type="text/javascript"
-	src="${contextPath}/resources/js/common_function.js?20220411"></script>
+	src="${contextPath}/resources/js/common_function.js"></script>
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery.vticker.js"></script>
 <script type="text/javascript"
@@ -215,7 +194,7 @@
 											<label for="id_save">아이디 저장</label>
 										</div>
 										<a href="javascript:void(0);" class="btn_login" id="login_btn">로그인</a>
-										<a href="javascript:void(0);" class="btn join" id="join_btn">회원가입</a>
+										<a href="${contextPath }/member/joininfoform" class="btn join" id="join_btn">회원가입</a>
 									</div>
 								</fieldset>
 							</form>

@@ -1,23 +1,21 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="Cache-Control" content="No-Cache" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="No-Cache">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi" />
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=1, target-densitydpi=medium-dpi">
 <title>서비스 이용에 불편을 드려서 죄송합니다! | THE HANDSOME.COM</title>
-<!-- ie8 미디어쿼리 사용하기위해 스크립트보다 상위에 위치해야 함 -->
 <link rel="stylesheet" type="text/css"
-	href="/_ui/desktop/common/css/common.css" media="all" />
-<link rel="stylesheet" type="text/css"
-	href="/_ui/desktop/common/css/layout.css" media="all" />
-<link rel="stylesheet" type="text/css"
-	href="/_ui/desktop/common/css/contents.css" media="all" />
-<link rel="stylesheet" type="text/css"
-	href="/_ui/desktop/common/css/popup.css" media="all" />
-
+	href="${contextPath }/resources/css/style.css">
 <script type="text/javascript"
 	src="/_ui/desktop/common/js/jquery-1.11.2.js"></script>
 <!--[if lt IE 9]>
@@ -25,14 +23,9 @@
 <script src="/_ui/desktop/common/js/respond.js"></script>
 <script src="/_ui/desktop/common/js/IE9.js"></script>
 <![endif]-->
-</head>
-
-<!-- This script is for AceCounter START -->
-<script type="text/javascript">
+<script language="javascript" type="text/javascript">
 	var _ERR = 'err';
 </script>
-<!-- AceCounter END -->
-
 <script type="text/javascript">
 	//<![CDATA[
 	$(document).ready(function() {
@@ -64,6 +57,13 @@
 	};
 	//]]>
 </script>
+</head>
+
+<!-- This script is for AceCounter START -->
+
+<!-- AceCounter END -->
+
+
 <body>
 	<!-- bodyWrap -->
 	<div id="bodyWrap">
@@ -81,8 +81,9 @@
 				</div>
 				<div class="con_error">
 					<p>서비스 이용에 불편을 드려서 죄송합니다!</p>
-					<span>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br />페이지의 주소가 변경 혹은 삭제되어
-						요청하신 페이지를 찾을 수 없습니다.<br /> <br />입력한 주소가 정확한지 다시 한번 확인해주시길 바랍니다.
+					<span>방문하시려는 페이지의 주소가 잘못 입력되었거나,<br>페이지의 주소가 변경 혹은 삭제되어
+						요청하신 페이지를 찾을 수 없습니다.<br> <br>입력한 주소가 정확한지 다시 한번 확인해주시길
+						바랍니다.
 					</span>
 				</div>
 				<div class="btnwrap">
@@ -104,10 +105,10 @@
 				<div class="con_error">
 					<p>We are sorry for any inconvenience caused by the recent
 						service.</p>
-					<span>The webpage cannot be found.<br />This error is
-						caused because the website address is typed incorrectly,<br />has
-						been deleted, or changed.<br /> <br />Make sure the address is
-						correct and try again.
+					<span>The webpage cannot be found.<br>This error is
+						caused because the website address is typed incorrectly,<br>has
+						been deleted, or changed.<br> <br>Make sure the address
+						is correct and try again.
 					</span>
 				</div>
 				<div class="btnwrap">
@@ -127,7 +128,7 @@
 				</div>
 				<div class="con_error">
 					<p>非常抱！</p>
-					<span>入的址无法。<br />此不存在或址已更。<br /> <br />再次地址。
+					<span>入的址无法。<br>此不存在或址已更。<br> <br>再次地址。
 					</span>
 				</div>
 				<div class="btnwrap">
@@ -139,6 +140,55 @@
 		<!-- //sub_container -->
 	</div>
 	<!-- //bodyWrap -->
-</body>
 
+
+	<!-- AceCounter Log Gathering Script V.7.5.2013010701 -->
+	<script language="javascript">
+		var _AceGID = (function() {
+			var Inf = [ 'dgc17.acecounter.com', '8080', 'AP6F40149814536',
+					'CW', '0', 'NaPm,Ncisy', 'ALL', '0' ];
+			var _CI = (!_AceGID) ? [] : _AceGID.val;
+			var _N = 0;
+			var _T = new Image(0, 0);
+			if (_CI.join('.').indexOf(Inf[3]) < 0) {
+				_T.src = (location.protocol == "https:" ? "https://" + Inf[0]
+						: "http://" + Inf[0] + ":" + Inf[1])
+						+ '/?cookie';
+				_CI.push(Inf);
+				_N = _CI.length;
+			}
+			return {
+				o : _N,
+				val : _CI
+			};
+		})();
+		var _AceCounter = (function() {
+			var G = _AceGID;
+			if (G.o != 0) {
+				var _A = G.val[G.o - 1];
+				var _G = (_A[0]).substr(0, _A[0].indexOf('.'));
+				var _C = (_A[7] != '0') ? (_A[2]) : _A[3];
+				var _U = (_A[5]).replace(/\,/g, '_');
+				var _S = (([ '<scr','ipt','type="text/javascr','ipt"></scr','ipt>' ])
+						.join('')).replace('tt', 't src="' + location.protocol
+						+ '//cr.acecounter.com/Web/AceCounter_' + _C
+						+ '.js?gc=' + _A[2] + '&py=' + _A[4] + '&gd=' + _G
+						+ '&gp=' + _A[1] + '&up=' + _U + '&rd='
+						+ (new Date().getTime()) + '" t');
+				document.writeln(_S);
+				return _S;
+			}
+		})();
+	</script>
+	<script
+		src="http://cr.acecounter.com/Web/AceCounter_CW.js?gc=AP6F40149814536&amp;py=0&amp;gd=dgc17&amp;gp=8080&amp;up=NaPm_Ncisy&amp;rd=1651921645048"
+		type="text/javascript"></script>
+
+	<noscript>
+		<img src='http://dgc17.acecounter.com:8080/?uid=AP6F40149814536&je=n&'
+			border='0' width='0' height='0' alt=''>
+	</noscript>
+	<!-- AceCounter Log Gathering Script End -->
+
+</body>
 </html>

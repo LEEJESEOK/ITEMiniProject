@@ -1,5 +1,6 @@
 package com.thehandsome.service;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -68,12 +69,12 @@ public class MemberServiceImplTest {
 	}
 
 	@Test
-	public void test21_isExist() {
-		String mid = "service_test" + currentTime;
+	public void test21_isDuplMemberByMid() {
+		String mid = "!";
 
-		boolean result = memberService.isExistMemberByMid(mid);
-		assertTrue(result);
-		log.info("test21_isExist : " + result);
+		boolean result = memberService.isDuplMemberByMid(mid);
+		assertFalse(result);
+		log.info("test21_isNotDuplMemberByMid : " + result);
 	}
 
 	@Test
@@ -111,7 +112,7 @@ public class MemberServiceImplTest {
 
 		boolean result = memberService.changeMemberInformation(member);
 		assertTrue(result);
-		log.info("test21_isExist : " + result);
+		log.info("test21_changeMemberInformation : " + result);
 	}
 
 	@Test

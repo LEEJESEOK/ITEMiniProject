@@ -48,8 +48,7 @@ public class MemberMapperTest {
 
 	@Test
 	public void test10_isExistMemberByMid() {
-		log.info("isExistMemberByMid");
-		String mid = "mapper_test" + currentTime;
+		String mid = "none";
 
 		log.info("isExistMemberByMid : " + memberMapper.isExistMemberByMid(mid));
 	}
@@ -70,13 +69,6 @@ public class MemberMapperTest {
 		log.info("member : " + member);
 
 		log.info("insertMember : " + memberMapper.insertMember(member));
-	}
-
-	@Test
-	public void test21_isExistMemberByMid() {
-		log.info("isExistMemberByMid");
-		String mid = "mapper_test" + currentTime;
-		log.info("isExistMemberByMid : " + memberMapper.isExistMemberByMid(mid));
 	}
 
 	@Test

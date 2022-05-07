@@ -8,13 +8,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,8 +22,8 @@ import com.thehandsome.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
-@Controller
 @Log4j
+@Controller
 public class MemberController {
 
 	@Autowired
@@ -49,10 +48,10 @@ public class MemberController {
 	// 로그인 처리
 	@RequestMapping(value = "/member/auth")
 	@ResponseBody
-	public Map<String, Object> memberCheck(@RequestBody Map<String, Object> loginMap, HttpServletRequest request,
+	public Map<String, Object> memberAuth(@RequestBody Map<String, Object> loginMap, HttpServletRequest request,
 			HttpSession session) {
 
-		log.info(session.getAttribute("prevPath"));
+		log.info("prevPath : " + session.getAttribute("prevPath"));
 
 		String mid = (String) loginMap.get("mid");
 		String mpassword = (String) loginMap.get("mpassword");
@@ -85,17 +84,44 @@ public class MemberController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/member/joinInfoForm")
+	@RequestMapping(value = "/member/joininfoform")
 	public String joinStart() {
 
-		return "joinInfoForm";
+		return "member/joininfoform";
 	}
 
-	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
-	public String mypage(Model model, HttpSession session) {
-		if (session.getAttribute("session_mid") != null)
-			return "mypage";
-		else
-			return "login";
+	@RequestMapping(value = "/member/isduplid")
+	@ResponseBody
+	public Map<String, Object> isDuplId(@RequestParam Map<String, Object> params) {
+
+		String id = (String) params.get("id");
+		log.info(id);
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("result", memberService.isDuplMemberByMid(id));
+		log.info(result.get("result"));
+
+		return result;
 	}
+
+	@RequestMapping(value = "/member/joincomplete")
+	public void joinMemberComplete(@RequestParam Map<String, Object> params) {
+
+		for (String key : params.keySet()) {
+			log.info(key + " : " + params.get(key));
+			log.info(key + " : " + params.get(key).getClass());
+		}
+
+		MemberVO member = new MemberVO();
+		member.setMid((String) params.get("id"));
+		member.setMpassword((String) params.get("passwd"));
+		member.setMname((String) params.get("name"));
+		member.setMemail((String) params.get("emailAddress"));
+		member.setMtel((String) params.get("mobilePhoneNumber"));
+		member.setMzipcode((String) params.get("zipcode"));
+		member.setMaddress1((String) params.get("address1"));
+		member.setMaddress2((String) params.get("address2"));
+
+//		memberService.joinMember(member);
+	}
+
 }

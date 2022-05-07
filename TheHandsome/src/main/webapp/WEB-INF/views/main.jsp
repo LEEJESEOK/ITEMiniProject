@@ -23,10 +23,8 @@
 <title>더한섬닷컴 | THE HANDSOME.COM</title>
 <link rel="shortcut icon"
 	href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
-<link rel="stylesheet" href="${contextPath}/resources/css/style.css" />
-<style type="text/css" media="print">
-@IMPORT url("${contextPath}/resources/blueprint/print.css");
-</style>
+<link rel="stylesheet" type="text/css"
+	href="${contextPath }/resources/css/style.css">
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript"
@@ -982,16 +980,18 @@
 							id="newListSlider">
 							<ul class="items_list swiper-wrapper">
 								<!-- TODO 신상품 loop li.swiper-slide > div.item_box -->
-								<c:forEach items="${list_new}" var="pro_new_view" begin="0" end="4"> 
- 									<li class="swiper-slide">
-										<div class="item_box"> 
+								<c:forEach items="${list_new}" var="pro_new_view" begin="0"
+									end="4">
+									<li class="swiper-slide">
+										<div class="item_box">
 											<!-- 											
 							class="item_info1" : 상품 이미지
 							class="item_info2" : 상품 설명(브랜드, 가격)
 							공통 : 상품 상세 페이지 링크 
-							 --> 
+							 -->
 
-											<a href="${contextPath}/p/detail?product_id=${pro_new_view.pid}"
+											<a
+												href="${contextPath}/p/detail?product_id=${pro_new_view.pid}"
 												class="item_info1"> <span class="item_img"> <img
 													src="${pro_new_view.pimg1}" name="${pro_new_view.pname}"
 													class="respon_image">
@@ -1027,19 +1027,19 @@
 							id="bestListSlider">
 							<ul class="items_list swiper-wrapper">
 								<!-- TODO 베스트 loop li.swiper-slide > div.item_box -->
-								<c:forEach items="${list_best}" var="pro_best_view" begin ="0" end="4">
+								<c:forEach items="${list_best}" var="pro_best_view" begin="0"
+									end="4">
 									<li class="swiper-slide">
 										<div class="item_box">
-											<a href="${contextPath}/p/detail?product_id=${pro_best_view.pid}" class="item_info1">
-												<span class="item_img"> 
-												<img
-													src="${pro_best_view.pimg1}"
-													alt="" name="${pro_best_view.pname}" class="respon_image">
+											<a
+												href="${contextPath}/p/detail?product_id=${pro_best_view.pid}"
+												class="item_info1"> <span class="item_img"> <img
+													src="${pro_best_view.pimg1}" alt=""
+													name="${pro_best_view.pname}" class="respon_image">
 											</span>
 											</a> <a href="${contextPath}/p/${pro_best_view.pid}"
-												class="item_info2"
-												> <!-- brand -->
-												<span class="brand">${pro_best_view.bname}</span> <!-- price --> <span
+												class="item_info2"> <!-- brand --> <span
+												class="brand">${pro_best_view.bname}</span> <!-- price --> <span
 												class="price">₩${pro_best_view.pprice}</span>
 											</a>
 										</div>

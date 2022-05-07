@@ -23,7 +23,7 @@ public class MemberServiceImpl implements MemberService {
 	MemberMapper mapper;
 
 	@Override
-	public boolean isExistMemberByMid(String mid) {
+	public boolean isDuplMemberByMid(String mid) {
 		return mapper.isExistMemberByMid(mid);
 	}
 

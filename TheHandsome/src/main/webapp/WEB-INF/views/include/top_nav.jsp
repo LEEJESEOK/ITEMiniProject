@@ -1043,7 +1043,7 @@
 					<div class="list"
 						style="display: none; height: 168px; padding-top: 0px; margin-top: 0px; padding-bottom: 0px; margin-bottom: 0px;">
 						<ul>
-							<li><a href="/mypage/personInfomationChangePWCheck">회원정보변경
+							<li><a href="/mypage/infoChangePWCheck">회원정보변경
 							</a></li>
 						</ul>
 					</div></li>

@@ -24,29 +24,10 @@
 <title>더한섬닷컴 | THE HANDSOME.COM</title>
 <link rel="shortcut icon"
 	href="http://cdn.thehandsome.com/_ui/desktop/common/images/common/thehandsome_ic_16x16.ico">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/font_80.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/common.css?20220401" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/layout.css?20220331" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/popup.css?20210225" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/jquery-ui.min.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/brand.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/swiper.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/main_201903.css" media="all">
-<link rel="stylesheet" type="text/css"
-	href="${contextPath}/resources/css/footer.css?20220406" media="all">
-<style type="text/css" media="print">
-@IMPORT url("${contextPath}/resources/blueprint/print.css");
-</style>
+<link rel="stylesheet" href="${contextPath}/resources/css/style.css" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/resources/css/products.css" media="all" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/resources/css/contents.css" media="all" />
+
 <script type="text/javascript"
 	src="${contextPath}/resources/js/jquery-1.11.2.min.js"></script>
 <script type="text/javascript"

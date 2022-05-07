@@ -1,7 +1,5 @@
 package com.thehandsome.service;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.thehandsome.domain.MemberVO;
 
 /**
@@ -22,9 +20,9 @@ public interface MemberService {
 	/**
 	 * 회원 id 중복 확인
 	 * 
-	 * @return 해당하는 id가 있으면 true
+	 * @return 해당하는 id가 없으면 true
 	 */
-	public boolean isExistMemberByMid(String mid);
+	public boolean isDuplMemberByMid(String mid);
 
 	/**
 	 * 회원 계정이 활성 상태인지 확인
