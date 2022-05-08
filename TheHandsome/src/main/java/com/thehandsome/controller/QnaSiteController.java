@@ -1,6 +1,8 @@
 package com.thehandsome.controller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.thehandsome.domain.PageDTD;
+import com.thehandsome.domain.QnaProductVO;
 import com.thehandsome.domain.QnaSiteVO;
 import com.thehandsome.service.QnaSiteService;
 
@@ -35,25 +38,39 @@ public class QnaSiteController {
 	private QnaSiteService service;
 	
 	@GetMapping(value = "/list")	
-	public void list( Model model,@RequestParam("pageNum") int pageNum,@RequestParam("amount") int amount, @RequestParam("mid") String mid) {
+	public void list( Model model,@RequestParam("pageNum") 
+	int pageNum,@RequestParam("amount") int amount, @RequestParam("mid") String mid) {
 		  int total = service.qna_site_total(mid);
 		  model.addAttribute("list", service.getList(pageNum,amount,mid));
 		  model.addAttribute("pageMaker", new PageDTD(pageNum,amount,total));
 		  
 	  }
 	
+	@GetMapping(value = "/qnasite") 
+	  public String qnasite(@RequestParam("mid") String mid) {
+		  log.info(mid);
+		  return "qnasite";
+	}
+	@PostMapping(value = "/insert_qna_site")
+	  public String insert_qna(@RequestParam Map<String, Object> map){
+		  QnaSiteVO vo = new QnaSiteVO();
+		  vo.setMid(String.valueOf( map.get("mid")));
+		  
+		  vo.setQcontent(String.valueOf(map.get("qcontent")));
+		  vo.setQtitle(String.valueOf(map.get("qtitle")));
+		  Date date= new Date();
+		  vo.setQdate(date);		  		  		  
+		  service.site_insert(vo);
+		  log.info("insert_qna");
+		  return "mypage";
+	}
 	@GetMapping(value = "/one_qna_site")
 	  public ResponseEntity<QnaSiteVO> one_qna_site(@RequestParam("qid") Long qid){
 		QnaSiteVO val=service.site_read(qid);
 		log.info("one_qna_site");
 		  return new ResponseEntity<>(val, HttpStatus.OK);
 	  }
-	@PostMapping(value = "/insert_qna_site")
-	  public ResponseEntity<String> insert_qna(QnaSiteVO vo){
-		  service.site_insert(vo);
-		  log.info("insert_qna_site");
-		  return new ResponseEntity<>("Insert Success",HttpStatus.OK);
-	  }
+	
 	  
 	  @DeleteMapping(value = "delete_qna_site")
 	  public ResponseEntity<String> delete_qna_site(@RequestParam("qid") Long qid){

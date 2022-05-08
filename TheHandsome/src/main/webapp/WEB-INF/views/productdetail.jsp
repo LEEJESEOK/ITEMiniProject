@@ -315,7 +315,7 @@
 	$('#productQnACnt').on('click', function(){
 		
 		$.ajax({
-			url : "/review/productReview",
+			url : "/review/list2",
 			type : "GET",
 			data: {
             },

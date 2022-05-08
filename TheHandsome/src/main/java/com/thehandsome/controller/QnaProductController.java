@@ -1,7 +1,10 @@
 package com.thehandsome.controller;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,7 +38,8 @@ public class QnaProductController {
 	
 	@GetMapping(value = "/list")
 	
-	public void list( Model model,@RequestParam("pageNum") int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String pid) {
+	public void list( Model model,@RequestParam("pageNum") 
+	int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String pid) {
 		  int total = service.qna_total(pid);
 		  model.addAttribute("list", service.getList(pageNum,amount,pid));
 		  model.addAttribute("pageMaker", new PageDTD(pageNum,amount,total));
@@ -64,7 +68,7 @@ public class QnaProductController {
 		  vo.setQdate(date);		  		  		  
 		  service.qna_insert(vo);
 		  log.info("insert_qna");
-		  return "redirect:http://localhost:8090/p/detail?product_id="+(String)map.get("pid");
+		  return "redirect:/p/detail?product_id="+(String)map.get("pid");
 	  }
 	  
 	  @DeleteMapping(value = "delete_qna")

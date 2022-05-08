@@ -16,7 +16,7 @@
 		<dl>
 			<dt>나의 활동관리</dt>
 			<dd>
-				<a href="#">1:1 문의</a>
+				<a href="${contextPath}/qnasite/list?pageNum=1&amount=5&mid=${session_mid}">1:1 문의</a>
 			</dd>
 		</dl>
 	</div>

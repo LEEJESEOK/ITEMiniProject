@@ -1,6 +1,7 @@
 package com.thehandsome.controller;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -40,7 +42,8 @@ public class ReviewController {
 		  private ReviewService service;
 		  
 		  @GetMapping(value ="/list")
-		  public void list( Model model,@RequestParam("pageNum") int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String pid) {
+		  public void list( Model model,@RequestParam("pageNum") 
+		  int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String pid) {
 			  int total = service.review_total(pid);
 			  model.addAttribute("list", service.getList(pageNum,amount,pid));
 			  model.addAttribute("pageMaker", new PageDTD(pageNum,amount,total));
@@ -48,7 +51,7 @@ public class ReviewController {
 			  
 		  }
 		  
-		  
+
 		  @GetMapping(value = "/one_review")
 		  public ResponseEntity<ReviewVO> one_review(@RequestParam("rno") Long rno){
 			  ReviewVO val=service.review_read(rno);
@@ -65,7 +68,7 @@ public class ReviewController {
 		  
 		  
 		  @PostMapping(value = "/insert_review")
-		  public String insert_review(@RequestParam Map<String, Object> map , RedirectAttributes rttr){
+		  public String insert_review(@RequestParam Map<String, Object> map ){
 			  ReviewVO vo=new ReviewVO();
 			  vo.setMid(String.valueOf( map.get("mid")));
 			  vo.setPid(String.valueOf(map.get("pid")));
@@ -80,7 +83,7 @@ public class ReviewController {
 			  service.review_insert(vo); 
 			  log.info("insert_review");
 			  
-			  return "redirect:http://localhost:8090/p/detail?product_id="+(String)map.get("pid");
+			  return "redirect:/p/detail?product_id="+(String)map.get("pid");
 		  }
 		  
 		  @DeleteMapping(value = "delete_review")

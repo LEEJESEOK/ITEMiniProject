@@ -32,9 +32,8 @@ margin : 5px 25px; paddin:20px
 		</div>
 		<div class="form-group">
 			<label>사이즈</label>
-			<input type="checkbox" value="Small" class="form-control" name="psize" >
-			<input type="checkbox" value="Medium" class="form-control" name="psize" >
-			<input type="checkbox" value="Large" class="form-control" name="psize"  >
+			<input type="text"  class="form-control" name="psize" placeholder="사이즈를 입력해주세요">
+			
 		</div>
 		<div class="form-group">
 			<label>별점</label>
