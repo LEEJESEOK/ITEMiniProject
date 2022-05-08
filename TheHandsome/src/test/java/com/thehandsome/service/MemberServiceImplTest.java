@@ -14,6 +14,7 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.thehandsome.domain.MemberVO;
 
@@ -21,6 +22,7 @@ import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Log4j
 public class MemberServiceImplTest {
@@ -79,7 +81,7 @@ public class MemberServiceImplTest {
 
 	@Test
 	public void test22_isValidMember() {
-		String mid = "test";
+		String mid = "service_test" + currentTime;
 
 		boolean result = memberService.isValidMember(mid);
 		assertTrue(result);
@@ -122,6 +124,16 @@ public class MemberServiceImplTest {
 		boolean result = memberService.memberSecession(mid);
 		assertTrue(result);
 		log.info("test41_memberSecession : " + result);
+	}
+
+	@Test
+	public void test42_changeMemberPassword() {
+		String mid = "service_test" + currentTime;
+		String mpassword = "update";
+		
+		boolean result = memberService.changeMemberPassword(mid, mpassword);
+		assertTrue(result);
+		log.info("test42_changeMemberPassword : " + result);
 	}
 
 	@Test

@@ -824,7 +824,7 @@ layer popup 형식의 confirm 창
 =============================================================
 
 */
-var layerConfirm = function(msg, confirmMsg, cancleMsg){
+var layerConfirm = function(msg, confirmMsg, cancelMsg){
 
     
     var t = this;
@@ -836,7 +836,7 @@ var layerConfirm = function(msg, confirmMsg, cancleMsg){
     	
     };
     
-    var cnMsg = cancleMsg==null?$('#deliveryCancelMsg').val():cancleMsg;
+    var cnMsg = cancelMsg==null?$('#deliveryCancelMsg').val():cancelMsg;
     var cfMsg = confirmMsg==null?$('#deliveryOkMsg').val():confirmMsg;
 
     var alertTag = '<div class="layerArea" style="z-index:1110">';
@@ -881,12 +881,12 @@ var layerConfirm = function(msg, confirmMsg, cancleMsg){
 
 };
 
-var customLayerConfirm = function(msg, confirmMsg, cancleMsg){
+var customLayerConfirm = function(msg, confirmMsg, cancelMsg){
     var t = this;
     this.confirmAction = function(){
         
     };
-    var cnMsg = cancleMsg==null?$('#deliveryCancelMsg').val():cancleMsg;
+    var cnMsg = cancelMsg==null?$('#deliveryCancelMsg').val():cancelMsg;
     var cfMsg = confirmMsg==null?$('#deliveryOkMsg').val():confirmMsg;
 
     var alertTag = '<div class="layerArea" style="z-index:1110">';
@@ -931,7 +931,7 @@ var customLayerConfirm = function(msg, confirmMsg, cancleMsg){
 /* 
  * var lc = new layerConfirm2('메세지를 입력하세요', '취소버튼', '확인버튼');
  */
-var layerConfirm2 = function(msg, confirmMsg, cancleMsg){
+var layerConfirm2 = function(msg, confirmMsg, cancelMsg){
 
     
     var t = this;
@@ -939,7 +939,7 @@ var layerConfirm2 = function(msg, confirmMsg, cancleMsg){
     this.confirmAction = function(){
         
     };
-    var cnMsg = cancleMsg==null?$('#deliveryCancelMsg').val():cancleMsg;
+    var cnMsg = cancelMsg==null?$('#deliveryCancelMsg').val():cancelMsg;
     var cfMsg = confirmMsg==null?$('#deliveryOkMsg').val():confirmMsg;
 
     var alertTag = '<div class="layerArea" style="z-index:1110">';

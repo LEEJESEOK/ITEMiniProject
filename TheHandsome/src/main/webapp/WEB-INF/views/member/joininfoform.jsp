@@ -60,7 +60,7 @@
 					id="validationCheckMsg4" value="Caps Lock 이 켜져 있습니다.">
 				<input type="hidden" id="validationCheckMsg5" value="아이디의 중복 확인이 필요합니다."><input
 					type="hidden" id="deliveryOkMsg" value="확인"> <input type="hidden"
-					id="deliveryCancleMsg" value="취소">
+					id="deliverycancelMsg" value="취소">
 
 				<%@include file="../include/gnb_member.jsp" %>
 		</div>
@@ -196,7 +196,7 @@
 				    });
 
 				    // 취소
-				    $("#cancle_btn").click(function () {
+				    $("#cancel_btn").click(function () {
 				        var lc = new layerConfirm('회원가입을 취소하시겠습니까?', '확인', '취소');
 				        lc.confirmAction = function () {
 				            window.location = "${contextPath}/main";
@@ -261,7 +261,7 @@
 		                }
 		                
 
-				        $("#cancle_btn").attr("disabled", true);
+				        $("#cancel_btn").attr("disabled", true);
 				        $("#join_btn").attr("disabled", true);
 
 				        $("#emailAddress").val($("#email").val() + "@" + $("#emailDomain").val());
@@ -478,7 +478,7 @@
 
 
 						<div class="btnwrap">
-							<input type="button" value="취소" class="btn wt" id="cancle_btn">
+							<input type="button" value="취소" class="btn wt" id="cancel_btn">
 							<input type="button" value="회원가입" class="btn gray mr0" id="join_btn">
 						</div>
 					</div>

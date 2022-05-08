@@ -49,6 +49,15 @@ public interface MemberService {
 	 * @return 회원 정보를 포함한 MemberVO
 	 */
 	public MemberVO getMemberInformation(String mid);
+	
+	/**
+	 * mid에 해당하는 회원 비밀번호 변경
+	 * 
+	 * @param mid
+	 * @param mpassword
+	 * @return
+	 */
+	public boolean changeMemberPassword(String mid, String mpassword);
 
 	/**
 	 * 회원 정보 수정

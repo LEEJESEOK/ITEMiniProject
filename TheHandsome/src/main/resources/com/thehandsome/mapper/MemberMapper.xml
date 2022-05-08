@@ -72,14 +72,22 @@
 		WHERE mid = #{mid}
 	</select>
 
+	<update id="updateMemberPassword">
+		UPDATE member
+		SET
+			mpassword=#{mpassword}
+		WHERE
+			mid=#{mid}
+	</update>
+
 	<update id="updateMemberInformation">
 		UPDATE member
 		SET
-		mpassword=#{mpassword}, mname=#{mname}, memail=#{memail}, mtel=#{mtel},
-		mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}, mgrade=#{mgrade, jdbcType=VARCHAR},
-		mmileage=#{mmileage}
+			mpassword=#{mpassword}, mname=#{mname}, memail=#{memail}, mtel=#{mtel},
+			mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}, mgrade=#{mgrade, jdbcType=VARCHAR},
+			mmileage=#{mmileage}
 		WHERE
-		mid=#{mid}
+			mid=#{mid}
 	</update>
 
 	<update id="updateMember2Secession">

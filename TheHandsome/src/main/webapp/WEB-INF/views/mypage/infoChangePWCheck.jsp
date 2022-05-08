@@ -137,7 +137,7 @@
 
 											});
 
-							$("#cancle_btn").click(function() {
+							$("#cancel_btn").click(function() {
 								location.href = "${contextPath}/mypage";
 							});
 
@@ -208,7 +208,7 @@
 				</div>
 				<!-- btn_btwrap -->
 				<div class="btnwrap mypage2">
-					<a href="javascript:void(0);" class="btn wt" id="cancle_btn">취소</a>
+					<a href="javascript:void(0);" class="btn wt" id="cancel_btn">취소</a>
 					<a href="javascript:void(0);" class="btn gray" id="login_btn">확인</a>
 				</div>
 

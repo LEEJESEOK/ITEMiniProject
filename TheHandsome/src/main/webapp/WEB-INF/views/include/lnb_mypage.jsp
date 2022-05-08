@@ -13,6 +13,12 @@
 				<a href="${contextPath}/mypage/infoChangePWCheck"> 개인정보 변경/탈퇴</a>
 			</dd>
 		</dl>
+		<dl>
+			<dt>나의 활동관리</dt>
+			<dd>
+				<a href="#">1:1 문의</a>
+			</dd>
+		</dl>
 	</div>
 	<!-- ph_guide -->
 	<div class="ph_guide">

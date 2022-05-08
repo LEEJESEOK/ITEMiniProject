@@ -125,5 +125,5 @@ public class MemberController {
 
 		memberService.joinMember(member);
 	}
-
+	
 }

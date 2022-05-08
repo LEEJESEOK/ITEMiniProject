@@ -50,6 +50,11 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public boolean changeMemberPassword(String mid, String mpassword) {
+		return mapper.updateMemberPassword(mid, mpassword) == 1;
+	}
+
+	@Override
 	public boolean changeMemberInformation(MemberVO member) {
 		return mapper.updateMemberInformation(member) == 1;
 	}

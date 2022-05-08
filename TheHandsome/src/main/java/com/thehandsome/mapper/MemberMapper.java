@@ -29,7 +29,7 @@ public interface MemberMapper {
 	 * @deprecated
 	 */
 	boolean isValidMember(@Param("mid") String mid);
-	
+
 	/**
 	 * mid, mpassword가 일치하는 회원 정보 검색
 	 * 
@@ -54,6 +54,15 @@ public interface MemberMapper {
 	 * @return 정상적으로 추가시 -1
 	 */
 	int insertMember(MemberVO member);
+
+	/**
+	 * 회원의 비밀번호 수정
+	 * 
+	 * @param mid
+	 * @param mpassword
+	 * @return 정상적으로 수정시 1
+	 */
+	int updateMemberPassword(@Param("mid") String mid, @Param("mpassword") String mpassword);
 
 	/**
 	 * 회원 정보 수정

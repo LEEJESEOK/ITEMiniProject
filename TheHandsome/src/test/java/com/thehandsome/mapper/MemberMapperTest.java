@@ -13,6 +13,7 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.thehandsome.domain.MemberVO;
 
@@ -27,6 +28,7 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@WebAppConfiguration
 @Log4j
 public class MemberMapperTest {
 
@@ -116,6 +118,14 @@ public class MemberMapperTest {
 		String mid = "mapper_test" + currentTime;
 
 		log.info("updateMember2Secession : " + memberMapper.updateMember2Secession(mid));
+	}
+
+	@Test
+	public void test42_updateMemberPassword() {
+		String mid = "mapper_test" + currentTime;
+		String mpassword = "update";
+
+		log.info("updateMemberPassword : " + memberMapper.updateMemberPassword(mid, mpassword));
 	}
 
 	@Test
