@@ -4,6 +4,11 @@ import java.util.ArrayList;
 
 import com.thehandsome.domain.MyCartVO;
 
+/**
+ * @author 고동현
+ * 장바구니 관련 service 구현
+ *
+ */
 public interface CartService {
 	
 	public ArrayList<MyCartVO> list(String mid); // 장바구니 불러오기

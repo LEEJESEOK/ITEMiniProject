@@ -2,24 +2,34 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!--  작성자 : 고동현 -->
+<!--  상품 관련 mapper 작성 -->
 <mapper namespace="com.thehandsome.mapper.ProductMapper">
 	
 	<select id = "display" resultType = "com.thehandsome.domain.ProductVO">
 		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid FROM TABLE(sf_product_display(#{mode}))
 	</select>
-	
+<!-- 	신상품, 베스트순 상품 출력 -->
 	<select id = "display_by_brand" resultType = "com.thehandsome.domain.ProductVO">
 		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno FROM TABLE(sf_product_display_by_brand(#{bno}))
 	</select>
-	
+<!-- 	브랜드별 상품 출력 -->
 	<select id = "display_by_brand_sort" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bno}))
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bno}))
 	</select>
-	
+<!-- 	브랜드별 신상품, 평점순, 가격순 정렬 -->
+	<select id = "display_by_brand_price" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bno})) order by pprice desc
+	</select>
+<!-- 	가격높은순 -->
+	<select id = "display_by_brand_price_low" resultType = "com.thehandsome.domain.ProductVO">
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno FROM TABLE(sf_product_display_by_brand_sort(#{mode}, #{bno})) order by pprice asc
+	</select>
+<!-- 	가격낮은순 -->
 	<select id = "display_by_brand_color" resultType = "com.thehandsome.domain.ProductVO">
-		SELECT * FROM TABLE(sf_product_display_by_brand_color(#{bno}, #{ccolorname}))
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno FROM TABLE(sf_product_display_by_brand_color(#{bno}, #{ccolorname}))
 	</select>
-	
+<!-- 	브랜드별 색상 -->
 	<select id = "display_by_brand_size" resultType = "com.thehandsome.domain.ProductVO">
 		SELECT * FROM TABLE(sf_product_display_by_brand_size(#{bno}, #{psize}))
 	</select>
@@ -50,18 +60,35 @@
 		<result property="pimg2" column="pimg2" />
 		<result property="pimg3" column="pimg3" />
 	</resultMap>
+	
 
 	<select id="display_product_detail" resultMap="productMap">
 		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, pdetail ,paveragerate FROM TABLE(sf_product_detail_display(#{pid}))
 	</select>
+<!-- 	상품상세 -->
 	
 	<select id="display_product_color" resultMap="productMap">
 		SELECT distinct ccolorname FROM TABLE(sf_product_detail_display(#{pid}))
 	</select>
-	
+<!-- 	단일상품 색상 -->
 	<select id="display_product_size" resultMap="productMap">
 		SELECT distinct psize FROM TABLE(sf_product_detail_display(#{pid}))
 	</select>
-	
+<!-- 	단일상품 사이즈 -->
+	<select id="display_product_large" resultMap="productMap">
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno, clarge, cmedium, csmall FROM TABLE(sf_product_display(#{mode})) 
+		where clarge = #{clarge}
+	</select>
+<!-- 	대분류 -->
+	<select id="display_product_medium" resultMap="productMap">
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno, clarge, cmedium, csmall FROM TABLE(sf_product_display(#{mode})) 
+		where clarge = #{clarge} and cmedium = #{cmedium}
+	</select>
+<!-- 	중분류 -->
+	<select id="display_product_small" resultMap="productMap">
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, bno, clarge, cmedium, csmall FROM TABLE(sf_product_display(#{mode}))
+		where clarge = #{clarge} and cmedium = #{cmedium} and csmall = #{csmall}
+	</select>
+<!-- 	소분류 -->
 	
 </mapper>

@@ -547,7 +547,7 @@
 					</div>
 				</div></li>
 
-			<li><a href="/item/we">여성<span class="arr">arrow</span></a>
+			<li><a href="/p/c/large?clarge=여성">여성<span class="arr">arrow</span></a>
 				<div class="sub_back">
 					<div class="sub_menu clearfix">
 						<ul class="al_frt1 sm_dep1">
@@ -571,51 +571,51 @@
 									<li><a href="/c/we09q/">LATT : WITH 신민아</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/we05/">아우터</a>
+							<li><a href="/p/c/medium?clarge=여성&cmedium=아우터">아우터</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/we051/">재킷</a></li>
-									<li><a href="/c/we052/">점퍼</a></li>
-									<li><a href="/c/we015/">가디건/베스트</a></li>
-									<li><a href="/c/we053/">트렌치 코트</a></li>
-									<li><a href="/c/we054/">코트</a></li>
-									<li><a href="/c/we055/">다운/패딩</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=아우터&csmall=재킷">재킷</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=아우터&csmall=점퍼">점퍼</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=아우터&csmall=가디건/베스트">가디건/베스트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=아우터&csmall=트렌치 코트">트렌치 코트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=아우터&csmall=코트">코트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=아우터&csmall=다운/패딩">다운/패딩</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/we01/">탑</a>
+							<li><a href="/p/c/medium?clarge=여성&cmedium=탑">탑</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/we011/">티셔츠</a></li>
-									<li><a href="/c/we012/">블라우스</a></li>
-									<li><a href="/c/we013/">셔츠</a></li>
-									<li><a href="/c/we014/">니트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=탑&csmall=티셔츠">티셔츠</a></li>
+									<li><a href=/p/c/small?clarge=여성&cmedium=탑&csmall=블라우스>블라우스</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=탑&csmall=셔츠">셔츠</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=탑&csmall=니트">니트</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/we04/">드레스</a>
+							<li><a href="/p/c/medium?clarge=여성&cmedium=드레스">드레스</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/we041/">미니 드레스</a></li>
-									<li><a href="/c/we042/">미디 드레스</a></li>
-									<li><a href="/c/we043/">롱/맥시 드레스</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=드레스&csmall=미니 드레스">미니 드레스</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=드레스&csmall=미디 드레스">미디 드레스</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=드레스&csmall=맥시 드레스">롱/맥시 드레스</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/we02/">팬츠</a>
+							<li><a href="/p/c/medium?clarge=여성&cmedium=팬츠">팬츠</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/we021/">캐주얼</a></li>
-									<li><a href="/c/we022/">포멀</a></li>
-									<li><a href="/c/we023/">데님</a></li>
-									<li><a href="/c/we024/">쇼츠</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=팬츠&csmall=캐주얼">캐주얼</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=팬츠&csmall=포멀">포멀</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=팬츠&csmall=데님">데님</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=팬츠&csmall=쇼츠">쇼츠</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/we03/">스커트</a>
+							<li><a href="/p/c/medium?clarge=여성&cmedium=스커트">스커트</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/we031/">미니 스커트</a></li>
-									<li><a href="/c/we032/">펜슬 스커트</a></li>
-									<li><a href="/c/we033/">플레어 스커트</a></li>
-									<li><a href="/c/we034/">롱/맥시 스커트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=스커트&csmall=미니 스커트">미니 스커트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=스커트&csmall=펜슬 스커트">펜슬 스커트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=스커트&csmall=플레어 스커트">플레어 스커트</a></li>
+									<li><a href="/p/c/small?clarge=여성&cmedium=스커트&csmall=롱/맥시 스커트">롱/맥시 스커트</a></li>
 								</ul></li>
 						</ul>
 						<div class="gnb_banner float_right"></div>
 					</div>
 				</div> <!--  status2.last end --> <!-- categoryItemList end --></li>
-			<li><a href="/item/me">남성<span class="arr">arrow</span></a>
+			<li><a href="/p/c/large?clarge=남성">남성<span class="arr">arrow</span></a>
 				<div class="sub_back">
 					<div class="sub_menu clearfix">
 						<ul class="al_frt1 sm_dep1">
@@ -631,38 +631,38 @@
 									<li><a href="/c/me095/">TIME HOMME : ONLINE EXCLUSIVE</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/me03/">아우터</a>
+							<li><a href="/p/c/medium?clarge=남성&cmedium=아우터">아우터</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/me031/">재킷</a></li>
-									<li><a href="/c/me032/">점퍼</a></li>
-									<li><a href="/c/me015/">가디건/베스트</a></li>
-									<li><a href="/c/me033/">트렌치코트</a></li>
-									<li><a href="/c/me034/">코트</a></li>
-									<li><a href="/c/me035/">다운/패딩</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=아우터&csmall=재킷">재킷</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=아우터&csmall=점퍼">점퍼</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=아우터&csmall=가디건/베스트">가디건/베스트</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=아우터&csmall=트렌치코트">트렌치코트</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=아우터&csmall=코트">코트</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=아우터&csmall=다운/패딩">다운/패딩</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/me01/">탑</a>
+							<li><a href="/p/c/medium?clarge=남성&cmedium=탑">탑</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/me011/">티셔츠</a></li>
-									<li><a href="/c/me012/">셔츠</a></li>
-									<li><a href="/c/me013/">니트</a></li>
-									<li><a href="/c/me014/">스웨터</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=탑&csmall=티셔츠">티셔츠</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=탑&csmall=셔츠">셔츠</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=탑&csmall=니트">니트</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=탑&csmall=스웨터">스웨터</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/me02/">팬츠</a>
+							<li><a href="/p/c/medium?clarge=남성&cmedium=팬츠">팬츠</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/me021/">루즈/테이퍼드</a></li>
-									<li><a href="/c/me025/">슬림/스트레이트</a></li>
-									<li><a href="/c/me028/">조거/트랙</a></li>
-									<li><a href="/c/me022/">데님</a></li>
-									<li><a href="/c/me023/">쇼츠</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=팬츠&csmall=루즈/테이퍼드">루즈/테이퍼드</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=팬츠&csmall=슬림/스트레이트">슬림/스트레이트</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=팬츠&csmall=조거/트랙">조거/트랙</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=팬츠&csmall=데님">데님</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=팬츠&csmall=쇼츠">쇼츠</a></li>
 								</ul></li>
 							<!--  status2.last end -->
-							<li><a href="/c/me04/">수트</a>
+							<li><a href="/p/c/medium?clarge=남성&cmedium=수트">수트</a>
 								<ul class="clearfix sm_dep2">
-									<li><a href="/c/me041/">드레스셔츠</a></li>
-									<li><a href="/c/me042/">수트재킷</a></li>
-									<li><a href="/c/me044/">수트팬츠</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=수트&csmall=드레스셔츠">드레스셔츠</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=수트&csmall=수트재킷">수트재킷</a></li>
+									<li><a href="/p/c/small?clarge=남성&cmedium=수트&csmall=수트팬츠">수트팬츠</a></li>
 								</ul></li>
 						</ul>
 						<div class="gnb_banner float_right"></div>
