@@ -165,7 +165,6 @@ $(document).ready(function () {
 		}
 	});
 
-
     $("#cancel_btn").click(function () {
         var lc = new layerConfirm('개인정보 변경을 취소하시겠습니까?', '확인', '취소');
         lc.confirmAction = function () {
@@ -174,7 +173,7 @@ $(document).ready(function () {
     });
 
     $("#save_btn").click(function () {
-        $("#emailAddress").val($("#email").val() + "@" + $("#emailDomain").val());
+        $("#memailAddress").val($("#email").val() + "@" + $("#emailDomain").val());
 
         var vc = new ValidationCheck();
         vc.checkIdList = ['email', 'emailDomain', 'name'];
@@ -183,26 +182,29 @@ $(document).ready(function () {
             return;
         }
 
-        if ($("#emailAddress").val().length > 50) {
+        if ($("#memailAddress").val().length > 50) {
             layerAlert("E-mail은 최대 50자입니다.");
             return;
         }
 
         if (vc.isValid()) {
 
-            var paramDatas = $("#memberUpdateForm").serialize();
+            var paramDatas = $("#updateMemberForm").serialize();
 
             $.ajax({
                 type: "POST",
-                url: "${contextPath}/mypage/updatecomplete",
-                datatype: "json",
-                data: paramDatas,
-                error: function (request, status, error) {
-                    layerAlert("예상치 못한 오류가 발생하였습니다.</br>" + "다시 시도해 주시기 바랍니다.");
-                    console.log("code:" + request.status + "\n\n\n\n" + "message:" + request.responseText + "\n\n\n\n" + "error:" + error);
-                },
+                url: "${contextPath}/mypage/updateComplete",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                data: JSON.stringify({
+					memailAddress : $("#memailAddress").val(),
+					zipCode : $("#zipCode").val(),
+					address1 : $("#address1").val(),
+					address2 : $("#address2").val(),
+					mobilePhoneNumber : $("#hp1").val() + $("#hp2").val() + $("#hp3").val()
+                }),
                 success: function (response) {
-                    if (response.data == true) {
+                    if (response.result == true) {
                         var lc = new layerAlert("입력하신 정보가 변경완료 되었습니다.");
 
                         lc.confirmAction = function () {
@@ -211,6 +213,10 @@ $(document).ready(function () {
                     } else {
                         layerAlert("예상치 못한 오류가 발생하였습니다.</br>" + "다시 시도해 주시기 바랍니다.");
                     }
+                },
+                error: function (request, status, error) {
+                    layerAlert("예상치 못한 오류가 발생하였습니다.</br>" + "다시 시도해 주시기 바랍니다.");
+                    console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
                 }
 
             });
@@ -369,17 +375,20 @@ $(document).ready(function () {
                 	type :"POST", 
                 	url : "${contextPath}/mypage/changePassword",
                		data : JSON.stringify({
-               			password :$("#newPassword").val() 
+               			password :$t.find("#newPassword").val() 
                		}),
               		contentType : "application/json; charset=utf-8",
               		dataType : "json",
-              		success : function () {
-                        var la = new layerAlert("비밀번호 변경이 완료 되었습니다.");
-                        la.confirmAction = function () {
-                            $t.find('.btn_close').click();
-                        };
+              		success : function (response) {
+              			if(response.result == true){
+        		 			var la = new layerAlert("비밀번호 변경이 완료 되었습니다. ");		//다국어 : 비밀번호 변경이 완료되었습니다.
+        					la.confirmAction = function() {	
+        						$t.find('.btn_close').click();
+        					};
+                        }
                     },
-                    error : function () {
+                    error : function (request, status, error) {
+                    	alert("code : " + request.status + "\n" + "message : " + request.responseText + "\n error : " + error);
                         layerAlert("비밀번호 변경에 실패하였습니다.");
                     }	
                 });
@@ -522,15 +531,8 @@ function newPasswordConcateCheck(inputdata) {
 					//]]>
 				</script>
 				<form id="updateMemberForm" method="post">
-					<input type="hidden" name="prk" id="prk">
-					<input type="hidden" id="emailAddress" name="emailAddress" >
-					<input type="hidden" id="zipCode" name="zipCode" >
-					<input type="hidden" id="address1" name="address1" >
-					<input type="hidden" id="address2" name="address2" >
-					<input type="hidden" id="tel" name="tel" >
-					
-					
-					
+					<input type="hidden" id="memailAddress" name="memailAddress">
+
 					<!-- //lnbWrap -->
 					<div>
 						<div class="title_wrap mt30">
@@ -565,7 +567,8 @@ function newPasswordConcateCheck(inputdata) {
 											<th scope="row"><strong class="reqd">*</strong> <label
 												for="inforcvemail">E-mail</label></th>
 											<td><input type="text" style="width: 120px"
- 												title="이메일아이디" id="email" value="${fn:split(memail, '@')[0] }"> <span 
+												title="이메일아이디" id="email"
+												value="${fn:split(memail, '@')[0] }"> <span
 												class="andmail">@</span> <select id="emailDomainSel"
 												style="width: 120px" title="이메일계정">
 													<option value="" selected="selected">직접입력</option>
@@ -587,15 +590,15 @@ function newPasswordConcateCheck(inputdata) {
 													<option value="freechal.com">freechal.com</option>
 													<option value="hitel.net">hitel.net</option>
 											</select> <input type="text" id="emailDomain" style="width: 120px"
-												value="${fn:split(memail, '@')[1] }" title="이메일 도메인"> <!-- <input type="button" class="btn add_s" id="emailDubChk_btn" value="중복확인"> -->
+												value="${fn:split(memail, '@')[1] }" title="이메일 도메인">
+												<!-- <input type="button" class="btn add_s" id="emailDubChk_btn" value="중복확인"> -->
 												<span class="guide_comment" id="emailMsg"></span>
 												<div class="wtype_comment pt10">
 													<span>정확한 이메일 정보를 입력하셔야 주문/배송 및 서비스정보를 받아 보실 수 있습니다.</span>
 												</div></td>
 										</tr>
 										<tr>
-											<th scope="row" class="th_space">
-											<strong class="reqd">*</strong>이름</th>
+											<th scope="row" class="th_space"><strong class="reqd">*</strong>이름</th>
 											<td><input type="text" style="width: 120px" id="name"
 												name="name"></td>
 										</tr>
@@ -603,33 +606,31 @@ function newPasswordConcateCheck(inputdata) {
 											<th scope="row" class="th_space"><label for="address">주소</label>
 											</th>
 											<td><input type="text" id="zipCode" name="zipCode"
-													style="width: 75px" title="우편번호"
-													maxlength="5" pattern="[0-9].+"> <input
-													type="text" id="address1" name="address1"
-													style="width: 100%; margin: 5px 0" title="주소1">
-													<input type="text" id="address2"
-													name="address2" style="width: 100%" title="주소2"
-													></td>
+												style="width: 75px" title="우편번호" maxlength="5"
+												pattern="[0-9].+"> <input type="text" id="address1"
+												name="address1" style="width: 100%; margin: 5px 0"
+												title="주소1"> <input type="text" id="address2"
+												name="address2" style="width: 100%" title="주소2"></td>
 										</tr>
 										<tr>
 											<th scope="row"><strong class="reqd">*</strong> <label
-													for="hp">휴대폰 번호</label></th>
-											<td><select style="width: 80px" title="휴대폰 번호 앞자리" id="hp1">
+												for="hp">휴대폰 번호</label></th>
+											<td><select style="width: 80px" title="휴대폰 번호 앞자리"
+												id="hp1">
 													<option value="010">010</option>
 													<option value="011">011</option>
 													<option value="016">016</option>
 													<option value="017">017</option>
 													<option value="018">018</option>
 													<option value="019">019</option>
-												</select>
+											</select>
 												<div class="form_hyphen">-</div> <input type="text" id="hp2"
-													class="hp_num1" title="휴대폰 번호 가운데자리"
-													maxlength="4" pattern="[0-9].+">
+												class="hp_num1" title="휴대폰 번호 가운데자리" maxlength="4"
+												pattern="[0-9].+">
 												<div class="form_hyphen">-</div> <input type="text" id="hp3"
-													class="hp_num2" title="휴대폰 번호 뒷자리" 
-													maxlength="4" pattern="[0-9].+"> <span class="guide_comment"
-													id="hpMsg"></span>
-											</td>
+												class="hp_num2" title="휴대폰 번호 뒷자리" maxlength="4"
+												pattern="[0-9].+"> <span class="guide_comment"
+												id="hpMsg"></span></td>
 										</tr>
 									</tbody>
 								</table>

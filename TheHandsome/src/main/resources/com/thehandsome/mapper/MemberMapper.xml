@@ -83,9 +83,8 @@
 	<update id="updateMemberInformation">
 		UPDATE member
 		SET
-			mpassword=#{mpassword}, mname=#{mname}, memail=#{memail}, mtel=#{mtel},
-			mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}, mgrade=#{mgrade, jdbcType=VARCHAR},
-			mmileage=#{mmileage}
+			memail=#{memail}, mtel=#{mtel},
+			mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}
 		WHERE
 			mid=#{mid}
 	</update>

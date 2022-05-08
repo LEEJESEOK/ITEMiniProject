@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.thehandsome.domain.MemberVO;
 import com.thehandsome.service.MemberService;
@@ -35,8 +36,8 @@ public class MypageController {
 
 	@RequestMapping("/mypage/infoChange")
 	public String infoChange(HttpSession session, Model model) {
-//		if (session.getAttribute("session_mid") == null)
-//			return "login";
+		if (session.getAttribute("session_mid") == null)
+			return "login";
 
 		String mid = (String) session.getAttribute("session_mid");
 
@@ -61,30 +62,47 @@ public class MypageController {
 		else
 			return "login";
 	}
-	
-	@RequestMapping("/mypae/changePassword")
-	public boolean changePassword(@RequestBody Map<String, Object> params) {
-//		MemberVO 
-		
-//		memberService.changeMemberInformation(member)
-		
-		return false;
+
+	@RequestMapping("/mypage/changePassword")
+	@ResponseBody
+	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params, HttpServletRequest request) {
+		log.info("changePassword");
+
+		String mid = (String) request.getSession().getAttribute("session_mid");
+		String mpassword = (String) params.get("password");
+		log.info("mid : " + mid + " mpassword : " + mpassword);
+
+		Map<String, Object> response = new HashMap<String, Object>();
+
+		response.put("result", memberService.changeMemberPassword(mid, mpassword));
+		log.info(response.get("result"));
+
+		return response;
 	}
 
-	@RequestMapping("/mypage/updatecomplete")
-
-	public String updateComplete(@RequestBody Map<String, Object> params) {
+	@RequestMapping("/mypage/updateComplete")
+	@ResponseBody
+	public Map<String, Object> updateComplete(@RequestBody Map<String, Object> params, HttpSession session) {
 
 		for (String key : params.keySet())
 			log.info(key + " : " + params.get(key));
 
+		String mid = (String) session.getAttribute("session_mid");
+
 		MemberVO member = new MemberVO();
-		member.setMpassword((String) params.get(""));
-		member.setMpassword((String) params.get(""));
+		member.setMid(mid);
+		member.setMemail((String) params.get("memailAddress"));
+		member.setMzipcode((String) params.get("zipCode"));
+		member.setMaddress1((String) params.get("address1"));
+		member.setMaddress2((String) params.get("address2"));
+		member.setMtel((String) params.get("mobilePhoneNumber"));
+		log.info(member);
 
-//		memberService.changeMemberInformation(member);
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("result", memberService.changeMemberInformation(member));
+		log.info(response.get("result"));
 
-		return "mypage";
+		return response;
 	}
 
 	@RequestMapping("/mypage/memberSecesseion")
