@@ -1,5 +1,7 @@
 package com.thehandsome.controller;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,7 @@ import com.thehandsome.service.QnaProductService;
 
 import lombok.extern.log4j.Log4j;
 @Controller
-@RequestMapping("/qnaproduct")
+@RequestMapping("/qnaproduct/*")
 @Log4j
 /**
 	 * 
@@ -37,9 +39,14 @@ public class QnaProductController {
 		  int total = service.qna_total(pid);
 		  model.addAttribute("list", service.getList(pageNum,amount,pid));
 		  model.addAttribute("pageMaker", new PageDTD(pageNum,amount,total));
+		  model.addAttribute("pid",pid);
 		  
 	  }
-	
+	@GetMapping(value = "/qna") 
+	  public String qna(@RequestParam("pid") String pid) {
+		  log.info(pid);
+		  return "/qna";
+	  }
 	@GetMapping(value = "/one_qna")
 	  public ResponseEntity<QnaProductVO> one_qna(@RequestParam("qid") Long qid){
 		QnaProductVO val=service.qna_read(qid);
@@ -47,10 +54,17 @@ public class QnaProductController {
 		  return new ResponseEntity<>(val, HttpStatus.OK);
 	  }
 	@PostMapping(value = "/insert_qna")
-	  public ResponseEntity<String> insert_qna(QnaProductVO vo){
+	  public String insert_qna(@RequestParam Map<String, Object> map){
+		  QnaProductVO vo = new QnaProductVO();
+		  vo.setMid(String.valueOf( map.get("mid")));
+		  vo.setPid(String.valueOf(map.get("pid")));
+		  vo.setQcontent(String.valueOf(map.get("qcontent")));
+		  vo.setQtitle(String.valueOf(map.get("qtitle")));
+		  Date date= new Date();
+		  vo.setQdate(date);		  		  		  
 		  service.qna_insert(vo);
 		  log.info("insert_qna");
-		  return new ResponseEntity<>("Insert Success",HttpStatus.OK);
+		  return "redirect:http://localhost:8090/p/detail?product_id="+(String)map.get("pid");
 	  }
 	  
 	  @DeleteMapping(value = "delete_qna")

@@ -35,5 +35,7 @@ public interface ProductMapper {
 	public ArrayList<ProductVO> display_product_color(String pid); // 색상 반환
 	
 	public ArrayList<ProductVO> display_product_size(String pid); // 사이즈 반환
+	
+	public int qna_total(String pid);
 
 }

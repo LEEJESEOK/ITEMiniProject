@@ -34,5 +34,6 @@ public interface ProductService {
 	public ArrayList<ProductVO> display_product_color(String pid); //상품 색상
 	
 	public ArrayList<ProductVO> display_product_size(String pid); //상품 사이즈
+	public int qna_total(String pid);
 
 }

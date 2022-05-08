@@ -18,7 +18,11 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ProductMapper mapper;
-
+	
+	@Override
+	public int qna_total(String pid) {
+		return mapper.qna_total(pid);
+	}
 	@Override
 	public ArrayList<ProductVO> display(int mode) {
 		log.info("get list by mode....");

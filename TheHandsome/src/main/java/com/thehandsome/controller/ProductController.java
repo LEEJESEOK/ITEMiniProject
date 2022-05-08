@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.thehandsome.service.ProductService;
+import com.thehandsome.service.ReviewService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,9 +23,12 @@ public class ProductController {
 
 	@Autowired
 	private ProductService service;
-
+	
+	@Autowired
+	private ReviewService review;
+	
 	@GetMapping("/detail")
-	public String display_detail(Model model, @RequestParam("product_id") String pid) {
+	public String display_detail(Model model, @RequestParam("product_id") String pid ) {
 		log.info("display_detail");
 
 		model.addAttribute("product_detail", service.display_product_detail(pid)); // 상품상세
@@ -36,6 +40,9 @@ public class ProductController {
 		model.addAttribute("product_size", service.display_product_size(pid)); // 상품사이즈
 		log.info(model);
 		
+		model.addAttribute("review_total", review.review_total(pid));
+		
+		model.addAttribute("qna_total", service.qna_total(pid));
 		return "productdetail";
 	}
 

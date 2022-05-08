@@ -48,9 +48,9 @@ public class ReviewServiceImplTest {
 		ReviewVO vo=new ReviewVO();
 		
 		vo.setMid("rhehd002");
-		vo.setPid("ABCDE");
+		vo.setPid("TM2C4WJC761W");
 		vo.setPcolor("Red");
-		vo.setPsize("Large");
+		vo.setPsize("Green");
 		Date date= new Date();
 		vo.setRdate(date);
 		vo.setRrate(3);
