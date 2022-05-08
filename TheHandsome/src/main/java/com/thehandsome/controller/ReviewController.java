@@ -1,6 +1,8 @@
 package com.thehandsome.controller;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -42,17 +44,10 @@ public class ReviewController {
 			  int total = service.review_total(pid);
 			  model.addAttribute("list", service.getList(pageNum,amount,pid));
 			  model.addAttribute("pageMaker", new PageDTD(pageNum,amount,total));
+			  model.addAttribute("pid",pid);
 			  
 		  }
 		  
-	/*
-	 * @GetMapping(value = "/review_list") public
-	 * ResponseEntity<List<ReviewVO>>review_list(@RequestParam("pid") String pid) {
-	 * List<ReviewVO> list = service.review_All_select(pid);
-	 * log.info("review_list"); return new ResponseEntity<>(list,HttpStatus.OK);
-	 * 
-	 * }
-	 */
 		  
 		  @GetMapping(value = "/one_review")
 		  public ResponseEntity<ReviewVO> one_review(@RequestParam("rno") Long rno){
@@ -61,27 +56,46 @@ public class ReviewController {
 			  return new ResponseEntity<>(val, HttpStatus.OK);
 		  }
 		  
+		  @GetMapping(value = "/create") 
+		  public String Create(@RequestParam("pid") String pid) {
+			  log.info(pid);
+			  return "/create";
+		  }
+		  
+		  
+		  
 		  @PostMapping(value = "/insert_review")
-		  public String insert_review(ReviewVO vo, RedirectAttributes rttr){
-			  service.review_insert(vo);
+		  public String insert_review(@RequestParam Map<String, Object> map , RedirectAttributes rttr){
+			  ReviewVO vo=new ReviewVO();
+			  vo.setMid(String.valueOf( map.get("mid")));
+			  vo.setPid(String.valueOf(map.get("pid")));
+			  vo.setPcolor(String.valueOf(map.get("pcolor")));
+			  vo.setPsize(String.valueOf(map.get("psize")));
+			  Date date= new Date();
+			  vo.setRdate(date);
+			  String rate=String.valueOf(map.get("rrate"));
+			  vo.setRrate(Integer.parseInt(rate));
+			  vo.setRcontent((String)map.get("rcontent"));
+			  vo.setRimage((String)map.get("rimage"));
+			  service.review_insert(vo); 
 			  log.info("insert_review");
-			  rttr.addFlashAttribute("result", vo.getRno());
-			  return "redirect:review/list";
+			  
+			  return "redirect:http://localhost:8090/p/detail?product_id="+(String)map.get("pid");
 		  }
 		  
 		  @DeleteMapping(value = "delete_review")
-		  public String delete_review(@RequestParam("rno")Long rno, RedirectAttributes rttr){
+		  public String delete_review(@RequestParam("rno")Long rno){
 			  service.review_delete(rno);
 			  log.info("delete_review");
-			  rttr.addFlashAttribute("result", "Success");
+			 
 			  return "redirect:review/list";
 		  }
 		  
 		  @PutMapping(value = "update_review")
-		  public String update_review(ReviewVO vo, RedirectAttributes rttr){
+		  public String update_review(ReviewVO vo){
 			  service.review_update(vo);
 			  log.info("update_review");
-			  rttr.addFlashAttribute("result", "Success");
+			  
 			  return "redirect:review/list";
 		  }
 		  

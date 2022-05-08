@@ -45,7 +45,7 @@
 <style type="text/css" media="print">
 @IMPORT url("${contextPath}/resources/blueprint/print.css");
 </style>
-<link rel="stylesheet" type="text/css" href="${contextPath }/resources/css/products.css media="all" />
+<link rel="stylesheet" type="text/css" href="${contextPath }/resources/css/products.css" media="all" />
 <link rel="stylesheet" type="text/css" href="${contextPath }/resources/css/contents.css" media="all" />
 
 <script type="text/javascript"
@@ -196,14 +196,17 @@
 	<c:forEach items="${product_size}" var="productSize" varStatus="status">            		 
 		<li id="CS2C3HCO018LMZ_NA_100">
 			<a href="javascript:fn_detailProductAjax('CS2C3HCO018LMZ_NA_FR')" onclick="">${productSize.psize}</a>
-		</li>
+		</li>	
 	</c:forEach>										
 </ul>
 					</span>
-					<!-- 2021.08.10 화장품 상품인 경우 사이즈조견표 영역 미노출 -->
-					<!-- 재입고알림 툴팁 -->
-                    <!-- //재입고알림 툴팁 -->
-                    </li>
+					
+					<li id="CS2C3HCO018LMZ_NA_100">
+					<span class="title">평점<!-- 사이즈 --></span>
+					<span class="txt">
+			<a href="javascript:fn_detailProductAjax('CS2C3HCO018LMZ_NA_FR')">${product_detail.paveragerate}</a>
+					</li>
+                    
 				
 			</ul>
 		</div>
@@ -306,10 +309,10 @@
 	
 	<div class="clearfix mt30">
 		<div class="btnwrap float_left">
-			<a href="#" class="btn arrow mr0" onclick="">Q&amp;A(<span class="data" id="productQnACnt">0</span>)</a><!-- 큐앤에이 팝업 버튼 -->
+			<a href="${contextPath}/qnaproduct/list?pageNum=1&amount=5&pid=${product_detail.pid}" class="btn arrow mr0" onclick="">Q&amp;A(<span class="data" id="productQnACnt">${qna_total} </span>)</a><!-- 큐앤에이 팝업 버튼 -->
 			</div>
 		<div class="btnwrap float_left" style="width: 100px;">
-			<a href="#" class="btn arrow mr1" onclick="">상품평(<span class="data" id="productboardCnt">0</span>)</a><!-- 상품평 팝업 버튼 -->
+			<a href="${contextPath}/review/list?pageNum=1&amount=5&pid=${product_detail.pid}" class="btn arrow mr1" onclick="">상품평(<span class="data" id="productboardCnt">${review_total}</span>)</a><!-- 상품평 팝업 버튼 -->
 			</div>	
 		<div class="float_right">
 <!-- AddToAny BEGIN -->
@@ -546,3 +549,5 @@
 </div>
 </body>
 </html>
+
+

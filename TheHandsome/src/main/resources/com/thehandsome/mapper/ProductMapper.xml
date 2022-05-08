@@ -24,7 +24,12 @@
 		SELECT * FROM TABLE(sf_product_display_by_brand_size(#{bno}, #{psize}))
 	</select>
 	
-	
+	<select id="qna_total" resultType="int">
+		<![CDATA[
+		select count(*) from qna_product 
+		where pid=#{pid}
+		]]>
+	</select>
 	<resultMap type="com.thehandsome.domain.ProductVO"
 		id="productMap">
 		<id property="pid" column="pid" />
@@ -47,7 +52,7 @@
 	</resultMap>
 
 	<select id="display_product_detail" resultMap="productMap">
-		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, pdetail FROM TABLE(sf_product_detail_display(#{pid}))
+		SELECT DISTINCT pimg1, pimg2, pimg3, bname, pname, pprice, pid, pdetail ,paveragerate FROM TABLE(sf_product_detail_display(#{pid}))
 	</select>
 	
 	<select id="display_product_color" resultMap="productMap">
