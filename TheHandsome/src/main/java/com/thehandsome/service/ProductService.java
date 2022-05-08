@@ -1,10 +1,13 @@
 package com.thehandsome.service;
 
 import java.util.ArrayList;
-
-
 import com.thehandsome.domain.ProductVO;
 
+/**
+ * @author 고동현
+ * 상품 관련 service 구현
+ *
+ */
 public interface ProductService {
 
 	public ArrayList<ProductVO> display(int mode);
@@ -34,5 +37,15 @@ public interface ProductService {
 	public ArrayList<ProductVO> display_product_color(String pid); //상품 색상
 	
 	public ArrayList<ProductVO> display_product_size(String pid); //상품 사이즈
+	
+	public ArrayList<ProductVO> display_product_large(int mode, String category_large); //대분류
+	
+	public ArrayList<ProductVO> display_product_medium(int mode, String category_large, String category_medium); //중분류
+	
+	public ArrayList<ProductVO> display_product_small(int mode, String category_large, String category_medium, String category_small); // 소분류
+	
+	public ArrayList<ProductVO> display_by_brand_price(int mode, int bno); // 브랜드별 가격 높은 순
+	
+	public ArrayList<ProductVO> display_by_brand_price_low(int mode, int bno); // 브랜드별 가격 낮은 순
 
 }

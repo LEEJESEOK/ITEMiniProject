@@ -13,10 +13,8 @@ import com.thehandsome.domain.ProductVO;
 import lombok.extern.log4j.Log4j;
 
 /**
- * test
- * 
+ * 상품 관련 조회 test
  * @author 고동현
- * 
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
@@ -27,12 +25,12 @@ public class ProductMapperTests {
 	@Autowired
 	ProductMapper mapper;
 
-	@Test
+	@Test // mapper 생성 테스트
 	public void test01_mapper() {
 		log.info(mapper);
 	}
 
-	@Test
+	@Test // 신상품, 베스트 상품 조회 테스트
 	public void test02_display() {
 		for (int i = 1; i < 3; i++) {
 			mapper.display(i).forEach(product -> log.info(product));
@@ -43,12 +41,12 @@ public class ProductMapperTests {
 	 * 2 : 베스트상품
 	 */
 
-	@Test
+	@Test // 브랜드별 모든 상품 조회 테스트
 	public void test03_display_by_brand() {
 		mapper.display_by_brand(1).forEach(product -> log.info(product));
 	}
 
-	@Test
+	@Test // 브랜드별 해당 조건 만족하는 상품 조회 테스트
 	public void test04_display_by_brand_sort() {
 		for (int i = 1; i < 5; i++) {
 			mapper.display_by_brand_sort(i, 1).forEach(product -> log.info(product));
@@ -61,20 +59,55 @@ public class ProductMapperTests {
 	 * 4 : 브랜드별 가격낮은순 정렬
 	 */
 
-	@Test
+	@Test // 브랜드별 해당 색상 상품 조회 테스트
 	public void test05_display_by_brand_color() {
-		mapper.display_by_brand_color(1, "white").forEach(product -> log.info(product));
+		mapper.display_by_brand_color(1, "black").forEach(product -> log.info(product));
 	}
 
-	@Test
-	public void test05_display_by_brand_size() {
+	@Test // 브랜드별 해당 사이즈 상품 조회 테스트
+	public void test06_display_by_brand_size() {
 		mapper.display_by_brand_size(1, "S").forEach(product -> log.info(product));
 	}
 
-	@Test
-	public void test06_display_product_detail() {
-		ProductVO product = mapper.display_product_detail("TH2C5KTN040N");
+	@Test // 해당 상품 상세정보 조회 테스트
+	public void test07_display_product_detail() {
+		ProductVO product = mapper.display_product_detail("SY2C1WJS740WM2");
 
 		log.info("read product detail : " + product);
+	}
+	
+	@Test // 브랜드별 상품 고가순 정렬 테스트
+	public void test08_display_by_brand_price() {
+		mapper.display_by_brand_price(3, 1).forEach(product -> log.info(product));
+	}
+	
+	@Test // 브랜드별 상품 저가순 정렬 테스트
+	public void test09_display_by_brand_price_low() {
+		mapper.display_by_brand_price_low(4, 1).forEach(product -> log.info(product));
+	}
+	
+	@Test // 해당 단일상품 컬러 모두 출력 테스트
+	public void test10_display_product_color() {
+		mapper.display_product_color("SY2C1WJS740WM2").forEach(product -> log.info(product));
+	}
+	
+	@Test // 해당 단일상품 사이즈 모두 출력 테스트
+	public void test11_display_product_size() {
+		mapper.display_product_size("SY2C1WJS740WM2").forEach(product ->log.info(product)); 
+	}
+	
+	@Test // 상품 대분류에 해당하는 상품 모두 출력
+	public void test12_display_product_large() {
+		mapper.display_product_large(1, "여성").forEach(product ->log.info(product)); 
+	}
+	
+	@Test // 상품 대분류, 중분류에 해당하는 상품 모두 출력
+	public void test13_display_product_medium() {
+		mapper.display_product_medium(1, "여성", "아우터").forEach(product ->log.info(product)); 
+	}
+	
+	@Test // 상품 대분류, 중분류, 소분류에 해당하는 상품 모두 출력
+	public void test14_display_product_small() {
+		mapper.display_product_small(1, "여성", "아우터", "재킷").forEach(product ->log.info(product)); 
 	}
 }

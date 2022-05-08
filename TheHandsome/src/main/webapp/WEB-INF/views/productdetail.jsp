@@ -1,3 +1,6 @@
+<!-- 작성자 : 고동현 -->
+<!-- 상품 상세 페이지 작성 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -114,7 +117,7 @@
             <!-- 2021.08.18 동영상 재생 수정, 상품 imageDivisionCode에 VOD가 있는 경우 동영상 url 세팅 -->
             <div class="image_view1" id="image_view1">
                 <div class="item_visual" id="imageDiv" style="margin-top: 20px;">
-                
+						<!--상품 상세 이미지 출력 -->
 	                    <ul>
 	                        <li><img src="${product_detail.pimg3}" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
 	                        <li><img src="${product_detail.pimg1}" class="respon_image" alt="" onerror="this.src='http://cdn.thehandsome.com/_ui/desktop/common/images/products/no_img1.jpg'"></li>
@@ -128,7 +131,8 @@
             <!--  2021.08.18 동영상 재생 영역  -->
     </div>
 
-    
+<!-- 상품상세정보 출력 -->
+<!-- 브랜드이름, 제품이름, 제품번호, 가격, 제품 상세 , 색상, 사이즈-->
 <div class="item_detail_info float_right" id="contentDiv" style="margin-top: 20px; top: 0px; left: 676px;">
 	<div class="info">
 		<div class="info_sect">
@@ -192,11 +196,12 @@
 					<span class="txt">
 
 
-<ul class="size_chip clearfix sizeChipKo1901">
-	<c:forEach items="${product_size}" var="productSize" varStatus="status">            		 
-		<li id="CS2C3HCO018LMZ_NA_100">
-			<a href="javascript:fn_detailProductAjax('CS2C3HCO018LMZ_NA_FR')" onclick="">${productSize.psize}</a>
-		</li>
+					<ul class="size_chip clearfix sizeChipKo1901">
+						<c:forEach items="${product_size}" var="productSize" varStatus="status">            		 
+							<li id="CS2C3HCO018LMZ_NA_100">
+								<a href="javascript:fn_detailProductAjax('CS2C3HCO018LMZ_NA_FR')" onclick="">${productSize.psize}</a>
+				</li>
+				
 	</c:forEach>										
 </ul>
 					</span>
@@ -242,39 +247,10 @@
 			<!-- //st_store_wrap -->
 		<div class="btnwrap clearfix" style="position: absolute; width: 473px; margin-top: -1.562px; margin-bottom: 265.562px;">
             
-            <!--190508 추가 -->
-            <div class="toast_popup_pre_order1905"><!-- 토스트팝업 190507 -->
-                <p>예약 주문이 가능한 옵션(컬러/사이즈)가 있습니다. <br>옵션 선택 후 배송 예정일을 확인해 주세요.</p>
-                <span class="arr">위치아이콘</span>
-            </div>
-            <!--//190508 추가 -->
-            
-			<form id="addToCartForm" name="addToCartForm" action="/ko/HANDSOME/BEAUTY/Body-Hair-Care/Hand%C2%B7BodyLotion-Cream-Oil/%5BMAISON-LOUIS-MARIE%5D-NO-04-%EB%B6%80%EC%95%84-%EB%93%9C-%EB%B0%9C%EB%A6%B0%EC%BD%94%ED%8A%B8-%EB%B0%94%EB%94%94-%EB%A1%9C%EC%85%98-237ml/p/CS2C3HCO018LMZ_NA?categoryCode=be031" method="post"><input type="hidden" maxlength="3" size="1" name="qty" class="qty">
-				<input type="hidden" name="productCodePost" value="CS2C3HCO018LMZ_NA">
-				<input type="hidden" id="productCodeType" name="productCodeType" value="ApparelStyleVariantProduct">
-				<input type="hidden" id="stockCnt" value="0">
-				<input type="hidden" name="storeId" id="storeId" value="">
-				<input type="hidden" name="storePickupDate" id="storePickupDate" value="">
-				<input type="hidden" name="workOrder" id="workOrder" value="">
-				<input type="hidden" name="recommendProduct" id="recommendProduct" value="">
-				<input type="hidden" name="deliveryKind" id="deliveryKind" value="">
-				<input type="hidden" name="streetname" id="streetname" value="">
-				<input type="hidden" name="streetnumber" id="streetnumber" value="">
-				<input type="hidden" name="postalcode" id="postalcode" value="">
-				<input type="hidden" name="quickStreetname" id="quickStreetname" value="">
-	            <input type="hidden" name="quickStreetnumber" id="quickStreetnumber" value="">
-	            <input type="hidden" name="quickPostalcode" id="quickPostalcode" value="">
-				<input type="hidden" name="fourpmList" id="fourpmList">
-				<input type="hidden" name="athomeList" id="athomeList">
-				<input type="hidden" name="pickupList" id="pickupList">
-				<input type="hidden" name="quickList" id="quickList">
-				<input type="hidden" name="buyNowYn" id="buyNowYn" value="false">
-				<input type="button" value="쇼핑백 담기" class="btn cart1803 float_left ml0" id="addToCartButton" onclick="addToCart();">
-			<div>
-				<input type="hidden" name="CSRFToken" value="05387405-31e5-40d1-809e-c6300ba9b88c">
-			</div>
-				</form>
-				<input type="button" value="바로주문" class="btn order float_right mr0" id="addToCartBuyNowButton" onclick="GA_Event('상품_상세','하단 고정 버튼','바로주문');addToCart(true);">   
+            <a class="btn cart1803 float_left m10" href="${contextPath}/cart/insert?pvo=${product_detail}&pageNum=1&amount=10" id=''>쇼핑백 담기</a>
+			<!--주문시 주문완료 페이지로 이동 -->
+            <a class ="btn order float_right mr0" href="${contextPath}/p/ordercomplete" id=''>바로 주문</a>
+				   
 	     </div>
 		
 	
@@ -544,5 +520,8 @@
 </div>
 </div>
 </div>
+<div id="footerWrap">
+		<%@include file="include/footer.jsp"%>
+	</div>
 </body>
 </html>

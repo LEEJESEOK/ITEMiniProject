@@ -1,9 +1,13 @@
+<!-- 작성자 : 고동현 -->
+<!-- 상품 조회 페이지 작성 -->
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<%@ page isELIgnored="false" contentType = "text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -102,52 +106,89 @@
 
 			<%@include file="include/gnb.jsp"%>
 		</div>
-	
-	<div class="filterWrap hsDelivery1902">
+	</div>
+       
+            
+		
+		
+<div id="bodyWrap" class="products">
+
+    <h3 class="cnts_title ou1804">
+    <!--카테고리 -->
+        <span>
+        	<c:if test="${level == 1}">
+            	<a href="/p/c/large?clarge=${param.clarge}">${param.clarge}</a> <!--대분류 해당 -->
+            </c:if>
+            <c:if test="${level == 2}"><!--중분류까지 고려한 출력 -->
+	            <a href="/p/c/large?clarge=${param.clarge}">${param.clarge}</a>
+	            <img src="http://cdn.thehandsome.com/_ui/desktop/common/images/products/ou_location_arr.png" alt="location arr">
+	            <a href="/p/c/medium?clarge=${param.clarge}&cmedium=${param.cmedium}">${param.cmedium}</a>
+            </c:if>
+            <c:if test="${level == 3}"><!--소분류까지 고려한 출력 -->
+	            <a href="/p/c/large?clarge=${param.clarge}">${param.clarge}</a>
+	            <img src="http://cdn.thehandsome.com/_ui/desktop/common/images/products/ou_location_arr.png" alt="location arr">
+	            <a href="/p/c/medium?clarge=${param.clarge}&cmedium=${param.cmedium}">${param.cmedium}</a>
+	            <img src="http://cdn.thehandsome.com/_ui/desktop/common/images/products/ou_location_arr.png" alt="location arr">
+	            <a href="/p/c/small?clarge=${param.clarge}&cmedium=${param.cmedium}&csmall=${param.csmall}">${param.csmall}</a>
+            </c:if>
+            <c:if test="${level == 4}"><!-- 브랜드 페이지 관련 내용 -->
+            	<a href="#">${list[0].bname}</a>
+            </c:if>
+        </span>
+
+       
+    </h3>
+
+                    <!--색상메뉴바 -->
+                    <!--색상을 선택하면 색상값과 해당 브랜드 정보 넘겨주기 -->
+    <div class="adaptive_wrap"> 
+    <div class="filterWrap hsDelivery1902">
                     <ul class="clearfix float_left">
-                    <li class="color"><a href="#" class="select" onclick="GA_Event('카테고리_리스트','정렬','색상');">색상<span class="ico_arr">arrow</span></a>
+                    <li class="color"><a href="#" class="select">색상　<img src=http://www.thehandsome.com/_ui/desktop/common/images/products/ico_select.png></a>
                             <div class="list list_item4">
                                 <ul class="color_chip clearfix" id="category_color_chip">
-                                <li><a href="javascript:setRepProdColorCode('BEIGE')" style="background:#fae7c4;" onclick="">BEIGE</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('BLACK')" style="background:#000000;" onclick="">BLACK</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('BLUE')" style="background:#0f45bc;" onclick="">BLUE</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('BROWN')" style="background:#673915;" onclick="">BROWN</a></li>
+                                <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=beige" style="background:#fae7c4;" onclick="">BEIGE</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=black" style="background:#000000;" onclick="">BLACK</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=blue" style="background:#0f45bc;" onclick="">BLUE</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=brown" style="background:#673915;" onclick="">BROWN</a></li>
                                     <li><a href="javascript:setRepProdColorCode('BURGUNDY')" style="background:#741313;" onclick="">BURGUNDY</a></li>
                                     <li><a href="javascript:setRepProdColorCode('CAMEL')" style="background:#876c41;" onclick="">CAMEL</a></li>
                                     <li><a href="javascript:setRepProdColorCode('GOLD')" style="background:#ffc733;" onclick="">GOLD</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('GREEN')" style="background:#0f6f0e;" onclick="">GREEN</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('GREY')" style="background:#444445;" onclick="">GREY</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=green" style="background:#0f6f0e;" onclick="">GREEN</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=grey" style="background:#444445;" onclick="">GREY</a></li>
                                     <li><a href="javascript:setRepProdColorCode('IVORY')" style="background:#fff8d9;" onclick="">IVORY</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('KHAKI')" style="background:#465626;" onclick="">KHAKI</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=khaki" style="background:#465626;" onclick="">KHAKI</a></li>
                                     <li><a href="javascript:setRepProdColorCode('LAVENDER')" style="background:#9c81bb;" onclick="">LAVENDER</a></li>
                                     <li><a href="javascript:setRepProdColorCode('METAL')" style="background:#9d9fa2;" onclick="">METAL</a></li>
                                     <li><a href="javascript:setRepProdColorCode('MINT')" style="background:#95d0ab;" onclick="">MINT</a></li>
                                     <li><a href="javascript:setRepProdColorCode('MULTI')" style="background:#534741;" onclick="">MULTI</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('NAVY')" style="background:#061836;" onclick="">NAVY</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=navy" style="background:#061836;" onclick="">NAVY</a></li>
                                     <li><a href="javascript:setRepProdColorCode('OLIVE')" style="background:#5d682d;" onclick="">OLIVE</a></li>
                                     <li><a href="javascript:setRepProdColorCode('ORANGE')" style="background:#ee6423;" onclick="">ORANGE</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('PINK')" style="background:#ea589b;" onclick="">PINK</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('PURPLE')" style="background:#833b95;" onclick="">PURPLE</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('RED')" style="background:#ec1e24;" onclick="">RED</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=pink" style="background:#ea589b;" onclick="">PINK</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=purple" style="background:#833b95;" onclick="">PURPLE</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=red" style="background:#ec1e24;" onclick="">RED</a></li>
                                     <li><a href="javascript:setRepProdColorCode('SILVER')" style="background:#c0c0c0;" onclick="">SILVER</a></li>
                                     <li><a href="javascript:setRepProdColorCode('SKY')" style="background:#a2d6f3;" onclick="">SKY</a></li>
                                     <li><a href="javascript:setRepProdColorCode('VIOLET')" style="background:#4c2b7b;" onclick="">VIOLET</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('WHITE')" class="wt" style="background:#ffffff;" onclick="">WHITE</a></li>
-                                    <li><a href="javascript:setRepProdColorCode('YELLOW')" style="background:#ffea0a;" onclick="">YELLOW</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=white" class="wt" style="background:#ffffff;" onclick="">WHITE</a></li>
+                                    <li><a href="${contextPath}/b/co?bno=${list[0].bno}&color=yellow" style="background:#ffea0a;" onclick="">YELLOW</a></li>
                                     </ul>
                             </div>
                         </li>
-                        <li class="size"><a href="#" class="select" onclick="">사이즈<span class="ico_arr">arrow</span></a>
+                        <!--사이즈 메뉴바 -->
+                        <!--선택한 사이즈정보와 브랜드 정보 넘겨주기 -->
+                        <li class="size"><a href="#" class="select" onclick="">사이즈　<img src=http://www.thehandsome.com/_ui/desktop/common/images/products/ico_select.png></a>
                             <div class="list list_item3">
                                 <ul class="size_chip clearfix" id="category_size_chip">
-                                <li><a href="javascript:setRepSizeEnumCode('XXXS')" onclick="GA_Event('카테고리_리스트','정렬','XXXS');">XXXS</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('XXS')" onclick="GA_Event('카테고리_리스트','정렬','XXS');">XXS</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('XS')" onclick="GA_Event('카테고리_리스트','정렬','XS');">XS</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('S')" onclick="GA_Event('카테고리_리스트','정렬','S');">S</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('M')" onclick="GA_Event('카테고리_리스트','정렬','M');">M</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('L')" onclick="GA_Event('카테고리_리스트','정렬','L');">L</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('XL')" onclick="GA_Event('카테고리_리스트','정렬','XL');">XL</a></li>
-                                <li><a href="javascript:setRepSizeEnumCode('XXL')" onclick="GA_Event('카테고리_리스트','정렬','XXL');">XXL</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=XXXS" onclick="GA_Event('카테고리_리스트','정렬','XXXS');">XXXS</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=XXS" onclick="GA_Event('카테고리_리스트','정렬','XXS');">XXS</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=XS" onclick="GA_Event('카테고리_리스트','정렬','XS');">XS</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=S" onclick="GA_Event('카테고리_리스트','정렬','S');">S</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=M" onclick="GA_Event('카테고리_리스트','정렬','M');">M</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=L" onclick="GA_Event('카테고리_리스트','정렬','L');">L</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=XL" onclick="GA_Event('카테고리_리스트','정렬','XL');">XL</a></li>
+                                <li><a href="${contextPath}/b/size?bno=${list[0].bno}&size=XXL" onclick="GA_Event('카테고리_리스트','정렬','XXL');">XXL</a></li>
                                 <li><a href="javascript:setRepSizeEnumCode('XXXL')" onclick="GA_Event('카테고리_리스트','정렬','XXXL');">XXXL</a></li>
                                 <li><a href="javascript:setRepSizeEnumCode('XXXXL')" onclick="GA_Event('카테고리_리스트','정렬','XXXXL');">XXXXL</a></li>
                                 <li><a href="javascript:setRepSizeEnumCode('FREE')" onclick="GA_Event('카테고리_리스트','정렬','FREE');">FREE</a></li>
@@ -155,34 +196,20 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="price"><a href="#" class="select" onclick="GA_Event('카테고리_리스트','정렬','가격');">가격<span class="ico_arr">arrow</span></a>
+                              <!--정렬 메뉴바 -->
+                              <!--선택한 메뉴에 해당하는 정렬정보 주기 -->      
+                        <li class="sortby"><a href="#" class="select" onclick="GA_Event('카테고리_리스트','정렬','정렬순');">정렬순<span class="current">신상품</span><img src=http://www.thehandsome.com/_ui/desktop/common/images/products/ico_select.png></a>
                             <div class="list">
                                 <ul>
-                                    <li><input type="checkbox" id="price_ck1" onClick="GA_Event('카테고리_리스트','정렬','￦100,000 이하');setPriceOrderCode(this, '1')" /> <label for="price_ck1" id="lable_ck1"> ￦100,000 이하</label></li>
-                                    <li><input type="checkbox" id="price_ck2" onClick="GA_Event('카테고리_리스트','정렬','￦100,000 ~ ￦300,000');setPriceOrderCode(this, '2')" /> <label for="price_ck2" id="lable_ck2">￦100,000 ~ ￦300,000</label></li>
-                                    <li><input type="checkbox" id="price_ck3" onClick="GA_Event('카테고리_리스트','정렬','￦300,000 ~ ￦500,000');setPriceOrderCode(this, '3')"  /> <label for="price_ck3" id="lable_ck3">￦300,000 ~ ￦500,000</label></li>
-                                    <li><input type="checkbox" id="price_ck4" onClick="GA_Event('카테고리_리스트','정렬','￦500,000 ~ ￦1,000,000');setPriceOrderCode(this, '4')"  /> <label for="price_ck4" id="lable_ck4">￦500,000 ~ ￦1,000,000</label></li>
-                                    <li><input type="checkbox" id="price_ck5" onClick="GA_Event('카테고리_리스트','정렬','￦1,000,000 이상');setPriceOrderCode(this, '5')"  /> <label for="price_ck5" id="lable_ck5">￦1,000,000 이상</label></li>
-                                </ul>
-                            </div>
-                        </li>
-                                    
-                        <li class="sortby"><a href="#" class="select" onclick="GA_Event('카테고리_리스트','정렬','정렬순');">정렬순<span class="current">신상품</span><span class="ico_arr">arrow</span></a>
-                            <div class="list">
-                                <ul>
-                                    <li><a href="javascript:setProductOrderCode('NEW', '신상품');" onclick="GA_Event('카테고리_리스트','정렬','신상품');">신상품</a></li>
-                                    <li><a href="javascript:setProductOrderCode('SALES', '판매순');" onclick="GA_Event('카테고리_리스트','정렬','판매순');">판매순</a></li>
-                                    <li><a href="javascript:setProductOrderCode('HIGH', '고가순');" onclick="GA_Event('카테고리_리스트','정렬','고가순');">고가순</a></li>
-                                    <li><a href="javascript:setProductOrderCode('LOW', '저가순');" onclick="GA_Event('카테고리_리스트','정렬','저가순');">저가순</a></li>
-                                    <li><a href="javascript:setProductOrderCode('REVIEW', '평점순');" onclick="GA_Event('카테고리_리스트','정렬','상품평순');">평점순</a></li>
+                                    <li><a href="${contextPath}/b/sort?mode=1&bno=${list[0].bno}" >신상품</a></li>
+                                    <li><a href="${contextPath}/b/sort?mode=1&bno=${list[0].bno}" >판매순</a></li>
+                                    <li><a href="${contextPath}/b/sort?mode=3&bno=${list[0].bno}" >고가순</a></li>
+                                    <li><a href="${contextPath}/b/sort?mode=4&bno=${list[0].bno}" >저가순</a></li>
+                                    <li><a href="${contextPath}/b/sort?mode=2&bno=${list[0].bno}" >평점순</a></li>
                                     </ul>
                             </div>
                         </li>
-                         <li class="prd_list_filter1810 sale_filter">
-                            <div class="input_wrap">
-                                <input type="checkbox" id="checkSale" name="checkSale" onClick="setCheckSaleCode();GA_Event('카테고리_리스트','정렬','SALE');" style="margin: 3px 10px 0 0;"><label for="checkSale" id="checkSale" style="color: #ff0000;">SALE</label>
-                            </div>
-                        </li>
+                        
                         <li class="prd_list_filter1810 delivery" style="display:none"><!-- 딜리버리 190219 -->
                             <div class="input_wrap">
                                 <input type="checkbox" id="checkDelivery" name="checkDelivery" onClick="sethsDeliveryCode();GA_Event('카테고리_리스트','정렬','한섬딜리버리');"><label for="checkDelivery" id="hsDelivery">한섬딜리버리</label>
@@ -193,32 +220,13 @@
                             <span class="box_arr"></span>
                          </div>
                         </li>
-                        <li class="btn"><a href="javascript:gubunSearch(1);">적용</a></li>
                     </ul>
- 
-                </div>
-       
-            
-		
-		
-<div id="bodyWrap" class="products">
-    <h3 class="cnts_title ou1804">
-    
-        <span>
-            <a href="#" onclick="">${list_by_brand[0].bname}</a>
-        </span>
-       
-    </h3>
-    <div class="adaptive_wrap">     
+             </div>    
             <!-- sort wrap -->
-            <div class="filterWrap hsDelivery1902">             
-                <div class="items_count float_right">
-                    <span class="num">${pageMaker.total}</span><span>전체</span>
-                </div>
-            </div>
+            <!--상품 4x3으로 출력 -->
         <div class="items_list" id="listContent" style="display: block;">
             <ul class="clearfix" id="listBody" style="display: block;">
-            	<c:forEach items="${list_by_brand}" var="product" varStatus="status">            		
+            	<c:forEach items="${list}" var="product" varStatus="status">            		
             		<c:choose>
 	            		<c:when test="${status.index  % 4 != 3}">
 			                <li> 
@@ -279,34 +287,8 @@
 	            	</c:choose>    	             
 	          	</c:forEach>              
               </ul>
-        </div>
-        <div class="paging" style="display: block;">
-            	<a class="prev2" href="/product/productList?cateNo=${param.cateNo}&pageNum=1&amount=${pageMaker.amount}&level=${param.level}">처음 페이지로 이동</a>
-            	<c:choose>
-              		<c:when test = "${pageMaker.pageNum == pageMaker.startPage}">
-            			<a href="/product/productList?cateNo=${param.cateNo}&pageNum=${pageMaker.pageNum}&amount=${pageMaker.amount}&level=${param.level}" class="prev">이전 페이지로 이동</a>
-            		</c:when>
-            		<c:otherwise>
-            			<a href="/product/productList?cateNo=${param.cateNo}&pageNum=${pageMaker.pageNum - 1}&amount=${pageMaker.amount}&level=${param.level}" class="prev">이전 페이지로 이동</a>
-            		</c:otherwise>
-            	</c:choose>         
-                <span class="num">
-                	<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-                    <a href="/product/productList?cateNo=${param.cateNo}&pageNum=${num}&amount=${pageMaker.amount}&level=${param.level}" class="pageBtn">${num}</a>
-                    </c:forEach>
-                </span>              	
-              	<c:choose>
-              		<c:when test = "${pageMaker.pageNum == pageMaker.endPage}">
-            			<a href="/product/productList?cateNo=${param.cateNo}&pageNum=${pageMaker.pageNum}&amount=${pageMaker.amount}&level=${param.level}" class="next">다음 페이지로 이동</a>
-            		</c:when>
-            		<c:otherwise>
-            			<a href="/product/productList?cateNo=${param.cateNo}&pageNum=${pageMaker.pageNum + 1}&amount=${pageMaker.amount}&level=${param.level}" class="next">다음 페이지로 이동</a>
-            		</c:otherwise>
-            	</c:choose>
-            	<a href="/product/productList?cateNo=${param.cateNo}&pageNum=${pageMaker.endPage}&amount=${pageMaker.amount}&level=${param.level}" class="next2">마지막 페이지로 이동</a>
-        </div>       
+        </div>      
     </div>
-</div>
 </div>
 </body>
 <div id="footerWrap">

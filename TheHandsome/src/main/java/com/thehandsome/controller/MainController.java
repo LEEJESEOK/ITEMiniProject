@@ -37,6 +37,11 @@ public class MainController {
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
+	
+	/**
+	 * @author 고동현
+	 * 메인페이지 신상품, 베스트상품 출력
+	 */
 	@RequestMapping(value = { "/" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		ArrayList<ProductVO> productlist_new = new ArrayList<>();
@@ -44,12 +49,12 @@ public class MainController {
 		// 신상품
 		// 여성, 남성
 		productlist_new = service.display(1);
-		model.addAttribute("list_new", productlist_new);
+		model.addAttribute("list_new", productlist_new); // 신상품
 		log.info(productlist_new);
 		// 베스트
 		// 여성, 남성
 		productlist_best = service.display(2);
-		model.addAttribute("list_best", productlist_best);
+		model.addAttribute("list_best", productlist_best); // best상품 
 		log.info(productlist_best);
 
 		return "main";
@@ -58,20 +63,5 @@ public class MainController {
 	@RequestMapping(value = { "/main" })
 	public String main() {
 		return "redirect:/";
-	}
-
-	@RequestMapping(value = "/intro/mainCategoryList")
-	public ResponseEntity<HashMap<String, String>> mainCategoryList() {
-		HashMap<String, String> map = new HashMap<String, String>();
-
-		return new ResponseEntity<HashMap<String, String>>(map, HttpStatus.OK);
-	}
-
-	// 최신 기사
-	@RequestMapping(value = "/intro/mainMagazine", method = RequestMethod.GET)
-	public ResponseEntity<HashMap<String, Object>> mainMagazine() {
-		HashMap<String, Object> map = new HashMap<String, Object>();
-
-		return new ResponseEntity<HashMap<String, Object>>(map, HttpStatus.OK);
 	}
 }

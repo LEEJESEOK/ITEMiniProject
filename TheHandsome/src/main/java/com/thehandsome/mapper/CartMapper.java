@@ -6,6 +6,11 @@ import org.apache.ibatis.annotations.Param;
 
 import com.thehandsome.domain.MyCartVO;
 
+/**
+ * @author 고동현
+ * 장바구니 관련 mapper 구현
+ *
+ */
 public interface CartMapper {
 
 	public ArrayList<MyCartVO> list(String mid); // 장바구니 불러오기

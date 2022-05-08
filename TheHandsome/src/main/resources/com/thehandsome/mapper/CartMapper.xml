@@ -2,23 +2,26 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!--  작성자 : 고동현 -->
+<!--  장바구니 관련 mapper 작성 -->
 <mapper namespace="com.thehandsome.mapper.CartMapper">
 
 	<select id = "list" resultType = "com.thehandsome.domain.MyCartVO">
 		SELECT * FROM TABLE(sf_cart_display(#{mid}))
 	</select>
-	
+<!-- 	장바구니 리스트 출력 -->
 	<insert id="insert_cart" statementType="CALLABLE">
 		{call sp_cart_insert
 		(#{mid}, #{pid}, #{psize}, #{pcolor}, #{pamount})}
 	</insert>
-	
+<!-- 	장바구니 삽입 -->
 	<delete id = "delete_cart" statementType="CALLABLE">
 		{call sp_cart_delete(#{pid})}
 	</delete>
-	
+<!-- 	장바구니 비우기 -->
 	<update id="update_cart" statementType="CALLABLE">
 		{call sp_cart_amount_update(#{pid}, #{pamount})}
 	</update>
-	
+<!-- 	장바구니 수량 업데이트 -->
 </mapper>
