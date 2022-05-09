@@ -80,7 +80,7 @@ public class ReviewController {
 			  service.review_insert(vo); 
 			  log.info("insert_review");
 			  
-			  return "redirect:http://localhost:8090/p/detail?product_id="+(String)map.get("pid");
+			  return "redirect:/p/detail?product_id="+(String)map.get("pid");
 		  }
 		  
 		  @DeleteMapping(value = "delete_review")
