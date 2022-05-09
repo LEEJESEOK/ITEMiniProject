@@ -26,8 +26,8 @@ import lombok.extern.log4j.Log4j;
  * @author JUNELLE
  *
  */
-@Log4j
 @Controller
+@Log4j
 public class MypageController {
 
 	@Autowired
