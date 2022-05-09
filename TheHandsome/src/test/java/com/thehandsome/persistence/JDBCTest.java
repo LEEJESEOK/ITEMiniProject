@@ -28,7 +28,7 @@ public class JDBCTest {
 	@Test
 	public void TestConnection() {
 		try {
-			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xe", 
+			Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521/xepdb1", 
 					"handsome", "handsome");
 			log.info(con);
 		} catch (SQLException e) {

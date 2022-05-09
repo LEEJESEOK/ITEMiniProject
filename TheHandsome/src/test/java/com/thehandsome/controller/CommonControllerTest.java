@@ -1,8 +1,11 @@
 package com.thehandsome.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.junit.Assert.assertTrue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 import java.nio.charset.Charset;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -11,14 +14,17 @@ import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -44,29 +50,49 @@ public class CommonControllerTest {
 
 	MockHttpSession session;
 
+	ObjectMapper objectMapper;
+
 	public static final MediaType APPLICATION_JSON_UTF8 = new MediaType(MediaType.APPLICATION_JSON_UTF8,
 			Charset.forName("utf-8"));
 
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
+		log.info(mockMvc);
+
+		objectMapper = Jackson2ObjectMapperBuilder.json().build();
 
 		String mid = "member";
 		session = new MockHttpSession();
 		session.setAttribute("session_mid", mid);
+
 	}
 
 	@Test
 	public void test_passwordReCheck() throws Exception {
 
-		String mid = (String) session.getAttribute("session_mid");
-		String mpassword = "qwerqwer1!";
-		log.info("mid : " + mid);
-		log.info("mpassword : " + mpassword);
+		String url = "/common/passwordrecheck.json";
 
-		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/common/passwordrecheck").session(session).param("pw", mpassword)).andReturn()
-				.getModelAndView().getModelMap());
+		String pw = "qwerqwer1!";
+
+		Map<String, Object> map = new HashMap<>();
+		map.put("pw", pw);
+
+		String body = (new ObjectMapper()).valueToTree(map).toString();
+		log.info("body : " + body);
+
+		System.out.println("perform");
+
+		// session 적용
+		// responsebody : content()에 string json 데이터 전달
+		String stringContents = mockMvc
+				.perform(get(url).session(session).contentType(MediaType.APPLICATION_JSON_UTF8).content(body))
+				.andReturn().getResponse().getContentAsString();
+
+		JsonNode jsonNode = objectMapper.readTree(stringContents);
+
+		Map resultMap = objectMapper.treeToValue(jsonNode, Map.class);
+		assertTrue((boolean) resultMap.get("result"));
 	}
 
-		
 }

@@ -35,25 +35,25 @@ public class CommonController {
 	@ResponseBody
 	public Map<String, Object> passwordReCheck(HttpServletRequest request, HttpSession session,
 			@RequestBody Map<String, Object> params) {
-		
-		for(String key : params.keySet())
-			log.info(key + ":"+ params.get(key));
+
+		for (String key : params.keySet())
+			log.info(key + ":" + params.get(key));
 
 		session = request.getSession();
 
-		String mid = (String) session.getAttribute("session_mid");
-		String mpassword = (String) params.get("pw");
-		log.info(mid);
-		log.info(mpassword);
+		String session_mid = (String) session.getAttribute("session_mid");
+		String pw = (String) params.get("pw");
+		log.info("session id : " + session_mid);
+		log.info("pw : " + pw);
 
-		MemberVO member = memberService.getMemberAccountByLogin(mid, mpassword);
+		MemberVO member = memberService.getMemberAccountByLogin(session_mid, pw);
 		log.info(member);
 
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("result", (member != null) ? true : false);
 
 		if ((boolean) map.get("result")) {
-			
+
 		} else {
 			map.put("message", "입력하신 비밀번호가 일치하지 않습니다.");
 		}

@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -46,6 +47,9 @@ public class MemberControllerTest {
 
 	MockMvc mockMvc;
 
+	MockHttpSession session;
+
+
 	@Before
 	public void setup() {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(context).build();
@@ -54,6 +58,10 @@ public class MemberControllerTest {
 	@Test
 	public void test01_memberLogin() throws Exception {
 		log.info("test01_memberLogin");
+		
+		String mid = "member";
+		session = new MockHttpSession();
+		session.setAttribute("session_mid", mid);
 
 		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/member/login")).andExpect(status().isOk()).andReturn()
 				.getModelAndView().getModelMap());
@@ -71,8 +79,8 @@ public class MemberControllerTest {
 		params.put("mpassword", mpassword);
 
 		log.info(mockMvc
-				.perform(MockMvcRequestBuilders.get("/member/login").param("mid", mid).param("mpassword", mpassword))
-				.andExpect(status().isOk()).andReturn().getModelAndView());
+				.perform(MockMvcRequestBuilders.get("/member/auth").param("mid", mid).param("mpassword", mpassword))
+				.andExpect(status().isOk()).andReturn().getResponse());
 	}
 
 	@Test

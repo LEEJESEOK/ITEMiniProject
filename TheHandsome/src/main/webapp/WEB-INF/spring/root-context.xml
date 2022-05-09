@@ -28,7 +28,8 @@
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation"
-	value="/WEB-INF/config/mybatis-config.xml" />
+			value="classpath:/mybatis-config.xml" />
+			
 	</bean>
 	<mybatis-spring:scan
 		base-package="com.thehandsome.mapper" />
