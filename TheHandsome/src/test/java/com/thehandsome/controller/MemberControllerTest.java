@@ -131,7 +131,7 @@ public class MemberControllerTest {
 		String viewName = mockMvc.perform(get(url).session(session)).andExpect(redirectedUrl("/")).andDo(print())
 				.andReturn().getModelAndView().getViewName();
 
-		assertEquals(viewName, "redirect:/");
+		assertEquals("redirect:/", viewName);
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class MemberControllerTest {
 		String viewName = mockMvc.perform(get(url)).andExpect(status().isOk()).andDo(print()).andReturn()
 				.getModelAndView().getViewName();
 
-		assertEquals(viewName, "member/joininfoform");
+		assertEquals("member/joininfoform", viewName);
 	}
 
 	/**
