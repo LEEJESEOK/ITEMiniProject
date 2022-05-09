@@ -21,8 +21,7 @@ import lombok.extern.log4j.Log4j;
 
 /**
  * MyPage 컨트롤러<br>
- * 개인정보 수정<br>
- * 비밀번호 변경<br>
+ * 개인정보 수정, 비밀번호 변경, 회원 상태 변경<br>
  * 
  * @author JUNELLE
  *
@@ -73,8 +72,7 @@ public class MypageController {
 
 	@RequestMapping("/mypage/changePassword")
 	@ResponseBody
-	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params,
-			HttpServletRequest request) {
+	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params, HttpServletRequest request) {
 		log.info("changePassword");
 
 		String mid = (String) request.getSession().getAttribute("session_mid");

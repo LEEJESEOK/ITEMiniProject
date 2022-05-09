@@ -17,6 +17,12 @@ import com.thehandsome.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
+/**
+ * 공통 컨트롤러<br>
+ * 
+ * @author "LEE JESEOK"
+ *
+ */
 @Log4j
 @Controller
 @RequestMapping("/common")
