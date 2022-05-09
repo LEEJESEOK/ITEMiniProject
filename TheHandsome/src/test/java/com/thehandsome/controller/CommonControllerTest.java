@@ -78,7 +78,7 @@ public class CommonControllerTest {
 		Map<String, Object> map = new HashMap<>();
 		map.put("pw", pw);
 
-		String body = (new ObjectMapper()).valueToTree(map).toString();
+		String body = objectMapper.valueToTree(map).toString();
 		log.info("body : " + body);
 
 		System.out.println("perform");
@@ -91,7 +91,7 @@ public class CommonControllerTest {
 
 		JsonNode jsonNode = objectMapper.readTree(stringContents);
 
-		Map resultMap = objectMapper.treeToValue(jsonNode, Map.class);
+		Map<String, Object> resultMap = objectMapper.treeToValue(jsonNode, Map.class);
 		assertTrue((boolean) resultMap.get("result"));
 	}
 
