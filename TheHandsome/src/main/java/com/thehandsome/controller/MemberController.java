@@ -22,8 +22,15 @@ import com.thehandsome.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
-@Log4j
+/**
+ * MemberController<br>  
+ * 회원 정보 조회, 로그인, 로그아웃, 회원가입, 아이디 중복확인 
+ * 
+ * @author JUNELLE
+ *
+ */
 @Controller
+@Log4j
 public class MemberController {
 
 	@Autowired
@@ -125,5 +132,5 @@ public class MemberController {
 
 		memberService.joinMember(member);
 	}
-	
+
 }

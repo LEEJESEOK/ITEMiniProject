@@ -164,7 +164,7 @@
 							$("#hpMsg").text("")
 					});
 				    
-				    // TODO 아이디 중복 검사
+				    // 아이디 중복 검사
 				    $("#idDubChkBtn").click(function () {
 				        var vc = new ValidationCheck();
 				        vc.checkIdList = ['id'];

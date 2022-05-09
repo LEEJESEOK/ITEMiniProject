@@ -16,7 +16,6 @@ import lombok.extern.log4j.Log4j;
  */
 @Service
 @AllArgsConstructor
-@Log4j
 public class MemberServiceImpl implements MemberService {
 
 	@Autowired
@@ -30,11 +29,6 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public boolean joinMember(MemberVO member) {
 		return mapper.insertMember(member) == -1;
-	}
-
-	@Override
-	public boolean isValidMember(String mid) {
-		return mapper.isValidMember(mid);
 	}
 
 	@Override
@@ -69,4 +63,8 @@ public class MemberServiceImpl implements MemberService {
 		return mapper.deleteMember(mid) == 1;
 	}
 
+	@Override
+	public boolean isValidMember(String mid) {
+		return mapper.isValidMember(mid);
+	}
 }
