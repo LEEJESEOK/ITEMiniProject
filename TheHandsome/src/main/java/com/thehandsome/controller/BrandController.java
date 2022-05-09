@@ -45,7 +45,7 @@ public class BrandController {
 		log.info("display_product_by_brand_color");
 		
 		int level = 4; 
-		model.addAttribute("list", service.display_by_brand_color(bno, color)); //선택한 브랜드 상품 나열
+		model.addAttribute("list", service.display_by_brand_color(bno, color)); //선택한 브랜드별 색상 기준 상품 나열
 		log.info(model);
 		model.addAttribute("level", level);
 		log.info(model);
@@ -58,7 +58,7 @@ public class BrandController {
 		log.info("display_product_by_brand_size");
 		
 		int level = 4; 
-		model.addAttribute("list", service.display_by_brand_size(bno, size)); //선택한 브랜드 상품 나열
+		model.addAttribute("list", service.display_by_brand_size(bno, size)); //선택한 브랜드별 사이즈 기준 상품 나열
 		log.info(model);
 		model.addAttribute("level", level);
 		log.info(model);
