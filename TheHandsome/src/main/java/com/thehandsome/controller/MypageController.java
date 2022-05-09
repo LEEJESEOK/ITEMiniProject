@@ -19,6 +19,14 @@ import com.thehandsome.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
+/**
+ * MyPage 컨트롤러<br>
+ * 개인정보 수정<br>
+ * 비밀번호 변경<br>
+ * 
+ * @author JUNELLE
+ *
+ */
 @Log4j
 @Controller
 public class MypageController {

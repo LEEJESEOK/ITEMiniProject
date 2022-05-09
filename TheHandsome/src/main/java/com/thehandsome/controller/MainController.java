@@ -23,7 +23,10 @@ import com.thehandsome.service.ProductService;
 import lombok.extern.log4j.Log4j;
 
 /**
- * Handles requests for the application home page.
+ * Main 페이지 컨트롤러
+ * 
+ * @author JUNELLE
+ *
  */
 @Log4j
 @Controller

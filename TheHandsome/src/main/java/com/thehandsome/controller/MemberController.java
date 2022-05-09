@@ -22,8 +22,14 @@ import com.thehandsome.service.MemberService;
 
 import lombok.extern.log4j.Log4j;
 
-@Log4j
+/**
+ * MemberController  
+ * 
+ * @author JUNELLE
+ *
+ */
 @Controller
+@Log4j
 public class MemberController {
 
 	@Autowired
@@ -125,5 +131,5 @@ public class MemberController {
 
 		memberService.joinMember(member);
 	}
-	
+
 }
