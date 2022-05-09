@@ -35,11 +35,8 @@ public class CommonController {
 
 		session = request.getSession();
 
-		String callPage = (String) params.get("callPage");
-
 		String mid = (String) session.getAttribute("session_mid");
 		String mpassword = (String) params.get("pw");
-		String csrfToken = (String) params.get("CSRFToken");
 		log.info(mid);
 		log.info(mpassword);
 

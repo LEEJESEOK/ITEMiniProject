@@ -65,7 +65,8 @@ public class MypageController {
 
 	@RequestMapping("/mypage/changePassword")
 	@ResponseBody
-	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params, HttpServletRequest request) {
+	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params,
+			HttpServletRequest request) {
 		log.info("changePassword");
 
 		String mid = (String) request.getSession().getAttribute("session_mid");
