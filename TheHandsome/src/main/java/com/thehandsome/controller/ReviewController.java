@@ -41,7 +41,7 @@ public class ReviewController {
 		  @Autowired
 		  private ReviewService service;
 		  
-		  @GetMapping(value ="/list")
+		  @GetMapping(value ="/list") //상품평 게시판 페이징 리스트 반환 
 		  public void list( Model model,@RequestParam("pageNum") 
 		  int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String pid) {
 			  int total = service.review_total(pid);
@@ -52,14 +52,14 @@ public class ReviewController {
 		  }
 		  
 
-		  @GetMapping(value = "/one_review")
+		  @GetMapping(value = "/one_review") //상품평 게시판 한 행 반환
 		  public ResponseEntity<ReviewVO> one_review(@RequestParam("rno") Long rno){
 			  ReviewVO val=service.review_read(rno);
 			  log.info("one_review");
 			  return new ResponseEntity<>(val, HttpStatus.OK);
 		  }
 		  
-		  @GetMapping(value = "/create") 
+		  @GetMapping(value = "/create") //create.jsp 에 pid(품번) 반환
 		  public String Create(@RequestParam("pid") String pid) {
 			  log.info(pid);
 			  return "/create";
@@ -67,7 +67,7 @@ public class ReviewController {
 		  
 		  
 		  
-		  @PostMapping(value = "/insert_review")
+		  @PostMapping(value = "/insert_review") //상품평 게시판 글 등록
 		  public String insert_review(@RequestParam Map<String, Object> map ){
 			  ReviewVO vo=new ReviewVO();
 			  vo.setMid(String.valueOf( map.get("mid")));
@@ -86,7 +86,7 @@ public class ReviewController {
 			  return "redirect:/p/detail?product_id="+(String)map.get("pid");
 		  }
 		  
-		  @DeleteMapping(value = "delete_review")
+		  @DeleteMapping(value = "delete_review") //상품평 게시판 글 삭제
 		  public String delete_review(@RequestParam("rno")Long rno){
 			  service.review_delete(rno);
 			  log.info("delete_review");
@@ -94,7 +94,7 @@ public class ReviewController {
 			  return "redirect:review/list";
 		  }
 		  
-		  @PutMapping(value = "update_review")
+		  @PutMapping(value = "update_review") //상품평 게시판 글 수정
 		  public String update_review(ReviewVO vo){
 			  service.review_update(vo);
 			  log.info("update_review");

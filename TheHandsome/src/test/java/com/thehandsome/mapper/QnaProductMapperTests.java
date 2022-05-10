@@ -24,6 +24,7 @@ import lombok.extern.log4j.Log4j;
  * @author "Seungyeon"
  *
  */
+//QnaProductMapper 테스트
 public class QnaProductMapperTests {
 	@Autowired
 	QnaProductMapper mapper;

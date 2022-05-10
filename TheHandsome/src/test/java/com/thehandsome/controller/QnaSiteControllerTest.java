@@ -1,8 +1,5 @@
 package com.thehandsome.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -17,10 +14,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.context.WebApplicationContext;
-
+import org.junit.Test;
 import com.thehandsome.domain.ReviewVO;
 import com.thehandsome.service.ReviewService;
 
@@ -36,8 +31,10 @@ import lombok.extern.log4j.Log4j;
 					   "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml"})
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @Log4j
-public class ReviewControllerTest {
 
+
+
+public class QnaSiteControllerTest {
 	@Autowired
 	private WebApplicationContext ctx;
 	
@@ -51,66 +48,58 @@ public class ReviewControllerTest {
 	public void setup() {
 		this.moc = MockMvcBuilders.webAppContextSetup(ctx).build();
 	}
-	
-	
 	@Test
 	public void testList() throws Exception{
 		log.info(
 				moc.perform(
-						MockMvcRequestBuilders.get("/review/list")
+						MockMvcRequestBuilders.get("/qnasite/list")
 						.param("pageNum","2")
 						.param("amount","10")
-						.param("pid","TH2C3WJC208M")).andReturn().getModelAndView().getModelMap());	
+						.param("pid","TH2C3WJC208M")).andReturn().getModelAndView().getModelMap());
+	}
+
+
+	@Test
+	public void testInsert_qna() throws Exception{
+		log.info(
+				moc.perform(MockMvcRequestBuilders.get("/qnasite/insert_qna_site")
+				.param("mid", "rhehd002")
+				.param("Qcontent", "O22C5TTO085W")
+				.param("Qtitle", "S")
+				.param("pcolor", "white")
+				.param("pamount", "1")
+				.param("date", "2022/05/09"))
+				.andReturn()
+				.getModelAndView()
+				.getModelMap()
+				);
 	}
 
 	@Test
-	public void testOne_review() throws Exception{
+	public void testOne_qna_site() throws Exception{
 		log.info(
 				moc.perform(
-						MockMvcRequestBuilders.get("/review/one_review")
-						.param("rno","43")
+						MockMvcRequestBuilders.get("/qnasite/one_qna_site")
+						.param("qid","43")
 						.contentType(MediaType.APPLICATION_JSON)));
-						
 	}
 
+	@Test
+	public void testDelete_qna_site() throws Exception{
+			log.info(
+					moc.perform(
+							MockMvcRequestBuilders.get("/qnasite/delete_qna_site")
+							.param("qid","43")
+							.contentType(MediaType.APPLICATION_JSON)));
+	}
 
 	@Test
-	public void testCreate() throws Exception{
+	public void testUpdate_qna_site() throws Exception{
 		log.info(
 				moc.perform(
-						MockMvcRequestBuilders.get("/review/create")
-						.param("pid","TH2C3WJC208M")).andReturn().getModelAndView().getModelMap());	
-	}
-
-	@Test
-	public void testInsert_review() throws Exception{
-		MultiValueMap<String, Object> paraMap =new LinkedMultiValueMap<>();
-		paraMap.add("mid","rhehd002");
-		paraMap.add("pid", "O22C5TTO085W");
-		paraMap.add("psize", "SW");
-		paraMap.add("pcolor", "white");
-		paraMap.add("rrate", "3");
-		paraMap.add("rimage", "1");
-		
-		log.info(
-				moc.perform(MockMvcRequestBuilders.get("/review/insert_review")));
-				
-	}
-
-	@Test
-	public void testDelete_review() throws Exception{
-		log.info(
-				moc.perform(
-						MockMvcRequestBuilders.get("/review/delete_review")
-						.param("rno","43")));	
-	}
-
-	@Test
-	public void testUpdate_review() throws Exception{
-		log.info(
-				moc.perform(
-						MockMvcRequestBuilders.get("/review/update_review")
-						.param("rno","43")).andReturn().getModelAndView().getModelMap());	
+						MockMvcRequestBuilders.get("/qnasite/update_qna_site")
+						.param("qid","43")
+						.contentType(MediaType.APPLICATION_JSON)));
 	}
 
 }

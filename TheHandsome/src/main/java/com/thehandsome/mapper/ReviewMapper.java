@@ -9,20 +9,20 @@ import com.thehandsome.domain.*;
  *
  */
 public interface ReviewMapper {
-	public List<ReviewVO> getListReviewPaging(@Param("pageNum") int pageNum,
+	public List<ReviewVO> getListReviewPaging(@Param("pageNum") int pageNum, //QnA페이징 리스트 반환
 											  @Param("amount") int amount,
 											  @Param("pid") String pid);
-	public int review_total(String pid);
-	public ReviewVO read(Long rno);
+	public int review_total(String pid);//pid(품번)에 해당하는 총 글 갯수 반환
+	public ReviewVO read(Long rno);// 특정 qid(글 번호)에 해당하는 한 행 읽기
 	
-	public int insert(ReviewVO reviewVO);
+	public int insert(ReviewVO reviewVO);//상품평 게시판 글 등록
 	
-	public int delete(Long rno);
+	public int delete(Long rno);//상품평 게시판 글 삭제
 	
-	public int update(ReviewVO reviewVO);
+	public int update(ReviewVO reviewVO);//상품평 게시판 글 수정
 	
-	public List<ReviewVO> All_select(String pid);
-	public int update_rate( String pid);
+	public List<ReviewVO> All_select(String pid);//pid(품번)에 해당하는 모든 리스트 반환
+	public int update_rate( String pid); //pid에 해당하는 별점(rate) 업데이트
 	
 	}
 

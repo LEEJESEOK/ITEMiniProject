@@ -3,6 +3,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!--  QnA게시판 입력 폼
+작성자 : 이승연
+-->
 <!DOCTYPE html>
 <html>
 

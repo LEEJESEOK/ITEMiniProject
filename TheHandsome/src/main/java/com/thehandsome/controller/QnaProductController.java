@@ -38,7 +38,7 @@ public class QnaProductController {
 	
 	@GetMapping(value = "/list")
 	
-	public void list( Model model,@RequestParam("pageNum") 
+	public void list( Model model,@RequestParam("pageNum")  //페이징 리스트 반환
 	int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String pid) {
 		  int total = service.qna_total(pid);
 		  model.addAttribute("list", service.getList(pageNum,amount,pid));
@@ -46,18 +46,18 @@ public class QnaProductController {
 		  model.addAttribute("pid",pid);
 		  
 	  }
-	@GetMapping(value = "/qna") 
+	@GetMapping(value = "/qna") // pid값을 qna.jsp로 넘겨주는 역할
 	  public String qna(@RequestParam("pid") String pid) {
 		  log.info(pid);
 		  return "/qna";
 	  }
-	@GetMapping(value = "/one_qna")
+	@GetMapping(value = "/one_qna") //qid에 해당하는 QnA 리뷰 한 행 반환
 	  public ResponseEntity<QnaProductVO> one_qna(@RequestParam("qid") Long qid){
 		QnaProductVO val=service.qna_read(qid);
 		log.info("one_qna");
 		  return new ResponseEntity<>(val, HttpStatus.OK);
 	  }
-	@PostMapping(value = "/insert_qna")
+	@PostMapping(value = "/insert_qna") //QnA게시판 글 등록
 	  public String insert_qna(@RequestParam Map<String, Object> map){
 		  QnaProductVO vo = new QnaProductVO();
 		  vo.setMid(String.valueOf( map.get("mid")));
@@ -71,14 +71,14 @@ public class QnaProductController {
 		  return "redirect:/p/detail?product_id="+(String)map.get("pid");
 	  }
 	  
-	  @DeleteMapping(value = "delete_qna")
+	  @DeleteMapping(value = "delete_qna") //QnA 게시판 글 삭제
 	  public ResponseEntity<String> delete_qna(@RequestParam("qid") Long qid){
 		  service.qna_delete(qid);
 		  log.info("delete_review");
 		  return new ResponseEntity<>("Delete Success",HttpStatus.OK);
 	  }
 	  
-	  @PutMapping(value = "update_qna")
+	  @PutMapping(value = "update_qna") //QnA게시판 글 수정
 	  public ResponseEntity<String> update_review(QnaProductVO vo){
 		  service.qna_update(vo);
 		  log.info("update_qna");
