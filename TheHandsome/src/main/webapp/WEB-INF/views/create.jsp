@@ -2,7 +2,11 @@
 		pageEncoding="UTF-8" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!-- 
 
+작성자 : 이승연
+
+상품평 게시판 입력 폼 -->
 <!DOCTYPE html>
 <html>
 

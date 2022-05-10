@@ -15,16 +15,17 @@ import com.thehandsome.domain.ReviewVO;
  *
  */
 public interface QnaSiteService {
-	public List<QnaSiteVO> getList(@RequestParam("pageNum") int pageNum,@RequestParam("amount") int amount, @RequestParam("pid") String mid); //페이징
-	public List<QnaSiteVO> site_all_select(String mid);
-	public int qna_site_total(String mid);
-	public QnaSiteVO site_read(Long qid);
+	public List<QnaSiteVO> getList(@RequestParam("pageNum") int pageNum, //1:1 게시판 페이징 리스트 반환
+			@RequestParam("amount") int amount, @RequestParam("pid") String mid); 
+	public List<QnaSiteVO> site_all_select(String mid); //특정 mid(아이디)에 해당하는 1:1게시판 글 모두 반환
+	public int qna_site_total(String mid); //1:1게시판에서 특정 mid에 해당하는 총 행 갯수 반환
+	public QnaSiteVO site_read(Long qid); //1:1게시판에서 특정 qid에 해당하는 한 행 반환
 	
-	public int site_insert(QnaSiteVO qnasiteVO);
+	public int site_insert(QnaSiteVO qnasiteVO);//1:1 게시판 글 등록
 	
-	public int site_delete(Long qid);
+	public int site_delete(Long qid); //1:1 게시판 글 삭제
 	
-	public int site_update(QnaSiteVO qnasiteVO);
+	public int site_update(QnaSiteVO qnasiteVO); //1:1 게시판 글 수정
 
 
 

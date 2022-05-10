@@ -25,11 +25,13 @@ import lombok.extern.log4j.Log4j;
  * @author "Seungyeon"
  *
  */
+
+//ReviewMapper 테스트
 public class ReviewMapperTests {
 	@Autowired
 	ReviewMapper mapper;
 
-//	@Test
+	@Test
 	public void test01_mapper() {
 		log.info(mapper);
 	}

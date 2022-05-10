@@ -37,7 +37,7 @@ public class QnaSiteController {
 	@Autowired
 	private QnaSiteService service;
 	
-	@GetMapping(value = "/list")	
+	@GetMapping(value = "/list")	//1:1 게시판 페이징 리스트 반환
 	public void list( Model model,@RequestParam("pageNum") 
 	int pageNum,@RequestParam("amount") int amount, @RequestParam("mid") String mid) {
 		  int total = service.qna_site_total(mid);
@@ -46,12 +46,12 @@ public class QnaSiteController {
 		  
 	  }
 	
-	@GetMapping(value = "/qnasite") 
+	@GetMapping(value = "/qnasite")  //qnasite.jsp에 mid (아이디) 값 반환
 	  public String qnasite(@RequestParam("mid") String mid) {
 		  log.info(mid);
 		  return "qnasite";
 	}
-	@PostMapping(value = "/insert_qna_site")
+	@PostMapping(value = "/insert_qna_site") //1:1 게시판 글 등록
 	  public String insert_qna(@RequestParam Map<String, Object> map){
 		  QnaSiteVO vo = new QnaSiteVO();
 		  vo.setMid(String.valueOf( map.get("mid")));
@@ -64,7 +64,7 @@ public class QnaSiteController {
 		  log.info("insert_qna");
 		  return "mypage";
 	}
-	@GetMapping(value = "/one_qna_site")
+	@GetMapping(value = "/one_qna_site") //1:1 게시판 한 행 반환
 	  public ResponseEntity<QnaSiteVO> one_qna_site(@RequestParam("qid") Long qid){
 		QnaSiteVO val=service.site_read(qid);
 		log.info("one_qna_site");
@@ -72,14 +72,14 @@ public class QnaSiteController {
 	  }
 	
 	  
-	  @DeleteMapping(value = "delete_qna_site")
+	  @DeleteMapping(value = "delete_qna_site") //1:1 게시판 글 삭제
 	  public ResponseEntity<String> delete_qna_site(@RequestParam("qid") Long qid){
 		  service.site_delete(qid);
 		  log.info("delete_qna_site");
 		  return new ResponseEntity<>("Delete Success",HttpStatus.OK);
 	  }
 	  
-	  @PutMapping(value = "update_qna_site")
+	  @PutMapping(value = "update_qna_site") //1:1 게시판 글 수정
 	  public ResponseEntity<String> update_qna_site(QnaSiteVO vo){
 		  service.site_update(vo);
 		  log.info("update_qna_site");
