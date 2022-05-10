@@ -35,6 +35,7 @@ public interface MemberService {
 	public boolean isValidMember(String mid);
 	
 	/**
+	 * ID, PW 확인으로 계정 정보 조회
 	 * 
 	 * @param mid
 	 * @param mpassword
@@ -43,7 +44,7 @@ public interface MemberService {
 	public MemberVO getMemberAccountByLogin(String mid, String mpassword);
 
 	/**
-	 * mid에 해당하는 회원 정보 반환
+	 * mid에 해당하는 회원 정보 조회
 	 * 
 	 * @param mid 회원 ID
 	 * @return 회원 정보를 포함한 MemberVO

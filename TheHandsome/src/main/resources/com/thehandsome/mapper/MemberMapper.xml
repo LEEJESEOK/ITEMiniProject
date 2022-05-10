@@ -4,46 +4,49 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.thehandsome.mapper.MemberMapper">
 
-	<select id="isExistMemberByMid" parameterType="HashMap" resultType="boolean">
+	<select id="isExistMemberByMid" parameterType="HashMap"
+		resultType="boolean">
 		SELECT
-		    CASE
-		        WHEN COUNT(*) = 0 THEN
-		            'FALSE'
-		        ELSE
-		            'TRUE'
-		    END AS is_NOT_exist
+			CASE
+				WHEN COUNT(*) = 0 THEN
+					'FALSE'
+				ELSE
+					'TRUE'
+			END AS is_NOT_exist
 		FROM
-		    member
+			member
 		WHERE
-		    mid = #{mid}
-   	</select>
-   	
-   	<select id="isValidMember" resultType="boolean">
-   		SELECT
-   			CASE
-   				WHEN count(*) = 0 THEN
-   					'FALSE'
-  				ELSE
-  					'TRUE'
+			mid = #{mid}
+	</select>
+
+	<select id="isValidMember" resultType="boolean">
+		SELECT
+			CASE
+				WHEN count(*) = 0 THEN
+					'FALSE'
+				ELSE
+					'TRUE'
 			END AS ISVALID
-  		FROM
-  			member
+		FROM
+			member
 		WHERE
 			mid=#{mid} and menabled='T'
-   	</select>
-   	
-   	<select id="selectMemberByAccount" parameterType="HashMap" resultType="com.thehandsome.domain.MemberVO">
-   		SELECT
-   			*
- 		FROM
- 			member
+	</select>
+
+	<select id="selectMemberByAccount" parameterType="HashMap"
+		resultType="com.thehandsome.domain.MemberVO">
+		SELECT
+			*
+		FROM
+			member
 		WHERE
 			mid=#{mid} and mpassword=#{mpassword}
-   	</select>
+	</select>
 
 	<insert id="insertMember" statementType="CALLABLE">
-		{call sp_member_insert(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel},
-		 #{mzipcode}, #{maddress1}, #{maddress2})}
+		{call
+		sp_member_insert(#{mid}, #{mpassword}, #{mname}, #{memail}, #{mtel},
+		#{mzipcode}, #{maddress1}, #{maddress2})}
 	</insert>
 
 	<resultMap type="com.thehandsome.domain.MemberVO"
@@ -66,8 +69,8 @@
 	<select id="selectMemberInformation" resultMap="memberMap">
 		SELECT
 		mid, mpassword, mname, memail, mtel,
-		mzipcode, maddress1, maddress2, mgrade, mdate,
-		mmileage, menabled
+		mzipcode, maddress1, maddress2, mgrade,
+		mdate, mmileage, menabled
 		FROM member
 		WHERE mid = #{mid}
 	</select>
@@ -75,33 +78,33 @@
 	<update id="updateMemberPassword">
 		UPDATE member
 		SET
-			mpassword=#{mpassword}
+		mpassword=#{mpassword}
 		WHERE
-			mid=#{mid}
+		mid=#{mid}
 	</update>
 
 	<update id="updateMemberInformation">
 		UPDATE member
 		SET
-			memail=#{memail}, mtel=#{mtel},
-			mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}
+		memail=#{memail}, mtel=#{mtel},
+		mzipcode=#{mzipcode}, maddress1=#{maddress1}, maddress2=#{maddress2}
 		WHERE
-			mid=#{mid}
+		mid=#{mid}
 	</update>
 
 	<update id="updateMember2Secession">
 		UPDATE member
 		SET
-			menabled='F'
+		menabled='F'
 		WHERE
-			mid=#{mid}
+		mid=#{mid}
 	</update>
 
 	<delete id="deleteMember">
 		DELETE
-			member
+		member
 		WHERE
-			mid=#{mid}
+		mid=#{mid}
 	</delete>
 
 </mapper>

@@ -31,6 +31,14 @@ public class CommonController {
 	@Autowired
 	MemberService memberService;
 
+	/** 
+	 * 로그인한 계정(세션)의 비밀번호 재확인<br>
+	 * 
+	 * @param request
+	 * @param session
+	 * @param params
+	 * @return
+	 */
 	@RequestMapping("/passwordrecheck")
 	@ResponseBody
 	public Map<String, Object> passwordReCheck(HttpServletRequest request, HttpSession session,

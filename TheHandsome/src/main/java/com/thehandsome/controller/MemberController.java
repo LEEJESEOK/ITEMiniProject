@@ -23,8 +23,8 @@ import com.thehandsome.service.MemberService;
 import lombok.extern.log4j.Log4j;
 
 /**
- * MemberController<br>  
- * 회원 정보 조회, 로그인, 로그아웃, 회원가입, 아이디 중복확인 
+ * MemberController<br>
+ * 회원 정보 조회, 로그인, 로그아웃, 회원가입, 아이디 중복확인
  * 
  * @author JUNELLE
  *
@@ -36,7 +36,15 @@ public class MemberController {
 	@Autowired
 	MemberService memberService;
 
-	// 로그인 페이지
+	/**
+	 * 로그인 페이지 이동
+	 * 
+	 * @param rememberCookie
+	 * @param model
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/member/login")
 	public ModelAndView login(@CookieValue(value = "REMEMBER", required = false) Cookie rememberCookie, Model model,
 			HttpServletRequest request, HttpSession session) {
@@ -52,7 +60,14 @@ public class MemberController {
 		return new ModelAndView("login");
 	}
 
-	// 로그인 처리
+	/**
+	 * 아이디, 비밀번호로 로그인 인증<br>
+	 * 
+	 * @param loginMap
+	 * @param request
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/member/auth")
 	@ResponseBody
 	public Map<String, Object> memberAuth(@RequestBody Map<String, Object> loginMap, HttpServletRequest request,
@@ -86,6 +101,12 @@ public class MemberController {
 		return map;
 	}
 
+	/**
+	 * 로그아웃<br>
+	 * 
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value = "/member/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
@@ -93,12 +114,23 @@ public class MemberController {
 		return "redirect:/";
 	}
 
+	/**
+	 * 회원가입 정보 입력 페이지 이동<br>
+	 * 
+	 * @return
+	 */
 	@RequestMapping(value = "/member/joininfoform")
 	public String joinStart() {
 
 		return "member/joininfoform";
 	}
 
+	/**
+	 * 아이디 중복확인<br>
+	 * 
+	 * @param params
+	 * @return
+	 */
 	@RequestMapping(value = "/member/isduplid")
 	@ResponseBody
 	public Map<String, Object> isDuplId(@RequestParam Map<String, Object> params) {
@@ -112,6 +144,11 @@ public class MemberController {
 		return result;
 	}
 
+	/**
+	 * 새로운 계정 추가<br>
+	 * 
+	 * @param params
+	 */
 	@RequestMapping(value = "/member/joincomplete")
 	public void joinMemberComplete(@RequestParam Map<String, Object> params) {
 

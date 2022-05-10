@@ -33,6 +33,15 @@ public class MypageController {
 	@Autowired
 	MemberService memberService;
 
+	// TODO 로그인 필터
+	/**
+	 * 마이페이지 이동<br>
+	 * 로그인 세션이 없으면 로그인 페이지로 이동<br>
+	 * 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/mypage", method = RequestMethod.GET)
 	public String mypage(HttpSession session, Model model) {
 		if (session.getAttribute("session_mid") != null)
@@ -41,6 +50,13 @@ public class MypageController {
 			return "login";
 	}
 
+	/**
+	 * 개인정보 수정 페이지<br>
+	 * 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/mypage/infoChange")
 	public String infoChange(HttpSession session, Model model) {
 		if (session.getAttribute("session_mid") == null)
@@ -62,6 +78,15 @@ public class MypageController {
 		return "mypage/infoChange";
 	}
 
+	// TODO 로그인 필터
+	/**
+	 * 비밀번호 재확인로 페이지 이동<br>
+	 * 로그인 세션이 없으면 로그인 페이지로 이동<br>
+	 * 
+	 * @param session
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping("/mypage/infoChangePWCheck")
 	public String infoChangePWCheck(HttpSession session, Model model) {
 		if (session.getAttribute("session_mid") != null)
@@ -70,9 +95,17 @@ public class MypageController {
 			return "login";
 	}
 
+	/**
+	 * 비밀번호 변경<br>
+	 * 
+	 * @param params
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/mypage/changePassword")
 	@ResponseBody
-	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params, HttpServletRequest request) {
+	public Map<String, Object> changePassword(@RequestBody Map<String, Object> params, 
+			HttpServletRequest request) {
 		log.info("changePassword");
 
 		String mid = (String) request.getSession().getAttribute("session_mid");
@@ -87,6 +120,13 @@ public class MypageController {
 		return response;
 	}
 
+	/**
+	 * 개인정보 수정<br>
+	 * 
+	 * @param params
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping("/mypage/updateComplete")
 	@ResponseBody
 	public Map<String, Object> updateComplete(@RequestBody Map<String, Object> params, HttpSession session) {
