@@ -16,4 +16,3 @@ GRANT
     CREATE SEQUENCE,
     CREATE TYPE
 TO handsome;
-

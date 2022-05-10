@@ -1,65 +1,6 @@
-CREATE SEQUENCE seq_qna_product START WITH 1;
-
-CREATE SEQUENCE seq_qna_site START WITH 1;
-
-CREATE SEQUENCE seq_review START WITH 1;
-
-CREATE OR REPLACE TYPE qna_record_type AS OBJECT (
-    qid            NUMBER,
-    pid            VARCHAR2(30),
-    mid            VARCHAR2(100),
-    qtitle         VARCHAR2(1000),
-    qcontent       VARCHAR2(4000),
-    qdate          DATE,
-    qmanager       VARCHAR2(100),
-    qreplytitle    VARCHAR2(1000),
-    qreplycontent  VARCHAR2(4000),
-    qreplydate     DATE
-);
-/
-
-CREATE OR REPLACE TYPE qna_record_table_type AS
-    TABLE OF qna_record_type; --ÏÑ§Ï†ï
-    
-/
-
-CREATE OR REPLACE TYPE qna_site_record_type AS OBJECT (
-    qid            NUMBER,
-    mid            VARCHAR2(100),
-    qtitle         VARCHAR2(1000),
-    qcontent       VARCHAR2(4000),
-    qdate          DATE,
-    qmanager       VARCHAR2(100),
-    qreplytitle    VARCHAR2(1000),
-    qreplycontent  VARCHAR2(4000),
-    qreplydate     DATE
-);
-/
-
-CREATE OR REPLACE TYPE qna_site_record_table_type AS
-    TABLE OF qna_site_record_type; --ÏÑ§Ï†ï
-    
-/
-
-CREATE OR REPLACE TYPE review_record_type AS OBJECT (
-    rno       NUMBER,
-    mid       VARCHAR2(100),
-    pid       VARCHAR2(30),
-    pcolor    VARCHAR2(10),
-    psize     VARCHAR2(10),
-    rdate     DATE,
-    rrate     NUMBER,
-    rcontent  VARCHAR2(4000),
-    rimage    VARCHAR2(4000)
-);
-/
-
-CREATE OR REPLACE TYPE review_record_table_type AS
-    TABLE OF review_record_type; --ÏÑ§Ï†ï
-    
-/
-
-CREATE OR REPLACE PROCEDURE delete_qna (
+--Procedure--   
+--¿€º∫¿⁄ : ¿ÃΩ¬ø¨ --
+create or replace NONEDITIONABLE PROCEDURE delete_qna (
     p_qid qna_product.qid%TYPE
 ) IS
 BEGIN
@@ -70,8 +11,7 @@ BEGIN
     COMMIT;
 END;
 /
-
-CREATE OR REPLACE PROCEDURE delete_qna_site (
+create or replace NONEDITIONABLE PROCEDURE delete_qna_site (
     p_qid qna_site.qid%TYPE
 ) IS
 BEGIN
@@ -82,8 +22,7 @@ BEGIN
     COMMIT;
 END;
 /
-
-CREATE OR REPLACE PROCEDURE delete_review (
+create or replace NONEDITIONABLE PROCEDURE delete_review (
     p_rno review.rno%TYPE
 ) IS
 BEGIN
@@ -94,8 +33,7 @@ BEGIN
     COMMIT;
 END;
 /
-
-CREATE OR REPLACE PROCEDURE insert_qna (
+create or replace NONEDITIONABLE PROCEDURE insert_qna (
     p_qid            qna_product.qid%TYPE,
     p_pid            qna_product.pid%TYPE,
     p_mid            qna_product.mid%TYPE,
@@ -135,8 +73,7 @@ BEGIN
     COMMIT;
 END;
 /
-
-CREATE OR REPLACE PROCEDURE insert_qna_site (
+create or replace NONEDITIONABLE PROCEDURE insert_qna_site (
     p_qid            qna_site.qid%TYPE,
     p_mid            qna_site.mid%TYPE,
     p_qtitle         qna_site.qtitle%TYPE,
@@ -173,8 +110,7 @@ BEGIN
     COMMIT;
 END;
 /
-
-CREATE OR REPLACE PROCEDURE insert_review (
+create or replace NONEDITIONABLE PROCEDURE insert_review (
     p_rno       review.rno%TYPE,
     p_mid       review.mid%TYPE,
     p_pid       review.pid%TYPE,
@@ -212,7 +148,7 @@ BEGIN
 END;
 /
 
-CREATE OR REPLACE PROCEDURE update_qna (
+create or replace NONEDITIONABLE PROCEDURE update_qna (
     p_qid       qna_product.qid%TYPE,
     p_qtitle    qna_product.qtitle%TYPE,
     p_qcontent  qna_product.qcontent%TYPE
@@ -229,8 +165,7 @@ BEGIN
     COMMIT;
 END;
 /
-
-CREATE OR REPLACE PROCEDURE update_qna_site (
+create or replace NONEDITIONABLE PROCEDURE update_qna_site (
     p_qid       qna_site.qid%TYPE,
     p_qtitle    qna_site.qtitle%TYPE,
     p_qcontent  qna_site.qcontent%TYPE
@@ -245,10 +180,9 @@ BEGIN
         qid = p_qid;
 
     COMMIT;
-END;
+END; 
 /
-
-CREATE OR REPLACE PROCEDURE update_review (
+create or replace NONEDITIONABLE PROCEDURE update_review (
     p_rno       review.rno%TYPE,
     p_rcontent  review.rcontent%TYPE,
     p_rimage    review.rimage%TYPE,
@@ -267,10 +201,9 @@ BEGIN
     COMMIT;
 END;
 /
+-------------------«‘ºˆ---------------------------------------
 
--- ÌÖåÏù¥Î∏îÌéëÏÖò 
-
-CREATE OR REPLACE FUNCTION qna_list_display (
+create or replace NONEDITIONABLE FUNCTION qna_list_display (
     p_pid qna_product.pid%TYPE
 ) RETURN qna_record_table_type
     PIPELINED
@@ -297,8 +230,7 @@ BEGIN
     RETURN;
 END;
 /
-
-CREATE OR REPLACE FUNCTION qna_list_one_display (
+create or replace NONEDITIONABLE FUNCTION qna_list_one_display (
     p_qid qna_product.qid%TYPE
 ) RETURN qna_record_table_type
     PIPELINED
@@ -325,8 +257,7 @@ BEGIN
     RETURN;
 END;
 /
-
-CREATE OR REPLACE FUNCTION qna_site_list_display (
+create or replace NONEDITIONABLE FUNCTION qna_site_list_display (
     p_mid qna_site.mid%TYPE
 ) RETURN qna_site_record_table_type
     PIPELINED
@@ -353,8 +284,7 @@ BEGIN
     RETURN;
 END;
 /
-
-CREATE OR REPLACE FUNCTION qna_site_list_one_display (
+create or replace NONEDITIONABLE FUNCTION qna_site_list_one_display (
     p_qid qna_site.qid%TYPE
 ) RETURN qna_site_record_table_type
     PIPELINED
@@ -381,8 +311,7 @@ BEGIN
     RETURN;
 END;
 /
-
-CREATE OR REPLACE FUNCTION review_list_display (
+create or replace NONEDITIONABLE FUNCTION review_list_display (
     p_pid review.pid%TYPE
 ) RETURN review_record_table_type
     PIPELINED
@@ -408,8 +337,7 @@ BEGIN
     RETURN;
 END;
 /
-
-CREATE OR REPLACE FUNCTION review_list_one_display (
+create or replace NONEDITIONABLE FUNCTION review_list_one_display (
     p_rno review.rno%TYPE
 ) RETURN review_record_table_type
     PIPELINED
